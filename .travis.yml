@@ -9,4 +9,4 @@ install:
 
 script:
 - make test
-- bundle exec danger
+# - bundle exec danger
