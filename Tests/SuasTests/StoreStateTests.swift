@@ -34,6 +34,7 @@ class StoreStateTests: XCTestCase {
     XCTAssertEqual(s["a"] as! Int, 2)
   }
 
+#if swift(>=4.0)
   func testItCanGetAValueForAKeyAndType() {
     let s: StoreState = ["a" : 2]
     XCTAssertEqual(s[forKey: "a", ofType: Int.self], 2)
@@ -55,6 +56,7 @@ class StoreStateTests: XCTestCase {
     XCTAssertEqual(s[forKeyOfType: String.self], nil)
     XCTAssertEqual(s[forKeyOfType: Int.self], nil)
   }
+#endif
 
   func testItCanGetAValueForAKeySwift3() {
     let s: StoreState = ["a" : 2]
