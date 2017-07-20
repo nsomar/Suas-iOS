@@ -7,21 +7,25 @@
 //
 
 import Foundation
-import SuasIOS
+#if os(macOS)
+  @testable import SuasMac
+#else
+  @testable import SuasIOS
+#endif
 
-let emptyState = TodoState(posts:[])
+let emptyState = TodoState(todos:[])
 
 let todoReducer = BlockReducer(state: emptyState) { action, state in
   var newState = state
 
   if let action = action as? AddTodo {
-    newState.posts = newState.posts + [Post(title: action.text, isCompleted: false)]
+    newState.todos = newState.todos + [Todo(title: action.text, isCompleted: false)]
   }
 
   if let action = action as? ToggleTodo {
-    var post = newState.posts[action.index]
+    var post = newState.todos[action.index]
     post.isCompleted = !post.isCompleted
-    newState.posts[action.index] = post
+    newState.todos[action.index] = post
   }
 
   return newState

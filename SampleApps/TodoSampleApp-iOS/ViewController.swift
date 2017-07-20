@@ -20,6 +20,8 @@ class ViewController: UIViewController, Component {
     didSet {
       todoTableView.reloadData()
     }
+    @IBAction func todoAdded(_ sender: Any) {
+    }
   }
 
   override func viewDidLoad() {
