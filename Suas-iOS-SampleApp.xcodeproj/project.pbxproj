@@ -161,17 +161,17 @@
 		D7CBAA631F1EC3E100DA67E9 /* SuasIOS */ = {
 			isa = PBXGroup;
 			children = (
+				D7CBAA741F1EC42900DA67E9 /* Store.swift */,
 				D7CBAA751F1EC42900DA67E9 /* State.swift */,
 				D7CBAA701F1EC42900DA67E9 /* Component.swift */,
 				D7CBAA721F1EC42900DA67E9 /* DefaultStore.swift */,
-				D7CBAA741F1EC42900DA67E9 /* Store.swift */,
+				D7CF19401F204EC2003EC879 /* DefaultStoreConnectExtension.swift */,
 				D7CBAA6F1F1EC42900DA67E9 /* Common.swift */,
 				D7CBAA711F1EC42900DA67E9 /* Reducer.swift */,
 				D7CBAA731F1EC42900DA67E9 /* Middleware.swift */,
 				D7CBAA8C1F1ECAA300DA67E9 /* Listener.swift */,
 				D7CBAA641F1EC3E100DA67E9 /* SuasIOS.h */,
 				D7CBAA651F1EC3E100DA67E9 /* Info.plist */,
-				D7CF19401F204EC2003EC879 /* DefaultStoreConnectExtension.swift */,
 			);
 			path = SuasIOS;
 			sourceTree = "<group>";

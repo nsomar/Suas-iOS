@@ -12,6 +12,7 @@ public typealias StateKey = String
 public typealias CallbackId = String
 
 public typealias ListenerFunction<Type> = (Type) -> Void
+public typealias ActionListenerFunction = (Action) -> Void
 public typealias ListenerNotifier<State> = (State, State, Listener) -> Void
 
 public typealias KeyedState = [StateKey: Any]
@@ -28,7 +29,6 @@ infix operator |> : AdditionPrecedence
 
 extension Suas {
   static func log(_ string: String) {
-    print(string)
+    print("Suas Log: \(string)")
   }
 }
-

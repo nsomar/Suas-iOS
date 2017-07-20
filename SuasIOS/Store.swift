@@ -59,7 +59,7 @@ public protocol Store {
   ///   - component: the component to connect
   ///   - notifier: the store notifier
   func connect<C: Component>(component: C,
-                             withNotifier notifier: @escaping ListenerNotifier<C.StateType>)
+                             notifier: @escaping ListenerNotifier<C.StateType>)
 
 
   /// Connects a component to the store
@@ -67,7 +67,7 @@ public protocol Store {
   /// - Parameters:
   ///   - Parameter component: the component to connect
   ///   - stateKey: the state key to connect to in the state
-  func connect<C: Component>(component: C, forStateKey stateKey: StateKey)
+  func connect<C: Component>(component: C, stateKey: StateKey)
 
 
   /// Connects a component to the store
@@ -75,8 +75,8 @@ public protocol Store {
   /// - Parameter:
   ///   - component: the component to connect
   ///   - notifier: the store notifier
-  func connect<C: Component>(component: C, forStateKey stateKey: StateKey,
-                             withNotifier notifier: @escaping ListenerNotifier<C.StateType>)
+  func connect<C: Component>(component: C, stateKey: StateKey,
+                             notifier: @escaping ListenerNotifier<C.StateType>)
 
 
   /// Connects a component to the store
@@ -85,7 +85,7 @@ public protocol Store {
   ///   - component: the component to connect
   ///   - listener: the listener to be notified when the state for the passed key changes
   func connect<C: Component>(component: C,
-                             withListener listener: @escaping ListenerFunction<StoreState>)
+                             listener: @escaping ListenerFunction<StoreState>)
 
 
   /// Connects a component to the store
@@ -94,8 +94,8 @@ public protocol Store {
   ///   - component: the component to connect
   ///   - stateKey: the state key to connect to in the state
   ///   - listener: the listener to be notified when the state for the passed key changes
-  func connect<C: Component>(component: C, forStateKey stateKey: StateKey,
-                             withListener listener: @escaping ListenerFunction<C.StateType>)
+  func connect<C: Component>(component: C, stateKey: StateKey,
+                             listener: @escaping ListenerFunction<C.StateType>)
 
 
   /// Connects a component to the store
@@ -104,21 +104,36 @@ public protocol Store {
   ///   - component: the component to connect
   ///   - stateConverter: a converter that converts the `StoreState` to the actual type used by the component
   func connect<C: Component>(component: C,
-                             withStateConverter: StateConverter<StoreState, C.StateType>)
+                             stateConverter: StateConverter<StoreState, C.StateType>)
 
   /// Connects a component to the store
   ///
   /// - Parameters:
   ///   - component: the component to connect
   ///   - stateConverter: a converter that converts the `ExpectedType` to the actual type used by the component
-  func connect<C: Component, ExpectedType>(component: C, forStateKey stateKey: StateKey,
-                                           withStateConverter: StateConverter<ExpectedType, C.StateType>)
+  func connect<C: Component, ExpectedType>(component: C, stateKey: StateKey,
+                                           stateConverter: StateConverter<ExpectedType, C.StateType>)
+
+
+  /// Connects an action listener to a component. Only 1 action listner can be connected for a Component
+  ///
+  /// - Parameters:
+  ///   - component: the component to connects it to
+  ///   - listener: the action listner to connect
+  func connectActionListener<C: Component>(toComponent component: C,
+                                           listener: @escaping ActionListenerFunction)
 
 
   /// Disonnects a component from the store
   ///
   /// - Parameter component: the component to disconnect
   func disconnect<C: Component>(component: C)
+
+
+  /// Disconnect an action listener that was added for component
+  ///
+  /// - Parameter component: component to disconnect
+  func disconnectActionListener<C: Component>(forComponent component: C)
 
 
   /// Add a new listner to the store
@@ -213,6 +228,21 @@ public protocol Store {
   ///
   /// - Parameter id: the listener id to remove
   func removeListener(withId id: CallbackId)
+
+
+  /// Add a new action listner to the store
+  ///
+  /// - Parameters:
+  ///   - id: the action listener id to be used when removing the listener
+  ///   - callback: callback to be notified when an action happens
+  func addActionListener(withId id: CallbackId,
+                         listener: @escaping ActionListenerFunction)
+
+
+  /// Remove an action listener from the store
+  ///
+  /// - Parameter id: the action listener id to remove
+  func removeActionListener(withId id: CallbackId)
 }
 
 

@@ -22,8 +22,7 @@ public enum Suas {
     return Suas.DefaultStore(
       state: state,
       reducer: reduce,
-      middleware: middleware,
-      observers: [])
+      middleware: middleware)
   }
   
   class DefaultStore: Store {
@@ -31,16 +30,17 @@ public enum Suas {
     var state: StoreState
     var reducer: ReducerFunction
     fileprivate var listeners: [Listener]
+    fileprivate var actionListeners: [CallbackId: ActionListenerFunction]
     fileprivate var dispatchingFunction: DispatchFunction?
     
     init(state: StoreState,
          reducer: @escaping ReducerFunction,
-         middleware: Middleware?,
-         observers: [Listener]) {
+         middleware: Middleware?) {
       
       self.state = state
       self.reducer = reducer
-      self.listeners = observers
+      self.listeners = []
+      self.actionListeners = [:]
       self.dispatchingFunction = nil
       
       if let middleware = middleware {
@@ -91,7 +91,10 @@ extension Suas.DefaultStore {
     } else {
       state = reducer(action, state) as! StoreState
     }
-    
+
+    // Inform the action listeners
+    actionListeners.forEach({ $0.value(action) })
+
     listeners.forEach { listener in
       listener.notificationBlock(
         getSubstate(withState: state, forKey: listener.stateKey),
@@ -115,32 +118,32 @@ extension Suas.DefaultStore {
 extension Suas.DefaultStore {
   
   func addListener<State>(withId id: CallbackId,
-                                      type: State.Type,
-                                      callback: @escaping (State) -> ()) {
+                          type: State.Type,
+                          callback: @escaping (State) -> ()) {
     
     performAddListener(withId: id, stateKey: "\(type)", type: type, callback: callback)
   }
 
   func addListener<State>(withId id: CallbackId,
-                                      type: State.Type,
-                                      notifier: @escaping ListenerNotifier<State>,
-                                      callback: @escaping (State) -> ()) {
+                          type: State.Type,
+                          notifier: @escaping ListenerNotifier<State>,
+                          callback: @escaping (State) -> ()) {
 
     performAddListener(withId: id, stateKey: "\(type)", type: type,
                        notifier: notifier, callback: callback)
   }
   
   func addListener<State>(withId id: CallbackId,
-                                      stateKey: StateKey,
-                                      callback: @escaping (State) -> ()) {
+                          stateKey: StateKey,
+                          callback: @escaping (State) -> ()) {
     
     performAddListener(withId: id, stateKey: stateKey, type: State.self, callback: callback)
   }
 
   func addListener<State>(withId id: CallbackId,
-                                      stateKey: StateKey,
-                                      notifier: @escaping ListenerNotifier<State>,
-                                      callback: @escaping (State) -> ()) {
+                          stateKey: StateKey,
+                          notifier: @escaping ListenerNotifier<State>,
+                          callback: @escaping (State) -> ()) {
 
     performAddListener(withId: id, stateKey: stateKey, type: State.self,
                        notifier: notifier, callback: callback)
@@ -151,28 +154,28 @@ extension Suas.DefaultStore {
   }
 
   func addListener(withId id: CallbackId,
-                               notifier: @escaping ListenerNotifier<StoreState>,
-                               callback: @escaping (StoreState) -> ()) {
+                   notifier: @escaping ListenerNotifier<StoreState>,
+                   callback: @escaping (StoreState) -> ()) {
     performAddListener(withId: id, stateKey: nil, type: StoreState.self, notifier: notifier, callback: callback)
   }
   
   func addListener<State>(withId id: CallbackId, stateKey: StateKey,
-                                      type: State.Type, callback: @escaping (State) -> ()) {
+                          type: State.Type, callback: @escaping (State) -> ()) {
     performAddListener(withId: id, stateKey: stateKey, type: type, callback: callback)
   }
 
   func addListener<State>(withId id: CallbackId, stateKey: StateKey,
-                                      type: State.Type,
-                                      notifier: @escaping ListenerNotifier<State>,
-                                      callback: @escaping (State) -> ()) {
+                          type: State.Type,
+                          notifier: @escaping ListenerNotifier<State>,
+                          callback: @escaping (State) -> ()) {
     performAddListener(withId: id, stateKey: stateKey, type: type, notifier: notifier, callback: callback)
   }
 
   func performAddListener<State, ListenerType>(withId id: CallbackId,
-                                             stateKey: StateKey?,
-                                             type: State.Type,
-                                             notifier: ListenerNotifier<State>? = nil,
-                                             callback: @escaping (ListenerType) -> ()) {
+                                               stateKey: StateKey?,
+                                               type: State.Type,
+                                               notifier: ListenerNotifier<State>? = nil,
+                                               callback: @escaping (ListenerType) -> ()) {
 
     var currentNotifier: ListenerNotifier<Any> = alwaysNotifier
 
@@ -210,8 +213,26 @@ extension Suas.DefaultStore {
   }
 }
 
+// Action listeners
+extension Suas.DefaultStore {
+  func addActionListener(withId id: CallbackId,
+                         listener: @escaping ActionListenerFunction) {
+
+    actionListeners[id] = listener
+  }
+
+  func removeActionListener(withId id: CallbackId)  {
+    actionListeners.removeValue(forKey: id)
+  }
+
+}
+
 extension Suas {
   static func allListeners(inStore store: Store) -> [Listener] {
     return (store as! DefaultStore).listeners
+  }
+
+  static func allActionListeners(inStore store: Store) -> [Any] {
+    return Array((store as! DefaultStore).actionListeners.keys)
   }
 }

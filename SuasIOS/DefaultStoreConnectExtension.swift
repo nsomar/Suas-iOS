@@ -15,15 +15,15 @@ extension Suas.DefaultStore {
   func connect<C: Component>(component: C) {
     performConnect(component: component,
                    stateKey: "\(C.StateType.self)",
-                   notifier: nil,
-                   listener: { [weak component] newState in
-                    component?.setIfChanged(newState)
+      notifier: nil,
+      listener: { [weak component] newState in
+        component?.setIfChanged(newState)
     })
   }
 
   func connect<C>(
     component: C,
-    withNotifier notifier: @escaping ListenerNotifier<C.StateType>)
+    notifier: @escaping ListenerNotifier<C.StateType>)
     where C : Component {
 
       performConnect(component: component,
@@ -35,20 +35,20 @@ extension Suas.DefaultStore {
   }
 
   func connect<C: Component>(component: C,
-                             forStateKey stateKey: StateKey) {
+                             stateKey: StateKey) {
 
     performConnect(component: component,
                    stateKey: stateKey,
-      notifier: nil,
-      listener: { [weak component] newState in
-        component?.setIfChanged(newState)
+                   notifier: nil,
+                   listener: { [weak component] newState in
+                    component?.setIfChanged(newState)
     })
   }
 
   func connect<C>(
     component: C,
-    forStateKey stateKey: StateKey,
-    withNotifier notifier: @escaping ListenerNotifier<C.StateType>)
+    stateKey: StateKey,
+    notifier: @escaping ListenerNotifier<C.StateType>)
     where C : Component {
 
       performConnect(component: component,
@@ -61,7 +61,7 @@ extension Suas.DefaultStore {
 
   func connect<C>(
     component: C,
-    withListener listener: @escaping (StoreState) -> Void)
+    listener: @escaping (StoreState) -> Void)
     where C : Component {
 
       performConnect(component: component,
@@ -71,8 +71,8 @@ extension Suas.DefaultStore {
   }
 
   func connect<C: Component>(component: C,
-                             forStateKey stateKey: StateKey,
-                             withListener listener: @escaping ListenerFunction<C.StateType>) {
+                             stateKey: StateKey,
+                             listener: @escaping ListenerFunction<C.StateType>) {
     performConnect(component: component,
                    stateKey: stateKey,
                    notifier: nil,
@@ -81,7 +81,7 @@ extension Suas.DefaultStore {
 
   func connect<C: Component>(
     component: C,
-    withStateConverter stateConverter: StateConverter<StoreState, C.StateType>) {
+    stateConverter: StateConverter<StoreState, C.StateType>) {
 
     performConnect(component: component,
                    forStateKey: nil,
@@ -90,8 +90,8 @@ extension Suas.DefaultStore {
 
   func connect<C, ExpectedType>(
     component: C,
-    forStateKey stateKey: StateKey,
-    withStateConverter stateConverter: StateConverter<ExpectedType, C.StateType>)
+    stateKey: StateKey,
+    stateConverter: StateConverter<ExpectedType, C.StateType>)
     where C : Component {
 
       performConnect(component: component,
@@ -99,7 +99,7 @@ extension Suas.DefaultStore {
                      withStateConverter: stateConverter)
   }
 
-  private func onObjectDeinit(forComponent component: Any, callbackId: String, callback: @escaping () -> ()) {
+  fileprivate func onObjectDeinit(forComponent component: Any, callbackId: String, callback: @escaping () -> ()) {
     if let object = component as? NSObject {
       let rem = DeinitCallback(callback: callback)
 
@@ -114,6 +114,7 @@ extension Suas.DefaultStore {
 
   func disconnect<C: Component>(component: C) {
     removeListener(withId: getId(forAny: component))
+    removeActionListener(withId: getId(forAny: component))
   }
 
   fileprivate func getId(forAny any: Any) -> CallbackId {
@@ -130,6 +131,26 @@ fileprivate class DeinitCallback: NSObject {
 
   deinit {
     callback()
+  }
+}
+
+// Action listeners
+
+extension Suas.DefaultStore {
+
+  func connectActionListener<C: Component>(toComponent component: C,
+                                           listener: @escaping ActionListenerFunction) {
+    let callbackId = getId(forAny: component)
+
+    addActionListener(withId: callbackId, listener: listener)
+
+    onObjectDeinit(forComponent: component,
+                   callbackId: callbackId) { self.removeActionListener(withId: callbackId) }
+  }
+
+  func disconnectActionListener<C: Component>(forComponent component: C) {
+    let callbackId = getId(forAny: component)
+    self.removeActionListener(withId: callbackId)
   }
 }
 
@@ -180,3 +201,4 @@ extension Suas.DefaultStore {
                      callbackId: callbackId) { self.removeListener(withId: callbackId) }
   }
 }
+

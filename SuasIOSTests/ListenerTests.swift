@@ -293,4 +293,29 @@ class ListenerTests: XCTestCase {
     XCTAssertEqual(val, 0)
   }
 
+  func testItAddsActionListener() {
+    let store = Suas.createStore(reducer: Reducer1() |> Reducer2())
+
+    var actionReceived: Action? = nil
+    store.addActionListener(withId: "1") { action in
+      actionReceived = action
+    }
+
+    store.dispatch(action: IncrementAction())
+    XCTAssertTrue(actionReceived is IncrementAction)
+  }
+
+  func testItRemovesAnActionListener() {
+    let store = Suas.createStore(reducer: Reducer1() |> Reducer2())
+
+    var actionReceived: Action? = nil
+    store.addActionListener(withId: "1") { action in
+      actionReceived = action
+    }
+    store.removeActionListener(withId: "1")
+
+    store.dispatch(action: IncrementAction())
+    XCTAssertNil(actionReceived)
+  }
+
 }

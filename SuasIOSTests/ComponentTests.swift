@@ -59,7 +59,7 @@ class ComponentTests: XCTestCase {
     let component = MyComponent()
 
     component.state = MyState1(value: 0)
-    store.connect(component: component, forStateKey: "MyState1")
+    store.connect(component: component, stateKey: "MyState1")
     store.dispatch(action: IncrementAction())
 
     XCTAssertEqual(component.state.value, 10)
@@ -77,7 +77,7 @@ class ComponentTests: XCTestCase {
     let component = MyComponent()
 
     component.state = MyState1(value: 0)
-    store.connect(component: component, forStateKey: "MyState1")
+    store.connect(component: component, stateKey: "MyState1")
     XCTAssertEqual(Suas.allListeners(inStore: store).count, 1)
   }
 
@@ -90,7 +90,7 @@ class ComponentTests: XCTestCase {
     }
 
     component.state = StrangeState(strangeValue: 0)
-    store.connect(component: component, withStateConverter: strangeStateConverter)
+    store.connect(component: component, stateConverter: strangeStateConverter)
     store.dispatch(action: IncrementAction())
 
     XCTAssertEqual(component.state.strangeValue, 10)
@@ -105,7 +105,7 @@ class ComponentTests: XCTestCase {
     }
 
     component.state = StrangeState(strangeValue: 0)
-    store.connect(component: component, forStateKey: "MyState1", withStateConverter: strangeStateConverter)
+    store.connect(component: component, stateKey: "MyState1", stateConverter: strangeStateConverter)
     store.dispatch(action: IncrementAction())
 
     XCTAssertEqual(component.state.strangeValue, 10)
@@ -120,7 +120,7 @@ class ComponentTests: XCTestCase {
     }
 
     component.state = StrangeState(strangeValue: 0)
-    store.connect(component: component, forStateKey: "MyState1", withStateConverter: strangeStateConverter)
+    store.connect(component: component, stateKey: "MyState1", stateConverter: strangeStateConverter)
     store.dispatch(action: IncrementAction())
 
     XCTAssertEqual(component.state.strangeValue, 0)
@@ -135,7 +135,7 @@ class ComponentTests: XCTestCase {
     }
 
     component.state = StrangeState(strangeValue: 0)
-    store.connect(component: component, withStateConverter: strangeStateConverter)
+    store.connect(component: component, stateConverter: strangeStateConverter)
     store.dispatch(action: IncrementAction())
 
     XCTAssertEqual(component.state.strangeValue, 0)
@@ -160,7 +160,7 @@ class ComponentTests: XCTestCase {
     let component = MyComponent()
 
     component.state = MyState1(value: 2)
-    store.connect(component: component, forStateKey: "MyState1") { newState in
+    store.connect(component: component, stateKey: "MyState1") { newState in
       XCTAssertEqual(newState.value, 10)
     }
 
@@ -228,7 +228,7 @@ class ComponentTests: XCTestCase {
     let component = MyComponent()
 
     let notifier: ListenerNotifier<MyState1> = { new, old, l in l.notify(new) }
-    store.connect(component: component, withNotifier: notifier)
+    store.connect(component: component, notifier: notifier)
     store.dispatch(action: IncrementAction())
 
     XCTAssertEqual(component.state.value, 11)
@@ -239,7 +239,7 @@ class ComponentTests: XCTestCase {
     let component = MyComponent()
 
     let notifier: ListenerNotifier<MyState1> = { new, old, l in l.notify(new) }
-    store.connect(component: component, forStateKey: "MyState1", withNotifier: notifier)
+    store.connect(component: component, stateKey: "MyState1", notifier: notifier)
     store.dispatch(action: IncrementAction())
 
     XCTAssertEqual(component.state.value, 11)
@@ -255,7 +255,7 @@ class ComponentTests: XCTestCase {
       }
     }
 
-    store.connect(component: component, withNotifier: notifier)
+    store.connect(component: component, notifier: notifier)
 
     store.dispatch(action: IncrementAction())
     XCTAssertEqual(component.state.value, 11)
@@ -271,7 +271,7 @@ class ComponentTests: XCTestCase {
 
     struct NoAction: Action { }
 
-    store.connect(component: component, withNotifier: compareNotifier)
+    store.connect(component: component, notifier: compareNotifier)
     store.dispatch(action: NoAction())
 
     XCTAssertEqual(component.state.val, 10)
@@ -283,10 +283,67 @@ class ComponentTests: XCTestCase {
                                  state: MyEquatableState1(val: 10))
     let component = MyComponentWithEquatableState()
 
-    store.connect(component: component, withNotifier: compareNotifier)
+    store.connect(component: component, notifier: compareNotifier)
     store.dispatch(action: IncrementAction())
 
     XCTAssertEqual(component.state.val, 80)
     XCTAssertEqual(component.didSetCalled, true)
+  }
+
+  func testItConnectsAnActionListener() {
+    let store = Suas.createStore(reducer: reducer1, state: MyState1(value: 10))
+    let component = MyComponent()
+
+    var actionReceived: Action? = nil
+    store.connectActionListener(toComponent: component) { action in
+      actionReceived = action
+    }
+
+    store.dispatch(action: IncrementAction())
+    XCTAssertTrue(actionReceived is IncrementAction)
+  }
+
+  func testItDisconnectsAnActionListenersOnDisconnect() {
+    let store = Suas.createStore(reducer: reducer1, state: MyState1(value: 10))
+    let component = MyComponent()
+
+    var actionReceived: Action? = nil
+    store.connectActionListener(toComponent: component) { action in
+      actionReceived = action
+    }
+    store.disconnect(component: component)
+
+    store.dispatch(action: IncrementAction())
+    XCTAssertNil(actionReceived)
+  }
+
+  func testItDisconnectsAnActionListenersOnDisconnectActionListener() {
+    let store = Suas.createStore(reducer: Reducer1(), state: MyState1(value: 5))
+    let component = MyComponent()
+
+    var actionReceived: Action? = nil
+    store.connectActionListener(toComponent: component) { action in
+      actionReceived = action
+    }
+    
+    store.disconnectActionListener(forComponent: component)
+
+    store.dispatch(action: IncrementAction())
+    XCTAssertNil(actionReceived)
+  }
+
+  func testItDisconnectsAnActionListenersOnDeinit() {
+    let store = Suas.createStore(reducer: Reducer1(), state: MyState1(value: 5))
+    callAndForget3(store: store)
+    XCTAssertEqual(Suas.allActionListeners(inStore: store).count, 0)
+  }
+
+  func callAndForget3(store: Store) {
+    let component = MyComponent()
+
+    store.connectActionListener(toComponent: component) { action in
+    }
+
+    XCTAssertEqual(Suas.allActionListeners(inStore: store).count, 1)
   }
 }
