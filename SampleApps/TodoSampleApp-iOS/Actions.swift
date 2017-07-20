@@ -7,7 +7,11 @@
 //
 
 import Foundation
-import SuasIOS
+#if os(macOS)
+  @testable import SuasMac
+#else
+  @testable import SuasIOS
+#endif
 
 struct AddTodo: Action {
   let text: String

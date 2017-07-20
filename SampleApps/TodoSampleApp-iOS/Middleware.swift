@@ -7,7 +7,11 @@
 //
 
 import Foundation
-import SuasIOS
+#if os(macOS)
+  @testable import SuasMac
+#else
+  @testable import SuasIOS
+#endif
 
 let loggerMiddleware = BlockMiddleware { action, api, next in
   print("\n==========================================================================")

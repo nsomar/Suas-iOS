@@ -8,12 +8,12 @@
 
 import Foundation
 
-struct Post {
+struct Todo {
   var title: String
   var isCompleted: Bool
 }
 
 struct TodoState {
-  var posts: [Post]
+  var todos: [Todo]
 }
 
