@@ -7,7 +7,11 @@
 //
 
 import XCTest
-import SuasIOS
+#if os(macOS)
+  @testable import SuasMac
+#else
+  @testable import SuasIOS
+#endif
 
 class MiddlewareTests: XCTestCase {
 

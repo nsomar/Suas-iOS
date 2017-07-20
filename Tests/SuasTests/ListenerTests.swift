@@ -7,7 +7,11 @@
 //
 
 import XCTest
-@testable import SuasIOS
+#if os(macOS)
+  @testable import SuasMac
+#else
+  @testable import SuasIOS
+#endif
 
 class ListenerTests: XCTestCase {
 

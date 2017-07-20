@@ -9,28 +9,15 @@
 import UIKit
 import SuasIOS
 
-struct SomeAction: Action {}
-
-//class LoggerMiddleware: Middleware {
-let middleware = BlockMiddleware { action, api, next in
-  print("The old state is \(api.state)")
-  print("The action is \(action)")
-  next(action)
-  print("The new state is \(api.state)")
-}
+let store = Suas.createStore(reducer: todoReducer)
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
 
-
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     // Override point for customization after application launch.
-//    Sta
-
-
-
     return true
   }
 
