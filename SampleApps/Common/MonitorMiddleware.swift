@@ -13,9 +13,8 @@ import Foundation
   @testable import SuasIOS
 #endif
 
-
 protocol SuasEncodable {
-  func toDictionary()
+  func toDictionary() -> [String: Any]
 }
 
 struct ConnectedToMonitor: Action {
@@ -24,34 +23,46 @@ struct ConnectedToMonitor: Action {
   }
 }
 
-let monitorMiddlware = BlockMiddleware { action, api, next in
-  next(action)
-  sendToMonitor(state: api.state, action: action)
-}
+class MonitorMiddleware: Middleware {
+  var api: MiddlewareAPI?
 
-func sendToMonitor(state: StoreState, action: Action) {
-  var stateToSend: [String: Any] = [:]
+  var next: DispatchFunction?
 
-  state.keys.forEach { key in
-    if let value = state[key] as? SuasEncodable {
-      stateToSend[key] = value.toDictionary()
+  init() {
+    MonitorService.shared.start()
+  }
+
+  func onAction(action: Action) {
+    guard let api = api, let next = next else { return }
+    next(action)
+    sendToMonitor(state: api.state, action: action)
+  }
+
+  func sendToMonitor(state: StoreState, action: Action) {
+    var stateToSend: [String: Any] = [:]
+
+    state.keys.forEach { key in
+      if let value = state[key] as? SuasEncodable {
+        stateToSend[key] = value.toDictionary()
+      }
     }
+
+    var map: [String: Any] = [
+      "state" : stateToSend,
+      "action" : "\(type(of: action))"
+    ]
+
+    if let encodableAction = action as? SuasEncodable {
+      map["actionData"] = encodableAction.toDictionary()
+    }
+
+    var data = try! JSONSerialization.data(withJSONObject: map, options: [])
+    let cr = "&&__&&__&&".data(using: .utf8)!
+
+    data.append(cr)
+
+    MonitorService.shared.send(data: data)
   }
-
-  var map: [String: Any] = [
-    "state" : stateToSend,
-    "action" : "\(type(of: action))"]
-
-  if let encodableAction = action as? SuasEncodable {
-    map["actionData"] = encodableAction.toDictionary()
-  }
-
-  var data = try! JSONSerialization.data(withJSONObject: map, options: [])
-  let cr = "&&__&&__&&".data(using: .utf8)!
-
-  data.append(cr)
-
-  MonitorService.shared.send(data: data)
 }
 
 public class MonitorService: NSObject, GCDAsyncSocketDelegate, NetServiceDelegate {
@@ -64,6 +75,7 @@ public class MonitorService: NSObject, GCDAsyncSocketDelegate, NetServiceDelegat
 
   private override init() {
     super.init()
+    start()
   }
 
   public func start() {

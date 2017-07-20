@@ -13,9 +13,22 @@ import Foundation
   @testable import SuasIOS
 #endif
 
-struct AddTodo: Action {
+struct AddTodo: Action, SuasEncodable {
   let text: String
+
+  func toDictionary() -> [String: Any] {
+    return [
+      "text": text
+    ]
+  }
 }
-struct ToggleTodo: Action {
+
+struct ToggleTodo: Action, SuasEncodable {
   let index: Int
+  
+  func toDictionary() -> [String: Any] {
+    return [
+      "index": index
+    ]
+  }
 }

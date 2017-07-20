@@ -20,8 +20,6 @@ class ViewController: UIViewController, Component {
     didSet {
       todoTableView.reloadData()
     }
-    @IBAction func todoAdded(_ sender: Any) {
-    }
   }
 
   override func viewDidLoad() {
@@ -40,7 +38,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
 
-    let post = state.posts[indexPath.row]
+    let post = state.todos[indexPath.row]
     cell.textLabel?.text = post.title
     cell.textLabel?.textColor = post.isCompleted ? UIColor.gray : UIColor.black
 
@@ -48,7 +46,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
   }
 
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return state.posts.count
+    return state.todos.count
   }
 
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

@@ -9,7 +9,7 @@
 import UIKit
 import SuasIOS
 
-let store = Suas.createStore(reducer: todoReducer)
+let store = Suas.createStore(reducer: todoReducer, middleware: MonitorMiddleware())
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
