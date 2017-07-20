@@ -21,15 +21,4 @@ todoist.warn_for_todos
 the_coding_love.random
 
 slather.configure("Suas.xcodeproj", "SuasIOS")
-
-markdown("-------")
-markdown("<details>")
-markdown("<summary>Slather File Info </summary>")
-markdown("")
-markdown("```")
-markdown(File.read("coverage.res"))
-markdown("```")
-markdown("")
-markdown("</details>")
-
 slather.show_coverage
