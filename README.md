@@ -1,3 +1,3 @@
 # Suas
 
-![Screenshot](/misc/screenshot.png?raw=true)
+![Screenshot](/Misc/Logo.png?raw=true)
