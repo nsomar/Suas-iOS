@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12121"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner"/>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="tS4-Ds-vcm" customClass="TodoCell" customModule="TodoSampleApp_Mac">
+            <rect key="frame" x="0.0" y="0.0" width="319" height="50"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <button verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="cV9-kb-ENm">
+                    <rect key="frame" x="8" y="16" width="22" height="18"/>
+                    <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="wxj-dK-fMh">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="buttonTapped:" target="tS4-Ds-vcm" id="AMq-ba-XjA"/>
+                    </connections>
+                </button>
+                <textField horizontalHuggingPriority="246" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="boM-Ic-GlY">
+                    <rect key="frame" x="33" y="11" width="276" height="28"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="140" drawsBackground="YES" id="eK0-PP-i6X">
+                        <font key="font" metaFont="system" size="23"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </textFieldCell>
+                </textField>
+            </subviews>
+            <constraints>
+                <constraint firstItem="boM-Ic-GlY" firstAttribute="centerY" secondItem="tS4-Ds-vcm" secondAttribute="centerY" id="5G9-gM-zDb"/>
+                <constraint firstItem="cV9-kb-ENm" firstAttribute="leading" secondItem="tS4-Ds-vcm" secondAttribute="leading" constant="10" id="IdV-ZC-daS"/>
+                <constraint firstAttribute="trailing" secondItem="boM-Ic-GlY" secondAttribute="trailing" constant="10" id="PIz-eb-U94"/>
+                <constraint firstItem="boM-Ic-GlY" firstAttribute="leading" secondItem="cV9-kb-ENm" secondAttribute="trailing" constant="5" id="Tw5-nc-ls9"/>
+                <constraint firstItem="cV9-kb-ENm" firstAttribute="centerY" secondItem="tS4-Ds-vcm" secondAttribute="centerY" id="aaz-cz-f0H"/>
+            </constraints>
+            <connections>
+                <outlet property="checkButton" destination="cV9-kb-ENm" id="XaX-bR-cFB"/>
+                <outlet property="routeLabel" destination="boM-Ic-GlY" id="yVx-HC-56r"/>
+                <outlet property="todoLabel" destination="boM-Ic-GlY" id="rL0-kT-8JI"/>
+            </connections>
+            <point key="canvasLocation" x="406.5" y="309"/>
+        </customView>
+    </objects>
+</document>

@@ -26,21 +26,19 @@
 		D70551591F212A7900022BF1 /* ListenerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CF193C1F1FDAF7003EC879 /* ListenerTests.swift */; };
 		D705515A1F212A7900022BF1 /* StoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CF193E1F2033DF003EC879 /* StoreTests.swift */; };
 		D705515B1F212A7900022BF1 /* MiddlewareTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CF19421F205B80003EC879 /* MiddlewareTests.swift */; };
-		D711E9471F213B070049718D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D711E9461F213B070049718D /* AppDelegate.swift */; };
-		D711E9491F213B070049718D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D711E9481F213B070049718D /* ViewController.swift */; };
-		D711E94B1F213B070049718D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D711E94A1F213B070049718D /* Assets.xcassets */; };
-		D711E94E1F213B070049718D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D711E94C1F213B070049718D /* Main.storyboard */; };
-		D711E9531F213CC70049718D /* SuasMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D70551321F2128E800022BF1 /* SuasMac.framework */; };
-		D711E9541F213CC70049718D /* SuasMac.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D70551321F2128E800022BF1 /* SuasMac.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		D711E9581F213D010049718D /* Middleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = D77F2E9D1F211E650038D8D5 /* Middleware.swift */; };
-		D711E9591F213D010049718D /* Reducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D77F2E9F1F211E7A0038D8D5 /* Reducer.swift */; };
-		D711E95A1F213D010049718D /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = D77F2EA11F211EC70038D8D5 /* State.swift */; };
-		D711E95B1F213D010049718D /* Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D77F2EA31F211FF30038D8D5 /* Actions.swift */; };
-		D711E9621F2143410049718D /* TodoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D711E95F1F213F680049718D /* TodoCell.xib */; };
-		D77F2E9E1F211E650038D8D5 /* Middleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = D77F2E9D1F211E650038D8D5 /* Middleware.swift */; };
-		D77F2EA01F211E7A0038D8D5 /* Reducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D77F2E9F1F211E7A0038D8D5 /* Reducer.swift */; };
-		D77F2EA21F211EC70038D8D5 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = D77F2EA11F211EC70038D8D5 /* State.swift */; };
-		D77F2EA41F211FF30038D8D5 /* Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D77F2EA31F211FF30038D8D5 /* Actions.swift */; };
+		D75D6DCF1F21556200BA72C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75D6DCE1F21556200BA72C8 /* AppDelegate.swift */; };
+		D75D6DD11F21556200BA72C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D75D6DD01F21556200BA72C8 /* Assets.xcassets */; };
+		D75D6DDA1F21559600BA72C8 /* Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F924D51F215182003BAC77 /* Actions.swift */; };
+		D75D6DDB1F21559600BA72C8 /* Middleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F924D71F215182003BAC77 /* Middleware.swift */; };
+		D75D6DDC1F21559600BA72C8 /* MonitorMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F924D81F215182003BAC77 /* MonitorMiddleware.swift */; };
+		D75D6DDD1F21559600BA72C8 /* Reducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F924D61F215182003BAC77 /* Reducer.swift */; };
+		D75D6DDE1F21559600BA72C8 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F924D91F215182003BAC77 /* State.swift */; };
+		D75D6DDF1F21560000BA72C8 /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = D7F924EB1F215228003BAC77 /* GCDAsyncSocket.m */; };
+		D75D6DE01F21563E00BA72C8 /* SuasMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D70551321F2128E800022BF1 /* SuasMac.framework */; };
+		D75D6DE11F21563E00BA72C8 /* SuasMac.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D70551321F2128E800022BF1 /* SuasMac.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D75D6DEA1F2156C000BA72C8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D75D6DE91F2156B600BA72C8 /* Main.storyboard */; };
+		D75D6DEB1F2156C300BA72C8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75D6DE61F2156A000BA72C8 /* ViewController.swift */; };
+		D75D6DEC1F21570600BA72C8 /* TodoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D75D6DE51F2156A000BA72C8 /* TodoCell.xib */; };
 		D7CBAA4C1F1EC38700DA67E9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CBAA4B1F1EC38700DA67E9 /* AppDelegate.swift */; };
 		D7CBAA4E1F1EC38700DA67E9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CBAA4D1F1EC38700DA67E9 /* ViewController.swift */; };
 		D7CBAA511F1EC38700DA67E9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7CBAA4F1F1EC38700DA67E9 /* Main.storyboard */; };
@@ -67,6 +65,12 @@
 		D7CF193F1F2033DF003EC879 /* StoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CF193E1F2033DF003EC879 /* StoreTests.swift */; };
 		D7CF19411F204EC2003EC879 /* DefaultStoreConnectExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CF19401F204EC2003EC879 /* DefaultStoreConnectExtension.swift */; };
 		D7CF19431F205B80003EC879 /* MiddlewareTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CF19421F205B80003EC879 /* MiddlewareTests.swift */; };
+		D7F924DF1F2151B4003BAC77 /* Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F924D51F215182003BAC77 /* Actions.swift */; };
+		D7F924E01F2151B4003BAC77 /* Middleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F924D71F215182003BAC77 /* Middleware.swift */; };
+		D7F924E11F2151B4003BAC77 /* MonitorMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F924D81F215182003BAC77 /* MonitorMiddleware.swift */; };
+		D7F924E21F2151B4003BAC77 /* Reducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F924D61F215182003BAC77 /* Reducer.swift */; };
+		D7F924E31F2151B4003BAC77 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F924D91F215182003BAC77 /* State.swift */; };
+		D7F924ED1F215230003BAC77 /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = D7F924EB1F215228003BAC77 /* GCDAsyncSocket.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,7 +81,7 @@
 			remoteGlobalIDString = D70551311F2128E800022BF1;
 			remoteInfo = SuasMac;
 		};
-		D711E9551F213CC70049718D /* PBXContainerItemProxy */ = {
+		D75D6DE21F21563E00BA72C8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D7CBAA401F1EC38700DA67E9 /* Project object */;
 			proxyType = 1;
@@ -101,13 +105,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		D711E9571F213CC70049718D /* Embed Frameworks */ = {
+		D75D6DE41F21563E00BA72C8 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				D711E9541F213CC70049718D /* SuasMac.framework in Embed Frameworks */,
+				D75D6DE11F21563E00BA72C8 /* SuasMac.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -131,17 +135,13 @@
 		D70551351F2128E800022BF1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D705513A1F2128E800022BF1 /* SuasMacTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SuasMacTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D70551411F2128E800022BF1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D711E9441F213B070049718D /* TodoSampleApp-Mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TodoSampleApp-Mac.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		D711E9461F213B070049718D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D711E9481F213B070049718D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		D711E94A1F213B070049718D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		D711E94D1F213B070049718D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		D711E94F1F213B070049718D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D711E95F1F213F680049718D /* TodoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TodoCell.xib; sourceTree = "<group>"; };
-		D77F2E9D1F211E650038D8D5 /* Middleware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Middleware.swift; path = "TodoSampleApp-iOS/Middleware.swift"; sourceTree = "<group>"; };
-		D77F2E9F1F211E7A0038D8D5 /* Reducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Reducer.swift; path = "TodoSampleApp-iOS/Reducer.swift"; sourceTree = "<group>"; };
-		D77F2EA11F211EC70038D8D5 /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = State.swift; path = "TodoSampleApp-iOS/State.swift"; sourceTree = "<group>"; };
-		D77F2EA31F211FF30038D8D5 /* Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Actions.swift; path = "TodoSampleApp-iOS/Actions.swift"; sourceTree = "<group>"; };
+		D75D6DCC1F21556200BA72C8 /* TodoSampleApp-Mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TodoSampleApp-Mac.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D75D6DCE1F21556200BA72C8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		D75D6DD01F21556200BA72C8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D75D6DD51F21556200BA72C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D75D6DE51F2156A000BA72C8 /* TodoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TodoCell.xib; sourceTree = "<group>"; };
+		D75D6DE61F2156A000BA72C8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D75D6DE91F2156B600BA72C8 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		D7CBAA481F1EC38700DA67E9 /* TodoSampleApp-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TodoSampleApp-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7CBAA4B1F1EC38700DA67E9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D7CBAA4D1F1EC38700DA67E9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -171,6 +171,14 @@
 		D7CF193E1F2033DF003EC879 /* StoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreTests.swift; sourceTree = "<group>"; };
 		D7CF19401F204EC2003EC879 /* DefaultStoreConnectExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultStoreConnectExtension.swift; sourceTree = "<group>"; };
 		D7CF19421F205B80003EC879 /* MiddlewareTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiddlewareTests.swift; sourceTree = "<group>"; };
+		D7F924D51F215182003BAC77 /* Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Actions.swift; sourceTree = "<group>"; };
+		D7F924D61F215182003BAC77 /* Reducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reducer.swift; sourceTree = "<group>"; };
+		D7F924D71F215182003BAC77 /* Middleware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Middleware.swift; sourceTree = "<group>"; };
+		D7F924D81F215182003BAC77 /* MonitorMiddleware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonitorMiddleware.swift; sourceTree = "<group>"; };
+		D7F924D91F215182003BAC77 /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
+		D7F924EA1F215228003BAC77 /* TodoSampleApp-iOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TodoSampleApp-iOS-Bridging-Header.h"; sourceTree = "<group>"; };
+		D7F924EB1F215228003BAC77 /* GCDAsyncSocket.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncSocket.m; sourceTree = "<group>"; };
+		D7F924EC1F215228003BAC77 /* GCDAsyncSocket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GCDAsyncSocket.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,11 +197,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D711E9411F213B070049718D /* Frameworks */ = {
+		D75D6DC91F21556200BA72C8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D711E9531F213CC70049718D /* SuasMac.framework in Frameworks */,
+				D75D6DE01F21563E00BA72C8 /* SuasMac.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -226,8 +234,8 @@
 		D705512A1F21264F00022BF1 /* SampleApps */ = {
 			isa = PBXGroup;
 			children = (
+				D75D6DCD1F21556200BA72C8 /* TodoSampleApp-Mac */,
 				D711E9611F21422A0049718D /* Common */,
-				D711E9451F213B070049718D /* TodoSampleApp-Mac */,
 				D7CBAA4A1F1EC38700DA67E9 /* TodoSampleApp-iOS */,
 			);
 			path = SampleApps;
@@ -301,29 +309,32 @@
 			path = SuasTests;
 			sourceTree = "<group>";
 		};
-		D711E9451F213B070049718D /* TodoSampleApp-Mac */ = {
-			isa = PBXGroup;
-			children = (
-				D711E9461F213B070049718D /* AppDelegate.swift */,
-				D711E9481F213B070049718D /* ViewController.swift */,
-				D711E94A1F213B070049718D /* Assets.xcassets */,
-				D711E94C1F213B070049718D /* Main.storyboard */,
-				D711E94F1F213B070049718D /* Info.plist */,
-				D711E95F1F213F680049718D /* TodoCell.xib */,
-			);
-			name = "TodoSampleApp-Mac";
-			path = "../TodoSampleApp-Mac";
-			sourceTree = "<group>";
-		};
 		D711E9611F21422A0049718D /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				D77F2E9D1F211E650038D8D5 /* Middleware.swift */,
-				D77F2E9F1F211E7A0038D8D5 /* Reducer.swift */,
-				D77F2EA11F211EC70038D8D5 /* State.swift */,
-				D77F2EA31F211FF30038D8D5 /* Actions.swift */,
+				D7F924EC1F215228003BAC77 /* GCDAsyncSocket.h */,
+				D7F924EB1F215228003BAC77 /* GCDAsyncSocket.m */,
+				D7F924D51F215182003BAC77 /* Actions.swift */,
+				D7F924D71F215182003BAC77 /* Middleware.swift */,
+				D7F924D81F215182003BAC77 /* MonitorMiddleware.swift */,
+				D7F924D61F215182003BAC77 /* Reducer.swift */,
+				D7F924D91F215182003BAC77 /* State.swift */,
+				D7F924EA1F215228003BAC77 /* TodoSampleApp-iOS-Bridging-Header.h */,
 			);
-			name = Common;
+			path = Common;
+			sourceTree = "<group>";
+		};
+		D75D6DCD1F21556200BA72C8 /* TodoSampleApp-Mac */ = {
+			isa = PBXGroup;
+			children = (
+				D75D6DE91F2156B600BA72C8 /* Main.storyboard */,
+				D75D6DE51F2156A000BA72C8 /* TodoCell.xib */,
+				D75D6DE61F2156A000BA72C8 /* ViewController.swift */,
+				D75D6DCE1F21556200BA72C8 /* AppDelegate.swift */,
+				D75D6DD01F21556200BA72C8 /* Assets.xcassets */,
+				D75D6DD51F21556200BA72C8 /* Info.plist */,
+			);
+			path = "TodoSampleApp-Mac";
 			sourceTree = "<group>";
 		};
 		D7CBAA3F1F1EC38700DA67E9 = {
@@ -344,7 +355,7 @@
 				D7CBAA7A1F1EC45400DA67E9 /* SuasIOSTests.xctest */,
 				D70551321F2128E800022BF1 /* SuasMac.framework */,
 				D705513A1F2128E800022BF1 /* SuasMacTests.xctest */,
-				D711E9441F213B070049718D /* TodoSampleApp-Mac.app */,
+				D75D6DCC1F21556200BA72C8 /* TodoSampleApp-Mac.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -440,23 +451,23 @@
 			productReference = D705513A1F2128E800022BF1 /* SuasMacTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		D711E9431F213B070049718D /* TodoSampleApp-Mac */ = {
+		D75D6DCB1F21556200BA72C8 /* TodoSampleApp-Mac */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D711E9521F213B070049718D /* Build configuration list for PBXNativeTarget "TodoSampleApp-Mac" */;
+			buildConfigurationList = D75D6DD71F21556200BA72C8 /* Build configuration list for PBXNativeTarget "TodoSampleApp-Mac" */;
 			buildPhases = (
-				D711E9401F213B070049718D /* Sources */,
-				D711E9411F213B070049718D /* Frameworks */,
-				D711E9421F213B070049718D /* Resources */,
-				D711E9571F213CC70049718D /* Embed Frameworks */,
+				D75D6DC81F21556200BA72C8 /* Sources */,
+				D75D6DC91F21556200BA72C8 /* Frameworks */,
+				D75D6DCA1F21556200BA72C8 /* Resources */,
+				D75D6DE41F21563E00BA72C8 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				D711E9561F213CC70049718D /* PBXTargetDependency */,
+				D75D6DE31F21563E00BA72C8 /* PBXTargetDependency */,
 			);
 			name = "TodoSampleApp-Mac";
 			productName = "TodoSampleApp-Mac";
-			productReference = D711E9441F213B070049718D /* TodoSampleApp-Mac.app */;
+			productReference = D75D6DCC1F21556200BA72C8 /* TodoSampleApp-Mac.app */;
 			productType = "com.apple.product-type.application";
 		};
 		D7CBAA471F1EC38700DA67E9 /* TodoSampleApp-iOS */ = {
@@ -520,7 +531,7 @@
 		D7CBAA401F1EC38700DA67E9 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0830;
+				LastSwiftUpdateCheck = 0900;
 				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "Omar Abdelhafith";
 				TargetAttributes = {
@@ -531,12 +542,14 @@
 					D70551391F2128E800022BF1 = {
 						CreatedOnToolsVersion = 9.0;
 					};
-					D711E9431F213B070049718D = {
-						CreatedOnToolsVersion = 8.3.3;
+					D75D6DCB1F21556200BA72C8 = {
+						CreatedOnToolsVersion = 9.0;
 						ProvisioningStyle = Automatic;
 					};
 					D7CBAA471F1EC38700DA67E9 = {
 						CreatedOnToolsVersion = 9.0;
+						LastSwiftMigration = 0900;
+						ProvisioningStyle = Automatic;
 					};
 					D7CBAA611F1EC3E100DA67E9 = {
 						CreatedOnToolsVersion = 9.0;
@@ -565,7 +578,7 @@
 				D7CBAA791F1EC45400DA67E9 /* SuasIOSTests */,
 				D70551311F2128E800022BF1 /* SuasMac */,
 				D70551391F2128E800022BF1 /* SuasMacTests */,
-				D711E9431F213B070049718D /* TodoSampleApp-Mac */,
+				D75D6DCB1F21556200BA72C8 /* TodoSampleApp-Mac */,
 			);
 		};
 /* End PBXProject section */
@@ -585,13 +598,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D711E9421F213B070049718D /* Resources */ = {
+		D75D6DCA1F21556200BA72C8 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D711E94B1F213B070049718D /* Assets.xcassets in Resources */,
-				D711E94E1F213B070049718D /* Main.storyboard in Resources */,
-				D711E9621F2143410049718D /* TodoCell.xib in Resources */,
+				D75D6DD11F21556200BA72C8 /* Assets.xcassets in Resources */,
+				D75D6DEA1F2156C000BA72C8 /* Main.storyboard in Resources */,
+				D75D6DEC1F21570600BA72C8 /* TodoCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -653,16 +666,18 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D711E9401F213B070049718D /* Sources */ = {
+		D75D6DC81F21556200BA72C8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D711E9581F213D010049718D /* Middleware.swift in Sources */,
-				D711E9491F213B070049718D /* ViewController.swift in Sources */,
-				D711E9591F213D010049718D /* Reducer.swift in Sources */,
-				D711E95B1F213D010049718D /* Actions.swift in Sources */,
-				D711E95A1F213D010049718D /* State.swift in Sources */,
-				D711E9471F213B070049718D /* AppDelegate.swift in Sources */,
+				D75D6DDC1F21559600BA72C8 /* MonitorMiddleware.swift in Sources */,
+				D75D6DDB1F21559600BA72C8 /* Middleware.swift in Sources */,
+				D75D6DCF1F21556200BA72C8 /* AppDelegate.swift in Sources */,
+				D75D6DDD1F21559600BA72C8 /* Reducer.swift in Sources */,
+				D75D6DDA1F21559600BA72C8 /* Actions.swift in Sources */,
+				D75D6DDF1F21560000BA72C8 /* GCDAsyncSocket.m in Sources */,
+				D75D6DEB1F2156C300BA72C8 /* ViewController.swift in Sources */,
+				D75D6DDE1F21559600BA72C8 /* State.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -670,11 +685,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D77F2E9E1F211E650038D8D5 /* Middleware.swift in Sources */,
+				D7F924ED1F215230003BAC77 /* GCDAsyncSocket.m in Sources */,
+				D7F924DF1F2151B4003BAC77 /* Actions.swift in Sources */,
+				D7F924E11F2151B4003BAC77 /* MonitorMiddleware.swift in Sources */,
+				D7F924E21F2151B4003BAC77 /* Reducer.swift in Sources */,
+				D7F924E01F2151B4003BAC77 /* Middleware.swift in Sources */,
 				D7CBAA4E1F1EC38700DA67E9 /* ViewController.swift in Sources */,
-				D77F2EA01F211E7A0038D8D5 /* Reducer.swift in Sources */,
-				D77F2EA41F211FF30038D8D5 /* Actions.swift in Sources */,
-				D77F2EA21F211EC70038D8D5 /* State.swift in Sources */,
+				D7F924E31F2151B4003BAC77 /* State.swift in Sources */,
 				D7CBAA4C1F1EC38700DA67E9 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -718,10 +735,10 @@
 			target = D70551311F2128E800022BF1 /* SuasMac */;
 			targetProxy = D705513C1F2128E800022BF1 /* PBXContainerItemProxy */;
 		};
-		D711E9561F213CC70049718D /* PBXTargetDependency */ = {
+		D75D6DE31F21563E00BA72C8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = D70551311F2128E800022BF1 /* SuasMac */;
-			targetProxy = D711E9551F213CC70049718D /* PBXContainerItemProxy */;
+			targetProxy = D75D6DE21F21563E00BA72C8 /* PBXContainerItemProxy */;
 		};
 		D7CBAA681F1EC3E100DA67E9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -736,14 +753,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		D711E94C1F213B070049718D /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D711E94D1F213B070049718D /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		D7CBAA4F1F1EC38700DA67E9 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -768,7 +777,7 @@
 			buildSettings = {
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -797,7 +806,7 @@
 			buildSettings = {
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -859,42 +868,48 @@
 			};
 			name = Release;
 		};
-		D711E9501F213B070049718D /* Debug */ = {
+		D75D6DD81F21556200BA72C8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CODE_SIGN_IDENTITY = "-";
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = LJ39N47822;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				INFOPLIST_FILE = "TodoSampleApp-Mac/Info.plist";
+				INFOPLIST_FILE = "SampleApps/TodoSampleApp-Mac/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = "nsomar.TodoSampleApp-Mac";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
+				SWIFT_OBJC_BRIDGING_HEADER = "SampleApps/Common/TodoSampleApp-iOS-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
-		D711E9511F213B070049718D /* Release */ = {
+		D75D6DD91F21556200BA72C8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CODE_SIGN_IDENTITY = "-";
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = LJ39N47822;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				INFOPLIST_FILE = "TodoSampleApp-Mac/Info.plist";
+				INFOPLIST_FILE = "SampleApps/TodoSampleApp-Mac/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = "nsomar.TodoSampleApp-Mac";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
+				SWIFT_OBJC_BRIDGING_HEADER = "SampleApps/Common/TodoSampleApp-iOS-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -1007,11 +1022,17 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = LJ39N47822;
 				INFOPLIST_FILE = "SampleApps/TodoSampleApp-iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "nsomar.Suas-iOS.TodoSampleApp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "SampleApps/Common/TodoSampleApp-iOS-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1022,11 +1043,16 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = LJ39N47822;
 				INFOPLIST_FILE = "SampleApps/TodoSampleApp-iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "nsomar.Suas-iOS.TodoSampleApp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "SampleApps/Common/TodoSampleApp-iOS-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1130,11 +1156,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D711E9521F213B070049718D /* Build configuration list for PBXNativeTarget "TodoSampleApp-Mac" */ = {
+		D75D6DD71F21556200BA72C8 /* Build configuration list for PBXNativeTarget "TodoSampleApp-Mac" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D711E9501F213B070049718D /* Debug */,
-				D711E9511F213B070049718D /* Release */,
+				D75D6DD81F21556200BA72C8 /* Debug */,
+				D75D6DD91F21556200BA72C8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};

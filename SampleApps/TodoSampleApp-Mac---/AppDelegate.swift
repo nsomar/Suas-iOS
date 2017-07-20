@@ -9,7 +9,7 @@
 import Cocoa
 import SuasMac
 
-let store = Suas.createStore(reducer: todoReducer)
+let store = Suas.createStore(reducer: todoReducer, middleware: monitorMiddlware)
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
