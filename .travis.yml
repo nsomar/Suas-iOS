@@ -2,5 +2,9 @@ sudo: false
 osx_image: xcode8.3
 language: objective-c
 
+install: 
+- bundle install --without=documentation --path ../travis_bundle_dir
+- export PATH=`python -m site --user-base`/bin:$PATH
+
 script:
 - make test
