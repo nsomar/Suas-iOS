@@ -18,7 +18,10 @@ import Foundation
 /// - **notifier**: an function that is responsible for notifying the list of listeners the store has. This function provides an extension point that can alter the way the notification to the listeners works.
 public protocol Store {
 
-  /// Reset the store internal state
+  /// Get the store state
+  var state: StoreState { get }
+
+  /// Reset the store internal state for a particular key. They key will be the dynamic type of state
   ///
   /// - Parameter state: the new state
   func reset(state: Any)
@@ -27,9 +30,15 @@ public protocol Store {
   /// Reset the store internal state for a specific key
   ///
   /// - Parameters:
-  /// - Parameter state: the new state
+  ///   - state: the new state
   ///   - key: the state key to set
   func reset(state: Any, forKey key: StateKey)
+
+
+  /// Resets the full internal state with a new state
+  ///
+  /// - Parameter state: the state to reset to
+  func resetFullState(_ state: KeyedState)
 
 
   /// Dispatches an action to the store
@@ -46,10 +55,37 @@ public protocol Store {
 
   /// Connects a component to the store
   ///
+  /// - Parameter:
+  ///   - component: the component to connect
+  ///   - notifier: the store notifier
+  func connect<C: Component>(component: C,
+                             withNotifier notifier: @escaping ListenerNotifier<C.StateType>)
+
+
+  /// Connects a component to the store
+  ///
   /// - Parameters:
   ///   - Parameter component: the component to connect
   ///   - stateKey: the state key to connect to in the state
   func connect<C: Component>(component: C, forStateKey stateKey: StateKey)
+
+
+  /// Connects a component to the store
+  ///
+  /// - Parameter:
+  ///   - component: the component to connect
+  ///   - notifier: the store notifier
+  func connect<C: Component>(component: C, forStateKey stateKey: StateKey,
+                             withNotifier notifier: @escaping ListenerNotifier<C.StateType>)
+
+
+  /// Connects a component to the store
+  ///
+  /// - Parameters:
+  ///   - component: the component to connect
+  ///   - listener: the listener to be notified when the state for the passed key changes
+  func connect<C: Component>(component: C,
+                             withListener listener: @escaping ListenerFunction<C.StateType>)
 
 
   /// Connects a component to the store
@@ -59,7 +95,7 @@ public protocol Store {
   ///   - stateKey: the state key to connect to in the state
   ///   - listener: the listener to be notified when the state for the passed key changes
   func connect<C: Component>(component: C, forStateKey stateKey: StateKey,
-                             withListener listener: @escaping ListenerFunction)
+                             withListener listener: @escaping ListenerFunction<C.StateType>)
 
 
   /// Connects a component to the store
@@ -67,13 +103,30 @@ public protocol Store {
   /// - Parameters:
   ///   - component: the component to connect
   ///   - stateConverter: a converter that converts the `StoreState` to the actual type used by the component
-  func connect<C: Component>(component: C, stateConverter: StateConverter<C.StateType>)
+  func connect<C: Component>(component: C,
+                             withStateConverter: StateConverter<StoreState, C.StateType>)
+
+  /// Connects a component to the store
+  ///
+  /// - Parameters:
+  ///   - component: the component to connect
+  ///   - stateConverter: a converter that converts the `StoreState` to the actual type used by the component
+  func connect<C: Component, ExpectedType>(component: C, forStateKey stateKey: StateKey,
+                                           withStateConverter: StateConverter<ExpectedType, C.StateType>)
 
 
   /// Disonnects a component from the store
   ///
   /// - Parameter component: the component to disconnect
   func disconnect<C: Component>(component: C)
+
+
+  /// Add a new listner to the store
+  ///
+  /// - Parameters:
+  ///   - id: the listener id to be used when removing the listener
+  ///   - callback: callback to be notified when state changed
+  func addListener(withId id: CallbackId, callback: @escaping (StoreState) -> ())
 
 
   /// Add a new listner to the store
@@ -90,8 +143,23 @@ public protocol Store {
   ///
   /// - Parameters:
   ///   - id: the listener id to be used when removing the listener
+  ///   - stateKey: the state key to listen for changes
+  ///   - notifier: the store notifier
   ///   - callback: callback to be notified when state changed
-  func addListener(withId id: CallbackId, callback: @escaping (Any) -> ())
+  func addListener<State>(withId id: CallbackId, stateKey: StateKey,
+                          notifier: @escaping ListenerNotifier<State>,
+                          callback: @escaping (State) -> ())
+
+
+  /// Add a new listner to the store
+  ///
+  /// - Parameters:
+  ///   - id: the listener id to be used when removing the listener
+  ///   - notifier: the store notifier
+  ///   - callback: callback to be notified when state changed
+  func addListener(withId id: CallbackId,
+                   notifier: @escaping ListenerNotifier<StoreState>,
+                   callback: @escaping (StoreState) -> ())
 
 
   /// Add a new listner to the store
@@ -108,11 +176,37 @@ public protocol Store {
   ///
   /// - Parameters:
   ///   - id: the listener id to be used when removing the listener
+  ///   - type: the type of the state callback
+  ///   - notifier: the store notifier
+  ///   - callback: callback to be notified when state changed
+  func addListener<State>(withId id: CallbackId, type: State.Type,
+                          notifier: @escaping ListenerNotifier<State>,
+                          callback: @escaping (State) -> ())
+
+
+  /// Add a new listner to the store
+  ///
+  /// - Parameters:
+  ///   - id: the listener id to be used when removing the listener
   ///   - stateKey: the state key to listen for changes
   ///   - type: the type of the state callback
   ///   - callback: callback to be notified when state changed
   func addListener<State>(withId id: CallbackId, stateKey: StateKey,
                           type: State.Type, callback: @escaping (State) -> ())
+
+
+  /// Add a new listner to the store
+  ///
+  /// - Parameters:
+  ///   - id: the listener id to be used when removing the listener
+  ///   - stateKey: the state key to listen for changes
+  ///   - type: the type of the state callback
+  ///   - notifier: the store notifier
+  ///   - callback: callback to be notified when state changed
+  func addListener<State>(withId id: CallbackId, stateKey: StateKey,
+                          type: State.Type,
+                          notifier: @escaping ListenerNotifier<State>,
+                          callback: @escaping (State) -> ())
 
 
   /// Remove a listener from the store
@@ -131,7 +225,6 @@ extension Suas {
   ///   - reducer: the reducer to use with the store. The reducer will be called when calling dispatch on this store
   ///   - state: the initial state to use for this store
   ///   - middleware: the store middleware
-  ///   - notifier: the store notifier
   /// - Returns: a new store
   ///
   /// -----
@@ -145,6 +238,23 @@ extension Suas {
   /// )
   /// ```
   ///
+  /// Using a single reducer and some initial state
+  ///
+  /// ```
+  /// let store = Suas.createStore(
+  ///   reducer: MyReducer(),
+  ///   state: ["MyReducerState": MyReducerState(val: 20)]
+  /// )
+  /// ```
+  ///
+  /// ```
+  /// let store = Suas.createStore(
+  ///   reducer: MyReducer(),
+  ///   state: MyReducerState(val: 20)
+  /// )
+  /// ```
+  ///
+  ///
   /// Using a combination of reducers
   ///
   /// ```
@@ -152,15 +262,66 @@ extension Suas {
   ///   reducer: MyReducer() |> MyOtherReducer()
   /// )
   /// ```
-  public static func createStore(reducer: Reducer,
-                                 state: StoreState,
-                                 middleware: Middleware? = nil,
-                                 notifier: ListenerNotifier? = nil) -> Store {
+  public static func createStore<R: Reducer>(reducer: R,
+                                             state: StoreState,
+                                             middleware: Middleware? = nil) -> Store {
     return performCreateStore(
       reducer: reducer,
       state: state,
-      middleware: middleware,
-      notifier: notifier)
+      middleware: middleware)
+  }
+
+
+  /// Create a store
+  ///
+  /// - Parameters:
+  ///   - reducer: the reducer to use with the store. The reducer will be called when calling dispatch on this store
+  ///   - state: the initial state to use for this store. The state type must be equal to the reducer `StateType`
+  ///   - middleware: the store middleware
+  /// - Returns: a new store
+  ///
+  /// -----
+  /// **Example**
+  ///
+  /// Using a single reducer
+  ///
+  /// ```
+  /// let store = Suas.createStore(
+  ///   reducer: MyReducer()
+  /// )
+  /// ```
+  ///
+  /// Using a single reducer and some initial state
+  ///
+  /// ```
+  /// let store = Suas.createStore(
+  ///   reducer: MyReducer(),
+  ///   state: ["MyReducerState": MyReducerState(val: 20)]
+  /// )
+  /// ```
+  ///
+  /// ```
+  /// let store = Suas.createStore(
+  ///   reducer: MyReducer(),
+  ///   state: MyReducerState(val: 20)
+  /// )
+  /// ```
+  ///
+  ///
+  /// Using a combination of reducers
+  ///
+  /// ```
+  /// let store = Suas.createStore(
+  ///   reducer: MyReducer() |> MyOtherReducer()
+  /// )
+  /// ```
+  public static func createStore<R: Reducer, S>(reducer: R,
+                                             state: S,
+                                             middleware: Middleware? = nil) -> Store {
+    return performCreateStore(
+      reducer: reducer,
+      state: ["\(type(of: state))": state],
+      middleware: middleware)
   }
 
 
@@ -171,14 +332,47 @@ extension Suas {
   /// - Parameters:
   ///   - reducer: the reducer to use with the store. The reducer will be called when calling dispatch on this store
   ///   - middleware: the store middleware
-  ///   - notifier: the store notifier
   /// - Returns: a new store
-  public static func createStore(reducer: Reducer,
-                                 middleware: Middleware? = nil,
-                                 notifier: ListenerNotifier? = nil) -> Store {
+  ///
+  /// -----
+  /// **Example**
+  ///
+  /// Using a single reducer
+  ///
+  /// ```
+  /// let store = Suas.createStore(
+  ///   reducer: MyReducer()
+  /// )
+  /// ```
+  ///
+  /// Using a single reducer and some initial state
+  ///
+  /// ```
+  /// let store = Suas.createStore(
+  ///   reducer: MyReducer(),
+  ///   state: ["MyReducerState": MyReducerState(val: 20)]
+  /// )
+  /// ```
+  ///
+  /// ```
+  /// let store = Suas.createStore(
+  ///   reducer: MyReducer(),
+  ///   state: MyReducerState(val: 20)
+  /// )
+  /// ```
+  ///
+  ///
+  /// Using a combination of reducers
+  ///
+  /// ```
+  /// let store = Suas.createStore(
+  ///   reducer: MyReducer() |> MyOtherReducer()
+  /// )
+  /// ```
+  public static func createStore<R: Reducer>(reducer: R,
+                                             middleware: Middleware? = nil) -> Store {
     return createStore(reducer: reducer,
                        state: StoreState(innerState: reducer.stateDict),
-                       middleware: middleware,
-                       notifier: notifier)
+                       middleware: middleware)
   }
 }

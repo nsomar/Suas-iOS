@@ -32,45 +32,78 @@ public protocol __RuntimeEquatable__ {
 }
 
 extension State {
-  func isEqual(to other: Any) -> Bool {
+
+  /// Default implementation of isEqual. Dynamic cast the parameter to Self and then performs `==` on the two parameters
+  ///
+  /// - Parameter other: other value to compare to
+  /// - Returns: true if equal, otherwise false
+  public func isEqual(to other: Any) -> Bool {
     guard let other = other as? Self else { return false }
     
     return other == self
   }
 }
 
+
+/// Structure that represents the store state. The store state is kept as a Dictionary with String Keys and Any Values
 public struct StoreState {
   var innerState: KeyedState
-  
+
+  /// Get a value for a key
+  ///
+  /// - Parameter key: the key to get the value for
   public subscript(key: String) -> Any? {
-    return innerState[key]
+    get {
+      return innerState[key]
+    }
+    set {
+      innerState[key] = newValue
+    }
   }
 
+  /// Get a value for a key of specific type
+  ///
+  /// - Parameter forKeyOfType: the type to use for casting and fetching the state key
   @available(swift, introduced: 4.0)
   public subscript<Type>(forKeyOfType type: Type.Type) -> Type? {
     let key = "\(type)"
     return  innerState[key] as? Type
   }
 
+  /// Get a value for a key of specific type
+  ///
+  /// - Parameter key: the key to get the value for
+  /// - Parameter type: the type to cast the state to
   @available(swift, introduced: 4.0)
   public subscript<Type>(forKey key: String, ofType type: Type.Type) -> Type? {
     return  innerState[key] as? Type
   }
 
-  @available(swift, obsoleted: 4.0)
-  public func getValue<Type>(forKeyOfType type: Type.Type) -> Type? {
+  /// Get a value for a key
+  ///
+  /// - Parameter key: the key to get the value for
+  /// - Returns: the state value for the key if found
+  public func value(forKey key: String) -> Any? {
+    return  innerState[key]
+  }
+
+  /// Get a value for a key of specific type
+  ///
+  /// - Parameter type: the type to use for casting and fetching the state key
+  /// - Returns: if the key is found and if its of the passed type then return it. Otherwise return nil
+  public func value<Type>(forKeyOfType type: Type.Type) -> Type? {
     let key = "\(type)"
     return  innerState[key] as? Type
   }
 
-  @available(swift, obsoleted: 4.0)
-  public func getValue<Type>(forKey key: String, ofType type: Type.Type) -> Type? {
+  /// Get a value for a key of specific type
+  ///
+  /// - Parameters:
+  ///   - key: the key to get the value for
+  ///   - type: the type to cast the state to
+  /// - Returns: if the key is found and if its of the passed type then return it. Otherwise return nil
+  public func value<Type>(forKey key: String, ofType type: Type.Type) -> Type? {
     return  innerState[key] as? Type
-  }
-
-  @available(swift, obsoleted: 4.0)
-  public func getValue(forKey key: String) -> Any? {
-    return  innerState[key]
   }
   
   var keys: [StateKey] {
@@ -79,16 +112,25 @@ public struct StoreState {
 }
 
 extension StoreState: ExpressibleByDictionaryLiteral {
+
+  /// Initialize a StoreState with a dictionary literal
+  ///
+  /// - Parameter elements: the dictionary literal to initialzie the StoreSate
   public init(dictionaryLiteral elements: (StateKey, Any)...) {
     self.innerState = [:]
     elements.forEach({ self.innerState[$0.0] = $0.1 })
   }
+
+  init(dictionary: [StateKey: Any]) {
+    self.innerState = [:]
+    dictionary.forEach({ self.innerState[$0.0] = $0.1 })
+  }
 }
 
-public struct StateConverter<To> {
-  public let convert: (StoreState) -> (To)
+public struct StateConverter<From, To> {
+  public let convert: (From) -> (To?)
 
-  public init(convert: @escaping (StoreState) -> (To)) {
+  public init(convert: @escaping (From) -> (To?)) {
     self.convert = convert
   }
 }

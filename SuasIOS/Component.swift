@@ -23,13 +23,13 @@ public protocol Component: class {
   var state: StateType { get set }
 }
 
-extension Component where StateType: __RuntimeEquatable__ {
+extension Component where StateType: Equatable {
   
   /// Sets the new state only if it had changed
   ///
   /// - Parameter newState: the new state
   public func setIfChanged(_ newState: StateType) {
-    if newState.isEqual(to: state) {
+    if newState != state {
       self.state = newState
     }
   }

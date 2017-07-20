@@ -35,9 +35,10 @@ import Foundation
 /// }
 /// ```
 public protocol Reducer {
+  associatedtype StateType
 
   /// Inital state value for this particular reducer
-  var initialState: Any { get }
+  var initialState: StateType { get }
 
   /// The state key for this reducer. If not implemented the type of `initialState` will be used as a key (recommended)
   var stateKey: StateKey { get }
@@ -48,11 +49,22 @@ public protocol Reducer {
   ///   - action: the action recieved
   ///   - state: the old state
   /// - Returns: the new state
-  func reduce(action: Action, state: Any) -> Any
+  func reduce(action: Action, state: StateType) -> StateType
 }
 
 extension Reducer {
-  var stateKey: StateKey {
+  fileprivate func reduce(action: Action, state: Any) -> Any {
+    guard let newState = state as? Self.StateType else {
+      Suas.log("When reducing using a combined reducer state of type \(type(of: state)) was not convertible to \(Self.StateType.self)\nstate: \(state)")
+      return state
+    }
+
+    return reduce(action: action, state: newState)
+  }
+}
+
+extension Reducer {
+  public var stateKey: StateKey {
     return "\(type(of: initialState))"
   }
   
@@ -119,13 +131,13 @@ public final class BlockReducer<Type>: Reducer {
   }
 }
 
-private final class CombinedReducer: Reducer {
+public final class CombinedReducer: Reducer {
   
-  var initialState: Any {
+  public var initialState: Any {
     return states
   }
   
-  var reducers: [StateKey: Reducer]
+  var reducers: [StateKey: ReducerFunction]
   fileprivate var states: KeyedState
   
   init() {
@@ -133,29 +145,29 @@ private final class CombinedReducer: Reducer {
     self.reducers = [:]
   }
   
-  func append(reducer: Reducer) {
-    guard reducers[reducer.stateKey] == nil else {
-      Suas.log("Duplicate reducer added for state key '\(reducer.stateKey)'")
+  func append(reducerWithKey stateKey: StateKey, funciton: @escaping ReducerFunction, state: Any) {
+    guard reducers[stateKey] == nil else {
+      Suas.log("Duplicate reducer added for state key '\(stateKey)'")
       return
     }
     
-    reducers[reducer.stateKey] = reducer
-    states[reducer.stateKey] = reducer.initialState
+    reducers[stateKey] = funciton
+    states[stateKey] = state
   }
   
-  func reduce(action: Action, state: Any) -> Any {
+  public func reduce(action: Action, state: Any) -> Any {
     guard var dictState = state as? KeyedState else {
       Suas.log("State should be a dictionary when using combined reducers")
       return state
     }
     
-    for (key, value) in reducers {
+    for (key, reducer) in reducers {
       guard let subState = dictState[key] else {
         Suas.log("State key '\(key)' missing for state '\(dictState)'")
-        return dictState
+        continue
       }
       
-      let newSubState = value.reduce(action: action, state: subState)
+      let newSubState = reducer(action, subState)
       dictState[key] = newSubState
     }
     
@@ -203,22 +215,41 @@ private final class CombinedReducer: Reducer {
 /// ```
 ///
 /// `myReducer1` will handle the "key1" key of state and `myReducer2` will handle the "key2" key of state
-public func |>(lhs: Reducer, rhs: Reducer) -> Reducer {
-  var listToAppendTo: [Reducer] = []
-  
+public func |><R1: Reducer, R2: Reducer>(lhs: R1, rhs: R2) -> CombinedReducer {
+  var listToAppendTo: [(StateKey, Any, ReducerFunction)] = []
+
   if
     let lhs = lhs as? CombinedReducer,
     let rhs = rhs as? CombinedReducer {
-    listToAppendTo = Array(lhs.reducers.values) + Array(rhs.reducers.values)
+    // Add left reducers, then right reducers
+    for (key, reducer) in lhs.reducers {
+      listToAppendTo.append((key, lhs.states[key]!, reducer))
+    }
+
+    for (key, reducer) in rhs.reducers {
+      listToAppendTo.append((key, rhs.states[key]!, reducer))
+    }
   } else if let lhs = lhs as? CombinedReducer {
-    listToAppendTo = Array(lhs.reducers.values)
+    // Adds left reducers, then single right subreducer
+    for (key, reducer) in lhs.reducers {
+      listToAppendTo.append((key, lhs.states[key]!, reducer))
+    }
+    listToAppendTo.append((rhs.stateKey, rhs.initialState, rhs.reduce))
   } else if let rhs = rhs as? CombinedReducer {
-    listToAppendTo = Array(rhs.reducers.values)
+    // Adds single left reducer, then right reducers
+    listToAppendTo.append((lhs.stateKey, lhs.initialState, lhs.reduce))
+    for (key, reducer) in rhs.reducers {
+      listToAppendTo.append((key, rhs.states[key]!, reducer))
+    }
   } else {
-    listToAppendTo = [lhs, rhs]
+    // Adds single left reducer, then single right reducer
+    listToAppendTo.append((lhs.stateKey, lhs.initialState, lhs.reduce))
+    listToAppendTo.append((rhs.stateKey, rhs.initialState, rhs.reduce))
   }
-  
+
+  // Create a combiner
   let combiner = CombinedReducer()
-  listToAppendTo.forEach({ combiner.append(reducer: $0) })
+  listToAppendTo.forEach({ combiner.append(reducerWithKey: $0.0, funciton: $0.2, state: $0.1) })
   return combiner
 }
+
