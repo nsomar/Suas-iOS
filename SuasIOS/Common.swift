@@ -19,8 +19,10 @@ public typealias KeyedState = [StateKey: Any]
 public typealias ReducerFunction = (Action, Any) -> Any
 public typealias TypedReducerFunction<Type> = (Action, Type) -> Type
 public typealias DispatchFunction = (Action) -> Void
-public typealias MiddlewareFunction = (Action, MiddlewareAPI, DispatchFunction) -> Void
-typealias GetStateFunction = () -> Any
+public typealias NextFunction = DispatchFunction
+
+public typealias MiddlewareFunction = (Action, MiddlewareAPI, NextFunction) -> Void
+typealias GetStateFunction = () -> StoreState
 
 infix operator |> : AdditionPrecedence
 

@@ -9,14 +9,14 @@
 import Foundation
 
 
-enum Suas {
+public enum Suas {
   static func performCreateStore<R: Reducer>(reducer: R,
                                              state: StoreState,
                                              middleware: Middleware?) -> Store {
 
     let reduce: ReducerFunction = { action, state in
-      guard let newState = state as? R.StateType else { return state }
-      return reducer.reduce(action: action, state: newState)
+      // Calls the any reducer. In that reducer we typecheck
+      return reducer.reduce(action: action, state: state)
     }
 
     return Suas.DefaultStore(
@@ -74,7 +74,7 @@ extension Suas.DefaultStore {
 
 extension Suas.DefaultStore {
   
-  fileprivate func getState() -> Any {
+  fileprivate func getState() -> StoreState {
     return self.state
   }
   
@@ -168,11 +168,11 @@ extension Suas.DefaultStore {
     performAddListener(withId: id, stateKey: stateKey, type: type, notifier: notifier, callback: callback)
   }
 
-  func performAddListener<State>(withId id: CallbackId,
+  func performAddListener<State, ListenerType>(withId id: CallbackId,
                                              stateKey: StateKey?,
                                              type: State.Type,
                                              notifier: ListenerNotifier<State>? = nil,
-                                             callback: @escaping (State) -> ()) {
+                                             callback: @escaping (ListenerType) -> ()) {
 
     var currentNotifier: ListenerNotifier<Any> = alwaysNotifier
 
@@ -188,7 +188,7 @@ extension Suas.DefaultStore {
     }
 
     let typeErasedCallback = { (state: Any) in
-      guard let castState = state as? State else {
+      guard let castState = state as? ListenerType else {
         Suas.log("State cannot be converted to type \(State.self)\nstate: \(state)")
         return
       }

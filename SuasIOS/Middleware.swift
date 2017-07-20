@@ -17,10 +17,10 @@ public struct MiddlewareAPI {
   public var dispatch: DispatchFunction
 
   /// Gets the current state that the store has
-  public var state: Any {
+  public var state: StoreState {
     return getState()
   }
-  
+
   var getState: GetStateFunction
 }
 
@@ -141,8 +141,6 @@ private final class CombinedMiddleWare: Middleware {
   func onAction(action: Action) {
     if let dispatchingFunction = dispatchingFunction {
       dispatchingFunction(action)
-    } else if let next = next {
-      next(action)
     } else {
       Suas.log("Middleware is not setup correctly")
     }
@@ -179,7 +177,7 @@ private final class CombinedMiddleWare: Middleware {
 ///   middleware: middleware1 |> middleware2
 /// )
 /// ```
-func |>(lhs: Middleware, rhs: Middleware) -> Middleware {
+public func |>(lhs: Middleware, rhs: Middleware) -> Middleware {
   if
     let lhs = lhs as? CombinedMiddleWare,
     let rhs = rhs as? CombinedMiddleWare {

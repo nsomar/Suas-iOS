@@ -53,9 +53,9 @@ public protocol Reducer {
 }
 
 extension Reducer {
-  fileprivate func reduce(action: Action, state: Any) -> Any {
+  func reduce(action: Action, state: Any) -> Any {
     guard let newState = state as? Self.StateType else {
-      Suas.log("When reducing using a combined reducer state of type \(type(of: state)) was not convertible to \(Self.StateType.self)\nstate: \(state)")
+      Suas.log("When reducing state of type \(type(of: state)) was not convertible to \(Self.StateType.self)\nstate: \(state)")
       return state
     }
 

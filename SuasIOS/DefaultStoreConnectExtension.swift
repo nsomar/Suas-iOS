@@ -61,12 +61,13 @@ extension Suas.DefaultStore {
 
   func connect<C>(
     component: C,
-    withListener listener: @escaping (C.StateType) -> Void)
+    withListener listener: @escaping (StoreState) -> Void)
     where C : Component {
 
-      connect(component: component,
-              forStateKey: "\(C.StateType.self)",
-        withListener: listener)
+      performConnect(component: component,
+                     stateKey: nil,
+                     notifier: nil,
+                     listener: listener)
   }
 
   func connect<C: Component>(component: C,
@@ -135,11 +136,11 @@ fileprivate class DeinitCallback: NSObject {
 // Internal
 extension Suas.DefaultStore {
 
-  fileprivate func performConnect<C>(
+  fileprivate func performConnect<C, ListenerType>(
     component: C,
-    stateKey: StateKey,
+    stateKey: StateKey?,
     notifier: ((C.StateType, C.StateType, Listener) -> Void)?,
-    listener: @escaping (C.StateType) -> Void)
+    listener: @escaping (ListenerType) -> Void)
     where C : Component {
 
       let callbackId = getId(forAny: component)
@@ -167,7 +168,7 @@ extension Suas.DefaultStore {
       performAddListener(
         withId: callbackId,
         stateKey: stateKey,
-        type: ExpectedType.self) { [weak component] newState in
+        type: ExpectedType.self) { [weak component] (newState: ExpectedType) in
           guard let convertedValue = stateConverter.convert(newState) else {
             Suas.log("State is not convertable to \(C.StateType.self)\n\(newState)")
             return

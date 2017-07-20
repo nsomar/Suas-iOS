@@ -147,7 +147,7 @@ class ComponentTests: XCTestCase {
 
     component.state = MyState1(value: 2)
     store.connect(component: component) { newState in
-      XCTAssertEqual(newState.value, 10)
+      XCTAssertEqual(newState.value(forKeyOfType: MyState1.self)?.value, 10)
     }
 
     store.dispatch(action: IncrementAction())
@@ -177,7 +177,7 @@ class ComponentTests: XCTestCase {
 
     store.connect(component: component)
     store.connect(component: component) { newState in
-      XCTAssertEqual(newState.value, 10)
+      XCTAssertEqual(newState.value(forKeyOfType: MyState1.self)?.value, 10)
     }
 
     store.dispatch(action: IncrementAction())
@@ -193,7 +193,7 @@ class ComponentTests: XCTestCase {
 
     store.connect(component: component)
     store.connect(component: component) { newState in
-      XCTAssertEqual(newState.value, 10)
+      XCTAssertEqual(newState.value(forKeyOfType: MyState1.self)?.value, 10)
     }
 
     XCTAssertEqual(Suas.allListeners(inStore: store).count, 2)
@@ -215,7 +215,7 @@ class ComponentTests: XCTestCase {
 
     store.connect(component: component)
     store.connect(component: component) { newState in
-      XCTAssertEqual(newState.value, 10)
+      XCTAssertEqual(newState.value(forKeyOfType: MyState1.self)?.value, 10)
     }
 
     XCTAssertEqual(Suas.allListeners(inStore: store).count, 2)

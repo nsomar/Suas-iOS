@@ -146,3 +146,13 @@ class MyComponentWithEquatableState: Component {
     }
   }
 }
+
+
+let middleware1 = BlockMiddleware { action, api, next in
+  next(action)
+}
+
+let middleware2 = BlockMiddleware { action, api, next in
+  next(action)
+}
+

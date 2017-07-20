@@ -85,7 +85,7 @@ public protocol Store {
   ///   - component: the component to connect
   ///   - listener: the listener to be notified when the state for the passed key changes
   func connect<C: Component>(component: C,
-                             withListener listener: @escaping ListenerFunction<C.StateType>)
+                             withListener listener: @escaping ListenerFunction<StoreState>)
 
 
   /// Connects a component to the store
@@ -110,7 +110,7 @@ public protocol Store {
   ///
   /// - Parameters:
   ///   - component: the component to connect
-  ///   - stateConverter: a converter that converts the `StoreState` to the actual type used by the component
+  ///   - stateConverter: a converter that converts the `ExpectedType` to the actual type used by the component
   func connect<C: Component, ExpectedType>(component: C, forStateKey stateKey: StateKey,
                                            withStateConverter: StateConverter<ExpectedType, C.StateType>)
 
