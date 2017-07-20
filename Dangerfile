@@ -20,9 +20,7 @@ commit_lint.check warn: :all
 todoist.warn_for_todos
 the_coding_love.random
 
-slather.configure("ZendeskSDK/ZendeskSDK.xcodeproj", "ZendeskSDK", options: {
-  workspace: ' ZendeskSDK.xcworkspace/',
-})
+slather.configure("Suas.xcodeproj", "SuasIOS")
 
 markdown("-------")
 markdown("<details>")
