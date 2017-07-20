@@ -71,6 +71,10 @@ extension Suas.DefaultStore {
     self.state[key] = state
   }
 
+  func reset<S, C: Component>(state: S, forComponent component: C) where C.StateType == S {
+    reset(state: state, forKey: "\(type(of: state))")
+  }
+
   func resetFullState(_ state: KeyedState) {
     self.state = StoreState(dictionary: state)
   }
@@ -220,9 +224,9 @@ extension Suas.DefaultStore {
 // Action listeners
 extension Suas.DefaultStore {
   func addActionListener(withId id: CallbackId,
-                         listener: @escaping ActionListenerFunction) {
+                         actionListener: @escaping ActionListenerFunction) {
 
-    actionListeners[id] = listener
+    actionListeners[id] = actionListener
   }
 
   func removeActionListener(withId id: CallbackId)  {

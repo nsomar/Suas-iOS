@@ -73,6 +73,14 @@ class ComponentTests: XCTestCase {
     XCTAssertEqual(Suas.allListeners(inStore: store).count, 0)
   }
 
+  func testItResetsTheStateForAComponent() {
+    let store = Suas.createStore(reducer: Reducer1() |> Reducer2())
+    let component = MyComponent()
+
+    store.reset(state: MyState1(value: 1), forComponent: component)
+    XCTAssertEqual(store.state.value(forKeyOfType: MyState1.self)?.value, 1)
+  }
+
   func callAndForget(store: Store) {
     let component = MyComponent()
 
@@ -139,86 +147,6 @@ class ComponentTests: XCTestCase {
     store.dispatch(action: IncrementAction())
 
     XCTAssertEqual(component.state.strangeValue, 0)
-  }
-
-  func testConnectsToComponentWithListener() {
-    let store = Suas.createStore(reducer: Reducer1() |> Reducer2())
-    let component = MyComponent()
-
-    component.state = MyState1(value: 2)
-    store.connect(component: component) { newState in
-      XCTAssertEqual(newState.value(forKeyOfType: MyState1.self)?.value, 30)
-    }
-
-    store.dispatch(action: IncrementAction())
-
-    XCTAssertEqual(component.state.value, 2)
-  }
-
-  func testConnectsToComponentWithListenerWithStateKey() {
-    let store = Suas.createStore(reducer: Reducer1() |> Reducer2())
-    let component = MyComponent()
-
-    component.state = MyState1(value: 2)
-    store.connect(component: component, stateKey: "MyState1") { newState in
-      XCTAssertEqual(newState.value, 30)
-    }
-
-    store.dispatch(action: IncrementAction())
-
-    XCTAssertEqual(component.state.value, 2)
-  }
-
-  func testConnectsToComponentMultipleTimes() {
-    let store = Suas.createStore(reducer: Reducer1() |> Reducer2())
-    let component = MyComponent()
-
-    component.state = MyState1(value: 2)
-
-    store.connect(component: component)
-    store.connect(component: component) { newState in
-      XCTAssertEqual(newState.value(forKeyOfType: MyState1.self)?.value, 30)
-    }
-
-    store.dispatch(action: IncrementAction())
-
-    XCTAssertEqual(component.state.value, 30)
-  }
-
-  func testConnectsToComponentMultipleTimesAndCanRemoveThem() {
-    let store = Suas.createStore(reducer: Reducer1() |> Reducer2())
-    let component = MyComponent()
-
-    component.state = MyState1(value: 2)
-
-    store.connect(component: component)
-    store.connect(component: component) { newState in
-      XCTAssertEqual(newState.value(forKeyOfType: MyState1.self)?.value, 10)
-    }
-
-    XCTAssertEqual(Suas.allListeners(inStore: store).count, 2)
-    store.disconnect(component: component)
-    XCTAssertEqual(Suas.allListeners(inStore: store).count, 0)
-  }
-
-  func testConnectsToComponentMultipleTimesAndCanRemoveThemOnDeinit() {
-    let store = Suas.createStore(reducer: Reducer1() |> Reducer2())
-
-    callAndForget2(store: store)
-    XCTAssertEqual(Suas.allListeners(inStore: store).count, 0)
-  }
-
-  func callAndForget2(store: Store) {
-    let component = MyComponent()
-
-    component.state = MyState1(value: 2)
-
-    store.connect(component: component)
-    store.connect(component: component) { newState in
-      XCTAssertEqual(newState.value(forKeyOfType: MyState1.self)?.value, 10)
-    }
-
-    XCTAssertEqual(Suas.allListeners(inStore: store).count, 2)
   }
 
   // Notifier
@@ -334,11 +262,11 @@ class ComponentTests: XCTestCase {
 
   func testItDisconnectsAnActionListenersOnDeinit() {
     let store = Suas.createStore(reducer: Reducer1(), state: MyState1(value: 5))
-    callAndForget3(store: store)
+    callAndForget2(store: store)
     XCTAssertEqual(Suas.allActionListeners(inStore: store).count, 0)
   }
 
-  func callAndForget3(store: Store) {
+  func callAndForget2(store: Store) {
     let component = MyComponent()
 
     store.connectActionListener(toComponent: component) { action in

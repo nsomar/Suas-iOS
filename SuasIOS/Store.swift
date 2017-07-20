@@ -35,6 +35,14 @@ public protocol Store {
   func reset(state: Any, forKey key: StateKey)
 
 
+  /// Reset the store internal state for a specific component
+  ///
+  /// - Parameters:
+  ///   - state: the new state to set
+  ///   - component: the component to reset state for
+  func reset<S, C: Component>(state: S, forComponent component: C) where C.StateType == S
+
+
   /// Resets the full internal state with a new state
   ///
   /// - Parameter state: the state to reset to
@@ -83,25 +91,6 @@ public protocol Store {
   ///
   /// - Parameters:
   ///   - component: the component to connect
-  ///   - listener: the listener to be notified when the state for the passed key changes
-  func connect<C: Component>(component: C,
-                             listener: @escaping ListenerFunction<StoreState>)
-
-
-  /// Connects a component to the store
-  ///
-  /// - Parameters:
-  ///   - component: the component to connect
-  ///   - stateKey: the state key to connect to in the state
-  ///   - listener: the listener to be notified when the state for the passed key changes
-  func connect<C: Component>(component: C, stateKey: StateKey,
-                             listener: @escaping ListenerFunction<C.StateType>)
-
-
-  /// Connects a component to the store
-  ///
-  /// - Parameters:
-  ///   - component: the component to connect
   ///   - stateConverter: a converter that converts the `StoreState` to the actual type used by the component
   func connect<C: Component>(component: C,
                              stateConverter: StateConverter<StoreState, C.StateType>)
@@ -121,7 +110,7 @@ public protocol Store {
   ///   - component: the component to connects it to
   ///   - listener: the action listner to connect
   func connectActionListener<C: Component>(toComponent component: C,
-                                           listener: @escaping ActionListenerFunction)
+                                           actionListener: @escaping ActionListenerFunction)
 
 
   /// Disonnects a component from the store
@@ -236,7 +225,7 @@ public protocol Store {
   ///   - id: the action listener id to be used when removing the listener
   ///   - callback: callback to be notified when an action happens
   func addActionListener(withId id: CallbackId,
-                         listener: @escaping ActionListenerFunction)
+                         actionListener: @escaping ActionListenerFunction)
 
 
   /// Remove an action listener from the store

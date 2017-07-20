@@ -12,6 +12,11 @@ import Foundation
 
 extension Suas.DefaultStore {
 
+  enum ConnectionType: String {
+    case listener = "connectListener"
+    case actionListener = "connectActionListener"
+  }
+
   func connect<C: Component>(component: C) {
     performConnect(component: component,
                    stateKey: "\(C.StateType.self)",
@@ -59,26 +64,6 @@ extension Suas.DefaultStore {
       })
   }
 
-  func connect<C>(
-    component: C,
-    listener: @escaping (StoreState) -> Void)
-    where C : Component {
-
-      performConnect(component: component,
-                     stateKey: nil,
-                     notifier: nil,
-                     listener: listener)
-  }
-
-  func connect<C: Component>(component: C,
-                             stateKey: StateKey,
-                             listener: @escaping ListenerFunction<C.StateType>) {
-    performConnect(component: component,
-                   stateKey: stateKey,
-                   notifier: nil,
-                   listener: listener)
-  }
-
   func connect<C: Component>(
     component: C,
     stateConverter: StateConverter<StoreState, C.StateType>) {
@@ -99,11 +84,14 @@ extension Suas.DefaultStore {
                      withStateConverter: stateConverter)
   }
 
-  fileprivate func onObjectDeinit(forComponent component: Any, callbackId: String, callback: @escaping () -> ()) {
-    if let object = component as? NSObject {
+  fileprivate func onObjectDeinit(forComponent component: Any,
+                                  connectionType: ConnectionType,
+                                  callbackId: String,
+                                  callback: @escaping () -> ()) {
+    if component is NSObject {
+      let key = "Suas-DeinitCallback-REMOVABLE-OBJECT-ON-COMPONENT-\(connectionType.rawValue)"
       let rem = DeinitCallback(callback: callback)
-
-      objc_setAssociatedObject(object, "removebale", rem, .OBJC_ASSOCIATION_RETAIN)
+      objc_setAssociatedObject(component, key, rem, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
     }
   }
 }
@@ -139,12 +127,13 @@ fileprivate class DeinitCallback: NSObject {
 extension Suas.DefaultStore {
 
   func connectActionListener<C: Component>(toComponent component: C,
-                                           listener: @escaping ActionListenerFunction) {
+                                           actionListener: @escaping ActionListenerFunction) {
     let callbackId = getId(forAny: component)
 
-    addActionListener(withId: callbackId, listener: listener)
+    addActionListener(withId: callbackId, actionListener: actionListener)
 
     onObjectDeinit(forComponent: component,
+                   connectionType: .actionListener,
                    callbackId: callbackId) { self.removeActionListener(withId: callbackId) }
   }
 
@@ -175,6 +164,7 @@ extension Suas.DefaultStore {
       }
 
       onObjectDeinit(forComponent: component,
+                     connectionType: .listener,
                      callbackId: callbackId) { self.removeListener(withId: callbackId) }
   }
 
@@ -198,6 +188,7 @@ extension Suas.DefaultStore {
       }
 
       onObjectDeinit(forComponent: component,
+                     connectionType: .listener,
                      callbackId: callbackId) { self.removeListener(withId: callbackId) }
   }
 }
