@@ -155,7 +155,7 @@ class ListenerTests: XCTestCase {
 
     store.dispatch(action: IncrementAction())
     XCTAssertTrue(changed)
-    XCTAssertEqual(val, 10)
+    XCTAssertEqual(val, 30)
   }
 
   func testListnerCanListenToStateForKeyWithNotifierThatAlwaysCalls() {
@@ -172,7 +172,7 @@ class ListenerTests: XCTestCase {
 
     store.dispatch(action: IncrementAction())
     XCTAssertTrue(changed)
-    XCTAssertEqual(val, 10)
+    XCTAssertEqual(val, 30)
   }
 
   func testListnerCanListenToStateForKeyWithNotifierThatNeverCalls() {
@@ -206,7 +206,7 @@ class ListenerTests: XCTestCase {
 
     store.dispatch(action: IncrementAction())
     XCTAssertTrue(changed)
-    XCTAssertEqual(val, 10)
+    XCTAssertEqual(val, 30)
   }
 
 
@@ -223,7 +223,7 @@ class ListenerTests: XCTestCase {
 
     store.dispatch(action: IncrementAction())
     XCTAssertTrue(changed)
-    XCTAssertEqual(val, 10)
+    XCTAssertEqual(val, 30)
   }
 
   func testListnerCanListenToStateForKeyAndTypeThatDoesNotMatch() {
@@ -256,7 +256,7 @@ class ListenerTests: XCTestCase {
 
     store.dispatch(action: IncrementAction())
     XCTAssertTrue(changed)
-    XCTAssertEqual(val, 10)
+    XCTAssertEqual(val, 30)
   }
 
   func testListnerCanListenToStateForKeyAndTypeThatMatchesAndANotifierThatNeverNotifies() {

@@ -62,7 +62,7 @@ class ComponentTests: XCTestCase {
     store.connect(component: component, stateKey: "MyState1")
     store.dispatch(action: IncrementAction())
 
-    XCTAssertEqual(component.state.value, 10)
+    XCTAssertEqual(component.state.value, 30)
   }
 
   func testComponentRemovesListenerWhenComponentDeinit() {
@@ -93,7 +93,7 @@ class ComponentTests: XCTestCase {
     store.connect(component: component, stateConverter: strangeStateConverter)
     store.dispatch(action: IncrementAction())
 
-    XCTAssertEqual(component.state.strangeValue, 10)
+    XCTAssertEqual(component.state.strangeValue, 30)
   }
 
   func testComponentWithStateConverterForAKey() {
@@ -108,7 +108,7 @@ class ComponentTests: XCTestCase {
     store.connect(component: component, stateKey: "MyState1", stateConverter: strangeStateConverter)
     store.dispatch(action: IncrementAction())
 
-    XCTAssertEqual(component.state.strangeValue, 10)
+    XCTAssertEqual(component.state.strangeValue, 30)
   }
 
   func testComponentWithStateConverterForAKeyThatDoesNotConvert() {
@@ -147,7 +147,7 @@ class ComponentTests: XCTestCase {
 
     component.state = MyState1(value: 2)
     store.connect(component: component) { newState in
-      XCTAssertEqual(newState.value(forKeyOfType: MyState1.self)?.value, 10)
+      XCTAssertEqual(newState.value(forKeyOfType: MyState1.self)?.value, 30)
     }
 
     store.dispatch(action: IncrementAction())
@@ -161,7 +161,7 @@ class ComponentTests: XCTestCase {
 
     component.state = MyState1(value: 2)
     store.connect(component: component, stateKey: "MyState1") { newState in
-      XCTAssertEqual(newState.value, 10)
+      XCTAssertEqual(newState.value, 30)
     }
 
     store.dispatch(action: IncrementAction())
@@ -177,12 +177,12 @@ class ComponentTests: XCTestCase {
 
     store.connect(component: component)
     store.connect(component: component) { newState in
-      XCTAssertEqual(newState.value(forKeyOfType: MyState1.self)?.value, 10)
+      XCTAssertEqual(newState.value(forKeyOfType: MyState1.self)?.value, 30)
     }
 
     store.dispatch(action: IncrementAction())
 
-    XCTAssertEqual(component.state.value, 10)
+    XCTAssertEqual(component.state.value, 30)
   }
 
   func testConnectsToComponentMultipleTimesAndCanRemoveThem() {

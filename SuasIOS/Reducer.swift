@@ -67,7 +67,7 @@ extension Reducer {
   public var stateKey: StateKey {
     return "\(type(of: initialState))"
   }
-  
+
   var stateDict: KeyedState {
     if let reducer = self as? CombinedReducer {
       return reducer.states
@@ -101,7 +101,7 @@ public final class BlockReducer<Type>: Reducer {
 
   /// The state key for this reducer. If not implemented the type of `initialState` will be used as a key (recommended)
   public let stateKey: String
-  
+
   private let reduceFunction: TypedReducerFunction<Type>
 
   /// Create a reducer with a state and a reduce function
@@ -124,7 +124,7 @@ public final class BlockReducer<Type>: Reducer {
     self.initialState = state
     self.reduceFunction = reduce
   }
-  
+
   public func reduce(action: Action, state: Any) -> Any {
     guard let newState = state as? Type else { return state }
     return self.reduceFunction(action, newState)
@@ -132,45 +132,45 @@ public final class BlockReducer<Type>: Reducer {
 }
 
 public final class CombinedReducer: Reducer {
-  
+
   public var initialState: Any {
     return states
   }
-  
+
   var reducers: [StateKey: ReducerFunction]
   fileprivate var states: KeyedState
-  
+
   init() {
     self.states = [:]
     self.reducers = [:]
   }
-  
+
   func append(reducerWithKey stateKey: StateKey, funciton: @escaping ReducerFunction, state: Any) {
     guard reducers[stateKey] == nil else {
       Suas.log("Duplicate reducer added for state key '\(stateKey)'")
       return
     }
-    
+
     reducers[stateKey] = funciton
     states[stateKey] = state
   }
-  
+
   public func reduce(action: Action, state: Any) -> Any {
-    guard var dictState = state as? KeyedState else {
+    guard var dictState = state as? StoreState else {
       Suas.log("State should be a dictionary when using combined reducers")
       return state
     }
-    
+
     for (key, reducer) in reducers {
       guard let subState = dictState[key] else {
         Suas.log("State key '\(key)' missing for state '\(dictState)'")
         continue
       }
-      
+
       let newSubState = reducer(action, subState)
       dictState[key] = newSubState
     }
-    
+
     return dictState
   }
 }
@@ -252,4 +252,5 @@ public func |><R1: Reducer, R2: Reducer>(lhs: R1, rhs: R2) -> CombinedReducer {
   listToAppendTo.forEach({ combiner.append(reducerWithKey: $0.0, funciton: $0.2, state: $0.1) })
   return combiner
 }
+
 

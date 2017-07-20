@@ -201,4 +201,3 @@ extension Suas.DefaultStore {
                      callbackId: callbackId) { self.removeListener(withId: callbackId) }
   }
 }
-

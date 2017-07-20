@@ -15,8 +15,12 @@ public enum Suas {
                                              middleware: Middleware?) -> Store {
 
     let reduce: ReducerFunction = { action, state in
+      guard let newState = state as? R.StateType else {
+        Suas.log("When reducing state of type \(type(of: state)) was not convertible to \(R.StateType.self)\nstate: \(state)")
+        return state
+      }
       // Calls the any reducer. In that reducer we typecheck
-      return reducer.reduce(action: action, state: state)
+      return reducer.reduce(action: action, state: newState)
     }
 
     return Suas.DefaultStore(
@@ -24,25 +28,25 @@ public enum Suas {
       reducer: reduce,
       middleware: middleware)
   }
-  
+
   class DefaultStore: Store {
-    
+
     var state: StoreState
     var reducer: ReducerFunction
     fileprivate var listeners: [Listener]
     fileprivate var actionListeners: [CallbackId: ActionListenerFunction]
     fileprivate var dispatchingFunction: DispatchFunction?
-    
+
     init(state: StoreState,
          reducer: @escaping ReducerFunction,
          middleware: Middleware?) {
-      
+
       self.state = state
       self.reducer = reducer
       self.listeners = []
       self.actionListeners = [:]
       self.dispatchingFunction = nil
-      
+
       if let middleware = middleware {
         middleware.api = MiddlewareAPI(dispatch: self.dispatch, getState: self.getState)
         self.dispatchingFunction = middleware.onAction
@@ -62,7 +66,7 @@ extension Suas.DefaultStore {
   func reset(state: Any) {
     reset(state: state, forKey: "\(type(of: state))")
   }
-  
+
   func reset(state: Any, forKey key: StateKey) {
     self.state[key] = state
   }
@@ -73,18 +77,18 @@ extension Suas.DefaultStore {
 }
 
 extension Suas.DefaultStore {
-  
+
   fileprivate func getState() -> StoreState {
     return self.state
   }
-  
+
   func dispatch(action: Action) {
     self.dispatchingFunction?(action)
   }
-  
+
   fileprivate func performDispatch(action: Action) {
     let oldState = state
-    
+
     if let key = state.keys.first, state.keys.count == 1 {
       let newState = reducer(action, state[key]!)
       state = [key: newState]
@@ -103,7 +107,7 @@ extension Suas.DefaultStore {
       )
     }
   }
-  
+
   private func getSubstate(withState state: StoreState, forKey key: StateKey?) -> Any {
     if let key = key {
       return state[key] ?? state
@@ -116,11 +120,11 @@ extension Suas.DefaultStore {
 // MARK: Adding and removing observers and middlewares
 
 extension Suas.DefaultStore {
-  
+
   func addListener<State>(withId id: CallbackId,
                           type: State.Type,
                           callback: @escaping (State) -> ()) {
-    
+
     performAddListener(withId: id, stateKey: "\(type)", type: type, callback: callback)
   }
 
@@ -132,11 +136,11 @@ extension Suas.DefaultStore {
     performAddListener(withId: id, stateKey: "\(type)", type: type,
                        notifier: notifier, callback: callback)
   }
-  
+
   func addListener<State>(withId id: CallbackId,
                           stateKey: StateKey,
                           callback: @escaping (State) -> ()) {
-    
+
     performAddListener(withId: id, stateKey: stateKey, type: State.self, callback: callback)
   }
 
@@ -148,7 +152,7 @@ extension Suas.DefaultStore {
     performAddListener(withId: id, stateKey: stateKey, type: State.self,
                        notifier: notifier, callback: callback)
   }
-  
+
   func addListener(withId id: CallbackId, callback: @escaping (StoreState) -> ()) {
     performAddListener(withId: id, stateKey: nil, type: StoreState.self, callback: callback)
   }
@@ -158,7 +162,7 @@ extension Suas.DefaultStore {
                    callback: @escaping (StoreState) -> ()) {
     performAddListener(withId: id, stateKey: nil, type: StoreState.self, notifier: notifier, callback: callback)
   }
-  
+
   func addListener<State>(withId id: CallbackId, stateKey: StateKey,
                           type: State.Type, callback: @escaping (State) -> ()) {
     performAddListener(withId: id, stateKey: stateKey, type: type, callback: callback)
@@ -207,7 +211,7 @@ extension Suas.DefaultStore {
 
     listeners = listeners + [listener]
   }
-  
+
   func removeListener(withId id: CallbackId)  {
     listeners = listeners.filter { $0.id != id }
   }
@@ -236,3 +240,4 @@ extension Suas {
     return Array((store as! DefaultStore).actionListeners.keys)
   }
 }
+
