@@ -8,3 +8,5 @@ install:
 
 script:
 - make test
+- bundle exec slather coverage --scheme SuasMac Suas.xcodeproj > coverage.res
+- bundle exec danger
