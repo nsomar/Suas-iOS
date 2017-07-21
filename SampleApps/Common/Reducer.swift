@@ -7,11 +7,7 @@
 //
 
 import Foundation
-#if os(macOS)
-  @testable import SuasMac
-#else
-  @testable import SuasIOS
-#endif
+@testable import Suas
 
 let emptyState = TodoState(todos:[])
 

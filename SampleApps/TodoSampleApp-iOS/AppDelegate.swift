@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import SuasIOS
+import Suas
 
 let store = Suas.createStore(reducer: todoReducer, middleware: MonitorMiddleware())
 

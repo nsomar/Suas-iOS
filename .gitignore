@@ -81,6 +81,11 @@ playground.xcworkspace
 # Packages/
 # Package.pins
 .build/
+Carthage/
+
+
+.profdate
+.xcworkspacedata
 
 # CocoaPods - Refactored to standalone file
 
@@ -118,4 +123,5 @@ xcuserdata
 !*.xcworkspace/contents.xcworkspacedata
 /*.gcno
 
+*.xcodeproj/**/*.xcworkspacedata
 # End of https://www.gitignore.io/api/xcode,swift,objective-c

@@ -7,8 +7,7 @@
 //
 
 import UIKit
-import SuasIOS
-
+import Suas
 
 class ViewController: UIViewController, Component {
 

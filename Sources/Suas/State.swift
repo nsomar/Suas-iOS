@@ -107,8 +107,9 @@ public struct StoreState {
   public func value<Type>(forKey key: String, ofType type: Type.Type) -> Type? {
     return  innerState[key] as? Type
   }
-  
-  var keys: [StateKey] {
+
+  /// Return all the keys in the state
+  public var keys: [StateKey] {
     return Array(innerState.keys)
   }
 }

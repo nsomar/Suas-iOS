@@ -8,25 +8,12 @@
 
 import Foundation
 
-struct Todo: SuasEncodable {
+struct Todo {
   var title: String
   var isCompleted: Bool
-
-  func toDictionary() -> [String: Any] {
-    return [
-      "title": title,
-      "isCompleted": isCompleted
-    ]
-  }
 }
 
-struct TodoState: SuasEncodable {
+struct TodoState {
   var todos: [Todo]
-
-  func toDictionary() -> [String: Any] {
-    return [
-      "todos": todos.map({ $0.toDictionary() })
-    ]
-  }
 }
 

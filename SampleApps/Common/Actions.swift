@@ -7,28 +7,12 @@
 //
 
 import Foundation
-#if os(macOS)
-  @testable import SuasMac
-#else
-  @testable import SuasIOS
-#endif
+@testable import Suas
 
-struct AddTodo: Action, SuasEncodable {
+struct AddTodo: Action {
   let text: String
-
-  func toDictionary() -> [String: Any] {
-    return [
-      "text": text
-    ]
-  }
 }
 
-struct ToggleTodo: Action, SuasEncodable {
+struct ToggleTodo: Action {
   let index: Int
-  
-  func toDictionary() -> [String: Any] {
-    return [
-      "index": index
-    ]
-  }
 }

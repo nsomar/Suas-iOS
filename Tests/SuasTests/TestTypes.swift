@@ -7,12 +7,7 @@
 //
 
 import Foundation
-#if os(macOS)
-  @testable import SuasMac
-#else
-  @testable import SuasIOS
-#endif
-
+@testable import Suas
 
 struct MyState1 {
   var value = 0
