@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13156.6" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12121"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13156.6"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -22,7 +23,7 @@
                         <action selector="buttonTapped:" target="tS4-Ds-vcm" id="AMq-ba-XjA"/>
                     </connections>
                 </button>
-                <textField horizontalHuggingPriority="246" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="boM-Ic-GlY">
+                <textField horizontalHuggingPriority="246" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="boM-Ic-GlY">
                     <rect key="frame" x="33" y="11" width="276" height="28"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="140" drawsBackground="YES" id="eK0-PP-i6X">
                         <font key="font" metaFont="system" size="23"/>
@@ -40,7 +41,6 @@
             </constraints>
             <connections>
                 <outlet property="checkButton" destination="cV9-kb-ENm" id="XaX-bR-cFB"/>
-                <outlet property="routeLabel" destination="boM-Ic-GlY" id="yVx-HC-56r"/>
                 <outlet property="todoLabel" destination="boM-Ic-GlY" id="rL0-kT-8JI"/>
             </connections>
             <point key="canvasLocation" x="406.5" y="309"/>

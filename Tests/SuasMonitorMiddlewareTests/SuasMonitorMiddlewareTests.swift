@@ -22,12 +22,12 @@ class SuasMonitorMiddlewareTests: XCTestCase {
   }
 
   func testItStartsTheServiceAtInit() {
-    _ = MonitorMiddleware(stateEncodeCallback: nil, actionEncodeCallback: nil, monitorService: service)
+    _ = MonitorMiddleware(stateEncoder: nil, actionEncoder: nil, monitorService: service)
     XCTAssertEqual(service.started, true)
   }
 
   func testWhenStartsSendsAnAction() {
-    let monitor = MonitorMiddleware(stateEncodeCallback: nil, actionEncodeCallback: nil, monitorService: service)
+    let monitor = MonitorMiddleware(stateEncoder: nil, actionEncoder: nil, monitorService: service)
 
     var actionDispatched: Action?
     let api = MiddlewareAPI(dispatch: { (action) in
@@ -41,7 +41,7 @@ class SuasMonitorMiddlewareTests: XCTestCase {
   }
 
   func testActionsAreSentToMonitorWhenSuasEncodable() {
-    let monitor = MonitorMiddleware(stateEncodeCallback: nil, actionEncodeCallback: nil, monitorService: service)
+    let monitor = MonitorMiddleware(stateEncoder: nil, actionEncoder: nil, monitorService: service)
 
     let state = DummyEncodableState(val: 10)
     let anyAPI = MiddlewareAPI(dispatch: { (action) in },
@@ -56,8 +56,8 @@ class SuasMonitorMiddlewareTests: XCTestCase {
 
   func testActionsAreSentToMonitorWhenActionBlockAndStateSuasEncodable() {
     let monitor = MonitorMiddleware(
-      stateEncodeCallback: nil,
-      actionEncodeCallback: { action in
+      stateEncoder: nil,
+      actionEncoder: { action in
         return (action as! NonEncodableAction).toDictionary()
     },
       monitorService: service)
@@ -75,10 +75,10 @@ class SuasMonitorMiddlewareTests: XCTestCase {
 
   func testActionsAreSentToMonitorWhenActionEncodableAndStateCallback1State() {
     let monitor = MonitorMiddleware(
-      stateEncodeCallback: { state in
+      stateEncoder: { state in
         return (state as! DummyNonEncodableState).toDictionary()
     },
-      actionEncodeCallback: nil,
+      actionEncoder: nil,
       monitorService: service)
 
     let state = DummyNonEncodableState(val2: 10)
@@ -94,10 +94,10 @@ class SuasMonitorMiddlewareTests: XCTestCase {
 
   func testActionsAreSentToMonitorWhenActionEncodableAndStateMixed() {
     let monitor = MonitorMiddleware(
-      stateEncodeCallback: { state in
+      stateEncoder: { state in
         return (state as! DummyNonEncodableState).toDictionary()
     },
-      actionEncodeCallback: nil,
+      actionEncoder: nil,
       monitorService: service)
 
     let anyAPI = MiddlewareAPI(
@@ -118,10 +118,10 @@ class SuasMonitorMiddlewareTests: XCTestCase {
 
   func testActionsAreSentToMonitorWhenActionCallbackAndStateMixed() {
     let monitor = MonitorMiddleware(
-      stateEncodeCallback: { state in
+      stateEncoder: { state in
         return (state as! DummyNonEncodableState).toDictionary()
     },
-      actionEncodeCallback: {action in
+      actionEncoder: {action in
         return (action as! NonEncodableAction).toDictionary()
     },
       monitorService: service)
@@ -144,8 +144,8 @@ class SuasMonitorMiddlewareTests: XCTestCase {
 
   func testDoesNotSendIfActionIsNotSuasAndNoCallback() {
     let monitor = MonitorMiddleware(
-      stateEncodeCallback: nil,
-      actionEncodeCallback: nil,
+      stateEncoder: nil,
+      actionEncoder: nil,
       monitorService: service)
 
     let state = DummyEncodableState(val: 10)
@@ -161,8 +161,8 @@ class SuasMonitorMiddlewareTests: XCTestCase {
 
   func testDoesNotSendIfStateIsNotSuasAndNoCallback() {
     let monitor = MonitorMiddleware(
-      stateEncodeCallback: nil,
-      actionEncodeCallback: nil,
+      stateEncoder: nil,
+      actionEncoder: nil,
       monitorService: service)
 
     let state = DummyNonEncodableState(val2: 10)

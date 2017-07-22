@@ -9,7 +9,12 @@
 import Foundation
 import Suas
 
-protocol SuasEncodable {
+
+/// Protocol used from `MonitorMiddleware` to convert a type to a `[String: Any]`
+/// When using `MonitorMiddleware` types can implement `SuasEncodable` to be transferred to `SuasMonitor` mac app
+public protocol SuasEncodable {
+
+  /// Convert the type to a dictionary
   func toDictionary() -> [String: Any]
 }
 
@@ -23,24 +28,36 @@ fileprivate let closingPlaceholder = "&&__&&__&&"
 
 public typealias EncodingCallback<Type> = (Type) -> [String: Any]?
 
+
+/// Middle ware that transmits the state and actions to the `SuasMonitor` mac app
+///
+/// MonitorMiddleware needs to convert actions and states to [String: Any] so that it can transmit them to the `SuasMonitor` mac app. That can be done with:
+/// - Implement `SuasEncodable` in your Actions and States. `MonitorMiddleware` will use this protocol to convert the action and state to [String: Any]
+/// - OR implement `stateEncoder` and `actionEncoder`: `MonitorMiddleware` will call these callbacks passing the state and action. The callbacks inturn have to return a `[String: Any]`
 public class MonitorMiddleware: Middleware {
+
   public var api: MiddlewareAPI?
   public var next: DispatchFunction?
 
   private var monitorService: MonitorService
 
-  private var stateEncodeCallback: EncodingCallback<Any>?
-  private var actionEncodeCallback: EncodingCallback<Action>?
+  private var stateEncoder: EncodingCallback<Any>?
+  private var actionEncoder: EncodingCallback<Action>?
 
-  public convenience init(stateEncodeCallback: EncodingCallback<Any>? = nil, actionEncodeCallback: EncodingCallback<Action>? = nil) {
-    self.init(stateEncodeCallback: stateEncodeCallback,
-              actionEncodeCallback: actionEncodeCallback,
+  /// Create a MonitorMiddleware
+  ///
+  /// - Parameters:
+  ///   - stateEncoder: (optional) callback that converts a state type to [String: Any]
+  ///   - actionEncoder: (optional) callback that converts an action type to [String: Any]
+  public convenience init(stateEncoder: EncodingCallback<Any>? = nil, actionEncoder: EncodingCallback<Action>? = nil) {
+    self.init(stateEncoder: stateEncoder,
+              actionEncoder: actionEncoder,
               monitorService: DefaultMonitorService())
   }
 
-  init(stateEncodeCallback: EncodingCallback<Any>? = nil, actionEncodeCallback: EncodingCallback<Action>? = nil, monitorService: MonitorService) {
-    self.stateEncodeCallback = stateEncodeCallback
-    self.actionEncodeCallback = actionEncodeCallback
+  init(stateEncoder: EncodingCallback<Any>? = nil, actionEncoder: EncodingCallback<Action>? = nil, monitorService: MonitorService) {
+    self.stateEncoder = stateEncoder
+    self.actionEncoder = actionEncoder
 
     self.monitorService = monitorService
 
@@ -62,15 +79,14 @@ public class MonitorMiddleware: Middleware {
   }
 
   private func sendToMonitor(state: StoreState, action: Action) {
-    guard
-      let stateDict = dictionary(forState: state),
-      let actionDict = dictionary(forAction: action) else {
-        logString("Action and/or State can not be converted to [String: Any]\n" +
-          "State: \(state)\n" +
-          "Action: \(action)\n" +
-          "\n" +
-          "State and Action can either implement the `SuasEncodable` or pass `EncodingCallback` when creating the `MonitorMiddleware`")
-        return
+    guard let stateDict = dictionary(forState: state) else {
+      logError("State", "stateEncoder", state)
+      return
+    }
+
+    guard let actionDict = dictionary(forAction: action) else {
+      logError("Action", "actionEncoder", action)
+      return
     }
 
     let dictionaryToSend: [String: Any] = [
@@ -85,6 +101,12 @@ public class MonitorMiddleware: Middleware {
     monitorService.send(data: data)
   }
 
+  private func logError(_ type: String, _ callback: String, _ value: Any) {
+    logString("\(type) can not be converted to [String: Any]\n" +
+      "\(type): \(value)\n" +
+      "-> State and Action can either implement the `SuasEncodable` or set `\(callback)` when creating the `MonitorMiddleware`")
+  }
+
   private func dictionary(forState state: StoreState) -> [String: Any]? {
     var stateToSend: [String: Any] = [:]
 
@@ -93,10 +115,14 @@ public class MonitorMiddleware: Middleware {
 
       if let encodableValue = value as? SuasEncodable {
         stateToSend[key] = encodableValue.toDictionary()
-      } else if let callback = stateEncodeCallback, let stateValue = callback(value) {
+      } else if let callback = stateEncoder, let stateValue = callback(value) {
         stateToSend[key] = stateValue
       } else {
-        logString("State key \(key) was with value \(String(describing: state[key])) does not implement `SuasEncodable`. Skipping key")
+        logString([
+          "State with key: \(key)",
+          "Value: \(String(describing: state[key]!))",
+          "does not implement `SuasEncodable`. Skipping key"
+          ].joined(separator: "\n"))
       }
     }
 
@@ -108,11 +134,10 @@ public class MonitorMiddleware: Middleware {
       return action.toDictionary()
     }
 
-    if let callback = actionEncodeCallback {
+    if let callback = actionEncoder {
       return callback(action)
     }
 
     return nil
   }
-
 }

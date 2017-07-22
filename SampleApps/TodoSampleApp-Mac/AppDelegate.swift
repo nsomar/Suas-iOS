@@ -10,7 +10,10 @@ import Cocoa
 import Suas
 import SuasMonitorMiddleware
 
-let store = Suas.createStore(reducer: todoReducer, middleware: MonitorMiddleware())
+let logger = LoggerMiddleware(showTimestamp: true, showDuration: true, lineLength: 100)
+
+let store = Suas.createStore(reducer: todoReducer,
+                             middleware: MonitorMiddleware() |> logger)
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
