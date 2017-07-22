@@ -55,5 +55,5 @@ class DefaultMonitorService: NSObject, GCDAsyncSocketDelegate, NetServiceDelegat
 }
 
 func logString(_ string: String) {
-  print("Monitor: \(string))")
+  print("🖥 SuasMonitor : \(string)")
 }
