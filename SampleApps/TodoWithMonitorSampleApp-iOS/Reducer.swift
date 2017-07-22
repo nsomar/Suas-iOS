@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Suas
+@testable import Suas
 
 let emptyState = TodoState(todos:[])
 

@@ -9,15 +9,6 @@
 import Foundation
 import Suas
 
-
-/// Protocol used from `MonitorMiddleware` to convert a type to a `[String: Any]`
-/// When using `MonitorMiddleware` types can implement `SuasEncodable` to be transferred to `SuasMonitor` mac app
-public protocol SuasEncodable {
-
-  /// Convert the type to a dictionary
-  func toDictionary() -> [String: Any]
-}
-
 struct ConnectedToMonitor: Action, SuasEncodable {
   func toDictionary() -> [String : Any] {
     return [:]
