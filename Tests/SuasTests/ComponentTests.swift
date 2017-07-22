@@ -7,11 +7,7 @@
 //
 
 import XCTest
-#if os(macOS)
-  @testable import SuasMac
-#else
-  @testable import SuasIOS
-#endif
+@testable import Suas
 
 class ComponentTests: XCTestCase {
 

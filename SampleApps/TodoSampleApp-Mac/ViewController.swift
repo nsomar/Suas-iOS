@@ -7,7 +7,7 @@
 //
 
 import Cocoa
-import SuasMac
+import Suas
 
 class ViewController: NSViewController, Component {
 
@@ -28,7 +28,11 @@ class ViewController: NSViewController, Component {
 
   override func viewDidLoad() {
     super.viewDidLoad()
+    #if swift(>=4.0)
+    todoTableView.register(NSNib(nibNamed: NSNib.Name(rawValue: "TodoCell"), bundle: nil), forIdentifier: NSUserInterfaceItemIdentifier(rawValue: "TodoCell"))
+    #else
     todoTableView.register(NSNib(nibNamed: "TodoCell", bundle: nil), forIdentifier: "TodoCell")
+    #endif
     store.connect(component: self)
   }
 }
@@ -45,8 +49,14 @@ extension ViewController: NSTableViewDelegate, NSTableViewDataSource {
   func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
     let todo = state.todos[row]
 
+    #if swift(>=4.0)
+    let view = (tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "TodoCell"), owner: nil) as! TodoCell)
+    view.checkButton.state = todo.isCompleted ? NSControl.StateValue.onState : NSControl.StateValue.offState
+    #else
     let view = (tableView.make(withIdentifier: "TodoCell", owner: nil) as! TodoCell)
     view.checkButton.state = todo.isCompleted ? NSOnState : NSOffState
+    #endif
+
     view.todoLabel.stringValue = todo.title
     view.index = row
     return view

@@ -87,7 +87,13 @@ extension Suas.DefaultStore {
   }
 
   func dispatch(action: Action) {
-    self.dispatchingFunction?(action)
+    let toDispatch = { self.dispatchingFunction?(action) }
+
+    if Thread.isMainThread {
+      toDispatch()
+    } else {
+      DispatchQueue.main.sync { toDispatch() }
+    }
   }
 
   fileprivate func performDispatch(action: Action) {

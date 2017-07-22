@@ -7,9 +7,10 @@
 //
 
 import Cocoa
-import SuasMac
+import Suas
+import SuasMonitorMiddleware
 
-let store = Suas.createStore(reducer: todoReducer)
+let store = Suas.createStore(reducer: todoReducer, middleware: MonitorMiddleware())
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
