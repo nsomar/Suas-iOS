@@ -8,17 +8,20 @@
 
 import Foundation
 import Suas
-import CocoaAsyncSocket
 
 protocol SuasEncodable {
   func toDictionary() -> [String: Any]
 }
 
-private struct ConnectedToMonitor: Action {
+struct ConnectedToMonitor: Action, SuasEncodable {
   func toDictionary() -> [String : Any] {
     return [:]
   }
 }
+
+fileprivate let closingPlaceholder = "&&__&&__&&"
+
+public typealias EncodingCallback<Type> = (Type) -> [String: Any]?
 
 public class MonitorMiddleware: Middleware {
   public var api: MiddlewareAPI?
@@ -26,92 +29,90 @@ public class MonitorMiddleware: Middleware {
 
   private var monitorService: MonitorService
 
-  public init() {
-    monitorService = MonitorService()
+  private var stateEncodeCallback: EncodingCallback<Any>?
+  private var actionEncodeCallback: EncodingCallback<Action>?
 
-    monitorService.start { [weak self] in
-      self?.sendStoredState()
+  public convenience init(stateEncodeCallback: EncodingCallback<Any>? = nil, actionEncodeCallback: EncodingCallback<Action>? = nil) {
+    self.init(stateEncodeCallback: stateEncodeCallback,
+              actionEncodeCallback: actionEncodeCallback,
+              monitorService: DefaultMonitorService())
+  }
+
+  init(stateEncodeCallback: EncodingCallback<Any>? = nil, actionEncodeCallback: EncodingCallback<Action>? = nil, monitorService: MonitorService) {
+    self.stateEncodeCallback = stateEncodeCallback
+    self.actionEncodeCallback = actionEncodeCallback
+
+    self.monitorService = monitorService
+
+    self.monitorService.start { [weak self] in
+      self?.sendInitialState()
     }
   }
 
   public func onAction(action: Action) {
     guard let api = api, let next = next else { return }
+
     next(action)
     sendToMonitor(state: api.state, action: action)
   }
 
-  private func sendStoredState() {
+  private func sendInitialState() {
     guard let api = api else { return }
     api.dispatch(ConnectedToMonitor())
   }
 
   private func sendToMonitor(state: StoreState, action: Action) {
-    var stateToSend: [String: Any] = [:]
-
-    state.keys.forEach { key in
-      if let value = state[key] as? SuasEncodable {
-        stateToSend[key] = value.toDictionary()
-      }
+    guard
+      let stateDict = dictionary(forState: state),
+      let actionDict = dictionary(forAction: action) else {
+        logString("Action and/or State can not be converted to [String: Any]\n" +
+          "State: \(state)\n" +
+          "Action: \(action)\n" +
+          "\n" +
+          "State and Action can either implement the `SuasEncodable` or pass `EncodingCallback` when creating the `MonitorMiddleware`")
+        return
     }
 
-    var map: [String: Any] = [
-      "state" : stateToSend,
-      "action" : "\(type(of: action))"
+    let dictionaryToSend: [String: Any] = [
+      "action" : "\(type(of: action))",
+      "actionData": actionDict,
+      "state" : stateDict
     ]
 
-    if let encodableAction = action as? SuasEncodable {
-      map["actionData"] = encodableAction.toDictionary()
-    }
-
-    var data = try! JSONSerialization.data(withJSONObject: map, options: [])
-    let cr = "&&__&&__&&".data(using: .utf8)!
-
-    data.append(cr)
+    var data = try! JSONSerialization.data(withJSONObject: dictionaryToSend, options: [])
+    data.append(closingPlaceholder.data(using: .utf8)!)
 
     monitorService.send(data: data)
   }
-}
 
-fileprivate var numberOfMonitors = 0
+  private func dictionary(forState state: StoreState) -> [String: Any]? {
+    var stateToSend: [String: Any] = [:]
 
-fileprivate class MonitorService: NSObject, GCDAsyncSocketDelegate, NetServiceDelegate {
+    state.keys.forEach { key in
+      guard let value = state[key] else { return }
 
-  var service: NetService!
-  var socket: GCDAsyncSocket!
-  var clients = [GCDAsyncSocket]()
-  var onConnectBlock: (() -> ())?
-
-  func start(onConnectBlock: @escaping () -> ()) {
-    // Get a port number
-    let port = numberOfMonitors + 8081
-
-    socket = GCDAsyncSocket(delegate: self, delegateQueue: DispatchQueue(label: "ReduxMonitor"))
-    try? self.socket.accept(onPort: UInt16(port))
-    self.service = NetService(domain: "", type: "_redux-monitor._tcp.", name: "", port: Int32(port))
-
-    if let service = service {
-      logString("Bonjour Service started")
-      service.delegate = self
-      service.publish()
+      if let encodableValue = value as? SuasEncodable {
+        stateToSend[key] = encodableValue.toDictionary()
+      } else if let callback = stateEncodeCallback, let stateValue = callback(value) {
+        stateToSend[key] = stateValue
+      } else {
+        logString("State key \(key) was with value \(String(describing: state[key])) does not implement `SuasEncodable`. Skipping key")
+      }
     }
+
+    return stateToSend.isEmpty ? nil : stateToSend
   }
 
-  func send(data: Data) {
-    logString("Sending data to Suas monitor")
-
-    for client in clients {
-      client.write(data, withTimeout: -1, tag: 0)
+  private func dictionary(forAction action: Action) -> [String: Any]? {
+    if let action = action as? SuasEncodable {
+      return action.toDictionary()
     }
+
+    if let callback = actionEncodeCallback {
+      return callback(action)
+    }
+
+    return nil
   }
 
-  //MARK: GCDAsyncSocket Delegates
-  func socket(_ sock: GCDAsyncSocket, didAcceptNewSocket newSocket: GCDAsyncSocket) {
-    //Start sending stuff
-    clients.append(newSocket)
-    onConnectBlock?()
-  }
-}
-
-fileprivate func logString(_ string: String) {
-  print("Monitor: \(string))")
 }

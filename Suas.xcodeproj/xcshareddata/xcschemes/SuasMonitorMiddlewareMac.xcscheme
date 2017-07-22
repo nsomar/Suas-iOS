@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0900"
-   version = "1.8">
+   LastUpgradeVersion = "0830"
+   version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES">
@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D7CBAA611F1EC3E100DA67E9"
-               BuildableName = "Suas.framework"
-               BlueprintName = "SuasIOS"
+               BlueprintIdentifier = "D7ECA98A1F220FD2006DFC8D"
+               BuildableName = "SuasMonitorMiddleware.framework"
+               BlueprintName = "SuasMonitorMiddlewareMac"
                ReferencedContainer = "container:Suas.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -34,9 +34,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D7CBAA791F1EC45400DA67E9"
-               BuildableName = "SuasIOSTests.xctest"
-               BlueprintName = "SuasIOSTests"
+               BlueprintIdentifier = "D74D86651F22386E00B134A3"
+               BuildableName = "SuasMonitorMiddlewareTestsMac.xctest"
+               BlueprintName = "SuasMonitorMiddlewareTestsMac"
                ReferencedContainer = "container:Suas.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -44,9 +44,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D7CBAA611F1EC3E100DA67E9"
-            BuildableName = "Suas.framework"
-            BlueprintName = "SuasIOS"
+            BlueprintIdentifier = "D7ECA98A1F220FD2006DFC8D"
+            BuildableName = "SuasMonitorMiddleware.framework"
+            BlueprintName = "SuasMonitorMiddlewareMac"
             ReferencedContainer = "container:Suas.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -57,6 +57,7 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      language = ""
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
@@ -66,9 +67,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D7CBAA611F1EC3E100DA67E9"
-            BuildableName = "Suas.framework"
-            BlueprintName = "SuasIOS"
+            BlueprintIdentifier = "D7ECA98A1F220FD2006DFC8D"
+            BuildableName = "SuasMonitorMiddleware.framework"
+            BlueprintName = "SuasMonitorMiddlewareMac"
             ReferencedContainer = "container:Suas.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -84,9 +85,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D7CBAA611F1EC3E100DA67E9"
-            BuildableName = "Suas.framework"
-            BlueprintName = "SuasIOS"
+            BlueprintIdentifier = "D7ECA98A1F220FD2006DFC8D"
+            BuildableName = "SuasMonitorMiddleware.framework"
+            BlueprintName = "SuasMonitorMiddlewareMac"
             ReferencedContainer = "container:Suas.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

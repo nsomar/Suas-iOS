@@ -7,7 +7,7 @@
 //
 
 import Cocoa
-import SuasMac
+import Suas
 
 class ViewController: NSViewController, Component {
 
