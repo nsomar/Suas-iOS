@@ -7,7 +7,7 @@
 //
 
 import Foundation
-@testable import Suas
+import Suas
 
 struct AddTodo: Action {
   let text: String

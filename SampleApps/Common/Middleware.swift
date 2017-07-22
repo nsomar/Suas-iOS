@@ -7,7 +7,7 @@
 //
 
 import Foundation
-@testable import Suas
+import Suas
 
 let loggerMiddleware = BlockMiddleware { action, api, next in
   print("\n==========================================================================")

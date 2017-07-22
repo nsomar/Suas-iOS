@@ -30,6 +30,7 @@ class DefaultMonitorService: NSObject, GCDAsyncSocketDelegate, NetServiceDelegat
     socket = GCDAsyncSocket(delegate: self, delegateQueue: DispatchQueue(label: "ReduxMonitor"))
     try? self.socket.accept(onPort: UInt16(port))
     self.service = NetService(domain: "", type: "_redux-monitor._tcp.", name: "", port: Int32(port))
+    self.onConnectBlock = onConnectBlock
 
     if let service = service {
       logString("Bonjour Service started")
