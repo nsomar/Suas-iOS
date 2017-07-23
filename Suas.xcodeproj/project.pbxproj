@@ -502,11 +502,9 @@
 		D705512A1F21264F00022BF1 /* SampleApps */ = {
 			isa = PBXGroup;
 			children = (
-				D76F34B41F23E77800CE0C66 /* WeatherApp-iOS */,
-				D76F34861F239A6E00CE0C66 /* TodoWithMonitorSampleApp-iOS */,
-				D75D6DCD1F21556200BA72C8 /* TodoSampleApp-Mac */,
-				D711E9611F21422A0049718D /* Common */,
-				D7CBAA4A1F1EC38700DA67E9 /* TodoSampleApp-iOS */,
+				D76F34E61F2438CE00CE0C66 /* TodoSampleApp */,
+				D76F34B41F23E77800CE0C66 /* WeatherApp */,
+				D76F34861F239A6E00CE0C66 /* TodoWithMonitorSampleApp */,
 			);
 			path = SampleApps;
 			sourceTree = "<group>";
@@ -672,7 +670,7 @@
 			path = Logger;
 			sourceTree = "<group>";
 		};
-		D76F34861F239A6E00CE0C66 /* TodoWithMonitorSampleApp-iOS */ = {
+		D76F34861F239A6E00CE0C66 /* TodoWithMonitorSampleApp */ = {
 			isa = PBXGroup;
 			children = (
 				D76F349A1F239B0600CE0C66 /* Actions.swift */,
@@ -685,10 +683,10 @@
 				D76F34901F239A6E00CE0C66 /* LaunchScreen.storyboard */,
 				D76F34931F239A6E00CE0C66 /* Info.plist */,
 			);
-			path = "TodoWithMonitorSampleApp-iOS";
+			path = TodoWithMonitorSampleApp;
 			sourceTree = "<group>";
 		};
-		D76F34B41F23E77800CE0C66 /* WeatherApp-iOS */ = {
+		D76F34B41F23E77800CE0C66 /* WeatherApp */ = {
 			isa = PBXGroup;
 			children = (
 				D76F34B51F23E77800CE0C66 /* AppDelegate.swift */,
@@ -701,7 +699,7 @@
 				D76F34C71F23EBF600CE0C66 /* Reducer.swift */,
 				D76F34CD1F23EF4B00CE0C66 /* Action.swift */,
 			);
-			path = "WeatherApp-iOS";
+			path = WeatherApp;
 			sourceTree = "<group>";
 		};
 		D76F34DC1F24288500CE0C66 /* AsyncMiddleware */ = {
@@ -728,6 +726,16 @@
 				D76F34781F23670000CE0C66 /* LoggerMiddleware */,
 			);
 			path = Middlewares;
+			sourceTree = "<group>";
+		};
+		D76F34E61F2438CE00CE0C66 /* TodoSampleApp */ = {
+			isa = PBXGroup;
+			children = (
+				D75D6DCD1F21556200BA72C8 /* TodoSampleApp-Mac */,
+				D7CBAA4A1F1EC38700DA67E9 /* TodoSampleApp-iOS */,
+				D711E9611F21422A0049718D /* Common */,
+			);
+			path = TodoSampleApp;
 			sourceTree = "<group>";
 		};
 		D7CBAA3F1F1EC38700DA67E9 = {
@@ -770,8 +778,7 @@
 				D7CBAA541F1EC38700DA67E9 /* LaunchScreen.storyboard */,
 				D7CBAA571F1EC38700DA67E9 /* Info.plist */,
 			);
-			name = "TodoSampleApp-iOS";
-			path = "../SampleApps/TodoSampleApp-iOS";
+			path = "TodoSampleApp-iOS";
 			sourceTree = "<group>";
 		};
 		D7CBAA631F1EC3E100DA67E9 /* iOS */ = {
@@ -1682,7 +1689,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
-				INFOPLIST_FILE = "SampleApps/TodoSampleApp-Mac/Info.plist";
+				INFOPLIST_FILE = "SampleApps/TodoSampleApp/TodoSampleApp-Mac/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = "nsomar.TodoSampleApp-Mac";
@@ -1708,7 +1715,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
-				INFOPLIST_FILE = "SampleApps/TodoSampleApp-Mac/Info.plist";
+				INFOPLIST_FILE = "SampleApps/TodoSampleApp/TodoSampleApp-Mac/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = "nsomar.TodoSampleApp-Mac";
@@ -1791,7 +1798,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				INFOPLIST_FILE = "SampleApps/TodoWithMonitorSampleApp-iOS/Info.plist";
+				INFOPLIST_FILE = SampleApps/TodoWithMonitorSampleApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "nsomar.TodoWithMonitorSampleApp-iOS";
@@ -1813,7 +1820,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				INFOPLIST_FILE = "SampleApps/TodoWithMonitorSampleApp-iOS/Info.plist";
+				INFOPLIST_FILE = SampleApps/TodoWithMonitorSampleApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "nsomar.TodoWithMonitorSampleApp-iOS";
@@ -1830,7 +1837,7 @@
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				DEVELOPMENT_TEAM = LJ39N47822;
-				INFOPLIST_FILE = "SampleApps/WeatherApp-iOS/Info.plist";
+				INFOPLIST_FILE = SampleApps/WeatherApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "nsomar.WeatherApp-iOS";
@@ -1847,7 +1854,7 @@
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				DEVELOPMENT_TEAM = LJ39N47822;
-				INFOPLIST_FILE = "SampleApps/WeatherApp-iOS/Info.plist";
+				INFOPLIST_FILE = SampleApps/WeatherApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "nsomar.WeatherApp-iOS";
@@ -1973,7 +1980,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				INFOPLIST_FILE = "SampleApps/TodoSampleApp-iOS/Info.plist";
+				INFOPLIST_FILE = "SampleApps/TodoSampleApp/TodoSampleApp-iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "nsomar.Suas-iOS.TodoSampleApp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1997,7 +2004,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				INFOPLIST_FILE = "SampleApps/TodoSampleApp-iOS/Info.plist";
+				INFOPLIST_FILE = "SampleApps/TodoSampleApp/TodoSampleApp-iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "nsomar.Suas-iOS.TodoSampleApp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
