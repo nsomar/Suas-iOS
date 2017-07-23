@@ -335,8 +335,8 @@ extension Suas {
   /// )
   /// ```
   public static func createStore<R: Reducer, S>(reducer: R,
-                                             state: S,
-                                             middleware: Middleware? = nil) -> Store {
+                                                state: S,
+                                                middleware: Middleware? = nil) -> Store {
     return performCreateStore(
       reducer: reducer,
       state: ["\(type(of: state))": state],

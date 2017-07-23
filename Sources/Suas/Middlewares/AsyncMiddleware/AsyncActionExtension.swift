@@ -1,0 +1,84 @@
+//
+//  AsyncAction.swift
+//  SuasIOS
+//
+//  Created by Omar Abdelhafith on 23/07/2017.
+//  Copyright © 2017 Omar Abdelhafith. All rights reserved.
+//
+
+import Foundation
+
+
+/// Callback called when URLSession operation completes
+public typealias URLSessionActionCompletionBlock = (Data?, URLResponse?, Error?, DispatchFunction) -> Void
+
+/// Callback called when Disk IO operation completes
+public typealias DiskIOActionCompletionBlock = (Data?, DispatchFunction) -> Void
+
+extension AsyncAction {
+
+  /// Create a URLSession AsyncAction
+  ///
+  /// - Parameters:
+  ///   - url: the url to fetch
+  ///   - urlSession: the url session to use (optional)
+  ///   - completionBlock: callback to call when the url operation is ended. In this block `dispatch` is used to dispatch new actions
+  /// - Returns: an async action to dispatch
+  public static func forURLSession(url: URL,
+                                   urlSession: URLSession = URLSession(configuration: .default),
+                                   completionBlock: @escaping URLSessionActionCompletionBlock) -> AsyncAction {
+    return forURLSession(urlRequest: URLRequest(url: url),
+                         urlSession: urlSession,
+                         completionBlock: completionBlock)
+  }
+
+
+  /// Create a URLSession AsyncAction
+  ///
+  /// - Parameters:
+  ///   - urlRequest: the url request to fetch
+  ///   - urlSession: the url session to use (optional)
+  ///   - completionBlock: callback to call when the url operation is ended. In this block `dispatch` is used to dispatch new actions
+  /// - Returns: an async action to dispatch
+  static func forURLSession(urlRequest: URLRequest,
+                            urlSession: URLSession = URLSession(configuration: .default),
+                            completionBlock: @escaping URLSessionActionCompletionBlock) -> AsyncAction {
+
+    return AsyncAction { dispatch in
+      urlSession.dataTask(with: urlRequest) { data, response, error in
+        completionBlock(data, response, error, dispatch)
+        }.resume()
+    }
+  }
+}
+
+extension AsyncAction {
+
+  public static let defaultDispatchQueue = DispatchQueue(label: "IOMIDDLEWARE_IO_QUEUE")
+
+
+  /// Create a DiskIO AsyncAction
+  ///
+  /// - Parameters:
+  ///   - path: path to read from disk
+  ///   - fileManager: the file manager to use (optional, defaults to FileManager.default)
+  ///   - dispatchQueue: the dispatch queue to use when accessing disk (optional, defaults to `DispatchQueue(label: "IOMIDDLEWARE_IO_QUEUE"))
+  ///   - completionBlock: callback to call when data is read from disk. In this block `dispatch` is used to dispatch new actions
+  /// - Returns: an async action to dispatch
+  public static func fordiskIO(path: String,
+                               fileManager: FileManager = .default,
+                               dispatchQueue: DispatchQueue = defaultDispatchQueue,
+                               completionBlock: @escaping DiskIOActionCompletionBlock) -> AsyncAction {
+
+    return AsyncAction { dispatch in
+
+      dispatchQueue.async {
+        if
+          let data = fileManager.contents(atPath: path) {
+          completionBlock(data, dispatch)
+        }
+
+      }
+    }
+  }
+}
