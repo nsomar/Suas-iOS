@@ -22,5 +22,18 @@ class FindLocationReducer: Reducer {
 
     return newState
   }
-  
+}
+
+class MyLocationsReducer: Reducer {
+  var initialState: MyLocations = MyLocations(locations: [])
+
+  func reduce(action: Action, state: MyLocations) -> MyLocations {
+    var newState = state
+
+    if let action = action as? LocationSelected {
+      newState.locations += [action.location]
+    }
+
+    return newState
+  }
 }

@@ -11,7 +11,10 @@ import Suas
 import SuasMonitorMiddleware
 
 
-let store = Suas.createStore(reducer: FindLocationReducer(), middleware: AsyncMiddleware() |> MonitorMiddleware())
+let store = Suas.createStore(
+  reducer: FindLocationReducer() |> MyLocationsReducer(),
+  middleware: AsyncMiddleware() |> MonitorMiddleware() |> LoggerMiddleware(showTimestamp: true, showDuration: true, lineLength: 100)
+)
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

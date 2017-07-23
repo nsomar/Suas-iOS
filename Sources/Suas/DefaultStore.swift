@@ -87,7 +87,12 @@ extension Suas.DefaultStore {
   }
 
   func dispatch(action: Action) {
-    let toDispatch = { self.dispatchingFunction?(action) }
+    let toDispatch = {
+      // Inform the action listeners
+      self.actionListeners.forEach({ $0.value(action) })
+
+      self.dispatchingFunction?(action)
+    }
 
     if Thread.isMainThread {
       toDispatch()
@@ -105,9 +110,6 @@ extension Suas.DefaultStore {
     } else {
       state = reducer(action, state) as! StoreState
     }
-
-    // Inform the action listeners
-    actionListeners.forEach({ $0.value(action) })
 
     listeners.forEach { listener in
       listener.notificationBlock(

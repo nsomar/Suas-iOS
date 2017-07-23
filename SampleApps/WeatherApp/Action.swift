@@ -19,6 +19,14 @@ struct LocationsAdded: Action, Encodable, SuasEncodable {
   var locations: [Location]
 }
 
+struct LocationSelected: Action, Encodable, SuasEncodable {
+  let location: Location
+}
+
+struct ShowLocationDetails: Action, Encodable, SuasEncodable {
+  let location: Location
+}
+
 public extension Encodable {
   public func toDictionary() -> [String : Any] {
     guard

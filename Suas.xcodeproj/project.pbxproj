@@ -87,6 +87,8 @@
 		D76F34DF1F2428C400CE0C66 /* AsyncActionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76F34DD1F24289D00CE0C66 /* AsyncActionExtension.swift */; };
 		D76F34E31F242C4600CE0C66 /* AsyncMiddlewareTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76F34E11F242C1800CE0C66 /* AsyncMiddlewareTests.swift */; };
 		D76F34E41F242C4700CE0C66 /* AsyncMiddlewareTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76F34E11F242C1800CE0C66 /* AsyncMiddlewareTests.swift */; };
+		D7BF71601F244028000EB3C5 /* LocationsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BF715F1F244028000EB3C5 /* LocationsListViewController.swift */; };
+		D7BF71621F2446A8000EB3C5 /* LocationDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BF71611F2446A8000EB3C5 /* LocationDetailsViewController.swift */; };
 		D7CBAA4C1F1EC38700DA67E9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CBAA4B1F1EC38700DA67E9 /* AppDelegate.swift */; };
 		D7CBAA4E1F1EC38700DA67E9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CBAA4D1F1EC38700DA67E9 /* ViewController.swift */; };
 		D7CBAA511F1EC38700DA67E9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7CBAA4F1F1EC38700DA67E9 /* Main.storyboard */; };
@@ -353,6 +355,8 @@
 		D76F34CD1F23EF4B00CE0C66 /* Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
 		D76F34DD1F24289D00CE0C66 /* AsyncActionExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AsyncActionExtension.swift; path = Sources/Suas/Middlewares/AsyncMiddleware/AsyncActionExtension.swift; sourceTree = SOURCE_ROOT; };
 		D76F34E11F242C1800CE0C66 /* AsyncMiddlewareTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncMiddlewareTests.swift; sourceTree = "<group>"; };
+		D7BF715F1F244028000EB3C5 /* LocationsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsListViewController.swift; sourceTree = "<group>"; };
+		D7BF71611F2446A8000EB3C5 /* LocationDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailsViewController.swift; sourceTree = "<group>"; };
 		D7CBAA481F1EC38700DA67E9 /* TodoSampleApp-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TodoSampleApp-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7CBAA4B1F1EC38700DA67E9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D7CBAA4D1F1EC38700DA67E9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -691,6 +695,8 @@
 			children = (
 				D76F34B51F23E77800CE0C66 /* AppDelegate.swift */,
 				D76F34B71F23E77800CE0C66 /* SearchLocationViewController.swift */,
+				D7BF715F1F244028000EB3C5 /* LocationsListViewController.swift */,
+				D7BF71611F2446A8000EB3C5 /* LocationDetailsViewController.swift */,
 				D76F34B91F23E77800CE0C66 /* Main.storyboard */,
 				D76F34BC1F23E77800CE0C66 /* Assets.xcassets */,
 				D76F34BE1F23E77800CE0C66 /* LaunchScreen.storyboard */,
@@ -1332,7 +1338,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D7BF71621F2446A8000EB3C5 /* LocationDetailsViewController.swift in Sources */,
 				D76F34D01F23F7F000CE0C66 /* Action.swift in Sources */,
+				D7BF71601F244028000EB3C5 /* LocationsListViewController.swift in Sources */,
 				D76F34B81F23E77800CE0C66 /* SearchLocationViewController.swift in Sources */,
 				D76F34B61F23E77800CE0C66 /* AppDelegate.swift in Sources */,
 				D76F34CA1F23EBFD00CE0C66 /* Reducer.swift in Sources */,
@@ -2267,6 +2275,7 @@
 				D76F34C31F23E77800CE0C66 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D7CBAA431F1EC38700DA67E9 /* Build configuration list for PBXProject "Suas" */ = {
 			isa = XCConfigurationList;

@@ -22,6 +22,7 @@ class SearchLocationViewController: UITableViewController, UISearchResultsUpdati
 
   override func viewDidLoad() {
     super.viewDidLoad()
+    title = "Search Location"
 
     searchController = UISearchController(searchResultsController: nil)
     searchController.searchResultsUpdater = self
@@ -30,6 +31,11 @@ class SearchLocationViewController: UITableViewController, UISearchResultsUpdati
     tableView.tableHeaderView = searchController.searchBar
 
     store.connect(component: self)
+    store.connectActionListener(toComponent: self) { action in
+      if action is LocationSelected {
+        self.navigationController?.popViewController(animated: true)
+      }
+    }
   }
 
   func updateSearchResults(for searchController: UISearchController) {
@@ -46,7 +52,9 @@ class SearchLocationViewController: UITableViewController, UISearchResultsUpdati
       let cities = result.map({
         Location(name: $0["name"] as! String,
                  lat: Float($0["lat"] as! String)!,
-                 lon: Float($0["lon"] as! String)!)
+                 lon: Float($0["lon"] as! String)!,
+                 query: $0["l"] as! String
+                 )
       })
 
       dispatch(LocationsAdded(query: text, locations: cities))
@@ -63,5 +71,10 @@ class SearchLocationViewController: UITableViewController, UISearchResultsUpdati
     let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
     cell.textLabel?.text = state.foundLocation[indexPath.row].name
     return cell
+  }
+
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    let action = LocationSelected(location: state.foundLocation[indexPath.row])
+    store.dispatch(action: action)
   }
 }

@@ -18,10 +18,15 @@ struct FoundLocations: Encodable, SuasEncodable {
   var foundLocation: [Location]
 }
 
+struct MyLocations: Encodable, SuasEncodable {
+  var locations: [Location]
+}
+
 struct Location: Encodable, SuasEncodable {
   var name: String
   var lat: Float
   var lon: Float
+  var query: String
 }
 
 struct Progress: Encodable, SuasEncodable {
