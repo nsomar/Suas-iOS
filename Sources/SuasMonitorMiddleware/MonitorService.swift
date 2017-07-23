@@ -40,6 +40,8 @@ class DefaultMonitorService: NSObject, GCDAsyncSocketDelegate, NetServiceDelegat
   }
 
   func send(data: Data) {
+    guard clients.count > 0 else { return }
+
     logString("Sending data to Suas monitor")
 
     for client in clients {

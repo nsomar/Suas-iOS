@@ -15,6 +15,7 @@ struct SearchForLocations: Action, Encodable, SuasEncodable {
 }
 
 struct LocationsAdded: Action, Encodable, SuasEncodable {
+  var query: String
   var locations: [Location]
 }
 

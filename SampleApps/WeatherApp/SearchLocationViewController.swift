@@ -10,7 +10,7 @@ import UIKit
 import Suas
 
 
-class ViewController: UITableViewController, UISearchResultsUpdating, Component {
+class SearchLocationViewController: UITableViewController, UISearchResultsUpdating, Component {
 
   var searchController: UISearchController!
 
@@ -49,7 +49,7 @@ class ViewController: UITableViewController, UISearchResultsUpdating, Component 
                  lon: Float($0["lon"] as! String)!)
       })
 
-      dispatch(LocationsAdded(locations: cities))
+      dispatch(LocationsAdded(query: text, locations: cities))
     }
     
     store.dispatch(action: action)

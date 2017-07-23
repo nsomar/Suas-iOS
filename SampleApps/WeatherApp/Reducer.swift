@@ -17,6 +17,7 @@ class FindLocationReducer: Reducer {
 
     if let action = action as? LocationsAdded {
       newState.foundLocation = action.locations
+      newState.query = action.query
     }
 
     return newState

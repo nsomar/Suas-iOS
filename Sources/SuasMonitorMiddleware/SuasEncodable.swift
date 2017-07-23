@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Suas
 
 
 #if swift(>=4.0)
@@ -28,7 +29,7 @@ import Foundation
         let json = try? JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
         else {
           logString("Type \(type(of: self)) was not encodable to JSON")
-          return ["_": "_"]
+          return [:]
       }
 
       return json

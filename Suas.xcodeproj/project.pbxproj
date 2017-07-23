@@ -71,7 +71,7 @@
 		D76F34AD1F23E10900CE0C66 /* SuasEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76F34AA1F23E10200CE0C66 /* SuasEncodable.swift */; };
 		D76F34AE1F23E10A00CE0C66 /* SuasEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76F34AA1F23E10200CE0C66 /* SuasEncodable.swift */; };
 		D76F34B61F23E77800CE0C66 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76F34B51F23E77800CE0C66 /* AppDelegate.swift */; };
-		D76F34B81F23E77800CE0C66 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76F34B71F23E77800CE0C66 /* ViewController.swift */; };
+		D76F34B81F23E77800CE0C66 /* SearchLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76F34B71F23E77800CE0C66 /* SearchLocationViewController.swift */; };
 		D76F34BB1F23E77800CE0C66 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D76F34B91F23E77800CE0C66 /* Main.storyboard */; };
 		D76F34BD1F23E77800CE0C66 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D76F34BC1F23E77800CE0C66 /* Assets.xcassets */; };
 		D76F34C01F23E77800CE0C66 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D76F34BE1F23E77800CE0C66 /* LaunchScreen.storyboard */; };
@@ -342,7 +342,7 @@
 		D76F34AA1F23E10200CE0C66 /* SuasEncodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuasEncodable.swift; sourceTree = "<group>"; };
 		D76F34B31F23E77700CE0C66 /* WeatherApp-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WeatherApp-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D76F34B51F23E77800CE0C66 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D76F34B71F23E77800CE0C66 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D76F34B71F23E77800CE0C66 /* SearchLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLocationViewController.swift; sourceTree = "<group>"; };
 		D76F34BA1F23E77800CE0C66 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D76F34BC1F23E77800CE0C66 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D76F34BF1F23E77800CE0C66 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -521,8 +521,8 @@
 		D705512C1F21267900022BF1 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				D75D6E501F2202E800BA72C8 /* SuasMonitorMiddleware */,
 				D70551491F212A1F00022BF1 /* Suas */,
+				D75D6E501F2202E800BA72C8 /* SuasMonitorMiddleware */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -690,7 +690,7 @@
 			isa = PBXGroup;
 			children = (
 				D76F34B51F23E77800CE0C66 /* AppDelegate.swift */,
-				D76F34B71F23E77800CE0C66 /* ViewController.swift */,
+				D76F34B71F23E77800CE0C66 /* SearchLocationViewController.swift */,
 				D76F34B91F23E77800CE0C66 /* Main.storyboard */,
 				D76F34BC1F23E77800CE0C66 /* Assets.xcassets */,
 				D76F34BE1F23E77800CE0C66 /* LaunchScreen.storyboard */,
@@ -742,8 +742,8 @@
 			isa = PBXGroup;
 			children = (
 				D705512C1F21267900022BF1 /* Sources */,
-				D705512B1F21266500022BF1 /* Tests */,
 				D705512A1F21264F00022BF1 /* SampleApps */,
+				D705512B1F21266500022BF1 /* Tests */,
 				D7CBAA491F1EC38700DA67E9 /* Products */,
 				D75D6E531F2203F400BA72C8 /* Frameworks */,
 			);
@@ -1333,7 +1333,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D76F34D01F23F7F000CE0C66 /* Action.swift in Sources */,
-				D76F34B81F23E77800CE0C66 /* ViewController.swift in Sources */,
+				D76F34B81F23E77800CE0C66 /* SearchLocationViewController.swift in Sources */,
 				D76F34B61F23E77800CE0C66 /* AppDelegate.swift in Sources */,
 				D76F34CA1F23EBFD00CE0C66 /* Reducer.swift in Sources */,
 				D76F34C91F23EBFD00CE0C66 /* State.swift in Sources */,
@@ -1838,7 +1838,7 @@
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				DEVELOPMENT_TEAM = LJ39N47822;
 				INFOPLIST_FILE = SampleApps/WeatherApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "nsomar.WeatherApp-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1855,7 +1855,7 @@
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				DEVELOPMENT_TEAM = LJ39N47822;
 				INFOPLIST_FILE = SampleApps/WeatherApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "nsomar.WeatherApp-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";

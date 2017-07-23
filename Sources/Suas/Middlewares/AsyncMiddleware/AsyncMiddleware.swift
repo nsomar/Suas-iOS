@@ -69,6 +69,7 @@ public class AsyncMiddleware: Middleware {
 
     if let action = action as? AsyncAction {
       action.execute(withDispatchingFunction: api.dispatch)
+      return
     }
 
     next(action)
