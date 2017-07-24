@@ -22,7 +22,7 @@ class ReducerTests: XCTestCase {
     let r = Reducer1()
     let newState = r.reduce(action: IncrementAction(), state: state)
 
-    XCTAssertEqual(newState.value, 20)
+    XCTAssertEqual(newState!.value, 20)
   }
 
   func testItReturnSameStateIfCannotConvert() {
@@ -32,9 +32,9 @@ class ReducerTests: XCTestCase {
   }
 
   func testItReturnSameStateIfCannotConvertForCombinedReducer() {
-    let newState = (Reducer1() |> Reducer2()).reduce(action: IncrementAction(), state: 1)
+    let (newState, _) = (Reducer1() |> Reducer2()).reduce(action: IncrementAction(), state: 1) as! (Int, [String])
 
-    XCTAssertEqual((newState as! Int), 1)
+    XCTAssertEqual(newState, 1)
   }
 
   func testItReturnSameStateIfCannotConvertForCombinedReducerWhenStateIsWrongForAReducer() {
@@ -43,11 +43,11 @@ class ReducerTests: XCTestCase {
       "\(MyState2.self)": MyState1(value: 0),
       ]
 
-    let newState = (Reducer1() |> Reducer2()).reduce(action: IncrementAction(),
-                                                     state: StoreState(dictionary: state))
+    let (newState, _) = (Reducer1() |> Reducer2()).reduce(action: IncrementAction(),
+                                                     state: StoreState(dictionary: state)) as! (StoreState, [String])
 
-    let v1 = (newState as! StoreState).value(forKeyOfType: MyState1.self)!.value
-    let v2 = (newState as! StoreState).value(forKeyOfType: MyState2.self)?.blink ?? 0
+    let v1 = newState.value(forKeyOfType: MyState1.self)!.value
+    let v2 = newState.value(forKeyOfType: MyState2.self)?.blink ?? 0
 
     XCTAssertEqual(v1, 20)
     XCTAssertEqual(v2, 0)
@@ -60,11 +60,11 @@ class ReducerTests: XCTestCase {
       ]
 
     let combine = Reducer1() |> Reducer2()
-    let newState = combine.reduce(action: IncrementAction(),
-                                  state: StoreState(dictionary: state))
+    let (newState, _) = combine.reduce(action: IncrementAction(),
+                                  state: StoreState(dictionary: state)) as! (StoreState, [String])
 
-    let v1 = (newState as! StoreState).value(forKeyOfType: MyState1.self)!.value
-    let v2 = (newState as! StoreState).value(forKeyOfType: MyState2.self)!.blink
+    let v1 = newState.value(forKeyOfType: MyState1.self)!.value
+    let v2 = newState.value(forKeyOfType: MyState2.self)!.blink
     XCTAssertEqual(v1, 20)
     XCTAssertEqual(v2, 40)
   }
@@ -82,12 +82,12 @@ class ReducerTests: XCTestCase {
       ]
 
     let combine = Reducer1() |> Reducer2() |> Reducer3()
-    let newState = combine.reduce(action: IncrementAction(),
-                                  state: StoreState(dictionary: state))
+    let (newState, _) = combine.reduce(action: IncrementAction(),
+                                  state: StoreState(dictionary: state)) as! (StoreState, [String])
 
-    let v1 = (newState as! StoreState).value(forKeyOfType: MyState1.self)!.value
-    let v2 = (newState as! StoreState).value(forKeyOfType: MyState2.self)!.blink
-    let v3 = (newState as! StoreState).value(forKeyOfType: MyState3.self)!.otherVal
+    let v1 = newState.value(forKeyOfType: MyState1.self)!.value
+    let v2 = newState.value(forKeyOfType: MyState2.self)!.blink
+    let v3 = newState.value(forKeyOfType: MyState3.self)!.otherVal
 
     XCTAssertEqual(v1, 20)
     XCTAssertEqual(v2, 40)
@@ -101,11 +101,11 @@ class ReducerTests: XCTestCase {
       ]
 
     let combine = Reducer1() |> Reducer2() |> Reducer3()
-    let newState = combine.reduce(action: IncrementAction(),
-                                  state: StoreState(dictionary: state))
+    let (newState, _) = combine.reduce(action: IncrementAction(),
+                                  state: StoreState(dictionary: state)) as! (StoreState, [String])
 
-    let v1 = (newState as! StoreState).value(forKeyOfType: MyState1.self)!.value
-    let v3 = (newState as! StoreState).value(forKeyOfType: MyState3.self)!.otherVal
+    let v1 = newState.value(forKeyOfType: MyState1.self)!.value
+    let v3 = newState.value(forKeyOfType: MyState3.self)!.otherVal
 
     XCTAssertEqual(v1, 20)
     XCTAssertEqual(v3, 60)
@@ -120,12 +120,12 @@ class ReducerTests: XCTestCase {
 
     let combiner1 = Reducer2() |> Reducer3()
     let combine = Reducer1() |> combiner1
-    let newState = combine.reduce(action: IncrementAction(),
-                                  state: StoreState(dictionary: state))
+    let (newState, _) = combine.reduce(action: IncrementAction(),
+                                  state: StoreState(dictionary: state)) as! (StoreState, [String])
 
-    let v1 = (newState as! StoreState).value(forKeyOfType: MyState1.self)!.value
-    let v2 = (newState as! StoreState).value(forKeyOfType: MyState2.self)!.blink
-    let v3 = (newState as! StoreState).value(forKeyOfType: MyState3.self)!.otherVal
+    let v1 = newState.value(forKeyOfType: MyState1.self)!.value
+    let v2 = newState.value(forKeyOfType: MyState2.self)!.blink
+    let v3 = newState.value(forKeyOfType: MyState3.self)!.otherVal
 
     XCTAssertEqual(v1, 20)
     XCTAssertEqual(v2, 40)
@@ -141,16 +141,45 @@ class ReducerTests: XCTestCase {
 
     let combiner1 = Reducer2() |> Reducer3()
     let combine = combiner1 |> Reducer1()
-    let newState = combine.reduce(action: IncrementAction(),
-                                  state: StoreState(dictionary: state))
+    let (newState, _) = combine.reduce(action: IncrementAction(),
+                                  state: StoreState(dictionary: state)) as! (StoreState, [String])
 
-    let v1 = (newState as! StoreState).value(forKeyOfType: MyState1.self)!.value
-    let v2 = (newState as! StoreState).value(forKeyOfType: MyState2.self)!.blink
-    let v3 = (newState as! StoreState).value(forKeyOfType: MyState3.self)!.otherVal
+    let v1 = newState.value(forKeyOfType: MyState1.self)!.value
+    let v2 = newState.value(forKeyOfType: MyState2.self)!.blink
+    let v3 = newState.value(forKeyOfType: MyState3.self)!.otherVal
 
     XCTAssertEqual(v1, 20)
     XCTAssertEqual(v2, 40)
     XCTAssertEqual(v3, 60)
+  }
+
+  func testItReturnsWhichKeysAreChanged() {
+    let state: [StateKey: Any] = [
+      "\(MyState1.self)": MyState1(value: 0),
+      "\(MyState2.self)": MyState2(blink: 0),
+      "\(MyState3.self)": MyState3(otherVal: 0),
+      ]
+
+    let combine = Reducer2() |> Reducer3() |> Reducer1()
+    let (_, keys) = combine.reduce(action: IncrementAction(), state: StoreState(dictionary: state)) as! (StoreState, [String])
+    XCTAssertEqual(keys, ["MyState2", "MyState3", "MyState1"])
+  }
+
+  func testItGetsOnlyKeysThatChanged() {
+    let state: [StateKey: Any] = [
+      "\(MyState1.self)": MyState1(value: 0),
+      "\(MyState2.self)": MyState2(blink: 0),
+      "\(MyState3.self)": MyState3(otherVal: 0),
+      ]
+
+    let combine = Reducer2() |> Reducer3Nil() |> Reducer1()
+    let (_, keys) = combine.reduce(action: IncrementAction(), state: StoreState(dictionary: state)) as! (StoreState, [String])
+    XCTAssertEqual(keys, ["MyState2", "MyState1"])
+  }
+
+  func testReturningNilFor1ReducerOnlyDoesNotCrash() {
+    let x = Reducer3Nil().reduce(action: IncrementAction(), state: MyState3(otherVal: 30))
+    XCTAssertNil(x)
   }
 
   func testItReducesWithAClassWithStateCombineFourItems2Combiners() {
@@ -164,13 +193,13 @@ class ReducerTests: XCTestCase {
     let combiner1 = Reducer1() |> Reducer2()
     let combiner2 = Reducer3() |> Reducer4()
     let combine = combiner1 |> combiner2
-    let newState = combine.reduce(action: IncrementAction(),
-                                  state: StoreState(dictionary: state))
+    let (newState, _) = combine.reduce(action: IncrementAction(),
+                                  state: StoreState(dictionary: state)) as! (StoreState, [String])
 
-    let v1 = (newState as! StoreState).value(forKeyOfType: MyState1.self)!.value
-    let v2 = (newState as! StoreState).value(forKeyOfType: MyState2.self)!.blink
-    let v3 = (newState as! StoreState).value(forKeyOfType: MyState3.self)!.otherVal
-    let v4 = (newState as! StoreState).value(forKeyOfType: MyState4.self)!.yetMoreVal
+    let v1 = newState.value(forKeyOfType: MyState1.self)!.value
+    let v2 = newState.value(forKeyOfType: MyState2.self)!.blink
+    let v3 = newState.value(forKeyOfType: MyState3.self)!.otherVal
+    let v4 = newState.value(forKeyOfType: MyState4.self)!.yetMoreVal
 
     XCTAssertEqual(v1, 20)
     XCTAssertEqual(v2, 40)

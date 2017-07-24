@@ -14,7 +14,7 @@ public enum Suas {
                                              state: StoreState,
                                              middleware: Middleware?) -> Store {
 
-    let reduce: ReducerFunction = { action, state in
+    let reduce: ReducerFunction<Any> = { action, state in
       guard let newState = state as? R.StateType else {
         Suas.log("When reducing state of type \(type(of: state)) was not convertible to \(R.StateType.self)\nstate: \(state)")
         return state
@@ -32,13 +32,13 @@ public enum Suas {
   class DefaultStore: Store {
 
     var state: StoreState
-    var reducer: ReducerFunction
+    var reducer: ReducerFunction<Any>
     fileprivate var listeners: [Listener]
     fileprivate var actionListeners: [CallbackId: ActionListenerFunction]
     fileprivate var dispatchingFunction: DispatchFunction?
 
     init(state: StoreState,
-         reducer: @escaping ReducerFunction,
+         reducer: @escaping ReducerFunction<Any>,
          middleware: Middleware?) {
 
       self.state = state
@@ -104,14 +104,25 @@ extension Suas.DefaultStore {
   fileprivate func performDispatch(action: Action) {
     let oldState = state
 
+    var stateKeysChanged: Set<StateKey> = Set()
+
     if let key = state.keys.first, state.keys.count == 1 {
-      let newState = reducer(action, state[key]!)
-      state = [key: newState]
+
+      if let newState = reducer(action, state[key]!) {
+        state = [key: newState]
+        stateKeysChanged.insert(key)
+      }
     } else {
-      state = reducer(action, state) as! StoreState
+      let (newState, keysChanged) = reducer(action, state) as! (StoreState, [StateKey])
+      state = newState
+      keysChanged.forEach({ stateKeysChanged.insert($0) })
     }
 
-    listeners.forEach { listener in
+    for listener in listeners {
+      if let key = listener.stateKey, !stateKeysChanged.contains(key) {
+        continue
+      }
+
       listener.notificationBlock(
         getSubstate(withState: state, forKey: listener.stateKey),
         getSubstate(withState: oldState, forKey: listener.stateKey),

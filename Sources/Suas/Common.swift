@@ -17,8 +17,7 @@ public typealias ListenerNotifier<State> = (State, State, Listener) -> Void
 
 public typealias KeyedState = [StateKey: Any]
 
-public typealias ReducerFunction = (Action, Any) -> Any
-public typealias TypedReducerFunction<Type> = (Action, Type) -> Type
+public typealias ReducerFunction<Type> = (Action, Type) -> Type?
 public typealias DispatchFunction = (Action) -> Void
 public typealias NextFunction = DispatchFunction
 
