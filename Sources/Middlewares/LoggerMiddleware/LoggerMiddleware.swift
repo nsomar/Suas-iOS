@@ -180,7 +180,7 @@ enum LoggingParts {
 
 }
 
-let defaultLogger = { (string: String) in
+public let defaultLogger = { (string: String) in
   print(string)
 }
 
