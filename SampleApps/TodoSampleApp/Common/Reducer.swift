@@ -12,17 +12,19 @@ import Suas
 let emptyState = TodoState(todos:[])
 
 let todoReducer = BlockReducer(state: emptyState) { action, state in
-  var newState = state
-
   if let action = action as? AddTodo {
+    var newState = state
     newState.todos = newState.todos + [Todo(title: action.text, isCompleted: false)]
+    return newState
   }
 
   if let action = action as? ToggleTodo {
+    var newState = state
     var post = newState.todos[action.index]
     post.isCompleted = !post.isCompleted
     newState.todos[action.index] = post
+    return newState
   }
 
-  return newState
+  return nil
 }

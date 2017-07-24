@@ -33,25 +33,6 @@ class LocationsListViewController: UITableViewController, Component {
     store.connect(component: self, notifier: compareNotifier)
     store.dispatch(action: createLoadFromDiskAction())
   }
-
-//  func aa() {
-//    let path = Bundle.main.path(forResource: "mockdetails", ofType: "json")!
-//    let action = AsyncAction.fordiskRead(path: path) { data, dispatch in
-//      let json = try! JSONSerialization.jsonObject(with: data!, options: []) as! [String: Any]
-//      let currentInfo = json["current_observation"] as! [String: Any]
-//
-//      let location = LocationDetails(
-//        temperature: currentInfo["temperature_string"] as! String,
-//        location: (currentInfo["display_location"] as! [String: Any])["full"] as! String,
-//        weather: currentInfo["weather"] as! String,
-//        percipitation: currentInfo["wind_string"] as! String,
-//        wind: currentInfo["precip_today_string"] as! String,
-//        iconUrl: currentInfo["icon_url"] as! String
-//      )
-//      dispatch(ShowLocationDetails(location: location))
-//    }
-//    store.dispatch(action: action);
-//  }
 }
 
 extension LocationsListViewController {
@@ -67,7 +48,7 @@ extension LocationsListViewController {
   }
 
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    let action = FetchLocationDetails(location: state.locations[indexPath.row])
+    let action = createFetchLocationDetailsAction(location: state.locations[indexPath.row])
     store.dispatch(action: action)
   }
 }
