@@ -26,15 +26,8 @@
 		D70551591F212A7900022BF1 /* ListenerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CF193C1F1FDAF7003EC879 /* ListenerTests.swift */; };
 		D705515A1F212A7900022BF1 /* StoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CF193E1F2033DF003EC879 /* StoreTests.swift */; };
 		D705515B1F212A7900022BF1 /* MiddlewareTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CF19421F205B80003EC879 /* MiddlewareTests.swift */; };
-		D74D86561F2212B100B134A3 /* SuasMonitorMiddleware.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7ECA98B1F220FD2006DFC8D /* SuasMonitorMiddleware.framework */; };
-		D74D86571F2212B300B134A3 /* SuasMonitorMiddleware.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D7ECA98B1F220FD2006DFC8D /* SuasMonitorMiddleware.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		D74D86581F2212D500B134A3 /* MonitorMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75D6E511F22030A00BA72C8 /* MonitorMiddleware.swift */; };
 		D74D865B1F22133400B134A3 /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D74D86591F22133400B134A3 /* CocoaAsyncSocket.framework */; };
 		D74D865E1F22135D00B134A3 /* CocoaAsyncSocket.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D74D86591F22133400B134A3 /* CocoaAsyncSocket.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		D74D86601F2233DF00B134A3 /* MonitorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D74D865F1F2233DF00B134A3 /* MonitorService.swift */; };
-		D74D86611F2233DF00B134A3 /* MonitorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D74D865F1F2233DF00B134A3 /* MonitorService.swift */; };
-		D74D86691F22386E00B134A3 /* SuasMonitorMiddlewareTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D74D86681F22386E00B134A3 /* SuasMonitorMiddlewareTests.swift */; };
-		D74D866B1F22386E00B134A3 /* SuasMonitorMiddleware.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7ECA98B1F220FD2006DFC8D /* SuasMonitorMiddleware.framework */; };
 		D75D6DCF1F21556200BA72C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75D6DCE1F21556200BA72C8 /* AppDelegate.swift */; };
 		D75D6DD11F21556200BA72C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D75D6DD01F21556200BA72C8 /* Assets.xcassets */; };
 		D75D6DDA1F21559600BA72C8 /* Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F924D51F215182003BAC77 /* Actions.swift */; };
@@ -44,10 +37,6 @@
 		D75D6DEA1F2156C000BA72C8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D75D6DE91F2156B600BA72C8 /* Main.storyboard */; };
 		D75D6DEB1F2156C300BA72C8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75D6DE61F2156A000BA72C8 /* ViewController.swift */; };
 		D75D6DEC1F21570600BA72C8 /* TodoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D75D6DE51F2156A000BA72C8 /* TodoCell.xib */; };
-		D75D6E481F2200A900BA72C8 /* SuasMonitorMiddlewareIOS.h in Headers */ = {isa = PBXBuildFile; fileRef = D75D6E461F2200A900BA72C8 /* SuasMonitorMiddlewareIOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D75D6E4B1F2200A900BA72C8 /* SuasMonitorMiddleware.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D75D6E441F2200A900BA72C8 /* SuasMonitorMiddleware.framework */; };
-		D75D6E4C1F2200A900BA72C8 /* SuasMonitorMiddleware.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D75D6E441F2200A900BA72C8 /* SuasMonitorMiddleware.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		D75D6E521F22034F00BA72C8 /* MonitorMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75D6E511F22030A00BA72C8 /* MonitorMiddleware.swift */; };
 		D76F347A1F23672D00CE0C66 /* LoggerMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76F34791F23672D00CE0C66 /* LoggerMiddleware.swift */; };
 		D76F347B1F23673200CE0C66 /* LoggerMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76F34791F23672D00CE0C66 /* LoggerMiddleware.swift */; };
 		D76F347F1F236B8A00CE0C66 /* LoggerMiddlewareTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76F347D1F23677A00CE0C66 /* LoggerMiddlewareTests.swift */; };
@@ -62,12 +51,8 @@
 		D76F349E1F239B1700CE0C66 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76F34981F239B0600CE0C66 /* State.swift */; };
 		D76F349F1F239BBB00CE0C66 /* Suas.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7CBAA621F1EC3E100DA67E9 /* Suas.framework */; };
 		D76F34A01F239BBB00CE0C66 /* Suas.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D7CBAA621F1EC3E100DA67E9 /* Suas.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		D76F34A31F239BBB00CE0C66 /* SuasMonitorMiddleware.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D75D6E441F2200A900BA72C8 /* SuasMonitorMiddleware.framework */; };
-		D76F34A41F239BBB00CE0C66 /* SuasMonitorMiddleware.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D75D6E441F2200A900BA72C8 /* SuasMonitorMiddleware.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D76F34A71F239BBC00CE0C66 /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D75D6E541F2203F400BA72C8 /* CocoaAsyncSocket.framework */; };
 		D76F34A81F239BBC00CE0C66 /* CocoaAsyncSocket.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D75D6E541F2203F400BA72C8 /* CocoaAsyncSocket.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		D76F34AD1F23E10900CE0C66 /* SuasEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76F34AA1F23E10200CE0C66 /* SuasEncodable.swift */; };
-		D76F34AE1F23E10A00CE0C66 /* SuasEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76F34AA1F23E10200CE0C66 /* SuasEncodable.swift */; };
 		D76F34D91F24281600CE0C66 /* AsyncMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76F34CB1F23EF0B00CE0C66 /* AsyncMiddleware.swift */; };
 		D76F34DA1F24281700CE0C66 /* AsyncMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76F34CB1F23EF0B00CE0C66 /* AsyncMiddleware.swift */; };
 		D76F34DE1F24289D00CE0C66 /* AsyncActionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76F34DD1F24289D00CE0C66 /* AsyncActionExtension.swift */; };
@@ -100,14 +85,6 @@
 		D7CF193F1F2033DF003EC879 /* StoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CF193E1F2033DF003EC879 /* StoreTests.swift */; };
 		D7CF19411F204EC2003EC879 /* DefaultStoreConnectExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CF19401F204EC2003EC879 /* DefaultStoreConnectExtension.swift */; };
 		D7CF19431F205B80003EC879 /* MiddlewareTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CF19421F205B80003EC879 /* MiddlewareTests.swift */; };
-		D7DF9D691F223C47004AD8BF /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D74D86591F22133400B134A3 /* CocoaAsyncSocket.framework */; };
-		D7DF9D6A1F223C6B004AD8BF /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D74D86591F22133400B134A3 /* CocoaAsyncSocket.framework */; };
-		D7DF9D6C1F223C88004AD8BF /* CocoaAsyncSocket.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D74D86591F22133400B134A3 /* CocoaAsyncSocket.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		D7DF9D761F223CC8004AD8BF /* SuasMonitorMiddleware.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D75D6E441F2200A900BA72C8 /* SuasMonitorMiddleware.framework */; };
-		D7DF9D7C1F223CFA004AD8BF /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D75D6E541F2203F400BA72C8 /* CocoaAsyncSocket.framework */; };
-		D7DF9D7E1F223D55004AD8BF /* CocoaAsyncSocket.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D75D6E541F2203F400BA72C8 /* CocoaAsyncSocket.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		D7DF9D7F1F223D66004AD8BF /* SuasMonitorMiddlewareTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D74D86681F22386E00B134A3 /* SuasMonitorMiddlewareTests.swift */; };
-		D7ECA98F1F220FD2006DFC8D /* SuasMonitorMiddlewareMac.h in Headers */ = {isa = PBXBuildFile; fileRef = D7ECA98D1F220FD2006DFC8D /* SuasMonitorMiddlewareMac.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D7ECA9971F221051006DFC8D /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D75D6E541F2203F400BA72C8 /* CocoaAsyncSocket.framework */; };
 		D7ECA9981F221051006DFC8D /* CocoaAsyncSocket.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D75D6E541F2203F400BA72C8 /* CocoaAsyncSocket.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D7ECA99B1F2210AD006DFC8D /* Suas.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D70551321F2128E800022BF1 /* Suas.framework */; };
@@ -124,20 +101,6 @@
 			remoteGlobalIDString = D70551311F2128E800022BF1;
 			remoteInfo = SuasMac;
 		};
-		D74D86541F22128D00B134A3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D7CBAA401F1EC38700DA67E9 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D7ECA98A1F220FD2006DFC8D;
-			remoteInfo = SuasMonitorMiddlewareMac;
-		};
-		D74D866C1F22386E00B134A3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D7CBAA401F1EC38700DA67E9 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D7ECA98A1F220FD2006DFC8D;
-			remoteInfo = SuasMonitorMiddlewareMac;
-		};
 		D75D6DE21F21563E00BA72C8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D7CBAA401F1EC38700DA67E9 /* Project object */;
@@ -145,33 +108,12 @@
 			remoteGlobalIDString = D70551311F2128E800022BF1;
 			remoteInfo = SuasMac;
 		};
-		D75D6E491F2200A900BA72C8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D7CBAA401F1EC38700DA67E9 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D75D6E431F2200A900BA72C8;
-			remoteInfo = SuasMonitorMiddlewareIOS;
-		};
-		D7652F1F1F220534008D9B22 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D7CBAA401F1EC38700DA67E9 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D7CBAA611F1EC3E100DA67E9;
-			remoteInfo = SuasIOS;
-		};
 		D76F34A11F239BBB00CE0C66 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D7CBAA401F1EC38700DA67E9 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = D7CBAA611F1EC3E100DA67E9;
 			remoteInfo = SuasIOS;
-		};
-		D76F34A51F239BBB00CE0C66 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D7CBAA401F1EC38700DA67E9 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D75D6E431F2200A900BA72C8;
-			remoteInfo = SuasMonitorMiddlewareIOS;
 		};
 		D7CBAA671F1EC3E100DA67E9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -187,20 +129,6 @@
 			remoteGlobalIDString = D7CBAA611F1EC3E100DA67E9;
 			remoteInfo = SuasIOS;
 		};
-		D7DF9D671F223BA8004AD8BF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D7CBAA401F1EC38700DA67E9 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D70551311F2128E800022BF1;
-			remoteInfo = SuasMac;
-		};
-		D7DF9D771F223CC8004AD8BF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D7CBAA401F1EC38700DA67E9 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D75D6E431F2200A900BA72C8;
-			remoteInfo = SuasMonitorMiddlewareIOS;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -212,7 +140,6 @@
 			files = (
 				D74D865E1F22135D00B134A3 /* CocoaAsyncSocket.framework in Embed Frameworks */,
 				D75D6DE11F21563E00BA72C8 /* Suas.framework in Embed Frameworks */,
-				D74D86571F2212B300B134A3 /* SuasMonitorMiddleware.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -225,7 +152,6 @@
 			files = (
 				D76F34A81F239BBC00CE0C66 /* CocoaAsyncSocket.framework in Embed Frameworks */,
 				D76F34A01F239BBB00CE0C66 /* Suas.framework in Embed Frameworks */,
-				D76F34A41F239BBB00CE0C66 /* SuasMonitorMiddleware.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -238,29 +164,8 @@
 			files = (
 				D7ECA9981F221051006DFC8D /* CocoaAsyncSocket.framework in Embed Frameworks */,
 				D7CBAA6A1F1EC3E100DA67E9 /* Suas.framework in Embed Frameworks */,
-				D75D6E4C1F2200A900BA72C8 /* SuasMonitorMiddleware.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D7DF9D6B1F223C80004AD8BF /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				D7DF9D6C1F223C88004AD8BF /* CocoaAsyncSocket.framework in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D7DF9D7D1F223D50004AD8BF /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				D7DF9D7E1F223D55004AD8BF /* CocoaAsyncSocket.framework in CopyFiles */,
-			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -271,9 +176,6 @@
 		D70551351F2128E800022BF1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D705513A1F2128E800022BF1 /* SuasMacTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SuasMacTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D74D86591F22133400B134A3 /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaAsyncSocket.framework; path = Carthage/Build/Mac/CocoaAsyncSocket.framework; sourceTree = "<group>"; };
-		D74D865F1F2233DF00B134A3 /* MonitorService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonitorService.swift; sourceTree = "<group>"; };
-		D74D86661F22386E00B134A3 /* SuasMonitorMiddlewareTestsMac.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SuasMonitorMiddlewareTestsMac.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		D74D86681F22386E00B134A3 /* SuasMonitorMiddlewareTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuasMonitorMiddlewareTests.swift; sourceTree = "<group>"; };
 		D75D6DCC1F21556200BA72C8 /* TodoSampleApp-Mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TodoSampleApp-Mac.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D75D6DCE1F21556200BA72C8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D75D6DD01F21556200BA72C8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -281,10 +183,6 @@
 		D75D6DE51F2156A000BA72C8 /* TodoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TodoCell.xib; sourceTree = "<group>"; };
 		D75D6DE61F2156A000BA72C8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		D75D6DE91F2156B600BA72C8 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		D75D6E441F2200A900BA72C8 /* SuasMonitorMiddleware.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SuasMonitorMiddleware.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D75D6E461F2200A900BA72C8 /* SuasMonitorMiddlewareIOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SuasMonitorMiddlewareIOS.h; sourceTree = "<group>"; };
-		D75D6E471F2200A900BA72C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D75D6E511F22030A00BA72C8 /* MonitorMiddleware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonitorMiddleware.swift; sourceTree = "<group>"; };
 		D75D6E541F2203F400BA72C8 /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaAsyncSocket.framework; path = Carthage/Build/iOS/CocoaAsyncSocket.framework; sourceTree = "<group>"; };
 		D76F34791F23672D00CE0C66 /* LoggerMiddleware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggerMiddleware.swift; sourceTree = "<group>"; };
 		D76F347D1F23677A00CE0C66 /* LoggerMiddlewareTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggerMiddlewareTests.swift; sourceTree = "<group>"; };
@@ -298,9 +196,8 @@
 		D76F34971F239B0600CE0C66 /* Reducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reducer.swift; sourceTree = "<group>"; };
 		D76F34981F239B0600CE0C66 /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		D76F349A1F239B0600CE0C66 /* Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Actions.swift; sourceTree = "<group>"; };
-		D76F34AA1F23E10200CE0C66 /* SuasEncodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuasEncodable.swift; sourceTree = "<group>"; };
 		D76F34CB1F23EF0B00CE0C66 /* AsyncMiddleware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncMiddleware.swift; sourceTree = "<group>"; };
-		D76F34DD1F24289D00CE0C66 /* AsyncActionExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AsyncActionExtension.swift; path = Sources/Suas/Middlewares/AsyncMiddleware/AsyncActionExtension.swift; sourceTree = SOURCE_ROOT; };
+		D76F34DD1F24289D00CE0C66 /* AsyncActionExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AsyncActionExtension.swift; path = Sources/Middlewares/AsyncMiddleware/AsyncActionExtension.swift; sourceTree = SOURCE_ROOT; };
 		D76F34E11F242C1800CE0C66 /* AsyncMiddlewareTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncMiddlewareTests.swift; sourceTree = "<group>"; };
 		D7CBAA481F1EC38700DA67E9 /* TodoSampleApp-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TodoSampleApp-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7CBAA4B1F1EC38700DA67E9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -332,11 +229,6 @@
 		D7CF19421F205B80003EC879 /* MiddlewareTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiddlewareTests.swift; sourceTree = "<group>"; };
 		D7DF9D611F223A5E004AD8BF /* Mac-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Mac-Info.plist"; sourceTree = "<group>"; };
 		D7DF9D621F223A5E004AD8BF /* iOS-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "iOS-Info.plist"; sourceTree = "<group>"; };
-		D7DF9D651F223A65004AD8BF /* Mac-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Mac-Info.plist"; sourceTree = "<group>"; };
-		D7DF9D711F223CC8004AD8BF /* SuasMonitorMiddlewareTestsiOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SuasMonitorMiddlewareTestsiOS.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		D7ECA98B1F220FD2006DFC8D /* SuasMonitorMiddleware.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SuasMonitorMiddleware.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D7ECA98D1F220FD2006DFC8D /* SuasMonitorMiddlewareMac.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SuasMonitorMiddlewareMac.h; sourceTree = "<group>"; };
-		D7ECA98E1F220FD2006DFC8D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D7F924D51F215182003BAC77 /* Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Actions.swift; sourceTree = "<group>"; };
 		D7F924D61F215182003BAC77 /* Reducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reducer.swift; sourceTree = "<group>"; };
 		D7F924D91F215182003BAC77 /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
@@ -358,29 +250,12 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D74D86631F22386E00B134A3 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D74D866B1F22386E00B134A3 /* SuasMonitorMiddleware.framework in Frameworks */,
-				D7DF9D6A1F223C6B004AD8BF /* CocoaAsyncSocket.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		D75D6DC91F21556200BA72C8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				D74D865B1F22133400B134A3 /* CocoaAsyncSocket.framework in Frameworks */,
 				D7ECA99B1F2210AD006DFC8D /* Suas.framework in Frameworks */,
-				D74D86561F2212B100B134A3 /* SuasMonitorMiddleware.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D75D6E401F2200A900BA72C8 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -390,7 +265,6 @@
 			files = (
 				D76F34A71F239BBC00CE0C66 /* CocoaAsyncSocket.framework in Frameworks */,
 				D76F349F1F239BBB00CE0C66 /* Suas.framework in Frameworks */,
-				D76F34A31F239BBB00CE0C66 /* SuasMonitorMiddleware.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -400,7 +274,6 @@
 			files = (
 				D7ECA9971F221051006DFC8D /* CocoaAsyncSocket.framework in Frameworks */,
 				D7CBAA691F1EC3E100DA67E9 /* Suas.framework in Frameworks */,
-				D75D6E4B1F2200A900BA72C8 /* SuasMonitorMiddleware.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -419,23 +292,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D7DF9D6E1F223CC8004AD8BF /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D7DF9D761F223CC8004AD8BF /* SuasMonitorMiddleware.framework in Frameworks */,
-				D7DF9D7C1F223CFA004AD8BF /* CocoaAsyncSocket.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D7ECA9871F220FD2006DFC8D /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D7DF9D691F223C47004AD8BF /* CocoaAsyncSocket.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -448,24 +304,6 @@
 			path = SampleApps;
 			sourceTree = "<group>";
 		};
-		D705512B1F21266500022BF1 /* Tests */ = {
-			isa = PBXGroup;
-			children = (
-				D74D86671F22386E00B134A3 /* SuasMonitorMiddlewareTests */,
-				D70551531F212A6500022BF1 /* SuasTests */,
-			);
-			path = Tests;
-			sourceTree = "<group>";
-		};
-		D705512C1F21267900022BF1 /* Sources */ = {
-			isa = PBXGroup;
-			children = (
-				D70551491F212A1F00022BF1 /* Suas */,
-				D75D6E501F2202E800BA72C8 /* SuasMonitorMiddleware */,
-			);
-			path = Sources;
-			sourceTree = "<group>";
-		};
 		D70551331F2128E800022BF1 /* Mac */ = {
 			isa = PBXGroup;
 			children = (
@@ -475,7 +313,7 @@
 			path = Mac;
 			sourceTree = "<group>";
 		};
-		D70551491F212A1F00022BF1 /* Suas */ = {
+		D70551491F212A1F00022BF1 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
 				D76F34E51F24371F00CE0C66 /* Middlewares */,
@@ -491,10 +329,10 @@
 				D7CBAA731F1EC42900DA67E9 /* Middleware.swift */,
 				D7CBAA8C1F1ECAA300DA67E9 /* Listener.swift */,
 			);
-			path = Suas;
+			path = Sources;
 			sourceTree = "<group>";
 		};
-		D70551531F212A6500022BF1 /* SuasTests */ = {
+		D70551531F212A6500022BF1 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
 				D76F34E01F242C0400CE0C66 /* AsyncMiddleware */,
@@ -510,7 +348,7 @@
 				D7CF193E1F2033DF003EC879 /* StoreTests.swift */,
 				D7CF19421F205B80003EC879 /* MiddlewareTests.swift */,
 			);
-			path = SuasTests;
+			path = Tests;
 			sourceTree = "<group>";
 		};
 		D711E9611F21422A0049718D /* Common */ = {
@@ -539,15 +377,6 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
-		D74D86671F22386E00B134A3 /* SuasMonitorMiddlewareTests */ = {
-			isa = PBXGroup;
-			children = (
-				D7DF9D651F223A65004AD8BF /* Mac-Info.plist */,
-				D74D86681F22386E00B134A3 /* SuasMonitorMiddlewareTests.swift */,
-			);
-			path = SuasMonitorMiddlewareTests;
-			sourceTree = "<group>";
-		};
 		D75D6DCD1F21556200BA72C8 /* TodoSampleApp-Mac */ = {
 			isa = PBXGroup;
 			children = (
@@ -559,27 +388,6 @@
 				D75D6DD51F21556200BA72C8 /* Info.plist */,
 			);
 			path = "TodoSampleApp-Mac";
-			sourceTree = "<group>";
-		};
-		D75D6E451F2200A900BA72C8 /* iOS */ = {
-			isa = PBXGroup;
-			children = (
-				D75D6E461F2200A900BA72C8 /* SuasMonitorMiddlewareIOS.h */,
-				D75D6E471F2200A900BA72C8 /* Info.plist */,
-			);
-			path = iOS;
-			sourceTree = "<group>";
-		};
-		D75D6E501F2202E800BA72C8 /* SuasMonitorMiddleware */ = {
-			isa = PBXGroup;
-			children = (
-				D7ECA98C1F220FD2006DFC8D /* Mac */,
-				D75D6E451F2200A900BA72C8 /* iOS */,
-				D75D6E511F22030A00BA72C8 /* MonitorMiddleware.swift */,
-				D74D865F1F2233DF00B134A3 /* MonitorService.swift */,
-				D76F34AA1F23E10200CE0C66 /* SuasEncodable.swift */,
-			);
-			path = SuasMonitorMiddleware;
 			sourceTree = "<group>";
 		};
 		D75D6E531F2203F400BA72C8 /* Frameworks */ = {
@@ -662,9 +470,9 @@
 		D7CBAA3F1F1EC38700DA67E9 = {
 			isa = PBXGroup;
 			children = (
-				D705512C1F21267900022BF1 /* Sources */,
+				D70551491F212A1F00022BF1 /* Sources */,
 				D705512A1F21264F00022BF1 /* SampleApps */,
-				D705512B1F21266500022BF1 /* Tests */,
+				D70551531F212A6500022BF1 /* Tests */,
 				D7CBAA491F1EC38700DA67E9 /* Products */,
 				D75D6E531F2203F400BA72C8 /* Frameworks */,
 			);
@@ -679,10 +487,6 @@
 				D70551321F2128E800022BF1 /* Suas.framework */,
 				D705513A1F2128E800022BF1 /* SuasMacTests.xctest */,
 				D75D6DCC1F21556200BA72C8 /* TodoSampleApp-Mac.app */,
-				D75D6E441F2200A900BA72C8 /* SuasMonitorMiddleware.framework */,
-				D7ECA98B1F220FD2006DFC8D /* SuasMonitorMiddleware.framework */,
-				D74D86661F22386E00B134A3 /* SuasMonitorMiddlewareTestsMac.xctest */,
-				D7DF9D711F223CC8004AD8BF /* SuasMonitorMiddlewareTestsiOS.xctest */,
 				D76F34851F239A6E00CE0C66 /* TodoWithMonitorSampleApp-iOS.app */,
 			);
 			name = Products;
@@ -710,15 +514,6 @@
 			path = iOS;
 			sourceTree = "<group>";
 		};
-		D7ECA98C1F220FD2006DFC8D /* Mac */ = {
-			isa = PBXGroup;
-			children = (
-				D7ECA98D1F220FD2006DFC8D /* SuasMonitorMiddlewareMac.h */,
-				D7ECA98E1F220FD2006DFC8D /* Info.plist */,
-			);
-			path = Mac;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -730,27 +525,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D75D6E411F2200A900BA72C8 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D75D6E481F2200A900BA72C8 /* SuasMonitorMiddlewareIOS.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		D7CBAA5F1F1EC3E100DA67E9 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				D7CBAA661F1EC3E100DA67E9 /* SuasIOS.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D7ECA9881F220FD2006DFC8D /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D7ECA98F1F220FD2006DFC8D /* SuasMonitorMiddlewareMac.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -793,25 +572,6 @@
 			productReference = D705513A1F2128E800022BF1 /* SuasMacTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		D74D86651F22386E00B134A3 /* SuasMonitorMiddlewareTestsMac */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D74D866E1F22386E00B134A3 /* Build configuration list for PBXNativeTarget "SuasMonitorMiddlewareTestsMac" */;
-			buildPhases = (
-				D74D86621F22386E00B134A3 /* Sources */,
-				D74D86631F22386E00B134A3 /* Frameworks */,
-				D74D86641F22386E00B134A3 /* Resources */,
-				D7DF9D6B1F223C80004AD8BF /* CopyFiles */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				D74D866D1F22386E00B134A3 /* PBXTargetDependency */,
-			);
-			name = SuasMonitorMiddlewareTestsMac;
-			productName = SuasMonitorMiddlewareTests;
-			productReference = D74D86661F22386E00B134A3 /* SuasMonitorMiddlewareTestsMac.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		D75D6DCB1F21556200BA72C8 /* TodoSampleApp-Mac */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D75D6DD71F21556200BA72C8 /* Build configuration list for PBXNativeTarget "TodoSampleApp-Mac" */;
@@ -824,32 +584,12 @@
 			buildRules = (
 			);
 			dependencies = (
-				D74D86551F22128D00B134A3 /* PBXTargetDependency */,
 				D75D6DE31F21563E00BA72C8 /* PBXTargetDependency */,
 			);
 			name = "TodoSampleApp-Mac";
 			productName = "TodoSampleApp-Mac";
 			productReference = D75D6DCC1F21556200BA72C8 /* TodoSampleApp-Mac.app */;
 			productType = "com.apple.product-type.application";
-		};
-		D75D6E431F2200A900BA72C8 /* SuasMonitorMiddlewareIOS */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D75D6E4D1F2200A900BA72C8 /* Build configuration list for PBXNativeTarget "SuasMonitorMiddlewareIOS" */;
-			buildPhases = (
-				D75D6E3F1F2200A900BA72C8 /* Sources */,
-				D75D6E401F2200A900BA72C8 /* Frameworks */,
-				D75D6E411F2200A900BA72C8 /* Headers */,
-				D75D6E421F2200A900BA72C8 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				D7652F201F220534008D9B22 /* PBXTargetDependency */,
-			);
-			name = SuasMonitorMiddlewareIOS;
-			productName = SuasMonitorMiddlewareIOS;
-			productReference = D75D6E441F2200A900BA72C8 /* SuasMonitorMiddleware.framework */;
-			productType = "com.apple.product-type.framework";
 		};
 		D76F34841F239A6E00CE0C66 /* TodoWithMonitorSampleApp-iOS */ = {
 			isa = PBXNativeTarget;
@@ -864,7 +604,6 @@
 			);
 			dependencies = (
 				D76F34A21F239BBB00CE0C66 /* PBXTargetDependency */,
-				D76F34A61F239BBB00CE0C66 /* PBXTargetDependency */,
 			);
 			name = "TodoWithMonitorSampleApp-iOS";
 			productName = "TodoWithMonitorSampleApp-iOS";
@@ -884,7 +623,6 @@
 			);
 			dependencies = (
 				D7CBAA681F1EC3E100DA67E9 /* PBXTargetDependency */,
-				D75D6E4A1F2200A900BA72C8 /* PBXTargetDependency */,
 			);
 			name = "TodoSampleApp-iOS";
 			productName = "Suas-iOS-SampleApp";
@@ -927,44 +665,6 @@
 			productReference = D7CBAA7A1F1EC45400DA67E9 /* SuasIOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		D7DF9D701F223CC8004AD8BF /* SuasMonitorMiddlewareTestsiOS */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D7DF9D791F223CC8004AD8BF /* Build configuration list for PBXNativeTarget "SuasMonitorMiddlewareTestsiOS" */;
-			buildPhases = (
-				D7DF9D6D1F223CC8004AD8BF /* Sources */,
-				D7DF9D6E1F223CC8004AD8BF /* Frameworks */,
-				D7DF9D6F1F223CC8004AD8BF /* Resources */,
-				D7DF9D7D1F223D50004AD8BF /* CopyFiles */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				D7DF9D781F223CC8004AD8BF /* PBXTargetDependency */,
-			);
-			name = SuasMonitorMiddlewareTestsiOS;
-			productName = SuasMonitorMiddlewareTestsiOS;
-			productReference = D7DF9D711F223CC8004AD8BF /* SuasMonitorMiddlewareTestsiOS.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		D7ECA98A1F220FD2006DFC8D /* SuasMonitorMiddlewareMac */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D7ECA9941F220FD2006DFC8D /* Build configuration list for PBXNativeTarget "SuasMonitorMiddlewareMac" */;
-			buildPhases = (
-				D7ECA9861F220FD2006DFC8D /* Sources */,
-				D7ECA9871F220FD2006DFC8D /* Frameworks */,
-				D7ECA9881F220FD2006DFC8D /* Headers */,
-				D7ECA9891F220FD2006DFC8D /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				D7DF9D681F223BA8004AD8BF /* PBXTargetDependency */,
-			);
-			name = SuasMonitorMiddlewareMac;
-			productName = SuasMonitorMiddlewareMac;
-			productReference = D7ECA98B1F220FD2006DFC8D /* SuasMonitorMiddleware.framework */;
-			productType = "com.apple.product-type.framework";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -982,16 +682,9 @@
 					D70551391F2128E800022BF1 = {
 						CreatedOnToolsVersion = 9.0;
 					};
-					D74D86651F22386E00B134A3 = {
-						CreatedOnToolsVersion = 8.3.3;
-						ProvisioningStyle = Automatic;
-					};
 					D75D6DCB1F21556200BA72C8 = {
 						CreatedOnToolsVersion = 9.0;
 						ProvisioningStyle = Automatic;
-					};
-					D75D6E431F2200A900BA72C8 = {
-						CreatedOnToolsVersion = 9.0;
 					};
 					D76F34841F239A6E00CE0C66 = {
 						CreatedOnToolsVersion = 9.0;
@@ -1006,13 +699,6 @@
 						LastSwiftMigration = 0900;
 					};
 					D7CBAA791F1EC45400DA67E9 = {
-						CreatedOnToolsVersion = 9.0;
-					};
-					D7DF9D701F223CC8004AD8BF = {
-						CreatedOnToolsVersion = 8.3.3;
-						ProvisioningStyle = Automatic;
-					};
-					D7ECA98A1F220FD2006DFC8D = {
 						CreatedOnToolsVersion = 9.0;
 					};
 				};
@@ -1034,10 +720,6 @@
 				D7CBAA791F1EC45400DA67E9 /* SuasIOSTests */,
 				D70551311F2128E800022BF1 /* SuasMac */,
 				D70551391F2128E800022BF1 /* SuasMacTests */,
-				D75D6E431F2200A900BA72C8 /* SuasMonitorMiddlewareIOS */,
-				D7DF9D701F223CC8004AD8BF /* SuasMonitorMiddlewareTestsiOS */,
-				D7ECA98A1F220FD2006DFC8D /* SuasMonitorMiddlewareMac */,
-				D74D86651F22386E00B134A3 /* SuasMonitorMiddlewareTestsMac */,
 				D76F34841F239A6E00CE0C66 /* TodoWithMonitorSampleApp-iOS */,
 				D75D6DCB1F21556200BA72C8 /* TodoSampleApp-Mac */,
 				D7CBAA471F1EC38700DA67E9 /* TodoSampleApp-iOS */,
@@ -1060,13 +742,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D74D86641F22386E00B134A3 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		D75D6DCA1F21556200BA72C8 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1074,13 +749,6 @@
 				D75D6DD11F21556200BA72C8 /* Assets.xcassets in Resources */,
 				D75D6DEA1F2156C000BA72C8 /* Main.storyboard in Resources */,
 				D75D6DEC1F21570600BA72C8 /* TodoCell.xib in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D75D6E421F2200A900BA72C8 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1112,20 +780,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		D7CBAA781F1EC45400DA67E9 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D7DF9D6F1F223CC8004AD8BF /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D7ECA9891F220FD2006DFC8D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1171,14 +825,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D74D86621F22386E00B134A3 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D74D86691F22386E00B134A3 /* SuasMonitorMiddlewareTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		D75D6DC81F21556200BA72C8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1188,16 +834,6 @@
 				D75D6DDA1F21559600BA72C8 /* Actions.swift in Sources */,
 				D75D6DEB1F2156C300BA72C8 /* ViewController.swift in Sources */,
 				D75D6DDE1F21559600BA72C8 /* State.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D75D6E3F1F2200A900BA72C8 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D74D86601F2233DF00B134A3 /* MonitorService.swift in Sources */,
-				D75D6E521F22034F00BA72C8 /* MonitorMiddleware.swift in Sources */,
-				D76F34AD1F23E10900CE0C66 /* SuasEncodable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1261,24 +897,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D7DF9D6D1F223CC8004AD8BF /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D7DF9D7F1F223D66004AD8BF /* SuasMonitorMiddlewareTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D7ECA9861F220FD2006DFC8D /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D74D86611F2233DF00B134A3 /* MonitorService.swift in Sources */,
-				D74D86581F2212D500B134A3 /* MonitorMiddleware.swift in Sources */,
-				D76F34AE1F23E10A00CE0C66 /* SuasEncodable.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -1287,40 +905,15 @@
 			target = D70551311F2128E800022BF1 /* SuasMac */;
 			targetProxy = D705513C1F2128E800022BF1 /* PBXContainerItemProxy */;
 		};
-		D74D86551F22128D00B134A3 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D7ECA98A1F220FD2006DFC8D /* SuasMonitorMiddlewareMac */;
-			targetProxy = D74D86541F22128D00B134A3 /* PBXContainerItemProxy */;
-		};
-		D74D866D1F22386E00B134A3 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D7ECA98A1F220FD2006DFC8D /* SuasMonitorMiddlewareMac */;
-			targetProxy = D74D866C1F22386E00B134A3 /* PBXContainerItemProxy */;
-		};
 		D75D6DE31F21563E00BA72C8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = D70551311F2128E800022BF1 /* SuasMac */;
 			targetProxy = D75D6DE21F21563E00BA72C8 /* PBXContainerItemProxy */;
 		};
-		D75D6E4A1F2200A900BA72C8 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D75D6E431F2200A900BA72C8 /* SuasMonitorMiddlewareIOS */;
-			targetProxy = D75D6E491F2200A900BA72C8 /* PBXContainerItemProxy */;
-		};
-		D7652F201F220534008D9B22 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D7CBAA611F1EC3E100DA67E9 /* SuasIOS */;
-			targetProxy = D7652F1F1F220534008D9B22 /* PBXContainerItemProxy */;
-		};
 		D76F34A21F239BBB00CE0C66 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = D7CBAA611F1EC3E100DA67E9 /* SuasIOS */;
 			targetProxy = D76F34A11F239BBB00CE0C66 /* PBXContainerItemProxy */;
-		};
-		D76F34A61F239BBB00CE0C66 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D75D6E431F2200A900BA72C8 /* SuasMonitorMiddlewareIOS */;
-			targetProxy = D76F34A51F239BBB00CE0C66 /* PBXContainerItemProxy */;
 		};
 		D7CBAA681F1EC3E100DA67E9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1331,16 +924,6 @@
 			isa = PBXTargetDependency;
 			target = D7CBAA611F1EC3E100DA67E9 /* SuasIOS */;
 			targetProxy = D7CBAA801F1EC45400DA67E9 /* PBXContainerItemProxy */;
-		};
-		D7DF9D681F223BA8004AD8BF /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D70551311F2128E800022BF1 /* SuasMac */;
-			targetProxy = D7DF9D671F223BA8004AD8BF /* PBXContainerItemProxy */;
-		};
-		D7DF9D781F223CC8004AD8BF /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D75D6E431F2200A900BA72C8 /* SuasMonitorMiddlewareIOS */;
-			targetProxy = D7DF9D771F223CC8004AD8BF /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1394,7 +977,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = Sources/Suas/Mac/Info.plist;
+				INFOPLIST_FILE = Sources/Mac/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
@@ -1423,7 +1006,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = Sources/Suas/Mac/Info.plist;
+				INFOPLIST_FILE = Sources/Mac/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
@@ -1447,7 +1030,7 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = LJ39N47822;
-				INFOPLIST_FILE = "Tests/SuasTests/Mac-Info.plist";
+				INFOPLIST_FILE = "Tests/Mac-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = nsomar.SuasMacTests;
@@ -1466,54 +1049,10 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = LJ39N47822;
-				INFOPLIST_FILE = "Tests/SuasTests/Mac-Info.plist";
+				INFOPLIST_FILE = "Tests/Mac-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = nsomar.SuasMacTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				SWIFT_VERSION = 3.0;
-			};
-			name = Release;
-		};
-		D74D866F1F22386E00B134A3 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CODE_SIGN_IDENTITY = "-";
-				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = LJ39N47822;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/Mac",
-				);
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				INFOPLIST_FILE = "Tests/SuasMonitorMiddlewareTests/Mac-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				PRODUCT_BUNDLE_IDENTIFIER = nsomar.SuasMonitorMiddlewareTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				SWIFT_VERSION = 3.0;
-			};
-			name = Debug;
-		};
-		D74D86701F22386E00B134A3 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CODE_SIGN_IDENTITY = "-";
-				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = LJ39N47822;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/Mac",
-				);
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				INFOPLIST_FILE = "Tests/SuasMonitorMiddlewareTests/Mac-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				PRODUCT_BUNDLE_IDENTIFIER = nsomar.SuasMonitorMiddlewareTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SWIFT_VERSION = 3.0;
@@ -1569,66 +1108,6 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
 				SWIFT_VERSION = 3.0;
-			};
-			name = Release;
-		};
-		D75D6E4E1F2200A900BA72C8 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CODE_SIGN_IDENTITY = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = LJ39N47822;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
-				INFOPLIST_FILE = Sources/SuasMonitorMiddleware/IOS/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = nsomar.SuasMonitorMiddlewareIOS;
-				PRODUCT_NAME = SuasMonitorMiddleware;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		D75D6E4F1F2200A900BA72C8 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CODE_SIGN_IDENTITY = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = LJ39N47822;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
-				INFOPLIST_FILE = Sources/SuasMonitorMiddleware/IOS/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = nsomar.SuasMonitorMiddlewareIOS;
-				PRODUCT_NAME = SuasMonitorMiddleware;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
@@ -1841,7 +1320,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
-				INFOPLIST_FILE = Sources/Suas/iOS/Info.plist;
+				INFOPLIST_FILE = Sources/iOS/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = nsomar.SuasIOS;
@@ -1870,7 +1349,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
-				INFOPLIST_FILE = Sources/Suas/iOS/Info.plist;
+				INFOPLIST_FILE = Sources/iOS/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = nsomar.SuasIOS;
@@ -1888,7 +1367,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = LJ39N47822;
-				INFOPLIST_FILE = "Tests/SuasTests/iOS-Info.plist";
+				INFOPLIST_FILE = "Tests/iOS-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = nsomar.SuasIOSTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1902,116 +1381,12 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = LJ39N47822;
-				INFOPLIST_FILE = "Tests/SuasTests/iOS-Info.plist";
+				INFOPLIST_FILE = "Tests/iOS-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = nsomar.SuasIOSTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-		D7DF9D7A1F223CC8004AD8BF /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = LJ39N47822;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				INFOPLIST_FILE = "Tests/SuasMonitorMiddlewareTests/iOS-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = nsomar.SuasMonitorMiddlewareTestsiOS;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-			};
-			name = Debug;
-		};
-		D7DF9D7B1F223CC8004AD8BF /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = LJ39N47822;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				INFOPLIST_FILE = "Tests/SuasMonitorMiddlewareTests/iOS-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = nsomar.SuasMonitorMiddlewareTestsiOS;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-			};
-			name = Release;
-		};
-		D7ECA9951F220FD2006DFC8D /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CODE_SIGN_IDENTITY = "Mac Developer";
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = LJ39N47822;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/Mac",
-				);
-				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = Sources/SuasMonitorMiddleware/Mac/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				PRODUCT_BUNDLE_IDENTIFIER = nsomar.SuasMonitorMiddlewareMac;
-				PRODUCT_NAME = SuasMonitorMiddleware;
-				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		D7ECA9961F220FD2006DFC8D /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CODE_SIGN_IDENTITY = "Mac Developer";
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = LJ39N47822;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/Mac",
-				);
-				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = Sources/SuasMonitorMiddleware/Mac/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				PRODUCT_BUNDLE_IDENTIFIER = nsomar.SuasMonitorMiddlewareMac;
-				PRODUCT_NAME = SuasMonitorMiddleware;
-				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
@@ -2036,29 +1411,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D74D866E1F22386E00B134A3 /* Build configuration list for PBXNativeTarget "SuasMonitorMiddlewareTestsMac" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D74D866F1F22386E00B134A3 /* Debug */,
-				D74D86701F22386E00B134A3 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		D75D6DD71F21556200BA72C8 /* Build configuration list for PBXNativeTarget "TodoSampleApp-Mac" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D75D6DD81F21556200BA72C8 /* Debug */,
 				D75D6DD91F21556200BA72C8 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		D75D6E4D1F2200A900BA72C8 /* Build configuration list for PBXNativeTarget "SuasMonitorMiddlewareIOS" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D75D6E4E1F2200A900BA72C8 /* Debug */,
-				D75D6E4F1F2200A900BA72C8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -2104,24 +1461,6 @@
 			buildConfigurations = (
 				D7CBAA831F1EC45400DA67E9 /* Debug */,
 				D7CBAA841F1EC45400DA67E9 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		D7DF9D791F223CC8004AD8BF /* Build configuration list for PBXNativeTarget "SuasMonitorMiddlewareTestsiOS" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D7DF9D7A1F223CC8004AD8BF /* Debug */,
-				D7DF9D7B1F223CC8004AD8BF /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		D7ECA9941F220FD2006DFC8D /* Build configuration list for PBXNativeTarget "SuasMonitorMiddlewareMac" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D7ECA9951F220FD2006DFC8D /* Debug */,
-				D7ECA9961F220FD2006DFC8D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
