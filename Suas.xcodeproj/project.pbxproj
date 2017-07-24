@@ -68,25 +68,12 @@
 		D76F34A81F239BBC00CE0C66 /* CocoaAsyncSocket.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D75D6E541F2203F400BA72C8 /* CocoaAsyncSocket.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D76F34AD1F23E10900CE0C66 /* SuasEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76F34AA1F23E10200CE0C66 /* SuasEncodable.swift */; };
 		D76F34AE1F23E10A00CE0C66 /* SuasEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76F34AA1F23E10200CE0C66 /* SuasEncodable.swift */; };
-		D76F34B61F23E77800CE0C66 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76F34B51F23E77800CE0C66 /* AppDelegate.swift */; };
-		D76F34B81F23E77800CE0C66 /* SearchLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76F34B71F23E77800CE0C66 /* SearchLocationViewController.swift */; };
-		D76F34BB1F23E77800CE0C66 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D76F34B91F23E77800CE0C66 /* Main.storyboard */; };
-		D76F34BD1F23E77800CE0C66 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D76F34BC1F23E77800CE0C66 /* Assets.xcassets */; };
-		D76F34C01F23E77800CE0C66 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D76F34BE1F23E77800CE0C66 /* LaunchScreen.storyboard */; };
-		D76F34C91F23EBFD00CE0C66 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76F34C51F23EBEF00CE0C66 /* State.swift */; };
-		D76F34CA1F23EBFD00CE0C66 /* Reducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76F34C71F23EBF600CE0C66 /* Reducer.swift */; };
-		D76F34D01F23F7F000CE0C66 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76F34CD1F23EF4B00CE0C66 /* Action.swift */; };
-		D76F34D21F23FB9600CE0C66 /* Suas.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D7CBAA621F1EC3E100DA67E9 /* Suas.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		D76F34D31F23FB9600CE0C66 /* SuasMonitorMiddleware.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D75D6E441F2200A900BA72C8 /* SuasMonitorMiddleware.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		D76F34D41F23FB9600CE0C66 /* CocoaAsyncSocket.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D75D6E541F2203F400BA72C8 /* CocoaAsyncSocket.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D76F34D91F24281600CE0C66 /* AsyncMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76F34CB1F23EF0B00CE0C66 /* AsyncMiddleware.swift */; };
 		D76F34DA1F24281700CE0C66 /* AsyncMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76F34CB1F23EF0B00CE0C66 /* AsyncMiddleware.swift */; };
 		D76F34DE1F24289D00CE0C66 /* AsyncActionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76F34DD1F24289D00CE0C66 /* AsyncActionExtension.swift */; };
 		D76F34DF1F2428C400CE0C66 /* AsyncActionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76F34DD1F24289D00CE0C66 /* AsyncActionExtension.swift */; };
 		D76F34E31F242C4600CE0C66 /* AsyncMiddlewareTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76F34E11F242C1800CE0C66 /* AsyncMiddlewareTests.swift */; };
 		D76F34E41F242C4700CE0C66 /* AsyncMiddlewareTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76F34E11F242C1800CE0C66 /* AsyncMiddlewareTests.swift */; };
-		D78633D61F2528F4005902FB /* LocationDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D78633D51F2528F4005902FB /* LocationDetailsView.swift */; };
-		D7BF71601F244028000EB3C5 /* LocationsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BF715F1F244028000EB3C5 /* LocationsListViewController.swift */; };
 		D7CBAA4C1F1EC38700DA67E9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CBAA4B1F1EC38700DA67E9 /* AppDelegate.swift */; };
 		D7CBAA4E1F1EC38700DA67E9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CBAA4D1F1EC38700DA67E9 /* ViewController.swift */; };
 		D7CBAA511F1EC38700DA67E9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7CBAA4F1F1EC38700DA67E9 /* Main.storyboard */; };
@@ -186,20 +173,6 @@
 			remoteGlobalIDString = D75D6E431F2200A900BA72C8;
 			remoteInfo = SuasMonitorMiddlewareIOS;
 		};
-		D76F34D51F23FBA900CE0C66 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D7CBAA401F1EC38700DA67E9 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D7CBAA611F1EC3E100DA67E9;
-			remoteInfo = SuasIOS;
-		};
-		D76F34D71F23FBA900CE0C66 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D7CBAA401F1EC38700DA67E9 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D75D6E431F2200A900BA72C8;
-			remoteInfo = SuasMonitorMiddlewareIOS;
-		};
 		D7CBAA671F1EC3E100DA67E9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D7CBAA401F1EC38700DA67E9 /* Project object */;
@@ -255,18 +228,6 @@
 				D76F34A41F239BBB00CE0C66 /* SuasMonitorMiddleware.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D76F34D11F23FB5400CE0C66 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				D76F34D21F23FB9600CE0C66 /* Suas.framework in CopyFiles */,
-				D76F34D31F23FB9600CE0C66 /* SuasMonitorMiddleware.framework in CopyFiles */,
-				D76F34D41F23FB9600CE0C66 /* CocoaAsyncSocket.framework in CopyFiles */,
-			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		D7CBAA6E1F1EC3E100DA67E9 /* Embed Frameworks */ = {
@@ -338,21 +299,9 @@
 		D76F34981F239B0600CE0C66 /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		D76F349A1F239B0600CE0C66 /* Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Actions.swift; sourceTree = "<group>"; };
 		D76F34AA1F23E10200CE0C66 /* SuasEncodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuasEncodable.swift; sourceTree = "<group>"; };
-		D76F34B31F23E77700CE0C66 /* WeatherApp-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WeatherApp-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		D76F34B51F23E77800CE0C66 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D76F34B71F23E77800CE0C66 /* SearchLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLocationViewController.swift; sourceTree = "<group>"; };
-		D76F34BA1F23E77800CE0C66 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		D76F34BC1F23E77800CE0C66 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		D76F34BF1F23E77800CE0C66 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		D76F34C11F23E77800CE0C66 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D76F34C51F23EBEF00CE0C66 /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
-		D76F34C71F23EBF600CE0C66 /* Reducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reducer.swift; sourceTree = "<group>"; };
 		D76F34CB1F23EF0B00CE0C66 /* AsyncMiddleware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncMiddleware.swift; sourceTree = "<group>"; };
-		D76F34CD1F23EF4B00CE0C66 /* Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
 		D76F34DD1F24289D00CE0C66 /* AsyncActionExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AsyncActionExtension.swift; path = Sources/Suas/Middlewares/AsyncMiddleware/AsyncActionExtension.swift; sourceTree = SOURCE_ROOT; };
 		D76F34E11F242C1800CE0C66 /* AsyncMiddlewareTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncMiddlewareTests.swift; sourceTree = "<group>"; };
-		D78633D51F2528F4005902FB /* LocationDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailsView.swift; sourceTree = "<group>"; };
-		D7BF715F1F244028000EB3C5 /* LocationsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsListViewController.swift; sourceTree = "<group>"; };
 		D7CBAA481F1EC38700DA67E9 /* TodoSampleApp-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TodoSampleApp-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7CBAA4B1F1EC38700DA67E9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D7CBAA4D1F1EC38700DA67E9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -445,13 +394,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D76F34B01F23E77700CE0C66 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		D7CBAA451F1EC38700DA67E9 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -501,7 +443,6 @@
 			isa = PBXGroup;
 			children = (
 				D76F34E61F2438CE00CE0C66 /* TodoSampleApp */,
-				D76F34B41F23E77800CE0C66 /* WeatherApp */,
 				D76F34861F239A6E00CE0C66 /* TodoWithMonitorSampleApp */,
 			);
 			path = SampleApps;
@@ -682,24 +623,6 @@
 			path = TodoWithMonitorSampleApp;
 			sourceTree = "<group>";
 		};
-		D76F34B41F23E77800CE0C66 /* WeatherApp */ = {
-			isa = PBXGroup;
-			children = (
-				D76F34B51F23E77800CE0C66 /* AppDelegate.swift */,
-				D76F34B71F23E77800CE0C66 /* SearchLocationViewController.swift */,
-				D7BF715F1F244028000EB3C5 /* LocationsListViewController.swift */,
-				D78633D51F2528F4005902FB /* LocationDetailsView.swift */,
-				D76F34B91F23E77800CE0C66 /* Main.storyboard */,
-				D76F34BC1F23E77800CE0C66 /* Assets.xcassets */,
-				D76F34BE1F23E77800CE0C66 /* LaunchScreen.storyboard */,
-				D76F34C11F23E77800CE0C66 /* Info.plist */,
-				D76F34C51F23EBEF00CE0C66 /* State.swift */,
-				D76F34C71F23EBF600CE0C66 /* Reducer.swift */,
-				D76F34CD1F23EF4B00CE0C66 /* Action.swift */,
-			);
-			path = WeatherApp;
-			sourceTree = "<group>";
-		};
 		D76F34DC1F24288500CE0C66 /* AsyncMiddleware */ = {
 			isa = PBXGroup;
 			children = (
@@ -761,7 +684,6 @@
 				D74D86661F22386E00B134A3 /* SuasMonitorMiddlewareTestsMac.xctest */,
 				D7DF9D711F223CC8004AD8BF /* SuasMonitorMiddlewareTestsiOS.xctest */,
 				D76F34851F239A6E00CE0C66 /* TodoWithMonitorSampleApp-iOS.app */,
-				D76F34B31F23E77700CE0C66 /* WeatherApp-iOS.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -949,26 +871,6 @@
 			productReference = D76F34851F239A6E00CE0C66 /* TodoWithMonitorSampleApp-iOS.app */;
 			productType = "com.apple.product-type.application";
 		};
-		D76F34B21F23E77700CE0C66 /* WeatherApp-iOS */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D76F34C41F23E77800CE0C66 /* Build configuration list for PBXNativeTarget "WeatherApp-iOS" */;
-			buildPhases = (
-				D76F34AF1F23E77700CE0C66 /* Sources */,
-				D76F34B01F23E77700CE0C66 /* Frameworks */,
-				D76F34B11F23E77700CE0C66 /* Resources */,
-				D76F34D11F23FB5400CE0C66 /* CopyFiles */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				D76F34D61F23FBA900CE0C66 /* PBXTargetDependency */,
-				D76F34D81F23FBA900CE0C66 /* PBXTargetDependency */,
-			);
-			name = "WeatherApp-iOS";
-			productName = "WeatherApp-iOS";
-			productReference = D76F34B31F23E77700CE0C66 /* WeatherApp-iOS.app */;
-			productType = "com.apple.product-type.application";
-		};
 		D7CBAA471F1EC38700DA67E9 /* TodoSampleApp-iOS */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D7CBAA5A1F1EC38700DA67E9 /* Build configuration list for PBXNativeTarget "TodoSampleApp-iOS" */;
@@ -1094,9 +996,6 @@
 					D76F34841F239A6E00CE0C66 = {
 						CreatedOnToolsVersion = 9.0;
 					};
-					D76F34B21F23E77700CE0C66 = {
-						CreatedOnToolsVersion = 9.0;
-					};
 					D7CBAA471F1EC38700DA67E9 = {
 						CreatedOnToolsVersion = 9.0;
 						LastSwiftMigration = 0900;
@@ -1142,7 +1041,6 @@
 				D76F34841F239A6E00CE0C66 /* TodoWithMonitorSampleApp-iOS */,
 				D75D6DCB1F21556200BA72C8 /* TodoSampleApp-Mac */,
 				D7CBAA471F1EC38700DA67E9 /* TodoSampleApp-iOS */,
-				D76F34B21F23E77700CE0C66 /* WeatherApp-iOS */,
 			);
 		};
 /* End PBXProject section */
@@ -1193,16 +1091,6 @@
 				D76F34921F239A6E00CE0C66 /* LaunchScreen.storyboard in Resources */,
 				D76F348F1F239A6E00CE0C66 /* Assets.xcassets in Resources */,
 				D76F348D1F239A6E00CE0C66 /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D76F34B11F23E77700CE0C66 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D76F34C01F23E77800CE0C66 /* LaunchScreen.storyboard in Resources */,
-				D76F34BD1F23E77800CE0C66 /* Assets.xcassets in Resources */,
-				D76F34BB1F23E77800CE0C66 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1325,20 +1213,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D76F34AF1F23E77700CE0C66 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D76F34D01F23F7F000CE0C66 /* Action.swift in Sources */,
-				D7BF71601F244028000EB3C5 /* LocationsListViewController.swift in Sources */,
-				D76F34B81F23E77800CE0C66 /* SearchLocationViewController.swift in Sources */,
-				D76F34B61F23E77800CE0C66 /* AppDelegate.swift in Sources */,
-				D76F34CA1F23EBFD00CE0C66 /* Reducer.swift in Sources */,
-				D78633D61F2528F4005902FB /* LocationDetailsView.swift in Sources */,
-				D76F34C91F23EBFD00CE0C66 /* State.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		D7CBAA441F1EC38700DA67E9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1448,16 +1322,6 @@
 			target = D75D6E431F2200A900BA72C8 /* SuasMonitorMiddlewareIOS */;
 			targetProxy = D76F34A51F239BBB00CE0C66 /* PBXContainerItemProxy */;
 		};
-		D76F34D61F23FBA900CE0C66 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D7CBAA611F1EC3E100DA67E9 /* SuasIOS */;
-			targetProxy = D76F34D51F23FBA900CE0C66 /* PBXContainerItemProxy */;
-		};
-		D76F34D81F23FBA900CE0C66 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D75D6E431F2200A900BA72C8 /* SuasMonitorMiddlewareIOS */;
-			targetProxy = D76F34D71F23FBA900CE0C66 /* PBXContainerItemProxy */;
-		};
 		D7CBAA681F1EC3E100DA67E9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = D7CBAA611F1EC3E100DA67E9 /* SuasIOS */;
@@ -1493,22 +1357,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				D76F34911F239A6E00CE0C66 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		D76F34B91F23E77800CE0C66 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D76F34BA1F23E77800CE0C66 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		D76F34BE1F23E77800CE0C66 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D76F34BF1F23E77800CE0C66 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -1824,40 +1672,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "nsomar.TodoWithMonitorSampleApp-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-		D76F34C21F23E77800CE0C66 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				DEVELOPMENT_TEAM = LJ39N47822;
-				INFOPLIST_FILE = SampleApps/WeatherApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "nsomar.WeatherApp-iOS";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		D76F34C31F23E77800CE0C66 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				DEVELOPMENT_TEAM = LJ39N47822;
-				INFOPLIST_FILE = SampleApps/WeatherApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "nsomar.WeatherApp-iOS";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -2254,15 +2068,6 @@
 			buildConfigurations = (
 				D76F34951F239A6E00CE0C66 /* Debug */,
 				D76F34961F239A6E00CE0C66 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		D76F34C41F23E77800CE0C66 /* Build configuration list for PBXNativeTarget "WeatherApp-iOS" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D76F34C21F23E77800CE0C66 /* Debug */,
-				D76F34C31F23E77800CE0C66 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
