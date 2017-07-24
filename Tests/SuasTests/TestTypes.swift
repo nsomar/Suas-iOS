@@ -61,6 +61,14 @@ class Reducer2: Reducer {
   }
 }
 
+class Reducer1Nil: Reducer {
+  var initialState = MyState1(value: 10)
+
+  func reduce(action: Action, state: MyState1) -> MyState1? {
+    return nil
+  }
+}
+
 class Reducer3: Reducer {
   var initialState = MyState3(otherVal: 30)
 

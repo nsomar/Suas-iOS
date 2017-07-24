@@ -378,4 +378,39 @@ class ListenerTests: XCTestCase {
     XCTAssertFalse(listener1Notified)
     XCTAssertFalse(listener2Notified)
   }
+
+  func testListenersWithnoKeyAlwaysGetNotified() {
+    struct Action1: Action {}
+
+    let reducer1 = BlockReducer(state: 1, key: "key1") { action, state in
+      return nil
+    }
+
+    let reducer2 = BlockReducer(state: 1, key: "key2") { action, state in
+      return nil
+    }
+
+    let store = Suas.createStore(reducer: reducer1 |> reducer2)
+
+    var listener1Notified = false
+    var listener2Notified = false
+    var listener3Notified = false
+
+    store.addListener(withId: "1", stateKey: "key1") { (s: Int) in
+      listener1Notified = true
+    }
+
+    store.addListener(withId: "2", stateKey: "key2") { (s: Int) in
+      listener2Notified = true
+    }
+
+    store.addListener(withId: "3") { (_) in
+      listener3Notified = true
+    }
+
+    store.dispatch(action: Action1())
+    XCTAssertFalse(listener1Notified)
+    XCTAssertFalse(listener2Notified)
+    XCTAssertTrue(listener3Notified)
+  }
 }

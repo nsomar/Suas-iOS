@@ -106,20 +106,29 @@ extension Suas.DefaultStore {
 
     var stateKeysChanged: Set<StateKey> = Set()
 
-    if let key = state.keys.first, state.keys.count == 1 {
+    if state.keys.count == 1, let key = state.keys.first {
 
-      if let newState = reducer(action, state[key]!) {
-        state = [key: newState]
+      // The store has a single reducer
+      if let subState = state[key], let newSubState = reducer(action, subState) {
+        // State was changed for key
+        state[key] = newSubState
         stateKeysChanged.insert(key)
       }
     } else {
-      let (newState, keysChanged) = reducer(action, state) as! (StoreState, [StateKey])
-      state = newState
-      keysChanged.forEach({ stateKeysChanged.insert($0) })
+
+      // The store has a combine reducer
+      if let (newState, keysChanged) = reducer(action, state) as? (StoreState, [StateKey]) {
+        // State was changed for key
+        state = newState
+        keysChanged.forEach({ stateKeysChanged.insert($0) })
+      }
     }
 
     for listener in listeners {
-      if let key = listener.stateKey, !stateKeysChanged.contains(key) {
+
+      if let key = listener.stateKey,
+        stateKeysChanged.contains(key) == false {
+        // If the listener has a key, and the key is not in the `stateKeysChanged` then dont inform the listner
         continue
       }
 

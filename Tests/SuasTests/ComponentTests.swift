@@ -63,6 +63,33 @@ class ComponentTests: XCTestCase {
     store.dispatch(action: IncrementAction())
 
     XCTAssertEqual(component.state.value, 30)
+    XCTAssertTrue(component.didSetCalled)
+  }
+
+  func testItDoesNotInformIfStateDidNotChange() {
+    let store = Suas.createStore(reducer: Reducer1Nil() |> Reducer2())
+    let component = MyComponent()
+
+    component.state = MyState1(value: 0)
+    component.didSetCalled = false
+    store.connect(component: component)
+    store.dispatch(action: IncrementAction())
+
+    XCTAssertEqual(component.state.value, 0)
+    XCTAssertFalse(component.didSetCalled)
+  }
+
+  func testItDoesNotInformIfStateDidNotChangeWith1Reducer() {
+    let store = Suas.createStore(reducer: Reducer1Nil())
+    let component = MyComponent()
+
+    component.state = MyState1(value: 0)
+    component.didSetCalled = false
+    store.connect(component: component)
+    store.dispatch(action: IncrementAction())
+
+    XCTAssertEqual(component.state.value, 0)
+    XCTAssertFalse(component.didSetCalled)
   }
 
   func testComponentRemovesListenerWhenComponentDeinit() {
