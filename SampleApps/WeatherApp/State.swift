@@ -9,26 +9,28 @@
 import Foundation
 import SuasMonitorMiddleware
 
-struct WeatherState: Encodable, SuasEncodable {
-  var foundLocations: FoundLocations
-}
-
 struct FoundLocations: Encodable, SuasEncodable {
   var query: String
   var foundLocation: [Location]
 }
 
-struct MyLocations: Encodable, SuasEncodable {
+struct MyLocations: Codable, SuasEncodable {
   var locations: [Location]
+  var selectedLocation: LocationDetails?
 }
 
-struct Location: Encodable, SuasEncodable {
+struct Location: Codable, SuasEncodable {
   var name: String
   var lat: Float
   var lon: Float
   var query: String
 }
 
-struct Progress: Encodable, SuasEncodable {
-  var count: Int
+struct LocationDetails: Codable, SuasEncodable {
+  var temperature: String
+  var location: String
+  var weather: String
+  var percipitation: String
+  var wind: String
+  var iconUrl: String
 }

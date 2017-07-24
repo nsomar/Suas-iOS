@@ -12,8 +12,11 @@ import Foundation
 /// Callback called when URLSession operation completes
 public typealias URLSessionActionCompletionBlock = (Data?, URLResponse?, Error?, DispatchFunction) -> Void
 
-/// Callback called when Disk IO operation completes
-public typealias DiskIOActionCompletionBlock = (Data?, DispatchFunction) -> Void
+/// Callback called when Disk IO read operation completes
+public typealias DiskReadActionCompletionBlock = (Data?, DispatchFunction) -> Void
+
+/// Callback called when Disk IO write operation completes
+public typealias DiskWriteActionCompletionBlock = (Bool, DispatchFunction) -> Void
 
 extension AsyncAction {
 
@@ -57,7 +60,7 @@ extension AsyncAction {
   public static let defaultDispatchQueue = DispatchQueue(label: "IOMIDDLEWARE_IO_QUEUE")
 
 
-  /// Create a DiskIO AsyncAction
+  /// Create a Read DiskIO AsyncAction
   ///
   /// - Parameters:
   ///   - path: path to read from disk
@@ -65,10 +68,10 @@ extension AsyncAction {
   ///   - dispatchQueue: the dispatch queue to use when accessing disk (optional, defaults to `DispatchQueue(label: "IOMIDDLEWARE_IO_QUEUE"))
   ///   - completionBlock: callback to call when data is read from disk. In this block `dispatch` is used to dispatch new actions
   /// - Returns: an async action to dispatch
-  public static func fordiskIO(path: String,
-                               fileManager: FileManager = .default,
-                               dispatchQueue: DispatchQueue = defaultDispatchQueue,
-                               completionBlock: @escaping DiskIOActionCompletionBlock) -> AsyncAction {
+  public static func fordiskRead(path: String,
+                                 fileManager: FileManager = .default,
+                                 dispatchQueue: DispatchQueue = defaultDispatchQueue,
+                                 completionBlock: @escaping DiskReadActionCompletionBlock) -> AsyncAction {
 
     return AsyncAction { dispatch in
 
@@ -78,6 +81,31 @@ extension AsyncAction {
           completionBlock(data, dispatch)
         }
 
+      }
+    }
+  }
+
+
+  /// Create a Write DiskIO AsyncAction
+  ///
+  /// - Parameters:
+  ///   - path: path to write to disk
+  ///   - data: data to write to disk
+  ///   - fileManager: the file manager to use (optional, defaults to FileManager.default)
+  ///   - dispatchQueue: the dispatch queue to use when accessing disk (optional, defaults to `DispatchQueue(label: "IOMIDDLEWARE_IO_QUEUE"))
+  ///   - completionBlock: callback to call when data is read from disk. In this block `dispatch` is used to dispatch new actions
+  /// - Returns: an async action to dispatch
+  public static func fordiskWrite(path: String,
+                                  data: Data,
+                                  fileManager: FileManager = .default,
+                                  dispatchQueue: DispatchQueue = defaultDispatchQueue,
+                                  completionBlock: @escaping DiskWriteActionCompletionBlock) -> AsyncAction {
+    
+    return AsyncAction { dispatch in
+
+      dispatchQueue.async {
+        let result = fileManager.createFile(atPath: path, contents: data, attributes: nil)
+        completionBlock(result, dispatch)
       }
     }
   }

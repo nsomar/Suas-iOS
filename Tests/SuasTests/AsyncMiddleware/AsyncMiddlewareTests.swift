@@ -89,7 +89,7 @@ class AsyncMiddlewareTests: XCTestCase {
     XCTAssert(actionReceived is SomeAction)
   }
 
-  func testItPerformsADiskIOAction() {
+  func testItPerformsADiskReadAction() {
     var actionReceived: Action?
     let exp = expectation(description: "x")
 
@@ -105,7 +105,7 @@ class AsyncMiddlewareTests: XCTestCase {
     let fileManager = DummyFileManager()
     fileManager.dataToReturn = Data()
 
-    let action = AsyncAction.fordiskIO(
+    let action = AsyncAction.fordiskRead(
       path: "xxx",
       fileManager: fileManager
     ) { data, dispatch in
@@ -121,6 +121,42 @@ class AsyncMiddlewareTests: XCTestCase {
 
     XCTAssert(called == true)
     XCTAssert(dataReturned == fileManager.dataToReturn)
+    XCTAssert(actionReceived is SomeAction)
+  }
+
+  func testItPerformsADiskWriteAction() {
+    var actionReceived: Action?
+    let exp = expectation(description: "x")
+
+    let asyncMiddleware = AsyncMiddleware()
+    asyncMiddleware.api = MiddlewareAPI(
+      dispatch: { action in actionReceived = action },
+      getState: { StoreState(dictionary: ["x" : "x"]) }
+    )
+    asyncMiddleware.next = { _ in }
+    var called = false
+
+    let dataToWrite = "x".data(using: .utf8)!
+    let fileManager = DummyFileManager()
+    fileManager.dataToReturn = Data()
+
+    let action = AsyncAction.fordiskWrite(
+      path: "xxx",
+      data: dataToWrite,
+      fileManager: fileManager
+    ) { data, dispatch in
+      called = true
+      dispatch(SomeAction())
+      exp.fulfill()
+    }
+
+    asyncMiddleware.onAction(action: action)
+
+    wait(for: [exp], timeout: 1)
+
+    XCTAssert(called == true)
+    XCTAssert(fileManager.writtenPath == "xxx")
+    XCTAssert(fileManager.writtenData == dataToWrite)
     XCTAssert(actionReceived is SomeAction)
   }
 }
@@ -147,7 +183,16 @@ struct URLResultAction: Action { }
 class DummyFileManager: FileManager {
 
   var dataToReturn: Data? = nil
+  var writtenPath: String?
+  var writtenData: Data?
+
   override func contents(atPath path: String) -> Data? {
     return dataToReturn
+  }
+
+  override func createFile(atPath path: String, contents data: Data?, attributes attr: [String : Any]? = nil) -> Bool {
+    writtenPath = path
+    writtenData = data
+    return true
   }
 }

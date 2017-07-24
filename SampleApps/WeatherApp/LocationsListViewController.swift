@@ -11,32 +11,47 @@ import Suas
 
 class LocationsListViewController: UITableViewController, Component {
 
+  @IBOutlet var locationDetails: LocationDetailsView!
+
   var state: MyLocations = MyLocationsReducer().initialState {
     didSet {
       tableView.reloadData()
+      if let selectedLocation = state.selectedLocation {
+        tableView.tableHeaderView = locationDetails
+        locationDetails.state = selectedLocation
+      }
+      store.dispatch(action: createSaveToDiskAction(locations: state))
     }
   }
 
   override func viewDidLoad() {
     super.viewDidLoad()
+    locationDetails.removeFromSuperview()
+    tableView.tableHeaderView = nil
     title = "My Cities"
 
-    store.connect(component: self)
-    store.connectActionListener(toComponent: self) { action in
-      if let action = action as? ShowLocationDetails {
-        self.performSegue(withIdentifier: "showDetails", sender: action.location)
-      }
-    }
+    store.connect(component: self, notifier: compareNotifier)
+    store.dispatch(action: createLoadFromDiskAction())
   }
 
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    guard
-      let sender = sender as? Location,
-      let vc = segue.destination as? LocationDetailsViewController
-    else { return }
-
-    vc.location = sender
-  }
+//  func aa() {
+//    let path = Bundle.main.path(forResource: "mockdetails", ofType: "json")!
+//    let action = AsyncAction.fordiskRead(path: path) { data, dispatch in
+//      let json = try! JSONSerialization.jsonObject(with: data!, options: []) as! [String: Any]
+//      let currentInfo = json["current_observation"] as! [String: Any]
+//
+//      let location = LocationDetails(
+//        temperature: currentInfo["temperature_string"] as! String,
+//        location: (currentInfo["display_location"] as! [String: Any])["full"] as! String,
+//        weather: currentInfo["weather"] as! String,
+//        percipitation: currentInfo["wind_string"] as! String,
+//        wind: currentInfo["precip_today_string"] as! String,
+//        iconUrl: currentInfo["icon_url"] as! String
+//      )
+//      dispatch(ShowLocationDetails(location: location))
+//    }
+//    store.dispatch(action: action);
+//  }
 }
 
 extension LocationsListViewController {
@@ -52,7 +67,7 @@ extension LocationsListViewController {
   }
 
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    let action = ShowLocationDetails(location: state.locations[indexPath.row])
+    let action = FetchLocationDetails(location: state.locations[indexPath.row])
     store.dispatch(action: action)
   }
 }
