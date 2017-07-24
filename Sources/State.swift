@@ -221,7 +221,7 @@ extension StoreState: ExpressibleByDictionaryLiteral {
     elements.forEach({ self.innerState[$0.0] = $0.1 })
   }
 
-  init(dictionary: [StateKey: Any]) {
+  public init(dictionary: [StateKey: Any]) {
     self.innerState = [:]
     dictionary.forEach({ self.innerState[$0.0] = $0.1 })
   }

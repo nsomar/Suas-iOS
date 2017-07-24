@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'Suas'
-  s.version = '0.1.0'
+  s.version = '0.1.1'
   s.license = 'MIT'
   s.summary = 'Library that does something'
   s.homepage = 'https://github.com/Zendesk/Suas-iOS'
