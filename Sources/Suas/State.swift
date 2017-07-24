@@ -108,6 +108,24 @@ public struct StoreState {
     return  innerState[key] as? Type
   }
 
+  /// Get a value for a key of component state type
+  ///
+  /// - Parameter type: the type of component to use for casting and fetching the state key
+  /// - Returns: if the key is found and if its of the passed type then return it. Otherwise return nil
+  public func value<C: Component>(forComponentType type: C.Type) -> C.StateType? {
+    return value(forKeyOfType: C.StateType.self)
+  }
+
+  /// Get a value for a component of specific type
+  ///
+  /// - Parameters:
+  ///   - key: the key to get the value for
+  ///   - type: the type of component to cast the state to
+  /// - Returns: if the key is found and if its of the passed type then return it. Otherwise return nil
+  public func value<C: Component>(forKey key: String, componentType type: C.Type) -> C.StateType? {
+    return value(forKey: key, ofType: C.StateType.self)
+  }
+
   /// Get a value for a key. `abort` application if state is not set correctly
   ///
   /// - Parameter key: the key to get the value for
@@ -116,7 +134,7 @@ public struct StoreState {
   /// **WARNING** If the type is not set in the store this function aborts the application
   public func valueOrFail(forKey key: String) -> Any? {
     guard let stateValue = value(forKey: key) else {
-      assertionFailure("Key for key \(key) was not set in the in the store")
+      assertionFailure("Store state value for key '\(key)' was not set in the in the store.\nState:\(innerState)")
       abort()
     }
 
@@ -131,7 +149,7 @@ public struct StoreState {
   /// **WARNING** If the type is not set in the store this function aborts the application
   public func valueOrFail<Type>(forKeyOfType type: Type.Type) -> Type {
     guard let stateValue = value(forKeyOfType: type) else {
-      assertionFailure("Key of type \(type) was not set in the in the store")
+      assertionFailure("Store state value for key '\(type)' of expected type '\(type)' was not set in the in the store.\nState:\(innerState)")
       abort()
     }
 
@@ -148,7 +166,39 @@ public struct StoreState {
   /// **WARNING** If the type is not set in the store this function aborts the application
   public func valueOrFail<Type>(forKey key: String, ofType type: Type.Type) -> Type? {
     guard let stateValue = value(forKey: key, ofType: type) else {
-      assertionFailure("Key for key \(key) of type \(type) was not set in the in the store.")
+      assertionFailure("Store state value for key '\(key)' of expected type '\(type)' was not set in the in the store.\nState:\(innerState)")
+      abort()
+    }
+
+    return stateValue
+  }
+
+  /// Get a value for a component of specific type. `abort` application if state is not set correctly
+  ///
+  /// - Parameter type: the type of component to use for casting and fetching the state key
+  /// - Returns: if the key is found and if its of the passed type then return it. Otherwise aborts the application
+  ///
+  /// **WARNING** If the type is not set in the store this function aborts the application
+  public func valueOrFail<C: Component>(forComponentType type: C.Type) -> C.StateType {
+    guard let stateValue = value(forComponentType: type) else {
+      assertionFailure("Store state value for component '\(type)' with expected key '\(C.StateType.self)' of expected type '\(C.StateType.self)' was not set in the in the store.\nState:\(innerState)")
+      abort()
+    }
+
+    return stateValue
+  }
+
+  /// Get a value for a component of specific type. `abort` application if state is not set correctly
+  ///
+  /// - Parameters:
+  ///   - key: the key to get the value for
+  ///   - type: the type of component to cast the state to
+  /// - Returns: if the key is found and if its of the passed type then return it. Otherwise return nil
+  ///
+  /// **WARNING** If the type is not set in the store this function aborts the application
+  public func valueOrFail<C: Component>(forKey key: String, componentType type: C.Type) -> C.StateType {
+    guard let stateValue = value(forKey: key, componentType: type) else {
+      assertionFailure("Store state value for component '\(type)' with expected key '\(key)' of expected type '\(C.StateType.self)' was not set in the in the store.\nState:\(innerState)")
       abort()
     }
 
