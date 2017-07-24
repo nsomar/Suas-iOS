@@ -21,11 +21,14 @@ import Foundation
 /// Performing an async loading from disk
 ///
 /// ```
-/// let action = AsyncAction { (dispatch) in
+/// let action = AsyncAction { api in
 ///   DispatchQueue(label: "MyQueue").async {
 ///     // Load from disk
 ///     // Process loaded
 ///     // Do more work
+///
+///     // Maybe consult the current state
+///     let currentState = api.state
 ///
 ///     // At a latter time dont forget to dispatch
 ///     dispatch(DataLoadedAction(data: data))
@@ -35,18 +38,19 @@ import Foundation
 /// store.dispatch(action: action)
 /// ```
 public struct AsyncAction: Action {
-  var executionBlock: (@escaping DispatchFunction) -> ()
+
+  var executionBlock: (MiddlewareAPI) -> ()
 
 
   /// Creates an `AsyncAction`
   ///
   /// - Parameter executionBlock: callback to call when action is intercepted by `AsyncMiddleware`
-  public init(executionBlock: @escaping (@escaping DispatchFunction) -> ()) {
+  public init(executionBlock: @escaping (MiddlewareAPI) -> ()) {
     self.executionBlock = executionBlock
   }
 
-  func execute(withDispatchingFunction dispatch: @escaping DispatchFunction) {
-    executionBlock(dispatch)
+  func execute(witMiddlewareAPI api: MiddlewareAPI) {
+    executionBlock(api)
   }
 }
 
@@ -68,7 +72,7 @@ public class AsyncMiddleware: Middleware {
     guard let api = api, let next = next else { return }
 
     if let action = action as? AsyncAction {
-      action.execute(withDispatchingFunction: api.dispatch)
+      action.execute(witMiddlewareAPI: api)
       return
     }
 

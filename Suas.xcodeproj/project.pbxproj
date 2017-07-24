@@ -48,7 +48,6 @@
 		D75D6E4B1F2200A900BA72C8 /* SuasMonitorMiddleware.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D75D6E441F2200A900BA72C8 /* SuasMonitorMiddleware.framework */; };
 		D75D6E4C1F2200A900BA72C8 /* SuasMonitorMiddleware.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D75D6E441F2200A900BA72C8 /* SuasMonitorMiddleware.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D75D6E521F22034F00BA72C8 /* MonitorMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75D6E511F22030A00BA72C8 /* MonitorMiddleware.swift */; };
-		D7652F1E1F2204CD008D9B22 /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7652F1D1F2204CD008D9B22 /* CocoaAsyncSocket.framework */; };
 		D76F347A1F23672D00CE0C66 /* LoggerMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76F34791F23672D00CE0C66 /* LoggerMiddleware.swift */; };
 		D76F347B1F23673200CE0C66 /* LoggerMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76F34791F23672D00CE0C66 /* LoggerMiddleware.swift */; };
 		D76F347F1F236B8A00CE0C66 /* LoggerMiddlewareTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76F347D1F23677A00CE0C66 /* LoggerMiddlewareTests.swift */; };
@@ -87,7 +86,6 @@
 		D76F34E31F242C4600CE0C66 /* AsyncMiddlewareTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76F34E11F242C1800CE0C66 /* AsyncMiddlewareTests.swift */; };
 		D76F34E41F242C4700CE0C66 /* AsyncMiddlewareTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76F34E11F242C1800CE0C66 /* AsyncMiddlewareTests.swift */; };
 		D78633D61F2528F4005902FB /* LocationDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D78633D51F2528F4005902FB /* LocationDetailsView.swift */; };
-		D78633D71F25361F005902FB /* mockdetails.json in Resources */ = {isa = PBXBuildFile; fileRef = D78633D31F24C7BA005902FB /* mockdetails.json */; };
 		D7BF71601F244028000EB3C5 /* LocationsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BF715F1F244028000EB3C5 /* LocationsListViewController.swift */; };
 		D7CBAA4C1F1EC38700DA67E9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CBAA4B1F1EC38700DA67E9 /* AppDelegate.swift */; };
 		D7CBAA4E1F1EC38700DA67E9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CBAA4D1F1EC38700DA67E9 /* ViewController.swift */; };
@@ -327,7 +325,6 @@
 		D75D6E471F2200A900BA72C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D75D6E511F22030A00BA72C8 /* MonitorMiddleware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonitorMiddleware.swift; sourceTree = "<group>"; };
 		D75D6E541F2203F400BA72C8 /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaAsyncSocket.framework; path = Carthage/Build/iOS/CocoaAsyncSocket.framework; sourceTree = "<group>"; };
-		D7652F1D1F2204CD008D9B22 /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaAsyncSocket.framework; path = Carthage/Build/iOS/CocoaAsyncSocket.framework; sourceTree = SOURCE_ROOT; };
 		D76F34791F23672D00CE0C66 /* LoggerMiddleware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggerMiddleware.swift; sourceTree = "<group>"; };
 		D76F347D1F23677A00CE0C66 /* LoggerMiddlewareTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggerMiddlewareTests.swift; sourceTree = "<group>"; };
 		D76F34851F239A6E00CE0C66 /* TodoWithMonitorSampleApp-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TodoWithMonitorSampleApp-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -354,7 +351,6 @@
 		D76F34CD1F23EF4B00CE0C66 /* Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
 		D76F34DD1F24289D00CE0C66 /* AsyncActionExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AsyncActionExtension.swift; path = Sources/Suas/Middlewares/AsyncMiddleware/AsyncActionExtension.swift; sourceTree = SOURCE_ROOT; };
 		D76F34E11F242C1800CE0C66 /* AsyncMiddlewareTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncMiddlewareTests.swift; sourceTree = "<group>"; };
-		D78633D31F24C7BA005902FB /* mockdetails.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = mockdetails.json; sourceTree = "<group>"; };
 		D78633D51F2528F4005902FB /* LocationDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailsView.swift; sourceTree = "<group>"; };
 		D7BF715F1F244028000EB3C5 /* LocationsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsListViewController.swift; sourceTree = "<group>"; };
 		D7CBAA481F1EC38700DA67E9 /* TodoSampleApp-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TodoSampleApp-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -436,7 +432,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D7652F1E1F2204CD008D9B22 /* CocoaAsyncSocket.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -628,7 +623,6 @@
 		D75D6E451F2200A900BA72C8 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
-				D7652F1D1F2204CD008D9B22 /* CocoaAsyncSocket.framework */,
 				D75D6E461F2200A900BA72C8 /* SuasMonitorMiddlewareIOS.h */,
 				D75D6E471F2200A900BA72C8 /* Info.plist */,
 			);
@@ -702,7 +696,6 @@
 				D76F34C51F23EBEF00CE0C66 /* State.swift */,
 				D76F34C71F23EBF600CE0C66 /* Reducer.swift */,
 				D76F34CD1F23EF4B00CE0C66 /* Action.swift */,
-				D78633D31F24C7BA005902FB /* mockdetails.json */,
 			);
 			path = WeatherApp;
 			sourceTree = "<group>";
@@ -1207,7 +1200,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D78633D71F25361F005902FB /* mockdetails.json in Resources */,
 				D76F34C01F23E77800CE0C66 /* LaunchScreen.storyboard in Resources */,
 				D76F34BD1F23E77800CE0C66 /* Assets.xcassets in Resources */,
 				D76F34BB1F23E77800CE0C66 /* Main.storyboard in Resources */,

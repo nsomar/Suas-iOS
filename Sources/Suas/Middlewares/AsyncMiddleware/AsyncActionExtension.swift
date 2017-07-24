@@ -47,9 +47,9 @@ extension AsyncAction {
                             urlSession: URLSession = URLSession(configuration: .default),
                             completionBlock: @escaping URLSessionActionCompletionBlock) -> AsyncAction {
 
-    return AsyncAction { dispatch in
+    return AsyncAction { api in
       urlSession.dataTask(with: urlRequest) { data, response, error in
-        completionBlock(data, response, error, dispatch)
+        completionBlock(data, response, error, api.dispatch)
         }.resume()
     }
   }
@@ -73,12 +73,12 @@ extension AsyncAction {
                                  dispatchQueue: DispatchQueue = defaultDispatchQueue,
                                  completionBlock: @escaping DiskReadActionCompletionBlock) -> AsyncAction {
 
-    return AsyncAction { dispatch in
+    return AsyncAction { api in
 
       dispatchQueue.async {
         if
           let data = fileManager.contents(atPath: path) {
-          completionBlock(data, dispatch)
+          completionBlock(data, api.dispatch)
         }
 
       }
@@ -101,11 +101,11 @@ extension AsyncAction {
                                   dispatchQueue: DispatchQueue = defaultDispatchQueue,
                                   completionBlock: @escaping DiskWriteActionCompletionBlock) -> AsyncAction {
     
-    return AsyncAction { dispatch in
+    return AsyncAction { api in
 
       dispatchQueue.async {
         let result = fileManager.createFile(atPath: path, contents: data, attributes: nil)
-        completionBlock(result, dispatch)
+        completionBlock(result, api.dispatch)
       }
     }
   }

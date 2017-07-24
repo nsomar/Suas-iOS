@@ -24,15 +24,30 @@ class AsyncMiddlewareTests: XCTestCase {
     asyncMiddleware.next = { _ in }
     var called = false
 
-    let action = AsyncAction { (dispatch) in
+    let action = AsyncAction { (api) in
       called = true
-      dispatch(SomeAction())
+      api.dispatch(SomeAction())
     }
 
     asyncMiddleware.onAction(action: action)
 
     XCTAssert(called == true)
     XCTAssert(actionReceived is SomeAction)
+  }
+
+  func testAsyncFunctionGetsTheState() {
+    let asyncMiddleware = AsyncMiddleware()
+    asyncMiddleware.api = MiddlewareAPI(
+      dispatch: { _ in },
+      getState: { StoreState(dictionary: ["x" : "x"]) }
+    )
+    asyncMiddleware.next = { _ in }
+
+    let action = AsyncAction { (api) in
+      XCTAssertEqual(api.state.value(forKey: "x", ofType: String.self), "x")
+    }
+
+    asyncMiddleware.onAction(action: action)
   }
 
   func testItHandlesAsyncActionAndDoesNotDispatchIt() {

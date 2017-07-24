@@ -22,7 +22,7 @@ public typealias DispatchFunction = (Action) -> Void
 public typealias NextFunction = DispatchFunction
 
 public typealias MiddlewareFunction = (Action, MiddlewareAPI, NextFunction) -> Void
-typealias GetStateFunction = () -> StoreState
+public typealias GetStateFunction = () -> StoreState
 
 infix operator |> : AdditionPrecedence
 
