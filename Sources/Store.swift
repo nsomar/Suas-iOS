@@ -391,7 +391,7 @@ extension Suas {
   public static func createStore<R: Reducer>(reducer: R,
                                              middleware: Middleware? = nil) -> Store {
     return createStore(reducer: reducer,
-                       state: StoreState(innerState: reducer.stateDict),
+                       state: StoreState(dictionary: reducer.stateDict),
                        middleware: middleware)
   }
 }

@@ -49,6 +49,13 @@ extension State {
 public struct StoreState {
   var innerState: KeyedState
 
+  
+  public init(dictionary: [StateKey: Any]) {
+    self.innerState = [:]
+    dictionary.forEach({ self.innerState[$0.0] = $0.1 })
+  }
+
+
   /// Get a value for a key
   ///
   /// - Parameter key: the key to get the value for
@@ -219,11 +226,6 @@ extension StoreState: ExpressibleByDictionaryLiteral {
   public init(dictionaryLiteral elements: (StateKey, Any)...) {
     self.innerState = [:]
     elements.forEach({ self.innerState[$0.0] = $0.1 })
-  }
-
-  public init(dictionary: [StateKey: Any]) {
-    self.innerState = [:]
-    dictionary.forEach({ self.innerState[$0.0] = $0.1 })
   }
 }
 
