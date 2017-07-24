@@ -9,9 +9,8 @@
 import Foundation
 import Suas
 
-let emptyState = TodoState(todos:[])
 
-let todoReducer = BlockReducer(state: emptyState) { action, state in
+let todoReducer = BlockReducer(state: TodoState(todos:[])) { action, state in
   if let action = action as? AddTodo {
     var newState = state
     newState.todos = newState.todos + [Todo(title: action.text, isCompleted: false)]

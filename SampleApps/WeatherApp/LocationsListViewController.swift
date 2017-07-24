@@ -13,14 +13,13 @@ class LocationsListViewController: UITableViewController, Component {
 
   @IBOutlet var locationDetails: LocationDetailsView!
 
-  var state: MyLocations = MyLocationsReducer().initialState {
+  var state: MyLocations = store.state.valueOrFail(forKeyOfType: MyLocations.self) {
     didSet {
       tableView.reloadData()
       if let selectedLocation = state.selectedLocation {
         tableView.tableHeaderView = locationDetails
-        locationDetails.state = selectedLocation
+        locationDetails.location = selectedLocation
       }
-      store.dispatch(action: createSaveToDiskAction(locations: state))
     }
   }
 
@@ -30,8 +29,12 @@ class LocationsListViewController: UITableViewController, Component {
     tableView.tableHeaderView = nil
     title = "My Cities"
 
-    store.connect(component: self, notifier: compareNotifier)
+    store.connect(component: self)
     store.dispatch(action: createLoadFromDiskAction())
+
+    store.addListener(withId: "storage", type: MyLocations.self) { locations in
+      store.dispatch(action: createSaveToDiskAction(locations: locations))
+    }
   }
 }
 

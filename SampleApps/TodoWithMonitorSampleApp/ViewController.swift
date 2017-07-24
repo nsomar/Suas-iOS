@@ -15,7 +15,7 @@ class ViewController: UIViewController, Component {
   @IBOutlet weak var addTodoButton: UIButton!
   @IBOutlet weak var todoTableView: UITableView!
 
-  var state: TodoState = emptyState {
+  var state: TodoState = store.state.valueOrFail(forKeyOfType: TodoState.self) {
     didSet {
       todoTableView.reloadData()
     }

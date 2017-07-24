@@ -14,7 +14,7 @@ class SearchLocationViewController: UITableViewController, UISearchResultsUpdati
 
   var searchController: UISearchController!
 
-  var state: FoundLocations = FoundLocations(query: "", foundLocation: []) {
+  var state: FoundLocations = store.state.valueOrFail(forKeyOfType: FoundLocations.self) {
     didSet {
       tableView.reloadData()
     }

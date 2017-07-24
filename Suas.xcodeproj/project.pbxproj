@@ -38,7 +38,6 @@
 		D75D6DCF1F21556200BA72C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75D6DCE1F21556200BA72C8 /* AppDelegate.swift */; };
 		D75D6DD11F21556200BA72C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D75D6DD01F21556200BA72C8 /* Assets.xcassets */; };
 		D75D6DDA1F21559600BA72C8 /* Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F924D51F215182003BAC77 /* Actions.swift */; };
-		D75D6DDB1F21559600BA72C8 /* Middleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F924D71F215182003BAC77 /* Middleware.swift */; };
 		D75D6DDD1F21559600BA72C8 /* Reducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F924D61F215182003BAC77 /* Reducer.swift */; };
 		D75D6DDE1F21559600BA72C8 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F924D91F215182003BAC77 /* State.swift */; };
 		D75D6DE11F21563E00BA72C8 /* Suas.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D70551321F2128E800022BF1 /* Suas.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -128,7 +127,6 @@
 		D7ECA9981F221051006DFC8D /* CocoaAsyncSocket.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D75D6E541F2203F400BA72C8 /* CocoaAsyncSocket.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D7ECA99B1F2210AD006DFC8D /* Suas.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D70551321F2128E800022BF1 /* Suas.framework */; };
 		D7F924DF1F2151B4003BAC77 /* Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F924D51F215182003BAC77 /* Actions.swift */; };
-		D7F924E01F2151B4003BAC77 /* Middleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F924D71F215182003BAC77 /* Middleware.swift */; };
 		D7F924E21F2151B4003BAC77 /* Reducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F924D61F215182003BAC77 /* Reducer.swift */; };
 		D7F924E31F2151B4003BAC77 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F924D91F215182003BAC77 /* State.swift */; };
 /* End PBXBuildFile section */
@@ -396,7 +394,6 @@
 		D7ECA98E1F220FD2006DFC8D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D7F924D51F215182003BAC77 /* Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Actions.swift; sourceTree = "<group>"; };
 		D7F924D61F215182003BAC77 /* Reducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reducer.swift; sourceTree = "<group>"; };
-		D7F924D71F215182003BAC77 /* Middleware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Middleware.swift; sourceTree = "<group>"; };
 		D7F924D91F215182003BAC77 /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -584,7 +581,6 @@
 			isa = PBXGroup;
 			children = (
 				D7F924D51F215182003BAC77 /* Actions.swift */,
-				D7F924D71F215182003BAC77 /* Middleware.swift */,
 				D7F924D61F215182003BAC77 /* Reducer.swift */,
 				D7F924D91F215182003BAC77 /* State.swift */,
 			);
@@ -1307,7 +1303,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D75D6DDB1F21559600BA72C8 /* Middleware.swift in Sources */,
 				D75D6DCF1F21556200BA72C8 /* AppDelegate.swift in Sources */,
 				D75D6DDD1F21559600BA72C8 /* Reducer.swift in Sources */,
 				D75D6DDA1F21559600BA72C8 /* Actions.swift in Sources */,
@@ -1358,7 +1353,6 @@
 			files = (
 				D7F924DF1F2151B4003BAC77 /* Actions.swift in Sources */,
 				D7F924E21F2151B4003BAC77 /* Reducer.swift in Sources */,
-				D7F924E01F2151B4003BAC77 /* Middleware.swift in Sources */,
 				D7CBAA4E1F1EC38700DA67E9 /* ViewController.swift in Sources */,
 				D7F924E31F2151B4003BAC77 /* State.swift in Sources */,
 				D7CBAA4C1F1EC38700DA67E9 /* AppDelegate.swift in Sources */,
@@ -1811,7 +1805,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = SampleApps/TodoWithMonitorSampleApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "nsomar.TodoWithMonitorSampleApp-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1833,7 +1827,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = SampleApps/TodoWithMonitorSampleApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "nsomar.TodoWithMonitorSampleApp-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";

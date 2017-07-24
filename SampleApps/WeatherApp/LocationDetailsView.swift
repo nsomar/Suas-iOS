@@ -9,18 +9,18 @@
 import UIKit
 import Suas
 
-class LocationDetailsView: UIView, Component {
+class LocationDetailsView: UIView {
 
-  static let empty = LocationDetails(temperature: "", location: "", weather: "", percipitation: "", wind: "", iconUrl: "")
-
-  var state: LocationDetails = empty {
+  var location: LocationDetails? {
     didSet {
-      tempLabel.text = "\(state.temperature) in \(state.location)"
-      weatherLabel.text = state.weather
-      percipLabel.text = "Percip: \(state.weather)"
-      windLabel.text = "Wind: \(state.wind)"
+      guard let location = location else { return }
 
-      URLSession(configuration: .default).dataTask(with: URL(string: state.iconUrl)!) { data, _, _ in
+      tempLabel.text = "\(location.temperature) in \(location.location)"
+      weatherLabel.text = location.weather
+      percipLabel.text = "Percip: \(location.weather)"
+      windLabel.text = "Wind: \(location.wind)"
+
+      URLSession(configuration: .default).dataTask(with: URL(string: location.iconUrl)!) { data, _, _ in
         DispatchQueue.main.async {
           self.tempImage.image = UIImage(data: data!)
         }

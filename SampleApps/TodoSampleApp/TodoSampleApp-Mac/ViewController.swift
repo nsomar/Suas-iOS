@@ -14,7 +14,7 @@ class ViewController: NSViewController, Component {
   @IBOutlet weak var todoTextField: NSTextField!
   @IBOutlet weak var todoTableView: NSTableView!
 
-  var state: TodoState = emptyState {
+  var state: TodoState = store.state.valueOrFail(forKeyOfType: TodoState.self) {
     didSet {
       todoTableView.reloadData()
     }

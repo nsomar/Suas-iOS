@@ -35,26 +35,6 @@ struct MyLocationsLoadedFromDisk: Action, Encodable, SuasEncodable {
   let locations: MyLocations
 }
 
-func createDummyAction() -> Action {
-  let path = Bundle.main.path(forResource: "mockdetails", ofType: "json")!
-  let action = AsyncAction.fordiskRead(path: path) { data, dispatch in
-    let json = try! JSONSerialization.jsonObject(with: data!, options: []) as! [String: Any]
-    let currentInfo = json["current_observation"] as! [String: Any]
-
-    let location = LocationDetails(
-      temperature: currentInfo["temperature_string"] as! String,
-      location: (currentInfo["display_location"] as! [String: Any])["full"] as! String,
-      weather: currentInfo["weather"] as! String,
-      percipitation: currentInfo["wind_string"] as! String,
-      wind: currentInfo["precip_today_string"] as! String,
-      iconUrl: currentInfo["icon_url"] as! String
-    )
-    dispatch(ShowLocationDetails(location: location))
-  }
-
-  return action
-}
-
 func createFetchLocationDetailsAction(location: Location) -> Action {
   let url = URL(string: "http://api.wunderground.com/api/c57ef60f21274475/conditions/\(location.query).json")!
   let action = AsyncAction.forURLSession(url: url) { data, response, error, dispatch in
