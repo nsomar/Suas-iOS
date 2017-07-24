@@ -24,6 +24,8 @@ extension Suas.DefaultStore {
       listener: { [weak component] newState in
         component?.setIfChanged(newState)
     })
+
+    setInitialData(component: component)
   }
 
   func connect<C>(
@@ -37,6 +39,8 @@ extension Suas.DefaultStore {
         listener: { [weak component] newState in
           component?.setIfChanged(newState)
       })
+
+      setInitialData(component: component)
   }
 
   func connect<C: Component>(component: C,
@@ -48,6 +52,8 @@ extension Suas.DefaultStore {
                    listener: { [weak component] newState in
                     component?.setIfChanged(newState)
     })
+
+    setInitialData(component: component)
   }
 
   func connect<C>(
@@ -62,6 +68,8 @@ extension Suas.DefaultStore {
                      listener: { [weak component] newState in
                       component?.setIfChanged(newState)
       })
+
+      setInitialData(component: component)
   }
 
   func connect<C: Component>(
@@ -71,6 +79,8 @@ extension Suas.DefaultStore {
     performConnect(component: component,
                    forStateKey: nil,
                    withStateConverter: stateConverter)
+
+    setInitialData(component: component)
   }
 
   func connect<C, ExpectedType>(
@@ -82,6 +92,14 @@ extension Suas.DefaultStore {
       performConnect(component: component,
                      forStateKey: stateKey,
                      withStateConverter: stateConverter)
+
+      setInitialData(component: component)
+  }
+
+  private func setInitialData<C: Component>(component: C) {
+    if let componentState = state["\(C.StateType.self)"] as? C.StateType {
+      component.state = componentState
+    }
   }
 
   fileprivate func onObjectDeinit(forComponent component: Any,

@@ -59,9 +59,19 @@ class StoreStateTests: XCTestCase {
     XCTAssertEqual(s.value(forKey: "a") as! Int, 2)
   }
 
+  func testItCanGetAValueForAKeyOrFail() {
+    let s: StoreState = ["a" : 2]
+    XCTAssertEqual(s.valueOrFail(forKey: "a") as! Int, 2)
+  }
+
   func testItCanGetAValueForAKeyAndTypeSwift3() {
     let s: StoreState = ["a" : 2]
     XCTAssertEqual(s.value(forKey: "a", ofType: Int.self), 2)
+  }
+
+  func testItCanGetAValueForAKeyAndTypeOrFail() {
+    let s: StoreState = ["a" : 2]
+    XCTAssertEqual(s.valueOrFail(forKey: "a", ofType: Int.self), 2)
   }
 
   func testItReturnNulIfKeyIsNotFoundOrIsOfWrongTypeSwift3() {

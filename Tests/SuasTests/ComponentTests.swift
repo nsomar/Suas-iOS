@@ -71,11 +71,13 @@ class ComponentTests: XCTestCase {
     let component = MyComponent()
 
     component.state = MyState1(value: 0)
-    component.didSetCalled = false
+
     store.connect(component: component)
+    component.didSetCalled = false
+
     store.dispatch(action: IncrementAction())
 
-    XCTAssertEqual(component.state.value, 0)
+    XCTAssertEqual(component.state.value, 10)
     XCTAssertFalse(component.didSetCalled)
   }
 
@@ -84,11 +86,12 @@ class ComponentTests: XCTestCase {
     let component = MyComponent()
 
     component.state = MyState1(value: 0)
-    component.didSetCalled = false
     store.connect(component: component)
+    component.didSetCalled = false
+
     store.dispatch(action: IncrementAction())
 
-    XCTAssertEqual(component.state.value, 0)
+    XCTAssertEqual(component.state.value, 10)
     XCTAssertFalse(component.didSetCalled)
   }
 
@@ -200,6 +203,18 @@ class ComponentTests: XCTestCase {
     XCTAssertEqual(component.state.value, 11)
   }
 
+  func testItSetsInitalValue() {
+    let store = Suas.createStore(reducer: reducer1, state: MyState1(value: 100))
+    let component = MyComponent()
+
+    let notifier: ListenerNotifier<MyState1> = { new, old, l in l.notify(new) }
+    component.didSetCalled = false
+    store.connect(component: component, stateKey: "MyState1", notifier: notifier)
+
+    XCTAssertEqual(component.state.value, 100)
+    XCTAssertTrue(component.didSetCalled)
+  }
+
   func testWeCanConnectAStoreToAComponentWithNotifierThatNotifiesConditionally() {
     let store = Suas.createStore(reducer: reducer1, state: MyState1(value: 10))
     let component = MyComponent()
@@ -227,6 +242,8 @@ class ComponentTests: XCTestCase {
     struct NoAction: Action { }
 
     store.connect(component: component, notifier: compareNotifier)
+    component.didSetCalled = false
+
     store.dispatch(action: NoAction())
 
     XCTAssertEqual(component.state.val, 10)
