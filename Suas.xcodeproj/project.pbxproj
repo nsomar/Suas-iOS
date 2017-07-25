@@ -26,6 +26,8 @@
 		D70551591F212A7900022BF1 /* ListenerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CF193C1F1FDAF7003EC879 /* ListenerTests.swift */; };
 		D705515A1F212A7900022BF1 /* StoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CF193E1F2033DF003EC879 /* StoreTests.swift */; };
 		D705515B1F212A7900022BF1 /* MiddlewareTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CF19421F205B80003EC879 /* MiddlewareTests.swift */; };
+		D7107C7F1F272EC5009F4A27 /* Suas.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D7CBAA621F1EC3E100DA67E9 /* Suas.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D7107C811F272ED1009F4A27 /* Suas.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D70551321F2128E800022BF1 /* Suas.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D76F347A1F23672D00CE0C66 /* LoggerMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76F34791F23672D00CE0C66 /* LoggerMiddleware.swift */; };
 		D76F347B1F23673200CE0C66 /* LoggerMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76F34791F23672D00CE0C66 /* LoggerMiddleware.swift */; };
 		D76F347F1F236B8A00CE0C66 /* LoggerMiddlewareTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76F347D1F23677A00CE0C66 /* LoggerMiddlewareTests.swift */; };
@@ -73,6 +75,29 @@
 			remoteInfo = SuasIOS;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		D7107C7E1F272EB1009F4A27 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				D7107C7F1F272EC5009F4A27 /* Suas.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D7107C801F272ECC009F4A27 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				D7107C811F272ED1009F4A27 /* Suas.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		D70551321F2128E800022BF1 /* Suas.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Suas.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -370,6 +395,7 @@
 				D70551361F2128E800022BF1 /* Sources */,
 				D70551371F2128E800022BF1 /* Frameworks */,
 				D70551381F2128E800022BF1 /* Resources */,
+				D7107C801F272ECC009F4A27 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -406,6 +432,7 @@
 				D7CBAA761F1EC45400DA67E9 /* Sources */,
 				D7CBAA771F1EC45400DA67E9 /* Frameworks */,
 				D7CBAA781F1EC45400DA67E9 /* Resources */,
+				D7107C7E1F272EB1009F4A27 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -433,6 +460,7 @@
 					};
 					D70551391F2128E800022BF1 = {
 						CreatedOnToolsVersion = 9.0;
+						ProvisioningStyle = Manual;
 					};
 					D7CBAA611F1EC3E100DA67E9 = {
 						CreatedOnToolsVersion = 9.0;
@@ -440,6 +468,7 @@
 					};
 					D7CBAA791F1EC45400DA67E9 = {
 						CreatedOnToolsVersion = 9.0;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -667,14 +696,16 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = LJ39N47822;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "Tests/Mac-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = nsomar.SuasMacTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
 				SWIFT_VERSION = 3.0;
 			};
@@ -686,14 +717,16 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = LJ39N47822;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "Tests/Mac-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = nsomar.SuasMacTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
 				SWIFT_VERSION = 3.0;
 			};
@@ -865,11 +898,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				DEVELOPMENT_TEAM = LJ39N47822;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "Tests/iOS-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = nsomar.SuasIOSTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -879,11 +914,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				DEVELOPMENT_TEAM = LJ39N47822;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "Tests/iOS-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = nsomar.SuasIOSTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
