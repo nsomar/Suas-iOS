@@ -125,3 +125,6 @@ xcuserdata
 
 *.xcodeproj/**/*.xcworkspacedata
 # End of https://www.gitignore.io/api/xcode,swift,objective-c
+
+SampleApps/TodoSampleApp/Pods/
+SampleApps/TodoWithMonitorSampleApp/Pods/

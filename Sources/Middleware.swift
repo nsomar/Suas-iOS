@@ -22,6 +22,12 @@ public struct MiddlewareAPI {
   }
 
   var getState: GetStateFunction
+
+
+  public init(dispatch: @escaping DispatchFunction, getState: @escaping GetStateFunction) {
+    self.dispatch = dispatch
+    self.getState = getState
+  }
 }
 
 

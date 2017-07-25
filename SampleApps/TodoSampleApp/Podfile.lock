@@ -1,0 +1,16 @@
+PODS:
+  - Suas (0.1.0)
+
+DEPENDENCIES:
+  - Suas (from `../../`)
+
+EXTERNAL SOURCES:
+  Suas:
+    :path: "../../"
+
+SPEC CHECKSUMS:
+  Suas: 0bf53120c8f2fc5512ba93a48e8546088a2c3880
+
+PODFILE CHECKSUM: 00a9c861c7e40806c7e9ef5678f5dfa5d4d30980
+
+COCOAPODS: 1.1.1
