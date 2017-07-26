@@ -96,11 +96,6 @@ class StoreStateTests: XCTestCase {
     XCTAssertEqual(s.value(forKey: "abc", componentType: MyComponent.self)?.value, 12)
   }
 
-  func testItCanGetAValueForAComponentTypeOrFail() {
-    let s: StoreState = ["MyState1" : MyState1(value: 1)]
-    XCTAssertEqual(s.valueOrFail(forComponentType: MyComponent.self).value, 1)
-  }
-
   func testItCanGetAValueForAComponentTypeAndKeyOrFail() {
     let s: StoreState = ["abc" : MyState1(value: 12)]
     XCTAssertEqual(s.valueOrFail(forKey: "abc", componentType: MyComponent.self).value, 12)

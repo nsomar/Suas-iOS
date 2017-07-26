@@ -159,21 +159,6 @@ public struct StoreState {
 
   /// Get a value for a component of specific type. `abort` application if state is not set correctly
   ///
-  /// - Parameter type: the type of component to use for casting and fetching the state key
-  /// - Returns: if the key is found and if its of the passed type then return it. Otherwise aborts the application
-  ///
-  /// **WARNING** If the type is not set in the store this function aborts the application
-  public func valueOrFail<C: Component>(forComponentType type: C.Type) -> C.StateType {
-    guard let stateValue = value(forComponentType: type) else {
-      assertionFailure("Store state value for component '\(type)' with expected key '\(C.StateType.self)' of expected type '\(C.StateType.self)' was not set in the in the store.\nState:\(innerState)")
-      abort()
-    }
-
-    return stateValue
-  }
-
-  /// Get a value for a component of specific type. `abort` application if state is not set correctly
-  ///
   /// - Parameters:
   ///   - key: the key to get the value for
   ///   - type: the type of component to cast the state to
