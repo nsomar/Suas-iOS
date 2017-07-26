@@ -13,21 +13,21 @@ import Foundation
 public struct Listener {
 
   /// The callback id for this callback
-  let id: CallbackId
+  public let id: CallbackId
 
   /// The state key that the listener is registered to
-  let stateKey: StateKey?
+  public let stateKey: StateKey?
 
   /// The notify callback function that notifies the listener
-  let notify: ListenerFunction<Any>
+  public let notify: ListenerFunction<Any>
 
   /// Block that gets called to perform the notification. This block can decide wether we notify the listener or not
-  let notificationBlock: ListenerNotifier<Any>
+  public let notificationBlock: ListenerNotifier<Any>
 }
 
 
 /// Notifier function implementation that always notifies the listener when the state changes.
-let alwaysNotifier = { (newSubState: Any, oldSubState: Any, listener: Listener) in
+public let alwaysNotifier = { (newSubState: Any, oldSubState: Any, listener: Listener) in
   listener.notify(newSubState)
 }
 
@@ -36,8 +36,8 @@ let alwaysNotifier = { (newSubState: Any, oldSubState: Any, listener: Listener) 
 public let compareNotifier = { (newSubState: Any, oldSubState: Any, listener: Listener) in
 
   if
-    let newSubStateEq = newSubState as? __RuntimeEquatable__,
-    let oldSubStateEq = oldSubState as? __RuntimeEquatable__{
+    let newSubStateEq = newSubState as? SuasDynamicEquatable,
+    let oldSubStateEq = oldSubState as? SuasDynamicEquatable {
 
     if !newSubStateEq.isEqual(to: oldSubStateEq) {
       listener.notify(newSubState)

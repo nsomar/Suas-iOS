@@ -22,7 +22,7 @@ extension Suas.DefaultStore {
                    stateKey: "\(C.StateType.self)",
       notifier: nil,
       listener: { [weak component] newState in
-        component?.setIfChanged(newState)
+        component?.state = newState
     })
 
     setInitialData(component: component)
@@ -37,7 +37,7 @@ extension Suas.DefaultStore {
                      stateKey: "\(C.StateType.self)",
         notifier: notifier,
         listener: { [weak component] newState in
-          component?.setIfChanged(newState)
+          component?.state = newState
       })
 
       setInitialData(component: component)
@@ -50,7 +50,7 @@ extension Suas.DefaultStore {
                    stateKey: stateKey,
                    notifier: nil,
                    listener: { [weak component] newState in
-                    component?.setIfChanged(newState)
+                    component?.state = newState
     })
 
     setInitialData(component: component)
@@ -66,7 +66,7 @@ extension Suas.DefaultStore {
                      stateKey: stateKey,
                      notifier: notifier,
                      listener: { [weak component] newState in
-                      component?.setIfChanged(newState)
+                      component?.state = newState
       })
 
       setInitialData(component: component)
@@ -202,7 +202,7 @@ extension Suas.DefaultStore {
             Suas.log("State is not convertable to \(C.StateType.self)\n\(newState)")
             return
           }
-          component?.setIfChanged(convertedValue)
+          component?.state = convertedValue
       }
 
       onObjectDeinit(forComponent: component,

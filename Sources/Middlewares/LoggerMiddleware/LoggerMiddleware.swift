@@ -139,7 +139,7 @@ enum LoggingParts {
     }
 
     if showDuration {
-      parts.append("(in \(duration / 1000) ns)")
+      parts.append("(in \(duration / 1000) µs)")
     }
 
     return parts.joined(separator: " ")

@@ -60,7 +60,7 @@ class LoggerMiddlewareTests: XCTestCase {
       date: testDate,
       showTimestamp: false,
       showDuration: true)
-    XCTAssertEqual(logged, "┌───→ Action: SomeAction (in 1000 ns)")
+    XCTAssertEqual(logged, "┌───→ Action: SomeAction (in 1000 µs)")
   }
 
   func testItPrintsWithTheTimeStampAndDuration() {
@@ -72,7 +72,7 @@ class LoggerMiddlewareTests: XCTestCase {
       showDuration: true)
 
     let dateString = LoggerMiddleware.dateFormatter.string(from: testDate)
-    XCTAssertEqual(logged, "┌───→ Action: SomeAction @\(dateString) (in 1000 ns)")
+    XCTAssertEqual(logged, "┌───→ Action: SomeAction @\(dateString) (in 1000 µs)")
   }
 
   func testItPrintsIfPredicatePasses() {

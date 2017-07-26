@@ -9,38 +9,15 @@
 import Foundation
 
 
-/// Protcol that represents a state of a component
-///
-/// ## Example
-///
-/// ```
-///
-/// ```
-public protocol State: Equatable, __RuntimeEquatable__ {
-
-  /// Runtime equality check. No need to implement this method as it will be implemented by an extension on `__RuntimeEquatable__`
-  ///
-  /// - Parameter other: other value to compare to
-  /// - Returns: true if equal, otherwise false
-  func isEqual(to other: Any) -> Bool
-}
-
-
 /// Internal protocol used to provide a runtime implementation of equality
-public protocol __RuntimeEquatable__ {
+public protocol SuasDynamicEquatable {
   func isEqual(to other: Any) -> Bool
 }
 
-extension State {
-
-  /// Default implementation of isEqual. Dynamic cast the parameter to Self and then performs `==` on the two parameters
-  ///
-  /// - Parameter other: other value to compare to
-  /// - Returns: true if equal, otherwise false
+public extension SuasDynamicEquatable where Self: Equatable {
   public func isEqual(to other: Any) -> Bool {
     guard let other = other as? Self else { return false }
-    
-    return other == self
+    return self == other
   }
 }
 

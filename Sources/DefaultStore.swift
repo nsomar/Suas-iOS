@@ -132,15 +132,15 @@ extension Suas.DefaultStore {
         continue
       }
 
-      listener.notificationBlock(
-        getSubstate(withState: state, forKey: listener.stateKey),
-        getSubstate(withState: oldState, forKey: listener.stateKey),
-        listener
-      )
+      guard
+        let oldSubState = getSubstate(withState: oldState, forKey: listener.stateKey),
+        let newSubState = getSubstate(withState: state, forKey: listener.stateKey) else { return }
+
+      listener.notificationBlock(newSubState, oldSubState, listener)
     }
   }
 
-  private func getSubstate(withState state: StoreState, forKey key: StateKey?) -> Any {
+  private func getSubstate(withState state: StoreState, forKey key: StateKey?) -> Any? {
     if let key = key {
       return state[key] ?? state
     } else {

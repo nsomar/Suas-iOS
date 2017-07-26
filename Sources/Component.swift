@@ -23,30 +23,6 @@ public protocol Component: class {
   var state: StateType { get set }
 }
 
-extension Component where StateType: Equatable {
-  
-  /// Sets the new state only if it had changed
-  ///
-  /// - Parameter newState: the new state
-  public func setIfChanged(_ newState: StateType) {
-    if newState != state {
-      self.state = newState
-    }
-  }
-}
-
-
-extension Component {
-  
-  /// Sets the new state only if it had changed
-  ///
-  /// - Parameter newState: the new state
-  public func setIfChanged(_ newState: StateType) {
-    self.state = newState
-  }
-}
-
-
 /// Action that is to be dispatched to the store
 ///
 /// -----

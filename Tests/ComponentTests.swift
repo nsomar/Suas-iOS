@@ -11,28 +11,6 @@ import XCTest
 
 class ComponentTests: XCTestCase {
 
-  func testItSetsTheStateAlwaysIfItDoesNotImplementEquatable() {
-    let component = MyComponent()
-    component.setIfChanged(MyState1(value: 10))
-    component.didSetCalled = false
-    component.setIfChanged(MyState1(value: 10))
-
-    XCTAssertEqual(component.didSetCalled, true)
-  }
-
-  func testItDoesNotSetTheStateIfItImplementEquatable() {
-    let component = MyComponentWithEquatableState()
-    component.setIfChanged(MyEquatableState1(val: 10))
-    component.didSetCalled = false
-    component.setIfChanged(MyEquatableState1(val: 10))
-
-    XCTAssertEqual(component.didSetCalled, false)
-
-    component.setIfChanged(MyEquatableState1(val: 20))
-
-    XCTAssertEqual(component.didSetCalled, true)
-  }
-
   func testWeCanConnectAStoreToAComponent() {
     let store = Suas.createStore(reducer: reducer1, state: MyState1(value: 10))
     let component = MyComponent()

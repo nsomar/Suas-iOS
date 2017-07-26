@@ -107,7 +107,7 @@ class Reducer4: Reducer {
 
 
 
-struct MyEquatableState1: State {
+struct MyEquatableState1: Equatable, SuasDynamicEquatable {
   var val = 20
 
   static func ==(lhs: MyEquatableState1, rhs: MyEquatableState1) -> Bool {
