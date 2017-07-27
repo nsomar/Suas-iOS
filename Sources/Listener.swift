@@ -26,12 +26,12 @@ struct Listener {
 }
 
 
-/// Notifier function implementation that always notifies the listener when the state changes.
+/// State Change filter function that always notifies the returns true always.
 public let alwaysFilter: FilterFunction<Any> = { (oldSubState: Any, newSubState: Any) in
   return true
 }
 
-/// Notifier function implementation that notifies the listener only if the sub state has changed.
+/// State Change filter function that notifies the returns true only if the sub state has changed.
 // TODO: Pass the static type ot listener and then use it for casting
 public let stateChangedFilter: FilterFunction<Any> = { (oldSubState: Any, newSubState: Any) in
 
@@ -44,3 +44,9 @@ public let stateChangedFilter: FilterFunction<Any> = { (oldSubState: Any, newSub
     return true
   }
 }
+
+
+/// State Change filter function implementation that notifies the listener only if the sub state has changed.
+/// Changes = Shirt .. get it :P
+// TODO: Pass the static type ot listener and then use it for casting
+public let 👔 = stateChangedFilter

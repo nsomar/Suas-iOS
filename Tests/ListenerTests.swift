@@ -66,17 +66,17 @@ class ListenerTests: XCTestCase {
     XCTAssertFalse(changed)
   }
   
-  func testItCallsTheNotifierToBeNotifiedAboutTheChange() {
+  func testItCallsTheFilterToBeNotifiedAboutTheChange() {
     let store = Suas.createStore(reducer: reducer1)
     
     var changed = false
-    var notifierCalled = true
+    var filterCalled = true
     
     store.addListener(
       withId: "1",
       type: MyState1.self,
       if: { old, new in
-        notifierCalled = true
+        filterCalled = true
         return true
     },
       callback: { val in changed = true })
@@ -84,20 +84,20 @@ class ListenerTests: XCTestCase {
     store.dispatch(action: IncrementAction())
     
     XCTAssertTrue(changed)
-    XCTAssertTrue(notifierCalled)
+    XCTAssertTrue(filterCalled)
   }
   
-  func testIfTheNotifierDoseNotCallNotifyThenCallbackIsNotCalled() {
+  func testIfTheFilterDoseNotCallNotifyThenCallbackIsNotCalled() {
     let store = Suas.createStore(reducer: reducer1)
     
     var changed = false
-    var notifierCalled = true
+    var filterCalled = true
     
     store.addListener(
       withId: "1",
       type: MyState1.self,
       if: { old, new in
-        notifierCalled = true
+        filterCalled = true
         return false
     },
       callback: { val in changed = true })
@@ -105,7 +105,7 @@ class ListenerTests: XCTestCase {
     store.dispatch(action: IncrementAction())
     
     XCTAssertFalse(changed)
-    XCTAssertTrue(notifierCalled)
+    XCTAssertTrue(filterCalled)
   }
   
   func testListnerCanListenToFullState() {
@@ -125,7 +125,7 @@ class ListenerTests: XCTestCase {
     XCTAssertTrue(keys.contains("MyState2"))
   }
   
-  func testListnerCanListenToFullStateWithNotifier() {
+  func testListnerCanListenToFullStateWithFilter() {
     let store = Suas.createStore(reducer: Reducer1() |> Reducer2())
     
     var changed = false
@@ -158,7 +158,7 @@ class ListenerTests: XCTestCase {
     XCTAssertEqual(val, 30)
   }
   
-  func testListnerCanListenToStateForKeyWithNotifierThatAlwaysCalls() {
+  func testListnerCanListenToStateForKeyWithFilterThatAlwaysReturnsTrue() {
     let store = Suas.createStore(reducer: Reducer1() |> Reducer2())
     
     var changed = false
@@ -175,7 +175,7 @@ class ListenerTests: XCTestCase {
     XCTAssertEqual(val, 30)
   }
   
-  func testListnerCanListenToStateForKeyWithNotifierThatNeverCalls() {
+  func testListnerCanListenToStateForKeyWithFilterThatNeverReturnsTrue() {
     let store = Suas.createStore(reducer: Reducer1() |> Reducer2())
     
     var changed = false
@@ -192,7 +192,7 @@ class ListenerTests: XCTestCase {
     XCTAssertEqual(val, 0)
   }
   
-  func testListnerCanListenToStateForKeyWithNotifierWithATypeThatMatches() {
+  func testListnerCanListenToStateForKeyWithFilterWithATypeThatMatches() {
     let store = Suas.createStore(reducer: Reducer1() |> Reducer2())
     
     var changed = false
@@ -242,7 +242,7 @@ class ListenerTests: XCTestCase {
     XCTAssertEqual(val, 0)
   }
   
-  func testListnerCanListenToStateForKeyAndTypeThatMatchesAndANotifier() {
+  func testListnerCanListenToStateForKeyAndTypeThatMatchesAndAFilter() {
     let store = Suas.createStore(reducer: Reducer1() |> Reducer2())
     
     var changed = false
@@ -259,7 +259,7 @@ class ListenerTests: XCTestCase {
     XCTAssertEqual(val, 30)
   }
   
-  func testListnerCanListenToStateForKeyAndTypeThatMatchesAndANotifierThatNeverNotifies() {
+  func testListnerCanListenToStateForKeyAndTypeThatMatchesAndAFilterThatNeverReturnsTrue() {
     let store = Suas.createStore(reducer: Reducer1() |> Reducer2())
     
     var changed = false
@@ -276,7 +276,7 @@ class ListenerTests: XCTestCase {
     XCTAssertEqual(val, 0)
   }
   
-  func testListnerCanListenToStateForKeyAndTypeThatMatchesAndANotifierThatAlwaysNotifiesButStateIsWrong() {
+  func testListnerCanListenToStateForKeyAndTypeThatMatchesAndAFilterThatAlwaysReturnsTrueButStateIsWrong() {
     let store = Suas.createStore(reducer: Reducer1() |> Reducer2())
     
     var changed = false

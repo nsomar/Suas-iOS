@@ -157,9 +157,9 @@ class ComponentTests: XCTestCase {
     XCTAssertEqual(component.state.strangeValue, 0)
   }
 
-  // Notifier
+  // Filter
 
-  func testWeCanConnectAStoreToAComponentWithNotifierThatAlwaysNotifies() {
+  func testWeCanConnectAStoreToAComponentWithFilterThatAlwaysNotifies() {
     let store = Suas.createStore(reducer: reducer1, state: MyState1(value: 10))
     let component = MyComponent()
 
@@ -169,7 +169,7 @@ class ComponentTests: XCTestCase {
     XCTAssertEqual(component.state.value, 11)
   }
 
-  func testWeCanConnectAStoreToAComponentWithNotifierAndStateKeyThatAlwaysNotifies() {
+  func testWeCanConnectAStoreToAComponentWithFilterAndStateKeyThatAlwaysNotifies() {
     let store = Suas.createStore(reducer: reducer1, state: MyState1(value: 10))
     let component = MyComponent()
 
@@ -190,7 +190,7 @@ class ComponentTests: XCTestCase {
     XCTAssertTrue(component.didSetCalled)
   }
 
-  func testWeCanConnectAStoreToAComponentWithNotifierThatNotifiesConditionally() {
+  func testWeCanConnectAStoreToAComponentWithFilterThatNotifiesConditionally() {
     let store = Suas.createStore(reducer: reducer1, state: MyState1(value: 10))
     let component = MyComponent()
 
@@ -203,7 +203,7 @@ class ComponentTests: XCTestCase {
     XCTAssertEqual(component.state.value, 11)
   }
 
-  func testConnectsComponentWithNotifierThatCompares() {
+  func testConnectsComponentWithFilterThatCompares() {
     let store = Suas.createStore(reducer: EquatableReducer(),
                                  state: MyEquatableState1(val: 10))
     let component = MyComponentWithEquatableState()
@@ -219,7 +219,7 @@ class ComponentTests: XCTestCase {
     XCTAssertEqual(component.didSetCalled, false)
   }
 
-  func testConnectsComponentWithNotifierThatComparesAndCalls() {
+  func testConnectsComponentWithFilterThatComparesAndCalls() {
     let store = Suas.createStore(reducer: EquatableReducer(),
                                  state: MyEquatableState1(val: 10))
     let component = MyComponentWithEquatableState()
