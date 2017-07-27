@@ -13,7 +13,7 @@ public typealias CallbackId = String
 
 public typealias ListenerFunction<Type> = (Type) -> Void
 public typealias ActionListenerFunction = (Action) -> Void
-public typealias ListenerNotifier<State> = (State, State, Listener) -> Void
+public typealias FilterFunction<State> = (State, State) -> Bool
 
 public typealias KeyedState = [StateKey: Any]
 

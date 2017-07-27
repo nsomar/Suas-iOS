@@ -163,8 +163,7 @@ class ComponentTests: XCTestCase {
     let store = Suas.createStore(reducer: reducer1, state: MyState1(value: 10))
     let component = MyComponent()
 
-    let notifier: ListenerNotifier<MyState1> = { new, old, l in l.notify(new) }
-    store.connect(component: component, notifier: notifier)
+    store.connect(component: component, if: { _, _ in return true })
     store.dispatch(action: IncrementAction())
 
     XCTAssertEqual(component.state.value, 11)
@@ -174,8 +173,7 @@ class ComponentTests: XCTestCase {
     let store = Suas.createStore(reducer: reducer1, state: MyState1(value: 10))
     let component = MyComponent()
 
-    let notifier: ListenerNotifier<MyState1> = { new, old, l in l.notify(new) }
-    store.connect(component: component, stateKey: "MyState1", notifier: notifier)
+    store.connect(component: component, stateKey: "MyState1", if: { _, _ in return true })
     store.dispatch(action: IncrementAction())
 
     XCTAssertEqual(component.state.value, 11)
@@ -185,9 +183,8 @@ class ComponentTests: XCTestCase {
     let store = Suas.createStore(reducer: reducer1, state: MyState1(value: 100))
     let component = MyComponent()
 
-    let notifier: ListenerNotifier<MyState1> = { new, old, l in l.notify(new) }
     component.didSetCalled = false
-    store.connect(component: component, stateKey: "MyState1", notifier: notifier)
+    store.connect(component: component, stateKey: "MyState1", if: { _, _ in return true })
 
     XCTAssertEqual(component.state.value, 100)
     XCTAssertTrue(component.didSetCalled)
@@ -197,13 +194,7 @@ class ComponentTests: XCTestCase {
     let store = Suas.createStore(reducer: reducer1, state: MyState1(value: 10))
     let component = MyComponent()
 
-    let notifier: ListenerNotifier<MyState1> = { new, old, l in
-      if new.value == 11 {
-        l.notify(new)
-      }
-    }
-
-    store.connect(component: component, notifier: notifier)
+    store.connect(component: component, if: { old, new in return new.value == 11 })
 
     store.dispatch(action: IncrementAction())
     XCTAssertEqual(component.state.value, 11)
@@ -219,7 +210,7 @@ class ComponentTests: XCTestCase {
 
     struct NoAction: Action { }
 
-    store.connect(component: component, notifier: compareNotifier)
+    store.connect(component: component, if: stateChangedFilter)
     component.didSetCalled = false
 
     store.dispatch(action: NoAction())
@@ -233,7 +224,7 @@ class ComponentTests: XCTestCase {
                                  state: MyEquatableState1(val: 10))
     let component = MyComponentWithEquatableState()
 
-    store.connect(component: component, notifier: compareNotifier)
+    store.connect(component: component, if: stateChangedFilter)
     store.dispatch(action: IncrementAction())
 
     XCTAssertEqual(component.state.val, 80)
