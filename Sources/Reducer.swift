@@ -102,7 +102,7 @@ extension Reducer {
 public final class BlockReducer<Type>: Reducer {
 
   /// Inital state value for this particular reducer
-  public let initialState: Any
+  public let initialState: Type
 
   /// The state key for this reducer. If not implemented the type of `initialState` will be used as a key (recommended)
   public let stateKey: String
@@ -130,12 +130,14 @@ public final class BlockReducer<Type>: Reducer {
     self.reduceFunction = reduce
   }
 
-  public func reduce(action: Action, state: Any) -> Any? {
-    guard let newState = state as? Type else { return state }
-    return self.reduceFunction(action, newState)
+  public func reduce(action: Action, state: Type) -> Type? {
+    return self.reduceFunction(action, state)
   }
 }
 
+
+/// Reducer that represents a combination of two reducers
+/// This reducers is not to be implemented by hand. This reducer is internal implementation only
 public final class CombinedReducer: Reducer {
 
   public var initialState: Any {
