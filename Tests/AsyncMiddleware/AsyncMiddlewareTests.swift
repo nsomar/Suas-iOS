@@ -24,7 +24,7 @@ class AsyncMiddlewareTests: XCTestCase {
     asyncMiddleware.next = { _ in }
     var called = false
 
-    let action = AsyncAction { (api) in
+    let action = BlockAsyncAction { (api) in
       called = true
       api.dispatch(SomeAction())
     }
@@ -32,6 +32,35 @@ class AsyncMiddlewareTests: XCTestCase {
     asyncMiddleware.onAction(action: action)
 
     XCTAssert(called == true)
+    XCTAssert(actionReceived is SomeAction)
+  }
+
+  func testItHandlesAsyncActionAndDispatchesItAsAStruct() {
+    var actionReceived: Action?
+
+    let asyncMiddleware = AsyncMiddleware()
+    asyncMiddleware.api = MiddlewareAPI(
+      dispatch: { action in actionReceived = action },
+      getState: { StoreState(dictionary: ["x" : "x"]) }
+    )
+    asyncMiddleware.next = { _ in }
+
+    class TestAsyncAction: AsyncAction {
+      static var called = false
+      var executionBlock: (MiddlewareAPI) -> ()
+
+      init() {
+        self.executionBlock = { (api) in
+          TestAsyncAction.called = true
+          api.dispatch(SomeAction())
+        }
+      }
+    }
+
+    let action = TestAsyncAction()
+    asyncMiddleware.onAction(action: action)
+
+    XCTAssert(TestAsyncAction.called == true)
     XCTAssert(actionReceived is SomeAction)
   }
 
@@ -43,7 +72,7 @@ class AsyncMiddlewareTests: XCTestCase {
     )
     asyncMiddleware.next = { _ in }
 
-    let action = AsyncAction { (api) in
+    let action = BlockAsyncAction { (api) in
       XCTAssertEqual(api.state.value(forKey: "x", ofType: String.self), "x")
     }
 
@@ -61,7 +90,7 @@ class AsyncMiddlewareTests: XCTestCase {
     asyncMiddleware.next = { _ in }
     var called = false
 
-    let action = AsyncAction { (dispatch) in
+    let action = BlockAsyncAction { (dispatch) in
       called = true
     }
 
@@ -88,7 +117,7 @@ class AsyncMiddlewareTests: XCTestCase {
     let session = DummyURLSession()
     session.dataToReturn = Data()
 
-    let action = AsyncAction.forURLSession(
+    let action = URLSessionAsyncAction(
       url: url,
       urlSession: session
     ) { data, resp, error, dispatch in
@@ -120,7 +149,7 @@ class AsyncMiddlewareTests: XCTestCase {
     let fileManager = DummyFileManager()
     fileManager.dataToReturn = Data()
 
-    let action = AsyncAction.fordiskRead(
+    let action = DiskReadAsyncAction(
       path: "xxx",
       fileManager: fileManager
     ) { data, dispatch in
@@ -155,7 +184,7 @@ class AsyncMiddlewareTests: XCTestCase {
     let fileManager = DummyFileManager()
     fileManager.dataToReturn = Data()
 
-    let action = AsyncAction.fordiskWrite(
+    let action = DiskWriteAsyncAction(
       path: "xxx",
       data: dataToWrite,
       fileManager: fileManager

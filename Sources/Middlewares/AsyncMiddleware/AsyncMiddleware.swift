@@ -37,23 +37,28 @@ import Foundation
 ///
 /// store.dispatch(action: action)
 /// ```
-public struct AsyncAction: Action {
+public protocol AsyncAction: Action {
 
-  var executionBlock: (MiddlewareAPI) -> ()
-
-
-  /// Creates an `AsyncAction`
-  ///
-  /// - Parameter executionBlock: callback to call when action is intercepted by `AsyncMiddleware`
-  public init(executionBlock: @escaping (MiddlewareAPI) -> ()) {
-    self.executionBlock = executionBlock
-  }
-
-  func execute(witMiddlewareAPI api: MiddlewareAPI) {
-    executionBlock(api)
-  }
+  /// Execution block that is executed in the `AsyncMiddleware`
+  /// If the `AsyncMiddleware` receives an `AsyncAction` it does the following:
+  /// 1. Call action.executionBlock passing in the dispatch and get state functions
+  /// 2. Stops the action from propagating to other middlewares and reducers
+  var executionBlock: (MiddlewareAPI) -> () { get set }
 }
 
+
+/// Create an `AsyncAction` inline by passing a block to the init
+/// Check `AsyncAction` for more info
+///
+/// SeeAlso:
+/// - `AsyncAction`
+public struct BlockAsyncAction: AsyncAction {
+  public var executionBlock: (MiddlewareAPI) -> ()
+
+  init(executionBlock: @escaping (MiddlewareAPI) -> ()) {
+    self.executionBlock = executionBlock
+  }
+}
 
 /// Async Middleware handles actions of type `AsyncAction`
 ///
@@ -72,7 +77,7 @@ public class AsyncMiddleware: Middleware {
     guard let api = api, let next = next else { return }
 
     if let action = action as? AsyncAction {
-      action.execute(witMiddlewareAPI: api)
+      action.executionBlock(api)
       return
     }
 

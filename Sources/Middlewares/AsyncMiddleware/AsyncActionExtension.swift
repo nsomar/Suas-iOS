@@ -18,7 +18,9 @@ public typealias DiskReadActionCompletionBlock = (Data?, DispatchFunction) -> Vo
 /// Callback called when Disk IO write operation completes
 public typealias DiskWriteActionCompletionBlock = (Bool, DispatchFunction) -> Void
 
-extension AsyncAction {
+
+public struct URLSessionAsyncAction: AsyncAction {
+  public var executionBlock: (MiddlewareAPI) -> ()
 
   /// Create a URLSession AsyncAction
   ///
@@ -27,14 +29,11 @@ extension AsyncAction {
   ///   - urlSession: the url session to use (optional)
   ///   - completionBlock: callback to call when the url operation is ended. In this block `dispatch` is used to dispatch new actions
   /// - Returns: an async action to dispatch
-  public static func forURLSession(url: URL,
-                                   urlSession: URLSession = URLSession(configuration: .default),
-                                   completionBlock: @escaping URLSessionActionCompletionBlock) -> AsyncAction {
-    return forURLSession(urlRequest: URLRequest(url: url),
-                         urlSession: urlSession,
-                         completionBlock: completionBlock)
+  init(url: URL,
+       urlSession: URLSession = URLSession(configuration: .default),
+       completionBlock: @escaping URLSessionActionCompletionBlock) {
+    self.init(urlRequest: URLRequest(url: url), urlSession: urlSession, completionBlock: completionBlock)
   }
-
 
   /// Create a URLSession AsyncAction
   ///
@@ -43,11 +42,11 @@ extension AsyncAction {
   ///   - urlSession: the url session to use (optional)
   ///   - completionBlock: callback to call when the url operation is ended. In this block `dispatch` is used to dispatch new actions
   /// - Returns: an async action to dispatch
-  static func forURLSession(urlRequest: URLRequest,
-                            urlSession: URLSession = URLSession(configuration: .default),
-                            completionBlock: @escaping URLSessionActionCompletionBlock) -> AsyncAction {
+  init(urlRequest: URLRequest,
+       urlSession: URLSession = URLSession(configuration: .default),
+       completionBlock: @escaping URLSessionActionCompletionBlock) {
 
-    return AsyncAction { api in
+    self.executionBlock = { api in
       urlSession.dataTask(with: urlRequest) { data, response, error in
         completionBlock(data, response, error, api.dispatch)
         }.resume()
@@ -55,10 +54,10 @@ extension AsyncAction {
   }
 }
 
-extension AsyncAction {
+public struct DiskReadAsyncAction: AsyncAction {
+  static let defaultDispatchQueue = DispatchQueue(label: "DISK_READ_ASYNC_ACTION")
 
-  public static let defaultDispatchQueue = DispatchQueue(label: "IOMIDDLEWARE_IO_QUEUE")
-
+  public var executionBlock: (MiddlewareAPI) -> ()
 
   /// Create a Read DiskIO AsyncAction
   ///
@@ -68,12 +67,12 @@ extension AsyncAction {
   ///   - dispatchQueue: the dispatch queue to use when accessing disk (optional, defaults to `DispatchQueue(label: "IOMIDDLEWARE_IO_QUEUE"))
   ///   - completionBlock: callback to call when data is read from disk. In this block `dispatch` is used to dispatch new actions
   /// - Returns: an async action to dispatch
-  public static func fordiskRead(path: String,
-                                 fileManager: FileManager = .default,
-                                 dispatchQueue: DispatchQueue = defaultDispatchQueue,
-                                 completionBlock: @escaping DiskReadActionCompletionBlock) -> AsyncAction {
+  public init(path: String,
+              fileManager: FileManager = .default,
+              dispatchQueue: DispatchQueue = defaultDispatchQueue,
+              completionBlock: @escaping DiskReadActionCompletionBlock) {
 
-    return AsyncAction { api in
+    self.executionBlock = { api in
 
       dispatchQueue.async {
         if
@@ -85,6 +84,12 @@ extension AsyncAction {
     }
   }
 
+}
+
+public struct DiskWriteAsyncAction: AsyncAction {
+  static let defaultDispatchQueue = DispatchQueue(label: "DISK_WRITE_ASYNC_ACTION")
+
+  public var executionBlock: (MiddlewareAPI) -> ()
 
   /// Create a Write DiskIO AsyncAction
   ///
@@ -95,13 +100,13 @@ extension AsyncAction {
   ///   - dispatchQueue: the dispatch queue to use when accessing disk (optional, defaults to `DispatchQueue(label: "IOMIDDLEWARE_IO_QUEUE"))
   ///   - completionBlock: callback to call when data is read from disk. In this block `dispatch` is used to dispatch new actions
   /// - Returns: an async action to dispatch
-  public static func fordiskWrite(path: String,
-                                  data: Data,
-                                  fileManager: FileManager = .default,
-                                  dispatchQueue: DispatchQueue = defaultDispatchQueue,
-                                  completionBlock: @escaping DiskWriteActionCompletionBlock) -> AsyncAction {
-    
-    return AsyncAction { api in
+  public init(path: String,
+              data: Data,
+              fileManager: FileManager = .default,
+              dispatchQueue: DispatchQueue = defaultDispatchQueue,
+              completionBlock: @escaping DiskWriteActionCompletionBlock) {
+
+    self.executionBlock = { api in
 
       dispatchQueue.async {
         let result = fileManager.createFile(atPath: path, contents: data, attributes: nil)
@@ -109,4 +114,5 @@ extension AsyncAction {
       }
     }
   }
+
 }
