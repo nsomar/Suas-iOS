@@ -74,26 +74,13 @@ extension Suas.DefaultStore {
   
   func connect<C: Component>(
     component: C,
-    stateConverter: StateConverter<StoreState, C.StateType>) {
+    stateConverter: @escaping StateConverter<C.StateType>) {
     
     performConnect(component: component,
                    forStateKey: nil,
                    withStateConverter: stateConverter)
     
     setInitialData(component: component)
-  }
-  
-  func connect<C, ExpectedType>(
-    component: C,
-    stateKey: StateKey,
-    stateConverter: StateConverter<ExpectedType, C.StateType>)
-    where C : Component {
-      
-      performConnect(component: component,
-                     forStateKey: stateKey,
-                     withStateConverter: stateConverter)
-      
-      setInitialData(component: component)
   }
   
   private func setInitialData<C: Component>(component: C) {
@@ -186,10 +173,10 @@ extension Suas.DefaultStore {
                      callbackId: callbackId) { self.removeListener(withId: callbackId) }
   }
   
-  fileprivate func performConnect<C, ExpectedType>(
+  fileprivate func performConnect<C>(
     component: C,
     forStateKey stateKey: StateKey?,
-    withStateConverter stateConverter: StateConverter<ExpectedType, C.StateType>)
+    withStateConverter stateConverter: @escaping StateConverter<C.StateType>)
     where C : Component {
       
       let callbackId = getId(forAny: component)
@@ -197,8 +184,8 @@ extension Suas.DefaultStore {
       performAddListener(
         withId: callbackId,
         stateKey: stateKey,
-        type: ExpectedType.self) { [weak component] (newState: ExpectedType) in
-          guard let convertedValue = stateConverter.convert(newState) else {
+        type: StoreState.self) { [weak component] (newState: StoreState) in
+          guard let convertedValue = stateConverter(newState) else {
             Suas.log("State is not convertable to \(C.StateType.self)\n\(newState)")
             return
           }

@@ -93,15 +93,7 @@ public protocol Store {
   ///   - component: the component to connect
   ///   - stateConverter: a converter that converts the `StoreState` to the actual type used by the component
   func connect<C: Component>(component: C,
-                             stateConverter: StateConverter<StoreState, C.StateType>)
-  
-  /// Connects a component to the store
-  ///
-  /// - Parameters:
-  ///   - component: the component to connect
-  ///   - stateConverter: a converter that converts the `ExpectedType` to the actual type used by the component
-  func connect<C: Component, ExpectedType>(component: C, stateKey: StateKey,
-                                           stateConverter: StateConverter<ExpectedType, C.StateType>)
+                             stateConverter: @escaping StateConverter<C.StateType>)
   
   
   /// Connects an action listener to a component. Only 1 action listner can be connected for a Component

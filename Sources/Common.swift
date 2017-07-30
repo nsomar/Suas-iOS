@@ -15,6 +15,8 @@ public typealias ListenerFunction<Type> = (Type) -> Void
 public typealias ActionListenerFunction = (Action) -> Void
 public typealias FilterFunction<State> = (State, State) -> Bool
 
+public typealias StateConverter<ToType> =  (StoreState) -> (ToType?)
+
 public typealias KeyedState = [StateKey: Any]
 
 public typealias ReducerFunction<Type> = (Action, Type) -> Type?

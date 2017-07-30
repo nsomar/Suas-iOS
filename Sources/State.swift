@@ -190,11 +190,3 @@ extension StoreState: ExpressibleByDictionaryLiteral {
     elements.forEach({ self.innerState[$0.0] = $0.1 })
   }
 }
-
-public struct StateConverter<From, To> {
-  public let convert: (From) -> (To?)
-
-  public init(convert: @escaping (From) -> (To?)) {
-    self.convert = convert
-  }
-}

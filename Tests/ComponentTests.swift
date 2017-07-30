@@ -101,7 +101,7 @@ class ComponentTests: XCTestCase {
     let store = Suas.createStore(reducer: Reducer1() |> Reducer2())
     let component = MyComponentWithStrangeState()
 
-    let strangeStateConverter = StateConverter<StoreState, StrangeState> { state in
+    let strangeStateConverter: StateConverter<StrangeState> = { state in
       return StrangeState(strangeValue: state.value(forKeyOfType: MyState1.self)?.value ?? -1)
     }
 
@@ -112,41 +112,11 @@ class ComponentTests: XCTestCase {
     XCTAssertEqual(component.state.strangeValue, 30)
   }
 
-  func testComponentWithStateConverterForAKey() {
-    let store = Suas.createStore(reducer: Reducer1() |> Reducer2())
-    let component = MyComponentWithStrangeState()
-
-    let strangeStateConverter = StateConverter<MyState1, StrangeState> { state in
-      return StrangeState(strangeValue: state.value)
-    }
-
-    component.state = StrangeState(strangeValue: 0)
-    store.connect(component: component, stateKey: "MyState1", stateConverter: strangeStateConverter)
-    store.dispatch(action: IncrementAction())
-
-    XCTAssertEqual(component.state.strangeValue, 30)
-  }
-
-  func testComponentWithStateConverterForAKeyThatDoesNotConvert() {
-    let store = Suas.createStore(reducer: Reducer1() |> Reducer2())
-    let component = MyComponentWithStrangeState()
-
-    let strangeStateConverter = StateConverter<MyState1, StrangeState> { state in
-      return nil
-    }
-
-    component.state = StrangeState(strangeValue: 0)
-    store.connect(component: component, stateKey: "MyState1", stateConverter: strangeStateConverter)
-    store.dispatch(action: IncrementAction())
-
-    XCTAssertEqual(component.state.strangeValue, 0)
-  }
-
   func testConnectsToComponentWithStateConverterThatCannotConvert() {
     let store = Suas.createStore(reducer: Reducer1() |> Reducer2())
     let component = MyComponentWithStrangeState()
 
-    let strangeStateConverter = StateConverter<StoreState, StrangeState> { state in
+    let strangeStateConverter: StateConverter<StrangeState> = { state in
       return nil
     }
 

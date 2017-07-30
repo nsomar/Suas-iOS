@@ -12,20 +12,20 @@ import XCTest
 class StateConverterTests: XCTestCase {
 
   func testItConvertsATypeToAnother() {
-    let converter = StateConverter<StoreState, MyState1> { state in
+    let converter: StateConverter<MyState1> = { state in
       return MyState1(value: state.value(forKey: "myKey", ofType: Int.self)!)
     }
 
-    let state = converter.convert(["myKey": 10])
+    let state = converter(["myKey": 10])
     XCTAssertEqual(state!.value, 10)
   }
 
   func testItReturnNulIfCannotBeConverted() {
-    let converter = StateConverter<StoreState, MyState1> { state in
+    let converter: StateConverter<MyState1> = { state in
       return nil
     }
 
-    let state = converter.convert(["myKey": 10])
+    let state = converter(["myKey": 10])
     XCTAssertNil(state)
   }
 }
