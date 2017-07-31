@@ -12,14 +12,14 @@ import Foundation
 /// Store that contains the application single state, the reducer logic, the middleware and the listeners
 ///
 /// The store contains four components
-/// - **state**: represents the application state. This state is partitioned into state keys. Each key can represents a full application screen, flow, component, or view controller.
+/// - **state**: represents the application state. This state is partitioned into state keys. Each key can represents a full application screen, flow, or view controller.
 /// - **reducer** represents the logic to update the state. A reducer mainly provides a function that updates the state for a paticular action.
 /// - **middleware**: an object (or list of objects) that intercept an action and can enrich or alter it before finally dispatching it to the reducer.
 /// - **listener**: a function that gets called when a state is changed.
 public protocol Store {
   
   /// Get the store state
-  var state: StoreState { get }
+  var state: State { get }
   
   /// Reset the store internal state for a particular key. They key will be the dynamic type of state
   ///
@@ -35,14 +35,6 @@ public protocol Store {
   func reset(state: Any, forKey key: StateKey)
   
   
-  /// Reset the store internal state for a specific component
-  ///
-  /// - Parameters:
-  ///   - state: the new state to set
-  ///   - component: the component to reset state for
-  func reset<S, C: Component>(state: S, forComponent component: C) where C.StateType == S
-  
-  
   /// Resets the full internal state with a new state
   ///
   /// - Parameter state: the state to reset to
@@ -55,66 +47,12 @@ public protocol Store {
   func dispatch(action: Action)
   
   
-  /// Connects a component to the store
-  ///
-  /// - Parameter component: the component to connect
-  func connect<C: Component>(component: C)
-  
-  
-  /// Connects a component to the store
-  ///
-  /// - Parameter:
-  ///   - component: the component to connect
-  ///   - filterBlock: block to decide wheter to notify or not
-  func connect<C: Component>(component: C,
-                             if filterBlock: @escaping FilterFunction<C.StateType>)
-  
-  
-  /// Connects a component to the store
+  /// Add a new listner to the store
   ///
   /// - Parameters:
-  ///   - Parameter component: the component to connect
-  ///   - stateKey: the state key to connect to in the state
-  func connect<C: Component>(component: C, stateKey: StateKey)
-  
-  
-  /// Connects a component to the store
-  ///
-  /// - Parameter:
-  ///   - component: the component to connect
-  ///   - filterBlock: block to decide wheter to notify or not
-  func connect<C: Component>(component: C, stateKey: StateKey,
-                             if filterBlock: @escaping FilterFunction<C.StateType>)
-  
-  
-  /// Connects a component to the store
-  ///
-  /// - Parameters:
-  ///   - component: the component to connect
-  ///   - stateConverter: a converter that converts the `StoreState` to the actual type used by the component
-  func connect<C: Component>(component: C,
-                             stateConverter: @escaping StateConverter<C.StateType>)
-  
-  
-  /// Connects an action listener to a component. Only 1 action listner can be connected for a Component
-  ///
-  /// - Parameters:
-  ///   - component: the component to connects it to
-  ///   - listener: the action listner to connect
-  func connectActionListener<C: Component>(toComponent component: C,
-                                           actionListener: @escaping ActionListenerFunction)
-  
-  
-  /// Disonnects a component from the store
-  ///
-  /// - Parameter component: the component to disconnect
-  func disconnect<C: Component>(component: C)
-  
-  
-  /// Disconnect an action listener that was added for component
-  ///
-  /// - Parameter component: component to disconnect
-  func disconnectActionListener<C: Component>(forComponent component: C)
+  ///   - id: the listener id to be used when removing the listener
+  ///   - callback: callback to be notified when state changed
+  func addListener(withId id: CallbackId, callback: @escaping (State) -> ())
   
   
   /// Add a new listner to the store
@@ -122,29 +60,9 @@ public protocol Store {
   /// - Parameters:
   ///   - id: the listener id to be used when removing the listener
   ///   - callback: callback to be notified when state changed
-  func addListener(withId id: CallbackId, callback: @escaping (StoreState) -> ())
-  
-  
-  /// Add a new listner to the store
-  ///
-  /// - Parameters:
-  ///   - id: the listener id to be used when removing the listener
-  ///   - stateKey: the state key to listen for changes
-  ///   - callback: callback to be notified when state changed
-  func addListener<State>(withId id: CallbackId, stateKey: StateKey,
-                          callback: @escaping (State) -> ())
-  
-  
-  /// Add a new listner to the store
-  ///
-  /// - Parameters:
-  ///   - id: the listener id to be used when removing the listener
-  ///   - stateKey: the state key to listen for changes
-  ///   - filterBlock: block to decide wheter to notify or not
-  ///   - callback: callback to be notified when state changed
-  func addListener<State>(withId id: CallbackId, stateKey: StateKey,
-                          if filterBlock: @escaping FilterFunction<State>,
-                          callback: @escaping (State) -> ())
+  func addListener<StateType>(withId id: CallbackId,
+                              stateConverter: @escaping StateConverter<StateType>,
+                              callback: @escaping (StateType) -> ())
   
   
   /// Add a new listner to the store
@@ -154,8 +72,8 @@ public protocol Store {
   ///   - filterBlock: block to decide wheter to notify or not
   ///   - callback: callback to be notified when state changed
   func addListener(withId id: CallbackId,
-                   if filterBlock: @escaping FilterFunction<StoreState>,
-                   callback: @escaping (StoreState) -> ())
+                   if filterBlock: @escaping FilterFunction<State>,
+                   callback: @escaping (State) -> ())
   
   
   /// Add a new listner to the store
@@ -164,8 +82,8 @@ public protocol Store {
   ///   - id: the listener id to be used when removing the listener
   ///   - type: the type of the state callback
   ///   - callback: callback to be notified when state changed
-  func addListener<State>(withId id: CallbackId, type: State.Type,
-                          callback: @escaping (State) -> ())
+  func addListener<StateType>(withId id: CallbackId, type: StateType.Type,
+                              callback: @escaping (StateType) -> ())
   
   
   /// Add a new listner to the store
@@ -175,9 +93,9 @@ public protocol Store {
   ///   - type: the type of the state callback
   ///   - filterBlock: block to decide wheter to notify or not
   ///   - callback: callback to be notified when state changed
-  func addListener<State>(withId id: CallbackId, type: State.Type,
-                          if filterBlock: @escaping FilterFunction<State>,
-                          callback: @escaping (State) -> ())
+  func addListener<StateType>(withId id: CallbackId, type: StateType.Type,
+                              if filterBlock: @escaping FilterFunction<StateType>,
+                              callback: @escaping (StateType) -> ())
   
   
   /// Add a new listner to the store
@@ -187,8 +105,8 @@ public protocol Store {
   ///   - stateKey: the state key to listen for changes
   ///   - type: the type of the state callback
   ///   - callback: callback to be notified when state changed
-  func addListener<State>(withId id: CallbackId, stateKey: StateKey,
-                          type: State.Type, callback: @escaping (State) -> ())
+  func addListener<StateType>(withId id: CallbackId, stateKey: StateKey,
+                              type: StateType.Type, callback: @escaping (StateType) -> ())
   
   
   /// Add a new listner to the store
@@ -199,10 +117,10 @@ public protocol Store {
   ///   - type: the type of the state callback
   ///   - filterBlock: block to decide wheter to notify or not
   ///   - callback: callback to be notified when state changed
-  func addListener<State>(withId id: CallbackId, stateKey: StateKey,
-                          type: State.Type,
-                          if filterBlock: @escaping FilterFunction<State>,
-                          callback: @escaping (State) -> ())
+  func addListener<StateType>(withId id: CallbackId, stateKey: StateKey,
+                              type: StateType.Type,
+                              if filterBlock: @escaping FilterFunction<StateType>,
+                              callback: @escaping (StateType) -> ())
   
   
   /// Remove a listener from the store
@@ -274,7 +192,7 @@ extension Suas {
   /// )
   /// ```
   public static func createStore<R: Reducer>(reducer: R,
-                                             state: StoreState,
+                                             state: State,
                                              middleware: Middleware? = nil) -> Store {
     return performCreateStore(
       reducer: reducer,
@@ -326,9 +244,9 @@ extension Suas {
   ///   reducer: MyReducer() |> MyOtherReducer()
   /// )
   /// ```
-  public static func createStore<R: Reducer, S>(reducer: R,
-                                                state: S,
-                                                middleware: Middleware? = nil) -> Store {
+  public static func createStore<R: Reducer, StateType>(reducer: R,
+                                                        state: StateType,
+                                                        middleware: Middleware? = nil) -> Store {
     return performCreateStore(
       reducer: reducer,
       state: ["\(type(of: state))": state],
@@ -383,7 +301,20 @@ extension Suas {
   public static func createStore<R: Reducer>(reducer: R,
                                              middleware: Middleware? = nil) -> Store {
     return createStore(reducer: reducer,
-                       state: StoreState(dictionary: reducer.stateDict),
+                       state: State(dictionary: reducer.stateDict),
                        middleware: middleware)
   }
+  
 }
+
+/// Action that is to be dispatched to the store
+///
+/// -----
+/// **Example**
+///
+/// ```
+/// struct ButtonTappedAction: Action { }
+///
+/// store.dispatch(action: ButtonTappedAction())
+/// ```
+public protocol Action {}

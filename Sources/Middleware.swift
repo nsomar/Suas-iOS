@@ -12,18 +12,18 @@ import Swift
 
 /// Middleware api parameters to be used when dispatching a new action from a middleware. Or to get the current state that the store has
 public struct MiddlewareAPI {
-
+  
   /// Dispatch function to be used from the middleware to dispatch
   public var dispatch: DispatchFunction
-
+  
   /// Gets the current state that the store has
-  public var state: StoreState {
+  public var state: State {
     return getState()
   }
-
+  
   var getState: GetStateFunction
-
-
+  
+  
   public init(dispatch: @escaping DispatchFunction, getState: @escaping GetStateFunction) {
     self.dispatch = dispatch
     self.getState = getState
@@ -57,13 +57,13 @@ public struct MiddlewareAPI {
 /// ```
 ///
 public protocol Middleware: class {
-
+  
   /// The middleware api that allows a middleware to dispatcha an action and read the store current state
   var api: MiddlewareAPI? { get set }
-
+  
   /// Function representing the next middleware action. In the last middleware next represents the dispatcher function which causes a state change when called
   var next: DispatchFunction? { get set }
-
+  
   /// Function called when an action is dispatched
   ///
   /// - Parameter action: the dispatched action
@@ -86,15 +86,15 @@ public protocol Middleware: class {
 /// }
 /// ```
 public final class BlockMiddleware: Middleware {
-
+  
   /// The middleware api that allows a middleware to dispatcha an action and read the store current state
   public var api: MiddlewareAPI?
-
+  
   /// Function representing the next middleware action. In the last middleware next represents the dispatcher function which causes a state change when called
   public var next: DispatchFunction?
   
   private let middlewareFunction: MiddlewareFunction
-
+  
   /// Create a middleware with a callback block
   ///
   /// - Parameter actionFunction: block to be called with the action, the middleware api (containing the disptach function and the state) and the next action callback

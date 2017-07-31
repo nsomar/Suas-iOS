@@ -129,40 +129,6 @@ class EquatableReducer: Reducer {
   }
 }
 
-
-class MyComponent: NSObject, Component {
-  var didSetCalled = false
-  var state: MyState1 = MyState1(value: 10) {
-    didSet{
-      didSetCalled = true
-    }
-  }
-}
-
-struct StrangeState {
-  let strangeValue: Int
-}
-
-class MyComponentWithStrangeState: NSObject, Component {
-  var didSetCalled = false
-  var state: StrangeState = StrangeState(strangeValue: 10) {
-    didSet {
-      didSetCalled = true
-    }
-  }
-}
-
-
-class MyComponentWithEquatableState: Component {
-  var didSetCalled = false
-  var state: MyEquatableState1 = MyEquatableState1(val: 10) {
-    didSet{
-      didSetCalled = true
-    }
-  }
-}
-
-
 let middleware1 = BlockMiddleware { action, api, next in
   next(action)
 }
@@ -170,4 +136,3 @@ let middleware1 = BlockMiddleware { action, api, next in
 let middleware2 = BlockMiddleware { action, api, next in
   next(action)
 }
-

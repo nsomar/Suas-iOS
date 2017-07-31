@@ -77,7 +77,7 @@ class LoggerMiddlewareTests: XCTestCase {
 
   func testItPrintsIfPredicatePasses() {
     var logged = ""
-    var stateReceived: StoreState?
+    var stateReceived: State?
     var actionReceived: Action?
 
     let log = LoggerMiddleware(
@@ -127,7 +127,7 @@ class LoggerMiddlewareTests: XCTestCase {
     log.next = { _ in }
     log.onAction(action: SomeAction())
 
-    XCTAssertEqual(logged, "┌───→ Action: SomeAction\n├─ Prev state ► StoreState(innerState: [\"a\": \"111\"])\n├─ Action     ► NewAction\n├─ Next state ► StoreState(innerState: [\"a\": \"111\"])\n└───────────────────────")
+    XCTAssertEqual(logged, "┌───→ Action: SomeAction\n├─ Prev state ► State(innerState: [\"a\": \"111\"])\n├─ Action     ► NewAction\n├─ Next state ► State(innerState: [\"a\": \"111\"])\n└───────────────────────")
   }
 
   func testItTransformsTheState() {
@@ -172,7 +172,7 @@ class LoggerMiddlewareTests: XCTestCase {
     XCTAssert(action is SomeAction)
     XCTAssertNotNil(date)
     XCTAssert(time != 0)
-    XCTAssertEqual(logged, "XXXXX:\n├─ Prev state ► StoreState(innerState: [\"a\": \"111\"])\n├─ Action     ► SomeAction(value: 10)\n├─ Next state ► StoreState(innerState: [\"a\": \"111\"])\n└─────")
+    XCTAssertEqual(logged, "XXXXX:\n├─ Prev state ► State(innerState: [\"a\": \"111\"])\n├─ Action     ► SomeAction(value: 10)\n├─ Next state ► State(innerState: [\"a\": \"111\"])\n└─────")
   }
 
   func testItPrintsMultiLineWithNoLength() {
@@ -188,7 +188,7 @@ class LoggerMiddlewareTests: XCTestCase {
   func api(forState: Any) -> MiddlewareAPI {
     return MiddlewareAPI(
       dispatch: { _ in },
-      getState: { return StoreState(dictionary: ["a": forState]) }
+      getState: { return State(dictionary: ["a": forState]) }
     )
   }
 }

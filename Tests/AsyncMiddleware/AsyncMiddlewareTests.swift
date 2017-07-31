@@ -19,7 +19,7 @@ class AsyncMiddlewareTests: XCTestCase {
     let asyncMiddleware = AsyncMiddleware()
     asyncMiddleware.api = MiddlewareAPI(
       dispatch: { action in actionReceived = action },
-      getState: { StoreState(dictionary: ["x" : "x"]) }
+      getState: { State(dictionary: ["x" : "x"]) }
     )
     asyncMiddleware.next = { _ in }
     var called = false
@@ -41,7 +41,7 @@ class AsyncMiddlewareTests: XCTestCase {
     let asyncMiddleware = AsyncMiddleware()
     asyncMiddleware.api = MiddlewareAPI(
       dispatch: { action in actionReceived = action },
-      getState: { StoreState(dictionary: ["x" : "x"]) }
+      getState: { State(dictionary: ["x" : "x"]) }
     )
     asyncMiddleware.next = { _ in }
 
@@ -68,7 +68,7 @@ class AsyncMiddlewareTests: XCTestCase {
     let asyncMiddleware = AsyncMiddleware()
     asyncMiddleware.api = MiddlewareAPI(
       dispatch: { _ in },
-      getState: { StoreState(dictionary: ["x" : "x"]) }
+      getState: { State(dictionary: ["x" : "x"]) }
     )
     asyncMiddleware.next = { _ in }
 
@@ -85,7 +85,7 @@ class AsyncMiddlewareTests: XCTestCase {
     let asyncMiddleware = AsyncMiddleware()
     asyncMiddleware.api = MiddlewareAPI(
       dispatch: { action in actionReceived = action },
-      getState: { StoreState(dictionary: ["x" : "x"]) }
+      getState: { State(dictionary: ["x" : "x"]) }
     )
     asyncMiddleware.next = { _ in }
     var called = false
@@ -106,7 +106,7 @@ class AsyncMiddlewareTests: XCTestCase {
     let asyncMiddleware = AsyncMiddleware()
     asyncMiddleware.api = MiddlewareAPI(
       dispatch: { action in actionReceived = action },
-      getState: { StoreState(dictionary: ["x" : "x"]) }
+      getState: { State(dictionary: ["x" : "x"]) }
     )
     asyncMiddleware.next = { _ in }
     var called = false
@@ -140,7 +140,7 @@ class AsyncMiddlewareTests: XCTestCase {
     let asyncMiddleware = AsyncMiddleware()
     asyncMiddleware.api = MiddlewareAPI(
       dispatch: { action in actionReceived = action },
-      getState: { StoreState(dictionary: ["x" : "x"]) }
+      getState: { State(dictionary: ["x" : "x"]) }
     )
     asyncMiddleware.next = { _ in }
     var called = false
@@ -175,7 +175,7 @@ class AsyncMiddlewareTests: XCTestCase {
     let asyncMiddleware = AsyncMiddleware()
     asyncMiddleware.api = MiddlewareAPI(
       dispatch: { action in actionReceived = action },
-      getState: { StoreState(dictionary: ["x" : "x"]) }
+      getState: { State(dictionary: ["x" : "x"]) }
     )
     asyncMiddleware.next = { _ in }
     var called = false

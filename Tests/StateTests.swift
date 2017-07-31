@@ -9,7 +9,7 @@
 import XCTest
 @testable import Suas
 
-class StoreStateTests: XCTestCase {
+class StateTests: XCTestCase {
 
   func testItImplementsRuntimeEquatable() {
     let v1 = MyEquatableState1(val: 10)
@@ -20,89 +20,64 @@ class StoreStateTests: XCTestCase {
   }
 
   func testItCanBeCreatedFromADictionary() {
-    let s: StoreState = ["a" : 2]
+    let s: State = ["a" : 2]
     XCTAssertEqual(Array(s.innerState.keys), ["a"])
     XCTAssertEqual(Array(s.innerState.values) as! [Int], [2])
   }
 
   func testItCanGetAValueForAKey() {
-    let s: StoreState = ["a" : 2]
+    let s: State = ["a" : 2]
     XCTAssertEqual(s["a"] as! Int, 2)
   }
 
 #if swift(>=4.0)
   func testItCanGetAValueForAKeyAndType() {
-    let s: StoreState = ["a" : 2]
+    let s: State = ["a" : 2]
     XCTAssertEqual(s[forKey: "a", ofType: Int.self], 2)
   }
 
   func testItReturnNulIfKeyIsNotFoundOrIsOfWrongType() {
-    let s: StoreState = ["a" : 2]
+    let s: State = ["a" : 2]
     XCTAssertEqual(s[forKey: "a", ofType: String.self], nil)
     XCTAssertEqual(s[forKey: "x", ofType: Int.self], nil)
   }
 
   func testItCanGetAValueForAType() {
-    let s: StoreState = ["Int" : 2]
+    let s: State = ["Int" : 2]
     XCTAssertEqual(s[forKeyOfType: Int.self], 2)
   }
 
   func testItCanGetAValueForATypeAndReturnNilIfNotFound() {
-    let s: StoreState = ["Int" : "xxx"]
+    let s: State = ["Int" : "xxx"]
     XCTAssertEqual(s[forKeyOfType: String.self], nil)
     XCTAssertEqual(s[forKeyOfType: Int.self], nil)
   }
 #endif
 
   func testItCanGetAValueForAKeySwift3() {
-    let s: StoreState = ["a" : 2]
+    let s: State = ["a" : 2]
     XCTAssertEqual(s.value(forKey: "a") as! Int, 2)
   }
 
-  func testItCanGetAValueForAKeyOrFail() {
-    let s: StoreState = ["a" : 2]
-    XCTAssertEqual(s.valueOrFail(forKey: "a") as! Int, 2)
-  }
-
   func testItCanGetAValueForAKeyAndTypeSwift3() {
-    let s: StoreState = ["a" : 2]
+    let s: State = ["a" : 2]
     XCTAssertEqual(s.value(forKey: "a", ofType: Int.self), 2)
   }
 
-  func testItCanGetAValueForAKeyAndTypeOrFail() {
-    let s: StoreState = ["a" : 2]
-    XCTAssertEqual(s.valueOrFail(forKey: "a", ofType: Int.self), 2)
-  }
-
   func testItReturnNulIfKeyIsNotFoundOrIsOfWrongTypeSwift3() {
-    let s: StoreState = ["a" : 2]
+    let s: State = ["a" : 2]
 
     XCTAssertEqual(s.value(forKey: "a", ofType: String.self), nil)
     XCTAssertEqual(s.value(forKey: "x", ofType: Int.self), nil)
   }
 
   func testItCanGetAValueForATypeSwift3() {
-    let s: StoreState = ["Int" : 2]
+    let s: State = ["Int" : 2]
     XCTAssertEqual(s.value(forKeyOfType: Int.self), 2)
   }
 
-  func testItCanGetAValueForAComponentType() {
-    let s: StoreState = ["MyState1" : MyState1(value: 1)]
-    XCTAssertEqual(s.value(forComponentType: MyComponent.self)?.value, 1)
-  }
-
-  func testItCanGetAValueForAComponentTypeAndKey() {
-    let s: StoreState = ["abc" : MyState1(value: 12)]
-    XCTAssertEqual(s.value(forKey: "abc", componentType: MyComponent.self)?.value, 12)
-  }
-
-  func testItCanGetAValueForAComponentTypeAndKeyOrFail() {
-    let s: StoreState = ["abc" : MyState1(value: 12)]
-    XCTAssertEqual(s.valueOrFail(forKey: "abc", componentType: MyComponent.self).value, 12)
-  }
-
   func testItCanGetAValueForATypeAndReturnNilIfNotFoundSwift3() {
-    let s: StoreState = ["Int" : "xxx"]
+    let s: State = ["Int" : "xxx"]
 
     XCTAssertEqual(s.value(forKeyOfType: String.self), nil)
     XCTAssertEqual(s.value(forKeyOfType: Int.self), nil)

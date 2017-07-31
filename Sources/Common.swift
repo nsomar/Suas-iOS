@@ -13,9 +13,9 @@ public typealias CallbackId = String
 
 public typealias ListenerFunction<Type> = (Type) -> Void
 public typealias ActionListenerFunction = (Action) -> Void
-public typealias FilterFunction<State> = (State, State) -> Bool
+public typealias FilterFunction<StateType> = (StateType, StateType) -> Bool
 
-public typealias StateConverter<ToType> =  (StoreState) -> (ToType?)
+public typealias StateConverter<ToType> =  (State) -> (ToType?)
 
 public typealias KeyedState = [StateKey: Any]
 
@@ -24,7 +24,7 @@ public typealias DispatchFunction = (Action) -> Void
 public typealias NextFunction = DispatchFunction
 
 public typealias MiddlewareFunction = (Action, MiddlewareAPI, NextFunction) -> Void
-public typealias GetStateFunction = () -> StoreState
+public typealias GetStateFunction = () -> State
 
 infix operator |> : AdditionPrecedence
 

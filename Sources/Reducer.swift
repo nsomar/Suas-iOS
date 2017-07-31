@@ -37,13 +37,13 @@ import Foundation
 /// Note: Returning `nil` from `reduce` signifies that the state did not change which will not inform the listeners
 public protocol Reducer {
   associatedtype StateType
-
+  
   /// Inital state value for this particular reducer
   var initialState: StateType { get }
-
+  
   /// The state key for this reducer. If not implemented the type of `initialState` will be used as a key (recommended)
   var stateKey: StateKey { get }
-
+  
   /// Generates a new state from the old state and an action
   ///
   /// - Parameters:
@@ -61,7 +61,7 @@ extension Reducer {
       Suas.log("When reducing state of type \(type(of: state)) was not convertible to \(Self.StateType.self)\nstate: \(state)")
       return state
     }
-
+    
     return reduce(action: action, state: newState)
   }
 }
@@ -70,7 +70,7 @@ extension Reducer {
   public var stateKey: StateKey {
     return "\(type(of: initialState))"
   }
-
+  
   var stateDict: KeyedState {
     if let reducer = self as? CombinedReducer {
       return reducer.states
@@ -99,38 +99,38 @@ extension Reducer {
 /// ```
 ///
 /// Note: Returning `nil` from `BlockReducer` signifies that the state did not change which will not inform the listeners
-public final class BlockReducer<Type>: Reducer {
-
+public final class BlockReducer<StateType>: Reducer {
+  
   /// Inital state value for this particular reducer
-  public let initialState: Type
-
+  public let initialState: StateType
+  
   /// The state key for this reducer. If not implemented the type of `initialState` will be used as a key (recommended)
   public let stateKey: String
-
-  private let reduceFunction: ReducerFunction<Type>
-
+  
+  private let reduceFunction: ReducerFunction<StateType>
+  
   /// Create a reducer with a state and a reduce function
   ///
   /// - Parameters:
   ///   - state: the initial state of the reducer
   ///   - reduce: the reduce function
-  public convenience init(state: Type, reduce: @escaping ReducerFunction<Type>) {
+  public convenience init(state: StateType, reduce: @escaping ReducerFunction<StateType>) {
     self.init(state: state, key: "\(type(of: state))", reduce: reduce)
   }
-
+  
   /// Create a reducer with a state, a state key, and a reduce function
   ///
   /// - Parameters:
   ///   - state: the initial state of the reducer
   ///   - key: the key to be used for this reducer state
   ///   - reduce: the reduce function
-  public init(state: Type, key: StateKey, reduce: @escaping ReducerFunction<Type>) {
+  public init(state: StateType, key: StateKey, reduce: @escaping ReducerFunction<StateType>) {
     self.stateKey = key
     self.initialState = state
     self.reduceFunction = reduce
   }
-
-  public func reduce(action: Action, state: Type) -> Type? {
+  
+  public func reduce(action: Action, state: StateType) -> StateType? {
     return self.reduceFunction(action, state)
   }
 }
@@ -139,49 +139,49 @@ public final class BlockReducer<Type>: Reducer {
 /// Reducer that represents a combination of two reducers
 /// This reducers is not to be implemented by hand. This reducer is internal implementation only
 public final class CombinedReducer: Reducer {
-
+  
   public var initialState: Any {
     return states
   }
-
+  
   var reducers: [StateKey: ReducerFunction<Any>]
   fileprivate var states: KeyedState
-
+  
   init() {
     self.states = [:]
     self.reducers = [:]
   }
-
+  
   func append(reducerWithKey stateKey: StateKey, funciton: @escaping ReducerFunction<Any>, state: Any) {
     guard reducers[stateKey] == nil else {
       Suas.log("Duplicate reducer added for state key '\(stateKey)'")
       return
     }
-
+    
     reducers[stateKey] = funciton
     states[stateKey] = state
   }
-
+  
   public func reduce(action: Action, state: Any) -> Any? {
-    guard var dictState = state as? StoreState else {
+    guard var dictState = state as? State else {
       Suas.log("State should be a dictionary when using combined reducers")
       return (state, [])
     }
-
+    
     var stateKeysChanged: [StateKey] = []
-
+    
     for (key, reducer) in reducers {
       guard let subState = dictState[key] else {
         Suas.log("State key '\(key)' missing for state '\(dictState)'")
         continue
       }
-
+      
       if let newSubState = reducer(action, subState) {
         dictState[key] = newSubState
         stateKeysChanged.append(key)
       }
     }
-
+    
     return (dictState, stateKeysChanged)
   }
 }
@@ -228,7 +228,7 @@ public final class CombinedReducer: Reducer {
 /// `myReducer1` will handle the "key1" key of state and `myReducer2` will handle the "key2" key of state
 public func |><R1: Reducer, R2: Reducer>(lhs: R1, rhs: R2) -> CombinedReducer {
   var listToAppendTo: [(StateKey, Any, ReducerFunction<Any>)] = []
-
+  
   if
     let lhs = lhs as? CombinedReducer,
     let rhs = rhs as? CombinedReducer {
@@ -236,7 +236,7 @@ public func |><R1: Reducer, R2: Reducer>(lhs: R1, rhs: R2) -> CombinedReducer {
     for (key, reducer) in lhs.reducers {
       listToAppendTo.append((key, lhs.states[key]!, reducer))
     }
-
+    
     for (key, reducer) in rhs.reducers {
       listToAppendTo.append((key, rhs.states[key]!, reducer))
     }
@@ -257,7 +257,7 @@ public func |><R1: Reducer, R2: Reducer>(lhs: R1, rhs: R2) -> CombinedReducer {
     listToAppendTo.append((lhs.stateKey, lhs.initialState, lhs.reduce))
     listToAppendTo.append((rhs.stateKey, rhs.initialState, rhs.reduce))
   }
-
+  
   // Create a combiner
   let combiner = CombinedReducer()
   listToAppendTo.forEach({ combiner.append(reducerWithKey: $0.0, funciton: $0.2, state: $0.1) })
