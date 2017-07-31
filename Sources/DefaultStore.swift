@@ -151,81 +151,86 @@ extension Suas.DefaultStore {
 
 extension Suas.DefaultStore {
   
-  func addListener<StateType>(withId id: CallbackId,
-                              type: StateType.Type,
-                              callback: @escaping (StateType) -> ()) {
+  func addListener<StateType>(type: StateType.Type,
+                              callback: @escaping (StateType) -> ()) -> Subscription<StateType> {
     
-    performAddListener(withId: id, stateKey: "\(type)", type: type, callback: callback)
+    return performAddListener(stateKey: "\(type)", type: type, callback: callback)
   }
   
-  func addListener<StateType>(withId id: CallbackId,
-                              type: StateType.Type,
+  func addListener<StateType>(type: StateType.Type,
                               if filterBlock: @escaping FilterFunction<StateType>,
-                              callback: @escaping (StateType) -> ()) {
+                              callback: @escaping (StateType) -> ()) -> Subscription<StateType> {
     
-    performAddListener(withId: id, stateKey: "\(type)", type: type,
-                       if: filterBlock, callback: callback)
+    return performAddListener(stateKey: "\(type)", type: type,
+                              if: filterBlock, callback: callback)
   }
   
-  func addListener<StateType>(withId id: CallbackId,
-                              stateKey: StateKey,
-                              callback: @escaping (StateType) -> ()) {
+  func addListener<StateType>(stateKey: StateKey,
+                              callback: @escaping (StateType) -> ()) -> Subscription<StateType> {
     
-    performAddListener(withId: id, stateKey: stateKey, type: StateType.self, callback: callback)
+    return performAddListener(stateKey: stateKey, type: StateType.self, callback: callback)
   }
   
-  func addListener<StateType>(withId id: CallbackId,
-                              stateKey: StateKey,
+  func addListener<StateType>(stateKey: StateKey,
                               if filterBlock: @escaping FilterFunction<StateType>,
-                              callback: @escaping (StateType) -> ()) {
+                              callback: @escaping (StateType) -> ()) -> Subscription<StateType> {
     
-    performAddListener(withId: id, stateKey: stateKey, type: StateType.self,
-                       if: filterBlock, callback: callback)
+    return performAddListener(stateKey: stateKey, type: StateType.self,
+                              if: filterBlock, callback: callback)
   }
   
-  func addListener(withId id: CallbackId, callback: @escaping (State) -> ()) {
-    performAddListener(withId: id, stateKey: nil, type: State.self, callback: callback)
+  func addListener(callback: @escaping (State) -> ()) -> Subscription<State> {
+    return performAddListener(stateKey: nil, type: State.self, callback: callback)
   }
   
-  func addListener(withId id: CallbackId,
-                   if filterBlock: @escaping FilterFunction<State>,
-                   callback: @escaping (State) -> ()) {
-    performAddListener(withId: id, stateKey: nil, type: State.self, if: filterBlock, callback: callback)
+  func addListener(if filterBlock: @escaping FilterFunction<State>,
+                   callback: @escaping (State) -> ()) -> Subscription<State> {
+    return performAddListener(stateKey: nil, type: State.self, if: filterBlock, callback: callback)
   }
   
-  func addListener<StateType>(withId id: CallbackId, stateKey: StateKey,
-                              type: StateType.Type, callback: @escaping (StateType) -> ()) {
-    performAddListener(withId: id, stateKey: stateKey, type: type, callback: callback)
+  func addListener<StateType>(stateKey: StateKey,
+                              type: StateType.Type, callback: @escaping (StateType) -> ()) -> Subscription<StateType> {
+    return performAddListener(stateKey: stateKey, type: type, callback: callback)
   }
   
-  func addListener<StateType>(withId id: CallbackId, stateKey: StateKey,
+  func addListener<StateType>(stateKey: StateKey,
                               type: StateType.Type,
                               if filterBlock: @escaping FilterFunction<StateType>,
-                              callback: @escaping (StateType) -> ()) {
-    performAddListener(withId: id, stateKey: stateKey, type: type, if: filterBlock, callback: callback)
+                              callback: @escaping (StateType) -> ()) -> Subscription<StateType> {
+    return performAddListener(stateKey: stateKey, type: type, if: filterBlock, callback: callback)
   }
   
-  func addListener<StateType>(withId id: CallbackId,
+  func addListener<StateType>(stateConverter: @escaping StateConverter<StateType>,
+                              callback: @escaping (StateType) -> ()) -> Subscription<State> {
+    return performAddListener(stateKey: nil,
+                              type: State.self,
+                              if: nil,
+                              stateConverter: stateConverter,
+                              callback: callback)
+  }
+
+  func addListener<StateType>(if filterBlock: @escaping FilterFunction<State>,
                               stateConverter: @escaping StateConverter<StateType>,
-                              callback: @escaping (StateType) -> ()) {
-    performAddListener(withId: id,
-                       stateKey: nil,
-                       type: StateType.self,
-                       if: nil,
-                       stateConverter: stateConverter,
-                       callback: callback)
+                              callback: @escaping (StateType) -> ()) -> Subscription<State> {
+    return performAddListener(stateKey: nil,
+                              type: State.self,
+                              if: filterBlock,
+                              stateConverter: stateConverter,
+                              callback: callback)
   }
   
-  func performAddListener<StateType, ListenerType>(withId id: CallbackId,
-                                                   stateKey: StateKey?,
+  func performAddListener<StateType, ListenerType>(stateKey: StateKey?,
                                                    type: StateType.Type,
                                                    if filterBlock: FilterFunction<StateType>? = nil,
                                                    stateConverter: StateConverter<ListenerType>? = nil,
-                                                   callback: @escaping (ListenerType) -> ()) {
+                                                   callback: @escaping (ListenerType) -> ()) -> Subscription<StateType> {
     
     var currentNotificationFilter: FilterFunction<Any> = alwaysFilter
-    
+
+
+    // If there is a filter we call it before
     if let filterBlock = filterBlock {
+
       // If we have a notification filter, wrap it in a type erasure closure
       currentNotificationFilter = { (old: Any, new: Any) -> Bool in
         // Dynamic typechecking :(
@@ -237,53 +242,60 @@ extension Suas.DefaultStore {
         return filterBlock(castOld, castNew)
       }
     }
-    
+
+
     // Create a type erased infom callback
     let typeErasedCallback = { (state: Any) in
-      
+
+      var stateToNotify: ListenerType?
+
       if let stateConverter = stateConverter {
-        guard let castState = stateConverter(state as! State) else {
-          Suas.log("State cannot be converted to type \(State.self)\nstate: \(state)")
-          return
-        }
-        
-        callback(castState)
+        stateToNotify = stateConverter(state as! State)
       } else {
-        guard let castState = state as? ListenerType else {
-          Suas.log("State cannot be converted to type \(State.self)\nstate: \(state)")
-          return
-        }
-        
-        callback(castState)
+        stateToNotify = state as? ListenerType
       }
+      // If there is a stateConverter we convert and inform
+      guard let newState = stateToNotify else {
+        Suas.log("State cannot be converted to type \(State.self)\nstate: \(state)")
+        return
+      }
+
+      callback(newState)
     }
-    
+
+    // Create listener and append it
     let listener = Listener(
-      id: id,
+      id: generateId(),
       stateKey: stateKey,
       notify: typeErasedCallback,
       filterBlock: currentNotificationFilter)
     
     listeners = listeners + [listener]
+
+    return Subscription<StateType>(store: self, listener: listener)
   }
   
   func removeListener(withId id: CallbackId)  {
     listeners = listeners.filter { $0.id != id }
   }
+
+  func generateId() -> CallbackId {
+    return UUID().uuidString
+  }
 }
 
 // Action listeners
 extension Suas.DefaultStore {
-  func addActionListener(withId id: CallbackId,
-                         actionListener: @escaping ActionListenerFunction) {
-    
+  func addActionListener(actionListener: @escaping ActionListenerFunction) -> ActionSubscription {
+    let id = generateId()
+
     actionListeners[id] = actionListener
+    return ActionSubscription(store: self, listenerID: id)
   }
   
   func removeActionListener(withId id: CallbackId)  {
     actionListeners.removeValue(forKey: id)
   }
-  
 }
 
 extension Suas {
@@ -295,4 +307,3 @@ extension Suas {
     return Array((store as! DefaultStore).actionListeners.keys)
   }
 }
-

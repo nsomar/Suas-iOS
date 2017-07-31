@@ -20,27 +20,8 @@ public protocol Store {
   
   /// Get the store state
   var state: State { get }
-  
-  /// Reset the store internal state for a particular key. They key will be the dynamic type of state
-  ///
-  /// - Parameter state: the new state
-  func reset(state: Any)
-  
-  
-  /// Reset the store internal state for a specific key
-  ///
-  /// - Parameters:
-  ///   - state: the new state
-  ///   - key: the state key to set
-  func reset(state: Any, forKey key: StateKey)
-  
-  
-  /// Resets the full internal state with a new state
-  ///
-  /// - Parameter state: the state to reset to
-  func resetFullState(_ state: KeyedState)
-  
-  
+
+
   /// Dispatches an action to the store
   ///
   /// - Parameter action: the action to dispatch
@@ -52,29 +33,25 @@ public protocol Store {
   /// - Parameters:
   ///   - id: the listener id to be used when removing the listener
   ///   - callback: callback to be notified when state changed
-  func addListener(withId id: CallbackId, callback: @escaping (State) -> ())
+  func addListener(callback: @escaping (State) -> ()) -> Subscription<State>
+  
+  func addListener<StateType>(stateConverter: @escaping StateConverter<StateType>,
+                              callback: @escaping (StateType) -> ()) -> Subscription<State>
   
   
   /// Add a new listner to the store
   ///
   /// - Parameters:
   ///   - id: the listener id to be used when removing the listener
+  ///   - filterBlock: block to decide wheter to notify or not
   ///   - callback: callback to be notified when state changed
-  func addListener<StateType>(withId id: CallbackId,
+  func addListener(if filterBlock: @escaping FilterFunction<State>,
+                   callback: @escaping (State) -> ()) -> Subscription<State>
+  
+  
+  func addListener<StateType>(if filterBlock: @escaping FilterFunction<State>,
                               stateConverter: @escaping StateConverter<StateType>,
-                              callback: @escaping (StateType) -> ())
-  
-  
-  /// Add a new listner to the store
-  ///
-  /// - Parameters:
-  ///   - id: the listener id to be used when removing the listener
-  ///   - filterBlock: block to decide wheter to notify or not
-  ///   - callback: callback to be notified when state changed
-  func addListener(withId id: CallbackId,
-                   if filterBlock: @escaping FilterFunction<State>,
-                   callback: @escaping (State) -> ())
-  
+                              callback: @escaping (StateType) -> ()) -> Subscription<State>
   
   /// Add a new listner to the store
   ///
@@ -82,8 +59,8 @@ public protocol Store {
   ///   - id: the listener id to be used when removing the listener
   ///   - type: the type of the state callback
   ///   - callback: callback to be notified when state changed
-  func addListener<StateType>(withId id: CallbackId, type: StateType.Type,
-                              callback: @escaping (StateType) -> ())
+  func addListener<StateType>(type: StateType.Type,
+                              callback: @escaping (StateType) -> ()) -> Subscription<StateType>
   
   
   /// Add a new listner to the store
@@ -93,9 +70,9 @@ public protocol Store {
   ///   - type: the type of the state callback
   ///   - filterBlock: block to decide wheter to notify or not
   ///   - callback: callback to be notified when state changed
-  func addListener<StateType>(withId id: CallbackId, type: StateType.Type,
+  func addListener<StateType>(type: StateType.Type,
                               if filterBlock: @escaping FilterFunction<StateType>,
-                              callback: @escaping (StateType) -> ())
+                              callback: @escaping (StateType) -> ()) -> Subscription<StateType>
   
   
   /// Add a new listner to the store
@@ -105,8 +82,9 @@ public protocol Store {
   ///   - stateKey: the state key to listen for changes
   ///   - type: the type of the state callback
   ///   - callback: callback to be notified when state changed
-  func addListener<StateType>(withId id: CallbackId, stateKey: StateKey,
-                              type: StateType.Type, callback: @escaping (StateType) -> ())
+  func addListener<StateType>(stateKey: StateKey,
+                              type: StateType.Type,
+                              callback: @escaping (StateType) -> ()) -> Subscription<StateType>
   
   
   /// Add a new listner to the store
@@ -117,16 +95,11 @@ public protocol Store {
   ///   - type: the type of the state callback
   ///   - filterBlock: block to decide wheter to notify or not
   ///   - callback: callback to be notified when state changed
-  func addListener<StateType>(withId id: CallbackId, stateKey: StateKey,
+  func addListener<StateType>(stateKey: StateKey,
                               type: StateType.Type,
                               if filterBlock: @escaping FilterFunction<StateType>,
-                              callback: @escaping (StateType) -> ())
-  
-  
-  /// Remove a listener from the store
-  ///
-  /// - Parameter id: the listener id to remove
-  func removeListener(withId id: CallbackId)
+                              callback: @escaping (StateType) -> ()) -> Subscription<StateType>
+
   
   
   /// Add a new action listner to the store
@@ -134,14 +107,27 @@ public protocol Store {
   /// - Parameters:
   ///   - id: the action listener id to be used when removing the listener
   ///   - callback: callback to be notified when an action happens
-  func addActionListener(withId id: CallbackId,
-                         actionListener: @escaping ActionListenerFunction)
-  
-  
-  /// Remove an action listener from the store
+  func addActionListener(actionListener: @escaping ActionListenerFunction) -> ActionSubscription
+
+
+  /// Reset the store internal state for a particular key. They key will be the dynamic type of state
   ///
-  /// - Parameter id: the action listener id to remove
-  func removeActionListener(withId id: CallbackId)
+  /// - Parameter state: the new state
+  func reset(state: Any)
+
+
+  /// Reset the store internal state for a specific key
+  ///
+  /// - Parameters:
+  ///   - state: the new state
+  ///   - key: the state key to set
+  func reset(state: Any, forKey key: StateKey)
+
+
+  /// Resets the full internal state with a new state
+  ///
+  /// - Parameter state: the state to reset to
+  func resetFullState(_ state: KeyedState)
 }
 
 

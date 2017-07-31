@@ -58,3 +58,40 @@ fileprivate class DeinitCallback: NSObject {
 //onObjectDeinit(forComponent: component,
 //               connectionType: .listener,
 //               callbackId: callbackId) { self.removeListener(withId: callbackId) }
+
+public struct Subscription<StateType> {
+  let store: Suas.DefaultStore
+  let listener: Listener
+
+  public func removeListener() {
+    store.removeListener(withId: listener.id)
+  }
+
+  public func notifyCurrentState() {
+    var stateToNotify: Any!
+
+    if let key = listener.stateKey {
+
+      // If there is a key, Get the state for it and covert it
+      guard let state = store.state.value(forKey: key, ofType: StateType.self) else {
+        return
+      }
+      stateToNotify = state
+    } else {
+
+      // Else get the whole state
+      stateToNotify = store.state
+    }
+
+    listener.notify(stateToNotify)
+  }
+}
+
+public struct ActionSubscription {
+  let store: Suas.DefaultStore
+  let listenerID: CallbackId
+
+  public func removeListener() {
+    store.removeActionListener(withId: listenerID)
+  }
+}

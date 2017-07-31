@@ -12,10 +12,10 @@ import XCTest
 @testable import Suas
 
 class AsyncMiddlewareTests: XCTestCase {
-
+  
   func testItHandlesAsyncActionAndDispatchesIt() {
     var actionReceived: Action?
-
+    
     let asyncMiddleware = AsyncMiddleware()
     asyncMiddleware.api = MiddlewareAPI(
       dispatch: { action in actionReceived = action },
@@ -23,47 +23,44 @@ class AsyncMiddlewareTests: XCTestCase {
     )
     asyncMiddleware.next = { _ in }
     var called = false
-
+    
     let action = BlockAsyncAction { (api) in
       called = true
       api.dispatch(SomeAction())
     }
-
+    
     asyncMiddleware.onAction(action: action)
-
+    
     XCTAssert(called == true)
     XCTAssert(actionReceived is SomeAction)
   }
-
+  
   func testItHandlesAsyncActionAndDispatchesItAsAStruct() {
     var actionReceived: Action?
-
+    
     let asyncMiddleware = AsyncMiddleware()
     asyncMiddleware.api = MiddlewareAPI(
       dispatch: { action in actionReceived = action },
       getState: { State(dictionary: ["x" : "x"]) }
     )
     asyncMiddleware.next = { _ in }
-
+    
     class TestAsyncAction: AsyncAction {
       static var called = false
-      var executionBlock: (MiddlewareAPI) -> ()
-
-      init() {
-        self.executionBlock = { (api) in
-          TestAsyncAction.called = true
-          api.dispatch(SomeAction())
-        }
+      
+      public func onAction(api: MiddlewareAPI) {
+        TestAsyncAction.called = true
+        api.dispatch(SomeAction())
       }
     }
-
+    
     let action = TestAsyncAction()
     asyncMiddleware.onAction(action: action)
-
+    
     XCTAssert(TestAsyncAction.called == true)
     XCTAssert(actionReceived is SomeAction)
   }
-
+  
   func testAsyncFunctionGetsTheState() {
     let asyncMiddleware = AsyncMiddleware()
     asyncMiddleware.api = MiddlewareAPI(
@@ -71,17 +68,17 @@ class AsyncMiddlewareTests: XCTestCase {
       getState: { State(dictionary: ["x" : "x"]) }
     )
     asyncMiddleware.next = { _ in }
-
+    
     let action = BlockAsyncAction { (api) in
       XCTAssertEqual(api.state.value(forKey: "x", ofType: String.self), "x")
     }
-
+    
     asyncMiddleware.onAction(action: action)
   }
-
+  
   func testItHandlesAsyncActionAndDoesNotDispatchIt() {
     var actionReceived: Action?
-
+    
     let asyncMiddleware = AsyncMiddleware()
     asyncMiddleware.api = MiddlewareAPI(
       dispatch: { action in actionReceived = action },
@@ -89,20 +86,20 @@ class AsyncMiddlewareTests: XCTestCase {
     )
     asyncMiddleware.next = { _ in }
     var called = false
-
+    
     let action = BlockAsyncAction { (dispatch) in
       called = true
     }
-
+    
     asyncMiddleware.onAction(action: action)
-
+    
     XCTAssert(called == true)
     XCTAssert(actionReceived == nil)
   }
-
+  
   func testItPerformsAURLSessionAction() {
     var actionReceived: Action?
-
+    
     let asyncMiddleware = AsyncMiddleware()
     asyncMiddleware.api = MiddlewareAPI(
       dispatch: { action in actionReceived = action },
@@ -110,13 +107,13 @@ class AsyncMiddlewareTests: XCTestCase {
     )
     asyncMiddleware.next = { _ in }
     var called = false
-
+    
     let url = URL(string: "http://google.com")!
     var dataReturned: Data?
-
+    
     let session = DummyURLSession()
     session.dataToReturn = Data()
-
+    
     let action = URLSessionAsyncAction(
       url: url,
       urlSession: session
@@ -125,18 +122,18 @@ class AsyncMiddlewareTests: XCTestCase {
       dataReturned = data
       dispatch(SomeAction())
     }
-
+    
     asyncMiddleware.onAction(action: action)
-
+    
     XCTAssert(called == true)
     XCTAssert(dataReturned == session.dataToReturn)
     XCTAssert(actionReceived is SomeAction)
   }
-
+  
   func testItPerformsADiskReadAction() {
     var actionReceived: Action?
     let exp = expectation(description: "x")
-
+    
     let asyncMiddleware = AsyncMiddleware()
     asyncMiddleware.api = MiddlewareAPI(
       dispatch: { action in actionReceived = action },
@@ -145,10 +142,10 @@ class AsyncMiddlewareTests: XCTestCase {
     asyncMiddleware.next = { _ in }
     var called = false
     var dataReturned: Data?
-
+    
     let fileManager = DummyFileManager()
     fileManager.dataToReturn = Data()
-
+    
     let action = DiskReadAsyncAction(
       path: "xxx",
       fileManager: fileManager
@@ -158,20 +155,20 @@ class AsyncMiddlewareTests: XCTestCase {
       dispatch(SomeAction())
       exp.fulfill()
     }
-
+    
     asyncMiddleware.onAction(action: action)
-
+    
     wait(for: [exp], timeout: 1)
-
+    
     XCTAssert(called == true)
     XCTAssert(dataReturned == fileManager.dataToReturn)
     XCTAssert(actionReceived is SomeAction)
   }
-
+  
   func testItPerformsADiskWriteAction() {
     var actionReceived: Action?
     let exp = expectation(description: "x")
-
+    
     let asyncMiddleware = AsyncMiddleware()
     asyncMiddleware.api = MiddlewareAPI(
       dispatch: { action in actionReceived = action },
@@ -179,11 +176,11 @@ class AsyncMiddlewareTests: XCTestCase {
     )
     asyncMiddleware.next = { _ in }
     var called = false
-
+    
     let dataToWrite = "x".data(using: .utf8)!
     let fileManager = DummyFileManager()
     fileManager.dataToReturn = Data()
-
+    
     let action = DiskWriteAsyncAction(
       path: "xxx",
       data: dataToWrite,
@@ -193,11 +190,11 @@ class AsyncMiddlewareTests: XCTestCase {
       dispatch(SomeAction())
       exp.fulfill()
     }
-
+    
     asyncMiddleware.onAction(action: action)
-
+    
     wait(for: [exp], timeout: 1)
-
+    
     XCTAssert(called == true)
     XCTAssert(fileManager.writtenPath == "xxx")
     XCTAssert(fileManager.writtenData == dataToWrite)
@@ -210,7 +207,7 @@ class DummyURLSession: URLSession {
   var dataToReturn: Data? = nil
   var urlResponse: URLResponse? = nil
   var error: Error? = nil
-
+  
   override func dataTask(with request: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
     completionHandler(dataToReturn, urlResponse, error)
     return DummyURLSessionDataTask()
@@ -225,15 +222,15 @@ class DummyURLSessionDataTask: URLSessionDataTask {
 struct URLResultAction: Action { }
 
 class DummyFileManager: FileManager {
-
+  
   var dataToReturn: Data? = nil
   var writtenPath: String?
   var writtenData: Data?
-
+  
   override func contents(atPath path: String) -> Data? {
     return dataToReturn
   }
-
+  
   override func createFile(atPath path: String, contents data: Data?, attributes attr: [String : Any]? = nil) -> Bool {
     writtenPath = path
     writtenData = data

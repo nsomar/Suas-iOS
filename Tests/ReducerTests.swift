@@ -14,7 +14,7 @@ class ReducerTests: XCTestCase {
     let state = MyState1(value: 0)
     let newState = reducer1.reduce(action: IncrementAction(), state: state)
 
-    XCTAssertEqual((newState as! MyState1).value, 1)
+    XCTAssertEqual(newState!.value, 1)
   }
 
   func testItReducesWithAClassWithState() {
