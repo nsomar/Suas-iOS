@@ -537,7 +537,8 @@ class ListenerTests: XCTestCase {
 
   func callAndForget(store: Store) {
     let obj = NSObject()
-    _ = store.addListener(stateKey: "MyState1", type: Int.self, linkedToObject: obj) { _ in }
+    let sub = store.addListener(stateKey: "MyState1", type: Int.self) { _ in }
+    sub.linkLifeCycleTo(object: obj)
     XCTAssertEqual(Suas.allListeners(inStore: store).count, 1)
   }
 
@@ -550,7 +551,8 @@ class ListenerTests: XCTestCase {
 
   func callAndForget2(store: Store) {
     let obj = NSObject()
-    _ = store.addActionListener(linkedToObject: obj) { _ in }
+    let sub = store.addActionListener { _ in }
+    sub.linkLifeCycleTo(object: obj)
     XCTAssertEqual(Suas.allActionListeners(inStore: store).count, 1)
   }
 }

@@ -23,7 +23,7 @@ public typealias ReducerFunction<Type> = (Action, Type) -> Type?
 public typealias DispatchFunction = (Action) -> Void
 public typealias NextFunction = DispatchFunction
 
-public typealias MiddlewareFunction = (Action, MiddlewareAPI, NextFunction) -> Void
+public typealias MiddlewareFunction = (Action, GetStateFunction, DispatchFunction, NextFunction) -> Void
 public typealias GetStateFunction = () -> State
 
 extension Suas {

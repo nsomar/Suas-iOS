@@ -43,7 +43,7 @@ public protocol AsyncAction: Action {
   /// If the `AsyncMiddleware` receives an `AsyncAction` it does the following:
   /// 1. Call action.executionBlock passing in the dispatch and get state functions
   /// 2. Stops the action from propagating to other middlewares and reducers
-  func onAction(api: MiddlewareAPI)
+  func onAction(getState: @escaping GetStateFunction, dispatch: @escaping DispatchFunction)
 }
 
 
@@ -53,14 +53,14 @@ public protocol AsyncAction: Action {
 /// SeeAlso:
 /// - `AsyncAction`
 public struct BlockAsyncAction: AsyncAction {
-  private var executionBlock: (MiddlewareAPI) -> ()
+  private var executionBlock: (GetStateFunction, DispatchFunction) -> ()
 
-  public init(executionBlock: @escaping (MiddlewareAPI) -> ()) {
+  public init(executionBlock: @escaping (GetStateFunction, DispatchFunction) -> ()) {
     self.executionBlock = executionBlock
   }
 
-  public func onAction(api: MiddlewareAPI) {
-    executionBlock(api)
+  public func onAction(getState: @escaping GetStateFunction, dispatch: @escaping DispatchFunction) {
+    executionBlock(getState, dispatch)
   }
 }
 
@@ -71,17 +71,14 @@ public struct BlockAsyncAction: AsyncAction {
 /// 1. Call `action.execute` on that action
 /// 2. the action `executionBlock` is executed which receives the `dispatch` function as its sole parameter
 /// 3. the `executionBlock` calls dispatch as many times as wanted, dispatching new actions (can also disptach new `AsyncAction`)
-public class AsyncMiddleware: Middleware {
-  public var api: MiddlewareAPI?
-  public var next: DispatchFunction?
+public struct AsyncMiddleware: Middleware {
 
-  public init() {}
-
-  public func onAction(action: Action) {
-    guard let api = api, let next = next else { return }
-
+  public func onAction(action: Action,
+                       getState: @escaping GetStateFunction,
+                       dispatch: @escaping DispatchFunction,
+                       next: @escaping NextFunction) {
     if let action = action as? AsyncAction {
-      action.onAction(api: api)
+      action.onAction(getState: getState, dispatch: dispatch)
       return
     }
 

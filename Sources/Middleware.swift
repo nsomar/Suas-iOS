@@ -9,28 +9,6 @@
 import Foundation
 import Swift
 
-
-/// Middleware api parameters to be used when dispatching a new action from a middleware. Or to get the current state that the store has
-public struct MiddlewareAPI {
-  
-  /// Dispatch function to be used from the middleware to dispatch
-  public var dispatch: DispatchFunction
-  
-  /// Gets the current state that the store has
-  public var state: State {
-    return getState()
-  }
-  
-  var getState: GetStateFunction
-  
-  
-  public init(dispatch: @escaping DispatchFunction, getState: @escaping GetStateFunction) {
-    self.dispatch = dispatch
-    self.getState = getState
-  }
-}
-
-
 /// Middleware protocol that represnts a store middleware
 ///
 /// A middleware can be used to implement:
@@ -56,20 +34,16 @@ public struct MiddlewareAPI {
 /// }
 /// ```
 ///
-public protocol Middleware: class {
-  
-  /// The middleware api that allows a middleware to dispatcha an action and read the store current state
-  var api: MiddlewareAPI? { get set }
-  
-  /// Function representing the next middleware action. In the last middleware next represents the dispatcher function which causes a state change when called
-  var next: DispatchFunction? { get set }
-  
+public protocol Middleware {
   /// Function called when an action is dispatched
   ///
   /// - Parameter action: the dispatched action
   ///
   /// It is a requirement for the middleware to call `next(action)` inside this function. Failling to call next will cause the action to not be dispatched to the reducer
-  func onAction(action: Action)
+  func onAction(action: Action,
+                getState: @escaping GetStateFunction,
+                dispatch: @escaping DispatchFunction,
+                next: @escaping NextFunction)
 }
 
 /// Create a middleware inline with a block
@@ -87,12 +61,6 @@ public protocol Middleware: class {
 /// ```
 public final class BlockMiddleware: Middleware {
   
-  /// The middleware api that allows a middleware to dispatcha an action and read the store current state
-  public var api: MiddlewareAPI?
-  
-  /// Function representing the next middleware action. In the last middleware next represents the dispatcher function which causes a state change when called
-  public var next: DispatchFunction?
-  
   private let middlewareFunction: MiddlewareFunction
   
   /// Create a middleware with a callback block
@@ -102,30 +70,16 @@ public final class BlockMiddleware: Middleware {
     self.middlewareFunction = actionFunction
   }
   
-  public func onAction(action: Action) {
-    guard let api = api, let next = next else {
-      Suas.log("Middleware is not setup correctly")
-      return
-    }
-    
-    middlewareFunction(action, api, next)
+  public func onAction(action: Action,
+                       getState: @escaping GetStateFunction,
+                       dispatch: @escaping DispatchFunction,
+                       next: @escaping NextFunction) {
+    middlewareFunction(action, getState, dispatch, next)
   }
 }
 
 private final class CombinedMiddleWare: Middleware {
-  var next: DispatchFunction?  {
-    didSet {
-      middlewares.last?.next = next
-    }
-  }
-  
-  var api: MiddlewareAPI? {
-    didSet {
-      middlewares.forEach { $0.api = api }
-    }
-  }
-  
-  fileprivate var dispatchingFunction: DispatchFunction?
+  fileprivate var dispatchingFunction: MiddlewareFunction?
   fileprivate var middlewares: [Middleware]
   
   init() {
@@ -133,27 +87,51 @@ private final class CombinedMiddleWare: Middleware {
   }
   
   func append(middleware: Middleware) {
-    middleware.next = next
-    
-    if dispatchingFunction == nil {
-      dispatchingFunction = middleware.onAction
-    } else if let lastMiddleware = middlewares.last {
-      lastMiddleware.next = middleware.onAction
-    }
-    
     middlewares += [middleware]
   }
   
-  func onAction(action: Action) {
-    if let dispatchingFunction = dispatchingFunction {
-      dispatchingFunction(action)
-    } else {
+  func onAction(action: Action,
+                getState: @escaping GetStateFunction,
+                dispatch: @escaping DispatchFunction,
+                next: @escaping NextFunction) {
+    guard middlewares.count > 0 else {
       Suas.log("Middleware is not setup correctly")
+      return
+    }
+
+    doOnAction(index: 0, action: action, getState: getState, dispatch: dispatch, next: next)
+  }
+
+  private func doOnAction(index: Int, action: Action,
+                          getState: @escaping GetStateFunction,
+                          dispatch: @escaping DispatchFunction,
+                          next: @escaping NextFunction) {
+
+    let currentNext = nextAction(at: index, action: action, getState: getState,
+                                 dispatch: dispatch, next: next)
+    let current = middlewares[index]
+    current.onAction(action: action, getState: getState, dispatch: dispatch, next: currentNext)
+  }
+
+  func nextAction(at index: Int, action: Action,
+                  getState: @escaping GetStateFunction,
+                  dispatch: @escaping DispatchFunction,
+                  next: @escaping NextFunction) -> NextFunction {
+    if index >= middlewares.count - 1 {
+      return next
+    } else {
+      return { [weak self] action in
+        self?.doOnAction(index: index + 1,
+                        action: action,
+                        getState: getState,
+                        dispatch: dispatch,
+                        next: next)
+      }
     }
   }
 }
 
-/// Combines two middlewares. The combined middleware creates a chain of middleware. When calling next on the first middleware it progresses to the next one. The final middlware's next function calls the reducer dispatch will causes a state change
+/// Combines two middlewares. The combined middleware creates a chain of mi ddleware. When calling next on the first middleware it progresses to the next one. The final middlware's next function calls the reducer dispatch will causes a state change
 ///
 /// -----
 /// **Example**

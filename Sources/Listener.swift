@@ -25,6 +25,54 @@ struct Listener {
   public let filterBlock: FilterFunction<Any>
 }
 
+public struct Subscription<StateType> {
+  let store: Store
+  let listener: Listener
+
+  public func removeListener() {
+    store.removeListener(withId: listener.id)
+  }
+
+  public func notifyCurrentState() {
+    var stateToNotify: Any!
+
+    if let key = listener.stateKey {
+
+      // If there is a key, Get the state for it and covert it
+      guard let state = store.state.value(forKey: key, ofType: StateType.self) else {
+        return
+      }
+      stateToNotify = state
+    } else {
+
+      // Else get the whole state
+      stateToNotify = store.state
+    }
+
+    listener.notify(stateToNotify)
+  }
+
+  public func linkLifeCycleTo(object: NSObject) {
+    Suas.onObjectDeinit(forObject: object,
+                        connectionType: .listener,
+                        callbackId: listener.id) { self.removeListener() }
+  }
+}
+
+public struct ActionSubscription {
+  let store: Store
+  let listenerId: CallbackId
+
+  public func removeListener() {
+    store.removeActionListener(withId: listenerId)
+  }
+
+  public func linkLifeCycleTo(object: NSObject) {
+    Suas.onObjectDeinit(forObject: object,
+                        connectionType: .actionListener,
+                        callbackId: listenerId) { self.removeListener() }
+  }
+}
 
 /// State Change filter function that always notifies the returns true always.
 public let alwaysFilter: FilterFunction<Any> = { (oldSubState: Any, newSubState: Any) in
@@ -49,4 +97,4 @@ public let stateChangedFilter: FilterFunction<Any> = { (oldSubState: Any, newSub
 /// State Change filter function implementation that notifies the listener only if the sub state has changed.
 /// Changes = Shirt .. get it :P
 // TODO: Pass the static type ot listener and then use it for casting
-public let 👔 = stateChangedFilter
+public let 👔: FilterFunction<Any> = stateChangedFilter

@@ -93,8 +93,7 @@ extension Store {
 
 extension Store {
 
-  func performAddListener<StateType, ListenerType>(linkedToObject: NSObject? = nil,
-                                                   stateKey: StateKey?,
+  func performAddListener<StateType, ListenerType>(stateKey: StateKey?,
                                                    type: StateType.Type,
                                                    if filterBlock: FilterFunction<StateType>? = nil,
                                                    stateConverter: StateConverter<ListenerType>? = nil,
@@ -145,15 +144,7 @@ extension Store {
     
     listeners = listeners + [listener]
 
-    let subscription = Subscription<StateType>(store: self, listener: listener)
-
-    if let linkedToObject = linkedToObject {
-      onObjectDeinit(forObject: linkedToObject,
-                     connectionType: .listener,
-                     callbackId: id) { subscription.removeListener() }
-    }
-
-    return subscription
+    return Subscription<StateType>(store: self, listener: listener)
   }
   
   func removeListener(withId id: CallbackId)  {

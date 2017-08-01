@@ -37,9 +37,17 @@ public class Store {
     self.dispatchingFunction = nil
 
     if let middleware = middleware {
-      middleware.api = MiddlewareAPI(dispatch: self.dispatch, getState: self.getState)
-      self.dispatchingFunction = middleware.onAction
-      middleware.next = performDispatch
+
+      self.dispatchingFunction = { [weak self] action in
+        guard let sself = self else { return }
+
+        middleware.onAction(
+          action: action,
+          getState: { sself.getState() }, // Capturing self
+          dispatch: { [weak sself] action in sself?.dispatch(action: action) },
+          next: { [weak sself] action in sself?.performDispatch(action: action) }
+        )
+      }
     } else {
       self.dispatchingFunction = self.performDispatch
     }
@@ -82,33 +90,27 @@ extension Store {
   ///   - callback: callback to be notified when state changed
   public func addListener<StateType>(stateKey: StateKey? = nil,
                                      type: StateType.Type,
-                                     linkedToObject: NSObject? = nil,
                                      if filterBlock: FilterFunction<StateType>? = nil,
                                      callback: @escaping (StateType) -> ()) -> Subscription<StateType> {
-    return performAddListener(linkedToObject: linkedToObject,
-                              stateKey: stateKey ?? "\(type)",
-      type: type,
-      if: filterBlock,
-      callback: callback)
+    return performAddListener(stateKey: stateKey ?? "\(type)",
+                              type: type,
+                              if: filterBlock,
+                              callback: callback)
   }
 
-  public func addListener<StateType>(linkedToObject: NSObject? = nil,
-                                     if filterBlock: FilterFunction<State>? = nil,
+  public func addListener<StateType>(if filterBlock: FilterFunction<State>? = nil,
                                      stateConverter: @escaping StateConverter<StateType>,
                                      callback: @escaping (StateType) -> ()) -> Subscription<State> {
-    return performAddListener(linkedToObject: linkedToObject,
-                              stateKey: nil,
+    return performAddListener(stateKey: nil,
                               type: State.self,
                               if: filterBlock,
                               stateConverter: stateConverter,
                               callback: callback)
   }
 
-  public func addListener(linkedToObject: NSObject? = nil,
-                          if filterBlock: FilterFunction<State>? = nil,
+  public func addListener(if filterBlock: FilterFunction<State>? = nil,
                           callback: @escaping (State) -> ()) -> Subscription<State> {
-    return performAddListener(linkedToObject: linkedToObject,
-                              stateKey: nil,
+    return performAddListener(stateKey: nil,
                               type: State.self,
                               if: filterBlock,
                               callback: callback)
@@ -119,20 +121,10 @@ extension Store {
   /// - Parameters:
   ///   - id: the action listener id to be used when removing the listener
   ///   - callback: callback to be notified when an action happens
-  public func addActionListener(linkedToObject: NSObject? = nil,
-                                actionListener: @escaping ActionListenerFunction) -> ActionSubscription {
+  public func addActionListener(actionListener: @escaping ActionListenerFunction) -> ActionSubscription {
     let id = generateId()
     actionListeners[id] = actionListener
-
-    let subscription = ActionSubscription(store: self, listenerID: id)
-
-    if let linkedToObject = linkedToObject {
-      onObjectDeinit(forObject: linkedToObject,
-                     connectionType: .actionListener,
-                     callbackId: id) { subscription.removeListener() }
-    }
-
-    return subscription
+    return ActionSubscription(store: self, listenerId: id)
   }
 }
 

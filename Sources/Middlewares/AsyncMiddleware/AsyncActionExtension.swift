@@ -46,9 +46,9 @@ public struct URLSessionAsyncAction: AsyncAction {
     self.completionBlock = completionBlock
   }
 
-  public func onAction(api: MiddlewareAPI) {
+  public func onAction(getState: @escaping GetStateFunction, dispatch: @escaping DispatchFunction) {
     urlSession.dataTask(with: urlRequest) { data, response, error in
-      self.completionBlock(data, response, error, api.dispatch)
+      self.completionBlock(data, response, error, dispatch)
       }.resume()
   }
 }
@@ -85,11 +85,11 @@ public struct DiskReadAsyncAction: AsyncAction {
     self.completionBlock = completionBlock
   }
 
-  public func onAction(api: MiddlewareAPI) {
+  public func onAction(getState: @escaping GetStateFunction, dispatch: @escaping DispatchFunction) {
     dispatchQueue.async {
       if
         let data = self.fileManager.contents(atPath: self.path) {
-        self.completionBlock(data, api.dispatch)
+        self.completionBlock(data, dispatch)
       }
     }
   }
@@ -132,10 +132,10 @@ public struct DiskWriteAsyncAction: AsyncAction {
     self.completionBlock = completionBlock
   }
 
-  public func onAction(api: MiddlewareAPI) {
+  public func onAction(getState: @escaping GetStateFunction, dispatch: @escaping DispatchFunction) {
     dispatchQueue.async {
       let result = self.fileManager.createFile(atPath: self.path, contents: self.data, attributes: nil)
-      self.completionBlock(result, api.dispatch)
+      self.completionBlock(result, dispatch)
     }
   }
 }

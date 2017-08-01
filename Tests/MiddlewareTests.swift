@@ -19,24 +19,16 @@ class MiddlewareTests: XCTestCase {
     XCTAssertEqual(v, 30)
   }
 
-  func testCallingOnActionDirectlyDoesNotWork() {
-    middleware1.onAction(action: IncrementAction())
-  }
-
-  func testCallingOnActionDirectlyDoesNotWorkOnCombined() {
-    (middleware1 + middleware2).onAction(action: IncrementAction())
-  }
-
   func testItCanAddTwoMiddlewares() {
     var m1Called = false
     var m2Called = false
 
-    let middleware1 = BlockMiddleware { action, api, next in
+    let middleware1 = BlockMiddleware { action, getState, dispatch, next in
       m1Called = true
       next(action)
     }
 
-    let middleware2 = BlockMiddleware { action, api, next in
+    let middleware2 = BlockMiddleware { action, getState, dispatch, next in
       m2Called = true
       next(action)
     }
@@ -53,17 +45,17 @@ class MiddlewareTests: XCTestCase {
     var m2Called = false
     var m3Called = false
 
-    let middleware1 = BlockMiddleware { action, api, next in
+    let middleware1 = BlockMiddleware { action, getState, dispatch, next in
       m1Called = true
       next(action)
     }
 
-    let middleware2 = BlockMiddleware { action, api, next in
+    let middleware2 = BlockMiddleware { action, getState, dispatch, next in
       m2Called = true
       next(action)
     }
 
-    let middleware3 = BlockMiddleware { action, api, next in
+    let middleware3 = BlockMiddleware { action, getState, dispatch, next in
       m3Called = true
       next(action)
     }
@@ -82,17 +74,17 @@ class MiddlewareTests: XCTestCase {
     var m2Called = false
     var m3Called = false
 
-    let middleware1 = BlockMiddleware { action, api, next in
+    let middleware1 = BlockMiddleware { action, getState, dispatch, next in
       m1Called = true
       next(action)
     }
 
-    let middleware2 = BlockMiddleware { action, api, next in
+    let middleware2 = BlockMiddleware { action, getState, dispatch, next in
       m2Called = true
       next(action)
     }
 
-    let middleware3 = BlockMiddleware { action, api, next in
+    let middleware3 = BlockMiddleware { action, getState, dispatch, next in
       m3Called = true
       next(action)
     }
@@ -112,22 +104,22 @@ class MiddlewareTests: XCTestCase {
     var m3Called = false
     var m4Called = false
 
-    let middleware1 = BlockMiddleware { action, api, next in
+    let middleware1 = BlockMiddleware { action, getState, dispatch, next in
       m1Called = true
       next(action)
     }
 
-    let middleware2 = BlockMiddleware { action, api, next in
+    let middleware2 = BlockMiddleware { action, getState, dispatch, next in
       m2Called = true
       next(action)
     }
 
-    let middleware3 = BlockMiddleware { action, api, next in
+    let middleware3 = BlockMiddleware { action, getState, dispatch, next in
       m3Called = true
       next(action)
     }
 
-    let middleware4 = BlockMiddleware { action, api, next in
+    let middleware4 = BlockMiddleware { action, getState, dispatch, next in
       m4Called = true
       next(action)
     }
@@ -146,8 +138,8 @@ class MiddlewareTests: XCTestCase {
 
   func testMiddlewareCanReadState() {
     var val = -1
-    let middleware1 = BlockMiddleware { action, api, next in
-      val = api.state.value(forKeyOfType: MyState1.self)!.value
+    let middleware1 = BlockMiddleware { action, getState, dispatch, next in
+      val = getState().value(forKeyOfType: MyState1.self)!.value
       next(action)
     }
 

@@ -25,9 +25,10 @@ class LoggerMiddlewareTests: XCTestCase {
   func testItPrintsALog() {
     var logged = ""
     let log = LoggerMiddleware(showTimestamp: true, showDuration: true, logger: { logged = $0 })
-    log.api = api(forState: "111")
-    log.next = { _ in }
-    log.onAction(action: SomeAction())
+    log.onAction(action: SomeAction(),
+                 getState: getState(forState: "111"),
+                 dispatch: { _ in },
+                 next: { _ in })
     XCTAssertNotEqual(logged, "")
   }
 
@@ -89,9 +90,10 @@ class LoggerMiddlewareTests: XCTestCase {
       logger: { logged = $0 }
     )
 
-    log.api = api(forState: "111")
-    log.next = { _ in }
-    log.onAction(action: SomeAction())
+    log.onAction(action: SomeAction(),
+                 getState: getState(forState: "111"),
+                 dispatch: { _ in },
+                 next: { _ in })
 
     XCTAssert(stateReceived!.value(forKey: "a", ofType: String.self) == "111" )
     XCTAssert(actionReceived is SomeAction)
@@ -106,9 +108,10 @@ class LoggerMiddlewareTests: XCTestCase {
       logger: { logged = $0 }
     )
 
-    log.api = api(forState: "111")
-    log.next = { _ in }
-    log.onAction(action: SomeAction())
+    log.onAction(action: SomeAction(),
+                 getState: getState(forState: "111"),
+                 dispatch: { _ in },
+                 next: { _ in })
 
     XCTAssertEqual(logged, "")
   }
@@ -123,9 +126,10 @@ class LoggerMiddlewareTests: XCTestCase {
       logger: { logged = $0 }
     )
 
-    log.api = api(forState: "111")
-    log.next = { _ in }
-    log.onAction(action: SomeAction())
+    log.onAction(action: SomeAction(),
+                 getState: getState(forState: "111"),
+                 dispatch: { _ in },
+                 next: { _ in })
 
     XCTAssertEqual(logged, "┌───→ Action: SomeAction\n├─ Prev state ► State(innerState: [\"a\": \"111\"])\n├─ Action     ► NewAction\n├─ Next state ► State(innerState: [\"a\": \"111\"])\n└───────────────────────")
   }
@@ -140,9 +144,10 @@ class LoggerMiddlewareTests: XCTestCase {
       logger: { logged = $0 }
     )
 
-    log.api = api(forState: "111")
-    log.next = { _ in }
-    log.onAction(action: SomeAction())
+    log.onAction(action: SomeAction(),
+                 getState: getState(forState: "111"),
+                 dispatch: { _ in },
+                 next: { _ in })
 
     XCTAssertEqual(logged, "┌───→ Action: SomeAction\n├─ Prev state ► NewState\n├─ Action     ► SomeAction(value: 10)\n├─ Next state ► NewState\n└───────────────────────")
   }
@@ -165,9 +170,10 @@ class LoggerMiddlewareTests: XCTestCase {
       logger: { logged = $0 }
     )
 
-    log.api = api(forState: "111")
-    log.next = { _ in }
-    log.onAction(action: SomeAction())
+    log.onAction(action: SomeAction(),
+                 getState: getState(forState: "111"),
+                 dispatch: { _ in },
+                 next: { _ in })
 
     XCTAssert(action is SomeAction)
     XCTAssertNotNil(date)
@@ -185,11 +191,8 @@ class LoggerMiddlewareTests: XCTestCase {
     XCTAssertEqual(l, "├─ Next state ► The World Standard Tele\n│               text (WST) uses pixel-d\n│               rawing characters for s\n│               ome graphics. A charact\n│               er cell is divided in")
   }
 
-  func api(forState: Any) -> MiddlewareAPI {
-    return MiddlewareAPI(
-      dispatch: { _ in },
-      getState: { return State(dictionary: ["a": forState]) }
-    )
+  func getState(forState: Any) -> GetStateFunction {
+    return { return State(dictionary: ["a": forState]) }
   }
 }
 

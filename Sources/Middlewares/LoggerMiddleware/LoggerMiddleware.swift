@@ -10,11 +10,7 @@ import Foundation
 
 
 /// LoggerMiddleware that logs the action and state when each action is received
-public class LoggerMiddleware: Middleware {
-  
-  public var api: MiddlewareAPI?
-  public var next: DispatchFunction?
-  
+public struct LoggerMiddleware: Middleware {
   private let showDuration: Bool
   private let showTimestamp: Bool
   private let lineLength: Int?
@@ -62,20 +58,21 @@ public class LoggerMiddleware: Middleware {
     self.logger = logger
   }
   
-  public func onAction(action: Action) {
-    guard let api = api, let next = next else { return }
-    
+  public func onAction(action: Action,
+                         getState: @escaping GetStateFunction,
+                         dispatch: @escaping DispatchFunction,
+                         next: @escaping NextFunction) {
     if let predicate = predicate,
-      predicate(api.state, action) == false {
+      predicate(getState(), action) == false {
       next(action)
       return
     }
     
-    let oldState = transformedState(state: api.state)
+    let oldState = transformedState(state: getState())
     let startTime = DispatchTime.now()
     next(action)
     let endTime = DispatchTime.now()
-    let newState = transformedState(state: api.state)
+    let newState = transformedState(state: getState())
     
     let newAction = transformedAction(action: action)
     

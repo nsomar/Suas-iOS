@@ -15,21 +15,18 @@ class AsyncMiddlewareTests: XCTestCase {
   
   func testItHandlesAsyncActionAndDispatchesIt() {
     var actionReceived: Action?
-    
-    let asyncMiddleware = AsyncMiddleware()
-    asyncMiddleware.api = MiddlewareAPI(
-      dispatch: { action in actionReceived = action },
-      getState: { State(dictionary: ["x" : "x"]) }
-    )
-    asyncMiddleware.next = { _ in }
     var called = false
-    
-    let action = BlockAsyncAction { (api) in
+
+    let asyncMiddleware = AsyncMiddleware()
+    let action = BlockAsyncAction { getState, dispatch in
       called = true
-      api.dispatch(SomeAction())
+      dispatch(SomeAction())
     }
     
-    asyncMiddleware.onAction(action: action)
+    asyncMiddleware.onAction(action: action,
+                             getState: { State(dictionary: ["x" : "x"]) },
+                             dispatch: { action in actionReceived = action },
+                             next: { _ in })
     
     XCTAssert(called == true)
     XCTAssert(actionReceived is SomeAction)
@@ -39,23 +36,20 @@ class AsyncMiddlewareTests: XCTestCase {
     var actionReceived: Action?
     
     let asyncMiddleware = AsyncMiddleware()
-    asyncMiddleware.api = MiddlewareAPI(
-      dispatch: { action in actionReceived = action },
-      getState: { State(dictionary: ["x" : "x"]) }
-    )
-    asyncMiddleware.next = { _ in }
-    
     class TestAsyncAction: AsyncAction {
       static var called = false
       
-      public func onAction(api: MiddlewareAPI) {
+      public func onAction(getState: @escaping GetStateFunction, dispatch: @escaping DispatchFunction) {
         TestAsyncAction.called = true
-        api.dispatch(SomeAction())
+        dispatch(SomeAction())
       }
     }
     
     let action = TestAsyncAction()
-    asyncMiddleware.onAction(action: action)
+    asyncMiddleware.onAction(action: action,
+                             getState: { State(dictionary: ["x" : "x"]) },
+                             dispatch: { action in actionReceived = action },
+                             next: { _ in })
     
     XCTAssert(TestAsyncAction.called == true)
     XCTAssert(actionReceived is SomeAction)
@@ -63,35 +57,31 @@ class AsyncMiddlewareTests: XCTestCase {
   
   func testAsyncFunctionGetsTheState() {
     let asyncMiddleware = AsyncMiddleware()
-    asyncMiddleware.api = MiddlewareAPI(
-      dispatch: { _ in },
-      getState: { State(dictionary: ["x" : "x"]) }
-    )
-    asyncMiddleware.next = { _ in }
     
-    let action = BlockAsyncAction { (api) in
-      XCTAssertEqual(api.state.value(forKey: "x", ofType: String.self), "x")
+    let action = BlockAsyncAction { getState, dispatch in
+      XCTAssertEqual(getState().value(forKey: "x", ofType: String.self), "x")
     }
     
-    asyncMiddleware.onAction(action: action)
+    asyncMiddleware.onAction(action: action,
+                             getState: { State(dictionary: ["x" : "x"]) },
+                             dispatch: { _ in },
+                             next: { _ in })
   }
   
   func testItHandlesAsyncActionAndDoesNotDispatchIt() {
     var actionReceived: Action?
     
     let asyncMiddleware = AsyncMiddleware()
-    asyncMiddleware.api = MiddlewareAPI(
-      dispatch: { action in actionReceived = action },
-      getState: { State(dictionary: ["x" : "x"]) }
-    )
-    asyncMiddleware.next = { _ in }
     var called = false
     
-    let action = BlockAsyncAction { (dispatch) in
+    let action = BlockAsyncAction { getState, dispatch in
       called = true
     }
     
-    asyncMiddleware.onAction(action: action)
+    asyncMiddleware.onAction(action: action,
+                             getState: { State(dictionary: ["x" : "x"]) },
+                             dispatch: { action in actionReceived = action },
+                             next: { _ in })
     
     XCTAssert(called == true)
     XCTAssert(actionReceived == nil)
@@ -101,11 +91,6 @@ class AsyncMiddlewareTests: XCTestCase {
     var actionReceived: Action?
     
     let asyncMiddleware = AsyncMiddleware()
-    asyncMiddleware.api = MiddlewareAPI(
-      dispatch: { action in actionReceived = action },
-      getState: { State(dictionary: ["x" : "x"]) }
-    )
-    asyncMiddleware.next = { _ in }
     var called = false
     
     let url = URL(string: "http://google.com")!
@@ -123,7 +108,10 @@ class AsyncMiddlewareTests: XCTestCase {
       dispatch(SomeAction())
     }
     
-    asyncMiddleware.onAction(action: action)
+    asyncMiddleware.onAction(action: action,
+                             getState: { State(dictionary: ["x" : "x"]) },
+                             dispatch: { action in actionReceived = action },
+                             next: { _ in })
     
     XCTAssert(called == true)
     XCTAssert(dataReturned == session.dataToReturn)
@@ -135,11 +123,6 @@ class AsyncMiddlewareTests: XCTestCase {
     let exp = expectation(description: "x")
     
     let asyncMiddleware = AsyncMiddleware()
-    asyncMiddleware.api = MiddlewareAPI(
-      dispatch: { action in actionReceived = action },
-      getState: { State(dictionary: ["x" : "x"]) }
-    )
-    asyncMiddleware.next = { _ in }
     var called = false
     var dataReturned: Data?
     
@@ -156,7 +139,10 @@ class AsyncMiddlewareTests: XCTestCase {
       exp.fulfill()
     }
     
-    asyncMiddleware.onAction(action: action)
+    asyncMiddleware.onAction(action: action,
+                             getState: { State(dictionary: ["x" : "x"]) },
+                             dispatch: { action in actionReceived = action },
+                             next: { _ in })
     
     wait(for: [exp], timeout: 1)
     
@@ -170,11 +156,6 @@ class AsyncMiddlewareTests: XCTestCase {
     let exp = expectation(description: "x")
     
     let asyncMiddleware = AsyncMiddleware()
-    asyncMiddleware.api = MiddlewareAPI(
-      dispatch: { action in actionReceived = action },
-      getState: { State(dictionary: ["x" : "x"]) }
-    )
-    asyncMiddleware.next = { _ in }
     var called = false
     
     let dataToWrite = "x".data(using: .utf8)!
@@ -191,7 +172,10 @@ class AsyncMiddlewareTests: XCTestCase {
       exp.fulfill()
     }
     
-    asyncMiddleware.onAction(action: action)
+    asyncMiddleware.onAction(action: action,
+                             getState: { State(dictionary: ["x" : "x"]) },
+                             dispatch: { action in actionReceived = action },
+                             next: { _ in })
     
     wait(for: [exp], timeout: 1)
     

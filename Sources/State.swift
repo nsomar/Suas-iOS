@@ -27,7 +27,7 @@ public struct State {
   var innerState: KeyedState
   
   
-  init(dictionary: [StateKey: Any]) {
+  public init(dictionary: [StateKey: Any]) {
     self.innerState = [:]
     dictionary.forEach({ self.innerState[$0.0] = $0.1 })
   }
