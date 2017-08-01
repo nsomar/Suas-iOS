@@ -40,6 +40,7 @@ public struct Subscription<StateType> {
 
       // If there is a key, Get the state for it and covert it
       guard let state = store.state.value(forKey: key, ofType: StateType.self) else {
+        Suas.log("State for key `\(key)` of type '\(StateType.self)' not found. Notification skipped.")
         return
       }
       stateToNotify = state

@@ -45,26 +45,6 @@ public struct State {
     }
   }
   
-  #if swift(>=4.0)
-  /// Get a value for a key of specific type
-  ///
-  /// - Parameter forKeyOfType: the type to use for casting and fetching the state key
-  @available(swift, introduced: 4.0)
-  public subscript<Type>(forKeyOfType type: Type.Type) -> Type? {
-    let key = "\(type)"
-    return  innerState[key] as? Type
-  }
-  
-  /// Get a value for a key of specific type
-  ///
-  /// - Parameter key: the key to get the value for
-  /// - Parameter type: the type to cast the state to
-  @available(swift, introduced: 4.0)
-  public subscript<Type>(forKey key: String, ofType type: Type.Type) -> Type? {
-    return  innerState[key] as? Type
-  }
-  #endif
-  
   /// Get a value for a key
   ///
   /// - Parameter key: the key to get the value for

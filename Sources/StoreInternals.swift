@@ -16,7 +16,7 @@ public enum Suas {
     
     let reduce: ReducerFunction<Any> = { action, state in
       guard let newState = state as? R.StateType else {
-        Suas.log("When reducing state of type \(type(of: state)) was not convertible to \(R.StateType.self)\nstate: \(state)")
+        Suas.log("When reducing state of type '\(type(of: state))' was not convertible to '\(R.StateType.self)'\nstate: \(state)")
         return state
       }
       // Calls the any reducer. In that reducer we typecheck
@@ -67,15 +67,21 @@ extension Store {
       if let key = listener.stateKey,
         stateKeysChanged.contains(key) == false {
         // If the listener has a key, and the key is not in the `stateKeysChanged` then dont inform the listner
+        Suas.log("Listener notification skipped since state keys was not changed\nListener: \(listener)\nChanged keys: \(stateKeysChanged)\nState: \(state)")
         continue
       }
       
       guard
         let oldSubState = getSubstate(withState: oldState, forKey: listener.stateKey),
-        let newSubState = getSubstate(withState: state, forKey: listener.stateKey) else { return }
+        let newSubState = getSubstate(withState: state, forKey: listener.stateKey) else {
+          Suas.log("Listener notification skipped as listener key '\(String(describing: listener.stateKey))' was not found in state\nListener: \(listener)\nState: \(state)")
+          return
+      }
       
       if listener.filterBlock(oldSubState, newSubState) {
         listener.notify(newSubState)
+      } else {
+        Suas.log("Listener notification skipped as listener filter block did not pass\nListener: \(listener)\nState: \(state)")
       }
     }
   }
@@ -109,7 +115,7 @@ extension Store {
       currentNotificationFilter = { (old: Any, new: Any) -> Bool in
         // Dynamic typechecking :(
         guard let castNew = new as? StateType, let castOld = old as? StateType else {
-          Suas.log("Either new value or old value cannot be converted to type \(State.self)\nnew value: \(new)\nold value: \(old)")
+          Suas.log("Either new value or old value cannot be converted to type '\(State.self)'\nnew value: \(new)\nold value: \(old)")
           return false
         }
         
@@ -130,7 +136,7 @@ extension Store {
       }
       // If there is a stateConverter we convert and inform
       guard let newState = stateToNotify else {
-        Suas.log("State cannot be converted to type \(ListenerType.self)\nstate: \(state)")
+        Suas.log("State cannot be converted to type '\(ListenerType.self)'\nState: \(state)")
         return
       }
 

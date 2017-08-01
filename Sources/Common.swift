@@ -27,7 +27,9 @@ public typealias MiddlewareFunction = (Action, GetStateFunction, DispatchFunctio
 public typealias GetStateFunction = () -> State
 
 extension Suas {
-  static func log(_ string: String) {
-    print("Suas Log: \(string)")
+  static func log(_ string: @autoclosure () -> String) {
+    #if DEBUG
+      print("Suas Log: \(string())")
+    #endif
   }
 }

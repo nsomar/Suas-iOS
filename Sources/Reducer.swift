@@ -58,7 +58,7 @@ public protocol Reducer {
 extension Reducer {
   func reduce(action: Action, state: Any) -> Any? {
     guard let newState = state as? Self.StateType else {
-      Suas.log("When reducing state of type \(type(of: state)) was not convertible to \(Self.StateType.self)\nstate: \(state)")
+      Suas.log("When reducing state of type '\(type(of: state))' was not convertible to '\(Self.StateType.self)'\nState: \(state)")
       return state
     }
     
@@ -164,7 +164,7 @@ public final class CombinedReducer: Reducer {
   
   public func reduce(action: Action, state: Any) -> Any? {
     guard var dictState = state as? State else {
-      Suas.log("State should be a dictionary when using combined reducers")
+      Suas.log("State should be a dictionary when using combined reducers\nState: \(state)")
       return (state, [])
     }
     
@@ -172,7 +172,7 @@ public final class CombinedReducer: Reducer {
     
     for (key, reducer) in reducers {
       guard let subState = dictState[key] else {
-        Suas.log("State key '\(key)' missing for state '\(dictState)'")
+        Suas.log("State key '\(key)' missing in state '\(dictState)'")
         continue
       }
       

@@ -501,6 +501,23 @@ class ListenerTests: XCTestCase {
     XCTAssertEqual(newState!.value, 20)
   }
 
+  func testItDoesNotNotifyAboutTheCurrentStateWhenStateKeyIsNotThere() {
+    let store = Suas.createStore(reducer: reducer1)
+
+    var changed = false
+    var newState = ""
+
+    let sub = store.addListener(type: String.self) { state in
+      changed = true
+      newState = state
+    }
+
+    sub.notifyCurrentState()
+
+    XCTAssertFalse(changed)
+    XCTAssertEqual(newState, "")
+  }
+
   func testWhenItTriggerNotificationItPassesThroughStateConverter() {
     let store = Suas.createStore(reducer: reducer1)
 
