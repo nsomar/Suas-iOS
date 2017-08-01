@@ -38,6 +38,21 @@ class ListenerTests: XCTestCase {
     store.dispatch(action: IncrementAction())
     XCTAssertFalse(changed)
   }
+
+  func testItCanNotifyEvenAfterRemoval() {
+    let store = Suas.createStore(reducer: reducer1)
+
+    var changed = false
+
+    let sub = store.addListener(type: MyState1.self) { val in
+      changed = true
+    }
+
+    sub.removeListener()
+    sub.informWithCurrentState()
+
+    XCTAssertTrue(changed)
+  }
   
   func testItCanListenToAChangeAndMakesSureThatTypeIsCorrect() {
     let store = Suas.createStore(reducer: reducer1)
