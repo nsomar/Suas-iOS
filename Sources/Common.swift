@@ -29,7 +29,7 @@ public typealias GetStateFunction = () -> State
 extension Suas {
   static func log(_ string: @autoclosure () -> String) {
     #if DEBUG
-      print("Suas Log: \(string())")
+      print("🔼 Suas: \(string())")
     #endif
   }
 }
