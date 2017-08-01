@@ -67,7 +67,7 @@ class StoreTests: XCTestCase {
   }
 
   func testItDoesNotDispatchTwice() {
-    let tempReducer = BlockReducer(initialState: 1) { action, state in
+    let tempReducer = BlockReducer(initialState: 1) { state, action in
       if let action = action as? TempAction {
         action.dispatch(IncrementAction())
       }

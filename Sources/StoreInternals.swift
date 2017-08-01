@@ -14,13 +14,13 @@ public enum Suas {
                                              state: State,
                                              middleware: Middleware?) -> Store {
     
-    let reduce: ReducerFunction<Any> = { action, state in
+    let reduce: ReducerFunction<Any> = { state, action in
       guard let newState = state as? R.StateType else {
         Suas.log("When reducing state of type '\(type(of: state))' was not convertible to '\(R.StateType.self)'\nstate: \(state)")
         return state
       }
       // Calls the any reducer. In that reducer we typecheck
-      return reducer.reduce(action: action, state: newState)
+      return reducer.reduce(state: newState, action: action)
     }
     
     return Store(
@@ -64,7 +64,7 @@ extension Store {
     if state.keys.count == 1, let key = state.keys.first {
 
       // The store has a single reducer
-      if let subState = state[key], let newSubState = reducer(action, subState) {
+      if let subState = state[key], let newSubState = reducer(subState, action) {
         // State was changed for key
         state[key] = newSubState
         keysChanged.insert(key)
@@ -72,7 +72,7 @@ extension Store {
     } else {
 
       // The store has a combine reducer
-      if let (newState, currentKeysChanged) = reducer(action, state) as? (State, [StateKey]) {
+      if let (newState, currentKeysChanged) = reducer(state, action) as? (State, [StateKey]) {
         // State was changed for key
         state = newState
 

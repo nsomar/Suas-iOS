@@ -27,7 +27,7 @@ struct MyState4 {
 
 struct IncrementAction: Action {}
 
-let reducer1 = BlockReducer(initialState: MyState1(value: 0)) { action, state in
+let reducer1 = BlockReducer(initialState: MyState1(value: 0)) { state, action in
   var newState = state
 
   if action is IncrementAction {
@@ -40,7 +40,7 @@ let reducer1 = BlockReducer(initialState: MyState1(value: 0)) { action, state in
 class Reducer1: Reducer {
   var initialState = MyState1(value: 10)
 
-  func reduce(action: Action, state: MyState1) -> MyState1? {
+  func reduce(state: MyState1, action: Action) -> MyState1? {
     var newState = state
     if action is IncrementAction {
       newState.value += 20
@@ -52,7 +52,7 @@ class Reducer1: Reducer {
 class Reducer2: Reducer {
   var initialState = MyState2(blink: 20)
 
-  func reduce(action: Action, state: MyState2) -> MyState2? {
+  func reduce(state: MyState2, action: Action) -> MyState2? {
     var newState = state
     if action is IncrementAction {
       newState.blink += 40
@@ -64,7 +64,7 @@ class Reducer2: Reducer {
 class Reducer1Nil: Reducer {
   var initialState = MyState1(value: 10)
 
-  func reduce(action: Action, state: MyState1) -> MyState1? {
+  func reduce(state: MyState1, action: Action) -> MyState1? {
     return nil
   }
 }
@@ -72,7 +72,7 @@ class Reducer1Nil: Reducer {
 class Reducer3: Reducer {
   var initialState = MyState3(otherVal: 30)
 
-  func reduce(action: Action, state: MyState3) -> MyState3? {
+  func reduce(state: MyState3, action: Action) -> MyState3? {
     var newState = state
 
     if action is IncrementAction {
@@ -86,7 +86,7 @@ class Reducer3: Reducer {
 class Reducer3Nil: Reducer {
   var initialState = MyState3(otherVal: 30)
 
-  func reduce(action: Action, state: MyState3) -> MyState3? {
+  func reduce(state: MyState3, action: Action) -> MyState3? {
     return nil
   }
 }
@@ -94,7 +94,7 @@ class Reducer3Nil: Reducer {
 class Reducer4: Reducer {
   var initialState = MyState4(yetMoreVal:40)
 
-  func reduce(action: Action, state: MyState4) -> MyState4? {
+  func reduce(state: MyState4, action: Action) -> MyState4? {
     var newState = state
 
     if action is IncrementAction {
@@ -118,7 +118,7 @@ struct MyEquatableState1: Equatable, SuasDynamicEquatable {
 class EquatableReducer: Reducer {
   var initialState = MyEquatableState1(val: 50)
 
-  func reduce(action: Action, state: MyEquatableState1) -> MyEquatableState1? {
+  func reduce(state: MyEquatableState1, action: Action) -> MyEquatableState1? {
     var newState = state
 
     if action is IncrementAction {

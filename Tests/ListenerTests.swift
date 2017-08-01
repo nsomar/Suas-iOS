@@ -323,7 +323,7 @@ class ListenerTests: XCTestCase {
   func testItDoesNotNotifyIfKeyIsNotChanged() {
     struct Action1: Action {}
 
-    let reducer1 = BlockReducer(initialState: 1, stateKey: "key1") { action, state in
+    let reducer1 = BlockReducer(initialState: 1, stateKey: "key1") { state, action in
       if action is Action1 {
         return state
       }
@@ -557,6 +557,26 @@ class ListenerTests: XCTestCase {
     let sub = store.addListener(stateKey: "MyState1", type: Int.self) { _ in }
     sub.linkLifeCycleTo(object: obj)
     XCTAssertEqual(Suas.allListeners(inStore: store).count, 1)
+  }
+
+  func testAddingMultipleListenersLinkedToObjects() {
+    let store = Suas.createStore(reducer: Reducer1() + Reducer2())
+
+    callAndForgetMulti(store: store)
+    store.dispatch(action: IncrementAction())
+    XCTAssertEqual(Suas.allListeners(inStore: store).count, 0)
+  }
+
+  func callAndForgetMulti(store: Store) {
+    let obj = NSObject()
+
+    let sub1 = store.addListener(stateKey: "MyState1", type: Int.self) { _ in }
+    sub1.linkLifeCycleTo(object: obj)
+
+    let sub2 = store.addListener(stateKey: "MyState1", type: Int.self) { _ in }
+    sub2.linkLifeCycleTo(object: obj)
+
+    XCTAssertEqual(Suas.allListeners(inStore: store).count, 2)
   }
 
 

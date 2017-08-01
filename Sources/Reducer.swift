@@ -52,17 +52,17 @@ public protocol Reducer {
   /// - Returns: the new state
   ///
   /// Note: Returning `nil` from `reduce` signifies that the state did not change which will not inform the listeners
-  func reduce(action: Action, state: StateType) -> StateType?
+  func reduce(state: StateType, action: Action) -> StateType?
 }
 
 extension Reducer {
-  func reduce(action: Action, state: Any) -> Any? {
+  func reduce(state: Any, action: Action) -> Any? {
     guard let newState = state as? Self.StateType else {
       Suas.log("When reducing state of type '\(type(of: state))' was not convertible to '\(Self.StateType.self)'\nState: \(state)")
       return state
     }
     
-    return reduce(action: action, state: newState)
+    return reduce(state: newState, action: action)
   }
 }
 
@@ -130,8 +130,8 @@ public final class BlockReducer<StateType>: Reducer {
     self.reduceFunction = reduce
   }
   
-  public func reduce(action: Action, state: StateType) -> StateType? {
-    return self.reduceFunction(action, state)
+  public func reduce(state: StateType, action: Action) -> StateType? {
+    return self.reduceFunction(state, action)
   }
 }
 
@@ -162,7 +162,7 @@ public final class CombinedReducer: Reducer {
     states[stateKey] = state
   }
   
-  public func reduce(action: Action, state: Any) -> Any? {
+  public func reduce(state: Any, action: Action) -> Any? {
     guard var dictState = state as? State else {
       Suas.log("State should be a dictionary when using combined reducers\nState: \(state)")
       return (state, [])
@@ -176,7 +176,7 @@ public final class CombinedReducer: Reducer {
         continue
       }
       
-      if let newSubState = reducer(action, subState) {
+      if let newSubState = reducer(subState, action) {
         dictState[key] = newSubState
         stateKeysChanged.append(key)
       }

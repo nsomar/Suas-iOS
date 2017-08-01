@@ -19,7 +19,7 @@ public typealias StateConverter<ToType> =  (State) -> (ToType?)
 
 public typealias KeyedState = [StateKey: Any]
 
-public typealias ReducerFunction<Type> = (Action, Type) -> Type?
+public typealias ReducerFunction<Type> = (Type, Action) -> Type?
 public typealias DispatchFunction = (Action) -> Void
 public typealias NextFunction = DispatchFunction
 
