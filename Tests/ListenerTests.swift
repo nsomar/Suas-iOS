@@ -107,7 +107,7 @@ class ListenerTests: XCTestCase {
   }
   
   func testListnerCanListenToFullState() {
-    let store = Suas.createStore(reducer: Reducer1() |> Reducer2())
+    let store = Suas.createStore(reducer: Reducer1() + Reducer2())
     
     var changed = false
     var keys: [String] = []
@@ -124,7 +124,7 @@ class ListenerTests: XCTestCase {
   }
   
   func testListnerCanListenToFullStateWithFilter() {
-    let store = Suas.createStore(reducer: Reducer1() |> Reducer2())
+    let store = Suas.createStore(reducer: Reducer1() + Reducer2())
     
     var changed = false
     var keys: [String] = []
@@ -141,7 +141,7 @@ class ListenerTests: XCTestCase {
   }
   
   func testListnerCanListenToStateForKey() {
-    let store = Suas.createStore(reducer: Reducer1() |> Reducer2())
+    let store = Suas.createStore(reducer: Reducer1() + Reducer2())
 
     var changed = false
     var val = 0
@@ -157,7 +157,7 @@ class ListenerTests: XCTestCase {
   }
 
   func testListnerCanListenToStateForKeyWithFilterThatAlwaysReturnsTrue() {
-    let store = Suas.createStore(reducer: Reducer1() |> Reducer2())
+    let store = Suas.createStore(reducer: Reducer1() + Reducer2())
 
     var changed = false
     var val = 0
@@ -175,7 +175,7 @@ class ListenerTests: XCTestCase {
   }
 
   func testListnerCanListenToStateForKeyWithFilterThatNeverReturnsTrue() {
-    let store = Suas.createStore(reducer: Reducer1() |> Reducer2())
+    let store = Suas.createStore(reducer: Reducer1() + Reducer2())
 
     var changed = false
     var val = 0
@@ -193,7 +193,7 @@ class ListenerTests: XCTestCase {
   }
 
   func testListnerCanListenToStateForKeyWithFilterWithATypeThatMatches() {
-    let store = Suas.createStore(reducer: Reducer1() |> Reducer2())
+    let store = Suas.createStore(reducer: Reducer1() + Reducer2())
 
     var changed = false
     var val = 0
@@ -212,7 +212,7 @@ class ListenerTests: XCTestCase {
 
   
   func testListnerCanListenToStateForKeyAndTypeThatMatches() {
-    let store = Suas.createStore(reducer: Reducer1() |> Reducer2())
+    let store = Suas.createStore(reducer: Reducer1() + Reducer2())
     
     var changed = false
     var val = 0
@@ -228,7 +228,7 @@ class ListenerTests: XCTestCase {
   }
   
   func testListnerCanListenToStateForKeyAndTypeThatDoesNotMatch() {
-    let store = Suas.createStore(reducer: Reducer1() |> Reducer2())
+    let store = Suas.createStore(reducer: Reducer1() + Reducer2())
     
     var changed = false
     var val = 0
@@ -244,7 +244,7 @@ class ListenerTests: XCTestCase {
   }
   
   func testListnerCanListenToStateForKeyAndTypeThatMatchesAndAFilter() {
-    let store = Suas.createStore(reducer: Reducer1() |> Reducer2())
+    let store = Suas.createStore(reducer: Reducer1() + Reducer2())
     
     var changed = false
     var val = 0
@@ -261,7 +261,7 @@ class ListenerTests: XCTestCase {
   }
   
   func testListnerCanListenToStateForKeyAndTypeThatMatchesAndAFilterThatNeverReturnsTrue() {
-    let store = Suas.createStore(reducer: Reducer1() |> Reducer2())
+    let store = Suas.createStore(reducer: Reducer1() + Reducer2())
     
     var changed = false
     var val = 0
@@ -278,7 +278,7 @@ class ListenerTests: XCTestCase {
   }
   
   func testListnerCanListenToStateForKeyAndTypeThatMatchesAndAFilterThatAlwaysReturnsTrueButStateIsWrong() {
-    let store = Suas.createStore(reducer: Reducer1() |> Reducer2())
+    let store = Suas.createStore(reducer: Reducer1() + Reducer2())
     
     var changed = false
     var val = 0
@@ -295,7 +295,7 @@ class ListenerTests: XCTestCase {
   }
   
   func testItAddsActionListener() {
-    let store = Suas.createStore(reducer: Reducer1() |> Reducer2())
+    let store = Suas.createStore(reducer: Reducer1() + Reducer2())
     
     var actionReceived: Action? = nil
     _ = store.addActionListener { action in
@@ -307,7 +307,7 @@ class ListenerTests: XCTestCase {
   }
   
   func testItRemovesAnActionListener() {
-    let store = Suas.createStore(reducer: Reducer1() |> Reducer2())
+    let store = Suas.createStore(reducer: Reducer1() + Reducer2())
     
     var actionReceived: Action? = nil
     let sub = store.addActionListener { action in
@@ -334,7 +334,7 @@ class ListenerTests: XCTestCase {
       return nil
     }
 
-    let store = Suas.createStore(reducer: reducer1 |> reducer2)
+    let store = Suas.createStore(reducer: reducer1 + reducer2)
 
     var listener1Notified = false
     var listener2Notified = false
@@ -363,7 +363,7 @@ class ListenerTests: XCTestCase {
       return nil
     }
 
-    let store = Suas.createStore(reducer: reducer1 |> reducer2)
+    let store = Suas.createStore(reducer: reducer1 + reducer2)
 
     var listener1Notified = false
     var listener2Notified = false
@@ -392,7 +392,7 @@ class ListenerTests: XCTestCase {
       return nil
     }
 
-    let store = Suas.createStore(reducer: reducer1 |> reducer2)
+    let store = Suas.createStore(reducer: reducer1 + reducer2)
 
     var listener1Notified = false
     var listener2Notified = false
@@ -528,7 +528,7 @@ class ListenerTests: XCTestCase {
   }
 
   func testAddingListenersLinkedToObjects() {
-    let store = Suas.createStore(reducer: Reducer1() |> Reducer2())
+    let store = Suas.createStore(reducer: Reducer1() + Reducer2())
 
     callAndForget(store: store)
     store.dispatch(action: IncrementAction())

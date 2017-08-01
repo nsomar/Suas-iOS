@@ -24,7 +24,7 @@ class MiddlewareTests: XCTestCase {
   }
 
   func testCallingOnActionDirectlyDoesNotWorkOnCombined() {
-    (middleware1 |> middleware2).onAction(action: IncrementAction())
+    (middleware1 + middleware2).onAction(action: IncrementAction())
   }
 
   func testItCanAddTwoMiddlewares() {
@@ -41,7 +41,7 @@ class MiddlewareTests: XCTestCase {
       next(action)
     }
 
-    let store = Suas.createStore(reducer: Reducer1(), middleware: middleware1 |> middleware2)
+    let store = Suas.createStore(reducer: Reducer1(), middleware: middleware1 + middleware2)
     store.dispatch(action: IncrementAction())
 
     XCTAssertEqual(m1Called, true)
@@ -68,8 +68,8 @@ class MiddlewareTests: XCTestCase {
       next(action)
     }
 
-    let c = middleware1 |> middleware2
-    let store = Suas.createStore(reducer: Reducer1(), middleware: c |> middleware3)
+    let c = middleware1 + middleware2
+    let store = Suas.createStore(reducer: Reducer1(), middleware: c + middleware3)
     store.dispatch(action: IncrementAction())
 
     XCTAssertEqual(m1Called, true)
@@ -97,8 +97,8 @@ class MiddlewareTests: XCTestCase {
       next(action)
     }
 
-    let c = middleware1 |> middleware2
-    let store = Suas.createStore(reducer: Reducer1(), middleware: middleware3 |> c)
+    let c = middleware1 + middleware2
+    let store = Suas.createStore(reducer: Reducer1(), middleware: middleware3 + c)
     store.dispatch(action: IncrementAction())
 
     XCTAssertEqual(m1Called, true)
@@ -132,10 +132,10 @@ class MiddlewareTests: XCTestCase {
       next(action)
     }
 
-    let c1 = middleware1 |> middleware2
-    let c2 = middleware3 |> middleware4
+    let c1 = middleware1 + middleware2
+    let c2 = middleware3 + middleware4
 
-    let store = Suas.createStore(reducer: Reducer1(), middleware: c1 |> c2)
+    let store = Suas.createStore(reducer: Reducer1(), middleware: c1 + c2)
     store.dispatch(action: IncrementAction())
 
     XCTAssertEqual(m1Called, true)
@@ -151,7 +151,7 @@ class MiddlewareTests: XCTestCase {
       next(action)
     }
 
-    let store = Suas.createStore(reducer: Reducer1(), middleware: middleware1 |> middleware2)
+    let store = Suas.createStore(reducer: Reducer1(), middleware: middleware1 + middleware2)
     store.dispatch(action: IncrementAction())
 
     XCTAssertEqual(val, 10)

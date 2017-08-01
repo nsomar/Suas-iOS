@@ -26,8 +26,6 @@ public typealias NextFunction = DispatchFunction
 public typealias MiddlewareFunction = (Action, MiddlewareAPI, NextFunction) -> Void
 public typealias GetStateFunction = () -> State
 
-infix operator |> : AdditionPrecedence
-
 extension Suas {
   static func log(_ string: String) {
     print("Suas Log: \(string)")

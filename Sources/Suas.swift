@@ -51,7 +51,7 @@ extension Suas {
   ///
   /// ```
   /// let store = Suas.createStore(
-  ///   reducer: MyReducer() |> MyOtherReducer()
+  ///   reducer: MyReducer() + MyOtherReducer()
   /// )
   /// ```
   public static func createStore<R: Reducer>(reducer: R,
@@ -104,7 +104,7 @@ extension Suas {
   ///
   /// ```
   /// let store = Suas.createStore(
-  ///   reducer: MyReducer() |> MyOtherReducer()
+  ///   reducer: MyReducer() + MyOtherReducer()
   /// )
   /// ```
   public static func createStore<R: Reducer, StateType>(reducer: R,
@@ -158,7 +158,7 @@ extension Suas {
   ///
   /// ```
   /// let store = Suas.createStore(
-  ///   reducer: MyReducer() |> MyOtherReducer()
+  ///   reducer: MyReducer() + MyOtherReducer()
   /// )
   /// ```
   public static func createStore<R: Reducer>(reducer: R,

@@ -180,10 +180,10 @@ private final class CombinedMiddleWare: Middleware {
 /// ```
 /// let store = Suas.createStore(
 ///   reducer: someReducer,
-///   middleware: middleware1 |> middleware2
+///   middleware: middleware1 + middleware2
 /// )
 /// ```
-public func |>(lhs: Middleware, rhs: Middleware) -> Middleware {
+public func +(lhs: Middleware, rhs: Middleware) -> Middleware {
   if
     let lhs = lhs as? CombinedMiddleWare,
     let rhs = rhs as? CombinedMiddleWare {

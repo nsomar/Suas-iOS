@@ -12,7 +12,7 @@ import XCTest
 class StoreTests: XCTestCase {
 
   func testItCanGetTheFullState() {
-    let store = Suas.createStore(reducer: Reducer1() |> Reducer2())
+    let store = Suas.createStore(reducer: Reducer1() + Reducer2())
 
     let v1 = store.state.value(forKey: "MyState1", ofType: MyState1.self)?.value
     let v2 = store.state.value(forKey: "MyState2", ofType: MyState2.self)?.blink
@@ -22,7 +22,7 @@ class StoreTests: XCTestCase {
   }
 
   func testItCanSetTheStateForAKey() {
-    let store = Suas.createStore(reducer: Reducer1() |> Reducer2())
+    let store = Suas.createStore(reducer: Reducer1() + Reducer2())
 
     store.reset(state: "1", forKey: "MyState1")
     store.reset(state: 2, forKey: "MyState2")
@@ -40,7 +40,7 @@ class StoreTests: XCTestCase {
   }
 
   func testItCanSetTheStateForAKeyImplicitely() {
-    let store = Suas.createStore(reducer: Reducer1() |> Reducer2())
+    let store = Suas.createStore(reducer: Reducer1() + Reducer2())
 
     store.reset(state: MyState1(value: 50))
 
@@ -52,7 +52,7 @@ class StoreTests: XCTestCase {
   }
 
   func testItCanSetTheFullState() {
-    let store = Suas.createStore(reducer: Reducer1() |> Reducer2())
+    let store = Suas.createStore(reducer: Reducer1() + Reducer2())
 
     store.resetFullState([
       "a": 10,

@@ -32,7 +32,7 @@ class ReducerTests: XCTestCase {
   }
 
   func testItReturnSameStateIfCannotConvertForCombinedReducer() {
-    let (newState, _) = (Reducer1() |> Reducer2()).reduce(action: IncrementAction(), state: 1) as! (Int, [String])
+    let (newState, _) = (Reducer1() + Reducer2()).reduce(action: IncrementAction(), state: 1) as! (Int, [String])
 
     XCTAssertEqual(newState, 1)
   }
@@ -43,7 +43,7 @@ class ReducerTests: XCTestCase {
       "\(MyState2.self)": MyState1(value: 0),
       ]
 
-    let (newState, _) = (Reducer1() |> Reducer2()).reduce(action: IncrementAction(),
+    let (newState, _) = (Reducer1() + Reducer2()).reduce(action: IncrementAction(),
                                                      state: State(dictionary: state)) as! (State, [String])
 
     let v1 = newState.value(forKeyOfType: MyState1.self)!.value
@@ -59,7 +59,7 @@ class ReducerTests: XCTestCase {
       "\(MyState2.self)": MyState2(blink: 0),
       ]
 
-    let combine = Reducer1() |> Reducer2()
+    let combine = Reducer1() + Reducer2()
     let (newState, _) = combine.reduce(action: IncrementAction(),
                                   state: State(dictionary: state)) as! (State, [String])
 
@@ -70,7 +70,7 @@ class ReducerTests: XCTestCase {
   }
 
   func testItDoesNotAddTheSameReducerTwice() {
-    let combine = Reducer1() |> Reducer1()
+    let combine = Reducer1() + Reducer1()
     XCTAssertEqual(combine.reducers.count, 1)
   }
 
@@ -81,7 +81,7 @@ class ReducerTests: XCTestCase {
       "\(MyState3.self)": MyState3(otherVal: 0),
       ]
 
-    let combine = Reducer1() |> Reducer2() |> Reducer3()
+    let combine = Reducer1() + Reducer2() + Reducer3()
     let (newState, _) = combine.reduce(action: IncrementAction(),
                                   state: State(dictionary: state)) as! (State, [String])
 
@@ -100,7 +100,7 @@ class ReducerTests: XCTestCase {
       "\(MyState3.self)": MyState3(otherVal: 0),
       ]
 
-    let combine = Reducer1() |> Reducer2() |> Reducer3()
+    let combine = Reducer1() + Reducer2() + Reducer3()
     let (newState, _) = combine.reduce(action: IncrementAction(),
                                   state: State(dictionary: state)) as! (State, [String])
 
@@ -118,8 +118,8 @@ class ReducerTests: XCTestCase {
       "\(MyState3.self)": MyState3(otherVal: 0),
       ]
 
-    let combiner1 = Reducer2() |> Reducer3()
-    let combine = Reducer1() |> combiner1
+    let combiner1 = Reducer2() + Reducer3()
+    let combine = Reducer1() + combiner1
     let (newState, _) = combine.reduce(action: IncrementAction(),
                                   state: State(dictionary: state)) as! (State, [String])
 
@@ -139,8 +139,8 @@ class ReducerTests: XCTestCase {
       "\(MyState3.self)": MyState3(otherVal: 0),
       ]
 
-    let combiner1 = Reducer2() |> Reducer3()
-    let combine = combiner1 |> Reducer1()
+    let combiner1 = Reducer2() + Reducer3()
+    let combine = combiner1 + Reducer1()
     let (newState, _) = combine.reduce(action: IncrementAction(),
                                   state: State(dictionary: state)) as! (State, [String])
 
@@ -160,7 +160,7 @@ class ReducerTests: XCTestCase {
       "\(MyState3.self)": MyState3(otherVal: 0),
       ]
 
-    let combine = Reducer2() |> Reducer3() |> Reducer1()
+    let combine = Reducer2() + Reducer3() + Reducer1()
     let (_, keys) = combine.reduce(action: IncrementAction(), state: State(dictionary: state)) as! (State, [String])
     XCTAssertEqual(keys, ["MyState2", "MyState3", "MyState1"])
   }
@@ -172,7 +172,7 @@ class ReducerTests: XCTestCase {
       "\(MyState3.self)": MyState3(otherVal: 0),
       ]
 
-    let combine = Reducer2() |> Reducer3Nil() |> Reducer1()
+    let combine = Reducer2() + Reducer3Nil() + Reducer1()
     let (_, keys) = combine.reduce(action: IncrementAction(), state: State(dictionary: state)) as! (State, [String])
     XCTAssertEqual(keys, ["MyState2", "MyState1"])
   }
@@ -190,9 +190,9 @@ class ReducerTests: XCTestCase {
       "\(MyState4.self)": MyState4(yetMoreVal: 0)
     ]
 
-    let combiner1 = Reducer1() |> Reducer2()
-    let combiner2 = Reducer3() |> Reducer4()
-    let combine = combiner1 |> combiner2
+    let combiner1 = Reducer1() + Reducer2()
+    let combiner2 = Reducer3() + Reducer4()
+    let combine = combiner1 + combiner2
     let (newState, _) = combine.reduce(action: IncrementAction(),
                                   state: State(dictionary: state)) as! (State, [String])
 
@@ -217,7 +217,7 @@ class ReducerTests: XCTestCase {
   }
 
   func testItGenereateCorrectStateWithAClassWithStateCombine() {
-    let combine = Reducer1() |> Reducer2()
+    let combine = Reducer1() + Reducer2()
     let initial = combine.initialState
 
     let v1 = ((initial as! [String: Any])["\(MyState1.self)"] as! MyState1).value
@@ -227,7 +227,7 @@ class ReducerTests: XCTestCase {
   }
 
   func testItGenereateCorrectStateWithAClassWithStateCombineThreeItems() {
-    let combine = Reducer1() |> Reducer2() |> Reducer3()
+    let combine = Reducer1() + Reducer2() + Reducer3()
     let initial = combine.initialState
 
     let v1 = ((initial as! [String: Any])["\(MyState1.self)"] as! MyState1).value
@@ -239,8 +239,8 @@ class ReducerTests: XCTestCase {
   }
 
   func testItGenereateCorrectStateWithAClassWithStateCombineThreeItemsCombinerComesLast() {
-    let combiner1 = Reducer2() |> Reducer3()
-    let combine = Reducer1() |> combiner1
+    let combiner1 = Reducer2() + Reducer3()
+    let combine = Reducer1() + combiner1
     let initial = combine.initialState
 
     let v1 = ((initial as! [String: Any])["\(MyState1.self)"] as! MyState1).value
@@ -252,8 +252,8 @@ class ReducerTests: XCTestCase {
   }
 
   func testItGenereateCorrectStateWithAClassWithStateCombineThreeItemsCombinerComesFirst() {
-    let combiner1 = Reducer2() |> Reducer3()
-    let combine = combiner1 |> Reducer1()
+    let combiner1 = Reducer2() + Reducer3()
+    let combine = combiner1 + Reducer1()
     let initial = combine.initialState
 
     let v1 = ((initial as! [String: Any])["\(MyState1.self)"] as! MyState1).value
@@ -265,9 +265,9 @@ class ReducerTests: XCTestCase {
   }
 
   func testItGenereateCorrectStateWithAClassWithStateCombineFourItems2Combiners() {
-    let combiner1 = Reducer1() |> Reducer2()
-    let combiner2 = Reducer3() |> Reducer4()
-    let combine = combiner1 |> combiner2
+    let combiner1 = Reducer1() + Reducer2()
+    let combiner2 = Reducer3() + Reducer4()
+    let combine = combiner1 + combiner2
     let initial = combine.initialState
 
     let v1 = ((initial as! [String: Any])["\(MyState1.self)"] as! MyState1).value

@@ -221,12 +221,12 @@ public final class CombinedReducer: Reducer {
 ///
 /// ```
 /// let store = Suas.createStore(
-///   reducer: myReducer1 |> myReducer2
+///   reducer: myReducer1 + myReducer2
 /// )
 /// ```
 ///
 /// `myReducer1` will handle the "key1" key of state and `myReducer2` will handle the "key2" key of state
-public func |><R1: Reducer, R2: Reducer>(lhs: R1, rhs: R2) -> CombinedReducer {
+public func +<R1: Reducer, R2: Reducer>(lhs: R1, rhs: R2) -> CombinedReducer {
   var listToAppendTo: [(StateKey, Any, ReducerFunction<Any>)] = []
   
   if
@@ -263,5 +263,3 @@ public func |><R1: Reducer, R2: Reducer>(lhs: R1, rhs: R2) -> CombinedReducer {
   listToAppendTo.forEach({ combiner.append(reducerWithKey: $0.0, funciton: $0.2, state: $0.1) })
   return combiner
 }
-
-
