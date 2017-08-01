@@ -25,6 +25,7 @@ public class Store {
   var listeners: [Listener]
   var actionListeners: [CallbackId: ActionListenerFunction]
   var dispatchingFunction: DispatchFunction?
+  var isDispatching = false
 
   init(state: State,
        reducer: @escaping ReducerFunction<Any>,

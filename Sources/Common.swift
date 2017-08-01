@@ -26,10 +26,22 @@ public typealias NextFunction = DispatchFunction
 public typealias MiddlewareFunction = (Action, GetStateFunction, DispatchFunction, NextFunction) -> Void
 public typealias GetStateFunction = () -> State
 
+
 extension Suas {
+  // For testing
+  static var fatalErrorHandler: (() -> ())? = nil
+
   static func log(_ string: @autoclosure () -> String) {
     #if DEBUG
       print("🔼 Suas: \(string())")
+    #endif
+  }
+
+  static func fatalError() {
+    #if DEBUG
+      let fatalError = fatalErrorHandler ?? { Swift.fatalError() }
+      fatalError()
+    #else
     #endif
   }
 }

@@ -114,8 +114,8 @@ public final class BlockReducer<StateType>: Reducer {
   /// - Parameters:
   ///   - state: the initial state of the reducer
   ///   - reduce: the reduce function
-  public convenience init(state: StateType, reduce: @escaping ReducerFunction<StateType>) {
-    self.init(state: state, key: "\(type(of: state))", reduce: reduce)
+  public convenience init(initialState: StateType, reduce: @escaping ReducerFunction<StateType>) {
+    self.init(initialState: initialState, stateKey: "\(type(of: initialState))", reduce: reduce)
   }
   
   /// Create a reducer with a state, a state key, and a reduce function
@@ -124,9 +124,9 @@ public final class BlockReducer<StateType>: Reducer {
   ///   - state: the initial state of the reducer
   ///   - key: the key to be used for this reducer state
   ///   - reduce: the reduce function
-  public init(state: StateType, key: StateKey, reduce: @escaping ReducerFunction<StateType>) {
-    self.stateKey = key
-    self.initialState = state
+  public init(initialState: StateType, stateKey: StateKey, reduce: @escaping ReducerFunction<StateType>) {
+    self.initialState = initialState
+    self.stateKey = stateKey
     self.reduceFunction = reduce
   }
   

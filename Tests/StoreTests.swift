@@ -65,4 +65,28 @@ class StoreTests: XCTestCase {
     XCTAssertEqual(v1, 10)
     XCTAssertEqual(v2, "20")
   }
+
+  func testItDoesNotDispatchTwice() {
+    let tempReducer = BlockReducer(initialState: 1) { action, state in
+      if let action = action as? TempAction {
+        action.dispatch(IncrementAction())
+      }
+      
+      return state
+    }
+
+    struct TempAction: Action {
+      let dispatch: DispatchFunction
+    }
+
+    var fatalErrorCalled = false
+    Suas.fatalErrorHandler = {
+      fatalErrorCalled = true
+    }
+
+    let store = Suas.createStore(reducer: reducer1 + tempReducer)
+
+    store.dispatch(action: TempAction(dispatch: store.dispatch))
+    XCTAssertTrue(fatalErrorCalled)
+  }
 }

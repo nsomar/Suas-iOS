@@ -27,7 +27,7 @@ struct MyState4 {
 
 struct IncrementAction: Action {}
 
-let reducer1 = BlockReducer(state: MyState1(value: 0)) { action, state in
+let reducer1 = BlockReducer(initialState: MyState1(value: 0)) { action, state in
   var newState = state
 
   if action is IncrementAction {

@@ -323,14 +323,14 @@ class ListenerTests: XCTestCase {
   func testItDoesNotNotifyIfKeyIsNotChanged() {
     struct Action1: Action {}
 
-    let reducer1 = BlockReducer(state: 1, key: "key1") { action, state in
+    let reducer1 = BlockReducer(initialState: 1, stateKey: "key1") { action, state in
       if action is Action1 {
         return state
       }
       return nil
     }
 
-    let reducer2 = BlockReducer(state: 1, key: "key2") { action, state in
+    let reducer2 = BlockReducer(initialState: 1, stateKey: "key2") { action, state in
       return nil
     }
 
@@ -355,11 +355,11 @@ class ListenerTests: XCTestCase {
   func testItDoesNotNotifyIfKeyIsNoneChanged() {
     struct Action1: Action {}
 
-    let reducer1 = BlockReducer(state: 1, key: "key1") { action, state in
+    let reducer1 = BlockReducer(initialState: 1, stateKey: "key1") { action, state in
       return nil
     }
 
-    let reducer2 = BlockReducer(state: 1, key: "key2") { action, state in
+    let reducer2 = BlockReducer(initialState: 1, stateKey: "key2") { action, state in
       return nil
     }
 
@@ -384,11 +384,11 @@ class ListenerTests: XCTestCase {
   func testListenersWithnoKeyAlwaysGetNotified() {
     struct Action1: Action {}
 
-    let reducer1 = BlockReducer(state: 1, key: "key1") { action, state in
+    let reducer1 = BlockReducer(initialState: 1, stateKey: "key1") { action, state in
       return nil
     }
 
-    let reducer2 = BlockReducer(state: 1, key: "key2") { action, state in
+    let reducer2 = BlockReducer(initialState: 1, stateKey: "key2") { action, state in
       return nil
     }
 

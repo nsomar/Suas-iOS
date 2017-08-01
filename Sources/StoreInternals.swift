@@ -38,46 +38,68 @@ extension Store {
   func getState() -> State {
     return self.state
   }
-  
+
   func performDispatch(action: Action) {
+    ensureNotDispatching()
+
     let oldState = state
     
-    var stateKeysChanged: Set<StateKey> = Set()
-    
+    let keysChanged = performReduce(action: action)
+    informListeners(keysChanged: keysChanged, oldState: oldState)
+  }
+
+  private func ensureNotDispatching() {
+    if isDispatching {
+      Suas.log("You must not dispatch actions in your reducer. Seriously. (╯°□°）╯︵ ┻━┻")
+      Suas.fatalError()
+      return
+    }
+
+    isDispatching = true
+  }
+
+  private func performReduce(action: Action) -> Set<StateKey> {
+    var keysChanged: Set<StateKey> = Set()
+
     if state.keys.count == 1, let key = state.keys.first {
-      
+
       // The store has a single reducer
       if let subState = state[key], let newSubState = reducer(action, subState) {
         // State was changed for key
         state[key] = newSubState
-        stateKeysChanged.insert(key)
+        keysChanged.insert(key)
       }
     } else {
-      
+
       // The store has a combine reducer
-      if let (newState, keysChanged) = reducer(action, state) as? (State, [StateKey]) {
+      if let (newState, currentKeysChanged) = reducer(action, state) as? (State, [StateKey]) {
         // State was changed for key
         state = newState
-        keysChanged.forEach({ stateKeysChanged.insert($0) })
+
+        currentKeysChanged.forEach({ keysChanged.insert($0) })
       }
     }
-    
+
+    return keysChanged
+  }
+
+  private func informListeners(keysChanged: Set<StateKey>, oldState: State) {
     for listener in listeners {
-      
+
       if let key = listener.stateKey,
-        stateKeysChanged.contains(key) == false {
-        // If the listener has a key, and the key is not in the `stateKeysChanged` then dont inform the listner
-        Suas.log("Listener notification skipped since state keys was not changed\nListener: \(listener)\nChanged keys: \(stateKeysChanged)\nState: \(state.innerState)")
+        keysChanged.contains(key) == false {
+        // If the listener has a key, and the key is not in the `keysChanged` then dont inform the listner
+        Suas.log("Listener notification skipped since state keys was not changed\nListener: \(listener)\nChanged keys: \(keysChanged)\nState: \(state.innerState)")
         continue
       }
-      
+
       guard
         let oldSubState = getSubstate(withState: oldState, forKey: listener.stateKey),
         let newSubState = getSubstate(withState: state, forKey: listener.stateKey) else {
           Suas.log("Listener notification skipped as listener key '\(String(describing: listener.stateKey))' was not found in state\nListener: \(listener)\nState: \(state.innerState)")
           return
       }
-      
+
       if listener.filterBlock(oldSubState, newSubState) {
         listener.notify(newSubState)
       } else {
