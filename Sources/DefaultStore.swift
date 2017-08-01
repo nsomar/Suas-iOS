@@ -23,81 +23,23 @@ public enum Suas {
       return reducer.reduce(action: action, state: newState)
     }
     
-    return Suas.DefaultStore(
+    return Store(
       state: state,
       reducer: reduce,
       middleware: middleware)
-  }
-  
-  class DefaultStore: Store {
-    
-    var state: State
-    var reducer: ReducerFunction<Any>
-    fileprivate var listeners: [Listener]
-    fileprivate var actionListeners: [CallbackId: ActionListenerFunction]
-    fileprivate var dispatchingFunction: DispatchFunction?
-    
-    init(state: State,
-         reducer: @escaping ReducerFunction<Any>,
-         middleware: Middleware?) {
-      
-      self.state = state
-      self.reducer = reducer
-      self.listeners = []
-      self.actionListeners = [:]
-      self.dispatchingFunction = nil
-      
-      if let middleware = middleware {
-        middleware.api = MiddlewareAPI(dispatch: self.dispatch, getState: self.getState)
-        self.dispatchingFunction = middleware.onAction
-        middleware.next = performDispatch
-      } else {
-        self.dispatchingFunction = self.performDispatch
-      }
-    }
   }
 }
 
 
 // MARK: Initialization and Reduce registration
 
-extension Suas.DefaultStore {
+extension Store {
   
-  func reset(state: Any) {
-    reset(state: state, forKey: "\(type(of: state))")
-  }
-  
-  func reset(state: Any, forKey key: StateKey) {
-    self.state[key] = state
-  }
-  
-  func resetFullState(_ state: KeyedState) {
-    self.state = State(dictionary: state)
-  }
-}
-
-extension Suas.DefaultStore {
-  
-  fileprivate func getState() -> State {
+  func getState() -> State {
     return self.state
   }
   
-  func dispatch(action: Action) {
-    let toDispatch = {
-      // Inform the action listeners
-      self.actionListeners.forEach({ $0.value(action) })
-      
-      self.dispatchingFunction?(action)
-    }
-    
-    if Thread.isMainThread {
-      toDispatch()
-    } else {
-      DispatchQueue.main.sync { toDispatch() }
-    }
-  }
-  
-  fileprivate func performDispatch(action: Action) {
+  func performDispatch(action: Action) {
     let oldState = state
     
     var stateKeysChanged: Set<StateKey> = Set()
@@ -149,77 +91,10 @@ extension Suas.DefaultStore {
 
 // MARK: Adding and removing observers and middlewares
 
-extension Suas.DefaultStore {
-  
-  func addListener<StateType>(type: StateType.Type,
-                              callback: @escaping (StateType) -> ()) -> Subscription<StateType> {
-    
-    return performAddListener(stateKey: "\(type)", type: type, callback: callback)
-  }
-  
-  func addListener<StateType>(type: StateType.Type,
-                              if filterBlock: @escaping FilterFunction<StateType>,
-                              callback: @escaping (StateType) -> ()) -> Subscription<StateType> {
-    
-    return performAddListener(stateKey: "\(type)", type: type,
-                              if: filterBlock, callback: callback)
-  }
-  
-  func addListener<StateType>(stateKey: StateKey,
-                              callback: @escaping (StateType) -> ()) -> Subscription<StateType> {
-    
-    return performAddListener(stateKey: stateKey, type: StateType.self, callback: callback)
-  }
-  
-  func addListener<StateType>(stateKey: StateKey,
-                              if filterBlock: @escaping FilterFunction<StateType>,
-                              callback: @escaping (StateType) -> ()) -> Subscription<StateType> {
-    
-    return performAddListener(stateKey: stateKey, type: StateType.self,
-                              if: filterBlock, callback: callback)
-  }
-  
-  func addListener(callback: @escaping (State) -> ()) -> Subscription<State> {
-    return performAddListener(stateKey: nil, type: State.self, callback: callback)
-  }
-  
-  func addListener(if filterBlock: @escaping FilterFunction<State>,
-                   callback: @escaping (State) -> ()) -> Subscription<State> {
-    return performAddListener(stateKey: nil, type: State.self, if: filterBlock, callback: callback)
-  }
-  
-  func addListener<StateType>(stateKey: StateKey,
-                              type: StateType.Type, callback: @escaping (StateType) -> ()) -> Subscription<StateType> {
-    return performAddListener(stateKey: stateKey, type: type, callback: callback)
-  }
-  
-  func addListener<StateType>(stateKey: StateKey,
-                              type: StateType.Type,
-                              if filterBlock: @escaping FilterFunction<StateType>,
-                              callback: @escaping (StateType) -> ()) -> Subscription<StateType> {
-    return performAddListener(stateKey: stateKey, type: type, if: filterBlock, callback: callback)
-  }
-  
-  func addListener<StateType>(stateConverter: @escaping StateConverter<StateType>,
-                              callback: @escaping (StateType) -> ()) -> Subscription<State> {
-    return performAddListener(stateKey: nil,
-                              type: State.self,
-                              if: nil,
-                              stateConverter: stateConverter,
-                              callback: callback)
-  }
+extension Store {
 
-  func addListener<StateType>(if filterBlock: @escaping FilterFunction<State>,
-                              stateConverter: @escaping StateConverter<StateType>,
-                              callback: @escaping (StateType) -> ()) -> Subscription<State> {
-    return performAddListener(stateKey: nil,
-                              type: State.self,
-                              if: filterBlock,
-                              stateConverter: stateConverter,
-                              callback: callback)
-  }
-  
-  func performAddListener<StateType, ListenerType>(stateKey: StateKey?,
+  func performAddListener<StateType, ListenerType>(linkedToObject: NSObject? = nil,
+                                                   stateKey: StateKey?,
                                                    type: StateType.Type,
                                                    if filterBlock: FilterFunction<StateType>? = nil,
                                                    stateConverter: StateConverter<ListenerType>? = nil,
@@ -256,23 +131,29 @@ extension Suas.DefaultStore {
       }
       // If there is a stateConverter we convert and inform
       guard let newState = stateToNotify else {
-        Suas.log("State cannot be converted to type \(State.self)\nstate: \(state)")
+        Suas.log("State cannot be converted to type \(ListenerType.self)\nstate: \(state)")
         return
       }
 
       callback(newState)
     }
 
+    let id = generateId()
     // Create listener and append it
-    let listener = Listener(
-      id: generateId(),
-      stateKey: stateKey,
-      notify: typeErasedCallback,
-      filterBlock: currentNotificationFilter)
+    let listener = Listener(id: id, stateKey: stateKey,
+      notify: typeErasedCallback, filterBlock: currentNotificationFilter)
     
     listeners = listeners + [listener]
 
-    return Subscription<StateType>(store: self, listener: listener)
+    let subscription = Subscription<StateType>(store: self, listener: listener)
+
+    if let linkedToObject = linkedToObject {
+      onObjectDeinit(forObject: linkedToObject,
+                     connectionType: .listener,
+                     callbackId: id) { subscription.removeListener() }
+    }
+
+    return subscription
   }
   
   func removeListener(withId id: CallbackId)  {
@@ -285,13 +166,7 @@ extension Suas.DefaultStore {
 }
 
 // Action listeners
-extension Suas.DefaultStore {
-  func addActionListener(actionListener: @escaping ActionListenerFunction) -> ActionSubscription {
-    let id = generateId()
-
-    actionListeners[id] = actionListener
-    return ActionSubscription(store: self, listenerID: id)
-  }
+extension Store {
   
   func removeActionListener(withId id: CallbackId)  {
     actionListeners.removeValue(forKey: id)
@@ -300,10 +175,10 @@ extension Suas.DefaultStore {
 
 extension Suas {
   static func allListeners(inStore store: Store) -> [Listener] {
-    return (store as! DefaultStore).listeners
+    return store.listeners
   }
   
   static func allActionListeners(inStore store: Store) -> [Any] {
-    return Array((store as! DefaultStore).actionListeners.keys)
+    return Array(store.actionListeners.keys)
   }
 }

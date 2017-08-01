@@ -10,28 +10,26 @@ import Foundation
 
 // MARK: Registartion
 
-extension Suas.DefaultStore {
+extension Store {
   
   enum ConnectionType: String {
     case listener = "connectListener"
     case actionListener = "connectActionListener"
   }
   
-  fileprivate func onObjectDeinit(forComponent component: Any,
+  func onObjectDeinit(forObject object: NSObject,
                                   connectionType: ConnectionType,
                                   callbackId: String,
                                   callback: @escaping () -> ()) {
-    if component is NSObject {
-      let key = "Suas-DeinitCallback-REMOVABLE-OBJECT-ON-COMPONENT-\(connectionType.rawValue)"
-      let rem = DeinitCallback(callback: callback)
-      objc_setAssociatedObject(component, key, rem, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-    }
+    let key = "Suas-DeinitCallback-REMOVABLE-OBJECT-ON-COMPONENT-\(connectionType.rawValue)"
+    let rem = DeinitCallback(callback: callback)
+    objc_setAssociatedObject(object, key, rem, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
   }
 }
 
 // MARK: Un Registration
 
-extension Suas.DefaultStore {
+extension Store {
   
   //  func disconnect<C: Component>(component: C) {
   //    removeListener(withId: getId(forAny: component))
@@ -55,12 +53,8 @@ fileprivate class DeinitCallback: NSObject {
   }
 }
 
-//onObjectDeinit(forComponent: component,
-//               connectionType: .listener,
-//               callbackId: callbackId) { self.removeListener(withId: callbackId) }
-
 public struct Subscription<StateType> {
-  let store: Suas.DefaultStore
+  let store: Store
   let listener: Listener
 
   public func removeListener() {
@@ -88,7 +82,7 @@ public struct Subscription<StateType> {
 }
 
 public struct ActionSubscription {
-  let store: Suas.DefaultStore
+  let store: Store
   let listenerID: CallbackId
 
   public func removeListener() {

@@ -7,7 +7,7 @@
 //
 
 import XCTest
-import Suas
+@testable import Suas
 
 class ListenerTests: XCTestCase {
   
@@ -140,75 +140,75 @@ class ListenerTests: XCTestCase {
     XCTAssertTrue(keys.contains("MyState2"))
   }
   
-    func testListnerCanListenToStateForKey() {
-      let store = Suas.createStore(reducer: Reducer1() |> Reducer2())
+  func testListnerCanListenToStateForKey() {
+    let store = Suas.createStore(reducer: Reducer1() |> Reducer2())
 
-      var changed = false
-      var val = 0
+    var changed = false
+    var val = 0
 
-      _ = store.addListener(stateKey: "MyState1", type: MyState1.self) { (x: MyState1) in
-        changed = true
-        val = x.value
-      }
-
-      store.dispatch(action: IncrementAction())
-      XCTAssertTrue(changed)
-      XCTAssertEqual(val, 30)
+    _ = store.addListener(stateKey: "MyState1", type: MyState1.self) { (x: MyState1) in
+      changed = true
+      val = x.value
     }
 
-    func testListnerCanListenToStateForKeyWithFilterThatAlwaysReturnsTrue() {
-      let store = Suas.createStore(reducer: Reducer1() |> Reducer2())
+    store.dispatch(action: IncrementAction())
+    XCTAssertTrue(changed)
+    XCTAssertEqual(val, 30)
+  }
 
-      var changed = false
-      var val = 0
+  func testListnerCanListenToStateForKeyWithFilterThatAlwaysReturnsTrue() {
+    let store = Suas.createStore(reducer: Reducer1() |> Reducer2())
 
-      _ = store.addListener(stateKey: "MyState1",
-                        type: MyState1.self,
-                        if: { _, _ in return true }) { (x: MyState1) in
-                          changed = true
-                          val = x.value
-      }
+    var changed = false
+    var val = 0
 
-      store.dispatch(action: IncrementAction())
-      XCTAssertTrue(changed)
-      XCTAssertEqual(val, 30)
+    _ = store.addListener(stateKey: "MyState1",
+                          type: MyState1.self,
+                          if: { _, _ in return true }) { (x: MyState1) in
+                            changed = true
+                            val = x.value
     }
 
-    func testListnerCanListenToStateForKeyWithFilterThatNeverReturnsTrue() {
-      let store = Suas.createStore(reducer: Reducer1() |> Reducer2())
+    store.dispatch(action: IncrementAction())
+    XCTAssertTrue(changed)
+    XCTAssertEqual(val, 30)
+  }
 
-      var changed = false
-      var val = 0
+  func testListnerCanListenToStateForKeyWithFilterThatNeverReturnsTrue() {
+    let store = Suas.createStore(reducer: Reducer1() |> Reducer2())
 
-      _ = store.addListener(stateKey: "MyState1",
-                            type: MyState1.self,
-                        if: { _, _ in return false }) { (x: MyState1) in
-                          changed = true
-                          val = x.value
-      }
+    var changed = false
+    var val = 0
 
-      store.dispatch(action: IncrementAction())
-      XCTAssertFalse(changed)
-      XCTAssertEqual(val, 0)
+    _ = store.addListener(stateKey: "MyState1",
+                          type: MyState1.self,
+                          if: { _, _ in return false }) { (x: MyState1) in
+                            changed = true
+                            val = x.value
     }
 
-    func testListnerCanListenToStateForKeyWithFilterWithATypeThatMatches() {
-      let store = Suas.createStore(reducer: Reducer1() |> Reducer2())
+    store.dispatch(action: IncrementAction())
+    XCTAssertFalse(changed)
+    XCTAssertEqual(val, 0)
+  }
 
-      var changed = false
-      var val = 0
+  func testListnerCanListenToStateForKeyWithFilterWithATypeThatMatches() {
+    let store = Suas.createStore(reducer: Reducer1() |> Reducer2())
 
-      _ = store.addListener(stateKey: "MyState1",
-                            type: MyState1.self,
-                        if: { _, _ in return true }) { (x: MyState1) in
-                          changed = true
-                          val = x.value
-      }
+    var changed = false
+    var val = 0
 
-      store.dispatch(action: IncrementAction())
-      XCTAssertTrue(changed)
-      XCTAssertEqual(val, 30)
+    _ = store.addListener(stateKey: "MyState1",
+                          type: MyState1.self,
+                          if: { _, _ in return true }) { (x: MyState1) in
+                            changed = true
+                            val = x.value
     }
+
+    store.dispatch(action: IncrementAction())
+    XCTAssertTrue(changed)
+    XCTAssertEqual(val, 30)
+  }
 
   
   func testListnerCanListenToStateForKeyAndTypeThatMatches() {
@@ -250,9 +250,9 @@ class ListenerTests: XCTestCase {
     var val = 0
     
     _ = store.addListener(stateKey: "MyState1", type: MyState1.self,
-                      if: { _, _ in return true }) { x in
-                        changed = true
-                        val = x.value
+                          if: { _, _ in return true }) { x in
+                            changed = true
+                            val = x.value
     }
     
     store.dispatch(action: IncrementAction())
@@ -267,9 +267,9 @@ class ListenerTests: XCTestCase {
     var val = 0
     
     _ = store.addListener(stateKey: "MyState1", type: MyState1.self,
-                      if: { _, _ in return false }) { x in
-                        changed = true
-                        val = x.value
+                          if: { _, _ in return false }) { x in
+                            changed = true
+                            val = x.value
     }
     
     store.dispatch(action: IncrementAction())
@@ -284,9 +284,9 @@ class ListenerTests: XCTestCase {
     var val = 0
     
     _ = store.addListener(stateKey: "MyState2", type: MyState1.self,
-                      if: { _, _ in return false }) { x in
-                        changed = true
-                        val = x.value
+                          if: { _, _ in return false }) { x in
+                            changed = true
+                            val = x.value
     }
     
     store.dispatch(action: IncrementAction())
@@ -320,101 +320,101 @@ class ListenerTests: XCTestCase {
     XCTAssertNil(actionReceived)
   }
   
-    func testItDoesNotNotifyIfKeyIsNotChanged() {
-      struct Action1: Action {}
+  func testItDoesNotNotifyIfKeyIsNotChanged() {
+    struct Action1: Action {}
 
-      let reducer1 = BlockReducer(state: 1, key: "key1") { action, state in
-        if action is Action1 {
-          return state
-        }
-        return nil
+    let reducer1 = BlockReducer(state: 1, key: "key1") { action, state in
+      if action is Action1 {
+        return state
       }
-
-      let reducer2 = BlockReducer(state: 1, key: "key2") { action, state in
-        return nil
-      }
-
-      let store = Suas.createStore(reducer: reducer1 |> reducer2)
-
-      var listener1Notified = false
-      var listener2Notified = false
-
-      _ = store.addListener(stateKey: "key1", type: Int.self) { (s: Int) in
-        listener1Notified = true
-      }
-
-      _ = store.addListener(stateKey: "key2", type: Int.self) { (s: Int) in
-        listener2Notified = true
-      }
-
-      store.dispatch(action: Action1())
-      XCTAssertTrue(listener1Notified)
-      XCTAssertFalse(listener2Notified)
+      return nil
     }
 
-    func testItDoesNotNotifyIfKeyIsNoneChanged() {
-      struct Action1: Action {}
-
-      let reducer1 = BlockReducer(state: 1, key: "key1") { action, state in
-        return nil
-      }
-
-      let reducer2 = BlockReducer(state: 1, key: "key2") { action, state in
-        return nil
-      }
-
-      let store = Suas.createStore(reducer: reducer1 |> reducer2)
-
-      var listener1Notified = false
-      var listener2Notified = false
-
-      _ = store.addListener(stateKey: "key1", type: Int.self) { (s: Int) in
-        listener1Notified = true
-      }
-
-      _ = store.addListener(stateKey: "key2", type: Int.self) { (s: Int) in
-        listener2Notified = true
-      }
-
-      store.dispatch(action: Action1())
-      XCTAssertFalse(listener1Notified)
-      XCTAssertFalse(listener2Notified)
+    let reducer2 = BlockReducer(state: 1, key: "key2") { action, state in
+      return nil
     }
 
-    func testListenersWithnoKeyAlwaysGetNotified() {
-      struct Action1: Action {}
+    let store = Suas.createStore(reducer: reducer1 |> reducer2)
 
-      let reducer1 = BlockReducer(state: 1, key: "key1") { action, state in
-        return nil
-      }
+    var listener1Notified = false
+    var listener2Notified = false
 
-      let reducer2 = BlockReducer(state: 1, key: "key2") { action, state in
-        return nil
-      }
-
-      let store = Suas.createStore(reducer: reducer1 |> reducer2)
-
-      var listener1Notified = false
-      var listener2Notified = false
-      var listener3Notified = false
-
-      _ = store.addListener(stateKey: "key1", type: Int.self) { (s: Int) in
-        listener1Notified = true
-      }
-
-      _ = store.addListener(stateKey: "key2", type: Int.self) { (s: Int) in
-        listener2Notified = true
-      }
-
-      _ = store.addListener { (_) in
-        listener3Notified = true
-      }
-
-      store.dispatch(action: Action1())
-      XCTAssertFalse(listener1Notified)
-      XCTAssertFalse(listener2Notified)
-      XCTAssertTrue(listener3Notified)
+    _ = store.addListener(stateKey: "key1", type: Int.self) { (s: Int) in
+      listener1Notified = true
     }
+
+    _ = store.addListener(stateKey: "key2", type: Int.self) { (s: Int) in
+      listener2Notified = true
+    }
+
+    store.dispatch(action: Action1())
+    XCTAssertTrue(listener1Notified)
+    XCTAssertFalse(listener2Notified)
+  }
+
+  func testItDoesNotNotifyIfKeyIsNoneChanged() {
+    struct Action1: Action {}
+
+    let reducer1 = BlockReducer(state: 1, key: "key1") { action, state in
+      return nil
+    }
+
+    let reducer2 = BlockReducer(state: 1, key: "key2") { action, state in
+      return nil
+    }
+
+    let store = Suas.createStore(reducer: reducer1 |> reducer2)
+
+    var listener1Notified = false
+    var listener2Notified = false
+
+    _ = store.addListener(stateKey: "key1", type: Int.self) { (s: Int) in
+      listener1Notified = true
+    }
+
+    _ = store.addListener(stateKey: "key2", type: Int.self) { (s: Int) in
+      listener2Notified = true
+    }
+
+    store.dispatch(action: Action1())
+    XCTAssertFalse(listener1Notified)
+    XCTAssertFalse(listener2Notified)
+  }
+
+  func testListenersWithnoKeyAlwaysGetNotified() {
+    struct Action1: Action {}
+
+    let reducer1 = BlockReducer(state: 1, key: "key1") { action, state in
+      return nil
+    }
+
+    let reducer2 = BlockReducer(state: 1, key: "key2") { action, state in
+      return nil
+    }
+
+    let store = Suas.createStore(reducer: reducer1 |> reducer2)
+
+    var listener1Notified = false
+    var listener2Notified = false
+    var listener3Notified = false
+
+    _ = store.addListener(stateKey: "key1", type: Int.self) { (s: Int) in
+      listener1Notified = true
+    }
+
+    _ = store.addListener(stateKey: "key2", type: Int.self) { (s: Int) in
+      listener2Notified = true
+    }
+
+    _ = store.addListener { (_) in
+      listener3Notified = true
+    }
+
+    store.dispatch(action: Action1())
+    XCTAssertFalse(listener1Notified)
+    XCTAssertFalse(listener2Notified)
+    XCTAssertTrue(listener3Notified)
+  }
 
   func testItCanAddAListenerWithAStateConverter() {
     let store = Suas.createStore(reducer: reducer1)
@@ -485,8 +485,8 @@ class ListenerTests: XCTestCase {
     var newState: MyState1?
 
     let sub = store.addListener(type: MyState1.self) { state in
-        changed = true
-        newState = state
+      changed = true
+      newState = state
     }
 
     sub.notifyCurrentState()
@@ -508,7 +508,7 @@ class ListenerTests: XCTestCase {
     var newState = 0
 
     let sub = store.addListener(
-    stateConverter: { state in return 50 }
+      stateConverter: { state in return 50 }
     ) { state in
       changed = true
       newState = state
@@ -525,5 +525,32 @@ class ListenerTests: XCTestCase {
 
     XCTAssertTrue(changed)
     XCTAssertEqual(newState, 50)
+  }
+
+  func testAddingListenersLinkedToObjects() {
+    let store = Suas.createStore(reducer: Reducer1() |> Reducer2())
+
+    callAndForget(store: store)
+    store.dispatch(action: IncrementAction())
+    XCTAssertEqual(Suas.allListeners(inStore: store).count, 0)
+  }
+
+  func callAndForget(store: Store) {
+    let obj = NSObject()
+    _ = store.addListener(stateKey: "MyState1", type: Int.self, linkedToObject: obj) { _ in }
+    XCTAssertEqual(Suas.allListeners(inStore: store).count, 1)
+  }
+
+
+  func testItDisconnectsAnActionListenersOnDeinit() {
+    let store = Suas.createStore(reducer: Reducer1(), state: MyState1(value: 5))
+    callAndForget2(store: store)
+    XCTAssertEqual(Suas.allActionListeners(inStore: store).count, 0)
+  }
+
+  func callAndForget2(store: Store) {
+    let obj = NSObject()
+    _ = store.addActionListener(linkedToObject: obj) { _ in }
+    XCTAssertEqual(Suas.allActionListeners(inStore: store).count, 1)
   }
 }

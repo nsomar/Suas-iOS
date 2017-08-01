@@ -21,7 +21,6 @@
 		D70551551F212A7900022BF1 /* ReducerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CBAA7C1F1EC45400DA67E9 /* ReducerTests.swift */; };
 		D70551561F212A7900022BF1 /* StateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CF19361F1FC97E003EC879 /* StateTests.swift */; };
 		D70551571F212A7900022BF1 /* StateConverterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CF19381F1FD150003EC879 /* StateConverterTests.swift */; };
-		D70551581F212A7900022BF1 /* ComponentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CF193A1F1FD380003EC879 /* ComponentTests.swift */; };
 		D70551591F212A7900022BF1 /* ListenerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CF193C1F1FDAF7003EC879 /* ListenerTests.swift */; };
 		D705515A1F212A7900022BF1 /* StoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CF193E1F2033DF003EC879 /* StoreTests.swift */; };
 		D705515B1F212A7900022BF1 /* MiddlewareTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CF19421F205B80003EC879 /* MiddlewareTests.swift */; };
@@ -37,6 +36,8 @@
 		D76F34DF1F2428C400CE0C66 /* AsyncActionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76F34DD1F24289D00CE0C66 /* AsyncActionExtension.swift */; };
 		D76F34E31F242C4600CE0C66 /* AsyncMiddlewareTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76F34E11F242C1800CE0C66 /* AsyncMiddlewareTests.swift */; };
 		D76F34E41F242C4700CE0C66 /* AsyncMiddlewareTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76F34E11F242C1800CE0C66 /* AsyncMiddlewareTests.swift */; };
+		D7B1CFD71F2FE9430090D7CA /* Suas.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B1CFD61F2FE9430090D7CA /* Suas.swift */; };
+		D7B1CFD81F2FFAF00090D7CA /* Suas.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B1CFD61F2FE9430090D7CA /* Suas.swift */; };
 		D7CBAA661F1EC3E100DA67E9 /* SuasIOS.h in Headers */ = {isa = PBXBuildFile; fileRef = D7CBAA641F1EC3E100DA67E9 /* SuasIOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D7CBAA7D1F1EC45400DA67E9 /* ReducerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CBAA7C1F1EC45400DA67E9 /* ReducerTests.swift */; };
 		D7CBAA7F1F1EC45400DA67E9 /* Suas.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7CBAA621F1EC3E100DA67E9 /* Suas.framework */; };
@@ -50,7 +51,6 @@
 		D7CF19351F1FC2D1003EC879 /* TestTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CF19341F1FC2D0003EC879 /* TestTypes.swift */; };
 		D7CF19371F1FC97E003EC879 /* StateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CF19361F1FC97E003EC879 /* StateTests.swift */; };
 		D7CF19391F1FD150003EC879 /* StateConverterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CF19381F1FD150003EC879 /* StateConverterTests.swift */; };
-		D7CF193B1F1FD380003EC879 /* ComponentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CF193A1F1FD380003EC879 /* ComponentTests.swift */; };
 		D7CF193D1F1FDAF7003EC879 /* ListenerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CF193C1F1FDAF7003EC879 /* ListenerTests.swift */; };
 		D7CF193F1F2033DF003EC879 /* StoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CF193E1F2033DF003EC879 /* StoreTests.swift */; };
 		D7CF19411F204EC2003EC879 /* DefaultStoreConnectExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CF19401F204EC2003EC879 /* DefaultStoreConnectExtension.swift */; };
@@ -118,6 +118,7 @@
 		D76F34CB1F23EF0B00CE0C66 /* AsyncMiddleware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncMiddleware.swift; sourceTree = "<group>"; };
 		D76F34DD1F24289D00CE0C66 /* AsyncActionExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AsyncActionExtension.swift; path = Sources/Middlewares/AsyncMiddleware/AsyncActionExtension.swift; sourceTree = SOURCE_ROOT; };
 		D76F34E11F242C1800CE0C66 /* AsyncMiddlewareTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncMiddlewareTests.swift; sourceTree = "<group>"; };
+		D7B1CFD61F2FE9430090D7CA /* Suas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Suas.swift; sourceTree = "<group>"; };
 		D7CBAA621F1EC3E100DA67E9 /* Suas.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Suas.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7CBAA641F1EC3E100DA67E9 /* SuasIOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SuasIOS.h; sourceTree = "<group>"; };
 		D7CBAA651F1EC3E100DA67E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -133,7 +134,6 @@
 		D7CF19341F1FC2D0003EC879 /* TestTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestTypes.swift; sourceTree = "<group>"; };
 		D7CF19361F1FC97E003EC879 /* StateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateTests.swift; sourceTree = "<group>"; };
 		D7CF19381F1FD150003EC879 /* StateConverterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateConverterTests.swift; sourceTree = "<group>"; };
-		D7CF193A1F1FD380003EC879 /* ComponentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentTests.swift; sourceTree = "<group>"; };
 		D7CF193C1F1FDAF7003EC879 /* ListenerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListenerTests.swift; sourceTree = "<group>"; };
 		D7CF193E1F2033DF003EC879 /* StoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreTests.swift; sourceTree = "<group>"; };
 		D7CF19401F204EC2003EC879 /* DefaultStoreConnectExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultStoreConnectExtension.swift; sourceTree = "<group>"; };
@@ -207,6 +207,7 @@
 				D7CBAA711F1EC42900DA67E9 /* Reducer.swift */,
 				D7CBAA731F1EC42900DA67E9 /* Middleware.swift */,
 				D7CBAA8C1F1ECAA300DA67E9 /* Listener.swift */,
+				D7B1CFD61F2FE9430090D7CA /* Suas.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -222,7 +223,6 @@
 				D7CBAA7C1F1EC45400DA67E9 /* ReducerTests.swift */,
 				D7CF19361F1FC97E003EC879 /* StateTests.swift */,
 				D7CF19381F1FD150003EC879 /* StateConverterTests.swift */,
-				D7CF193A1F1FD380003EC879 /* ComponentTests.swift */,
 				D7CF193C1F1FDAF7003EC879 /* ListenerTests.swift */,
 				D7CF193E1F2033DF003EC879 /* StoreTests.swift */,
 				D7CF19421F205B80003EC879 /* MiddlewareTests.swift */,
@@ -526,6 +526,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D705514A1F212A2C00022BF1 /* Store.swift in Sources */,
+				D7B1CFD81F2FFAF00090D7CA /* Suas.swift in Sources */,
 				D76F347B1F23673200CE0C66 /* LoggerMiddleware.swift in Sources */,
 				D76F34DF1F2428C400CE0C66 /* AsyncActionExtension.swift in Sources */,
 				D76F34DA1F24281700CE0C66 /* AsyncMiddleware.swift in Sources */,
@@ -548,7 +549,6 @@
 				D76F34E41F242C4700CE0C66 /* AsyncMiddlewareTests.swift in Sources */,
 				D70551551F212A7900022BF1 /* ReducerTests.swift in Sources */,
 				D76F347F1F236B8A00CE0C66 /* LoggerMiddlewareTests.swift in Sources */,
-				D70551581F212A7900022BF1 /* ComponentTests.swift in Sources */,
 				D705515A1F212A7900022BF1 /* StoreTests.swift in Sources */,
 				D70551591F212A7900022BF1 /* ListenerTests.swift in Sources */,
 				D70551561F212A7900022BF1 /* StateTests.swift in Sources */,
@@ -561,6 +561,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D7CF19411F204EC2003EC879 /* DefaultStoreConnectExtension.swift in Sources */,
+				D7B1CFD71F2FE9430090D7CA /* Suas.swift in Sources */,
 				D76F347A1F23672D00CE0C66 /* LoggerMiddleware.swift in Sources */,
 				D76F34D91F24281600CE0C66 /* AsyncMiddleware.swift in Sources */,
 				D7CBAA871F1EC4D900DA67E9 /* DefaultStore.swift in Sources */,
@@ -583,7 +584,6 @@
 				D76F34E31F242C4600CE0C66 /* AsyncMiddlewareTests.swift in Sources */,
 				D7CBAA7D1F1EC45400DA67E9 /* ReducerTests.swift in Sources */,
 				D76F34801F236B8A00CE0C66 /* LoggerMiddlewareTests.swift in Sources */,
-				D7CF193B1F1FD380003EC879 /* ComponentTests.swift in Sources */,
 				D7CF193F1F2033DF003EC879 /* StoreTests.swift in Sources */,
 				D7CF193D1F1FDAF7003EC879 /* ListenerTests.swift in Sources */,
 				D7CF19371F1FC97E003EC879 /* StateTests.swift in Sources */,
