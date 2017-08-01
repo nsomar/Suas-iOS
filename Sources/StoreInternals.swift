@@ -67,21 +67,21 @@ extension Store {
       if let key = listener.stateKey,
         stateKeysChanged.contains(key) == false {
         // If the listener has a key, and the key is not in the `stateKeysChanged` then dont inform the listner
-        Suas.log("Listener notification skipped since state keys was not changed\nListener: \(listener)\nChanged keys: \(stateKeysChanged)\nState: \(state)")
+        Suas.log("Listener notification skipped since state keys was not changed\nListener: \(listener)\nChanged keys: \(stateKeysChanged)\nState: \(state.innerState)")
         continue
       }
       
       guard
         let oldSubState = getSubstate(withState: oldState, forKey: listener.stateKey),
         let newSubState = getSubstate(withState: state, forKey: listener.stateKey) else {
-          Suas.log("Listener notification skipped as listener key '\(String(describing: listener.stateKey))' was not found in state\nListener: \(listener)\nState: \(state)")
+          Suas.log("Listener notification skipped as listener key '\(String(describing: listener.stateKey))' was not found in state\nListener: \(listener)\nState: \(state.innerState)")
           return
       }
       
       if listener.filterBlock(oldSubState, newSubState) {
         listener.notify(newSubState)
       } else {
-        Suas.log("Listener notification skipped as listener filter block did not pass\nListener: \(listener)\nState: \(state)")
+        Suas.log("Listener notification skipped as listener filter block did not pass\nListener: \(listener)\nState: \(state.innerState)")
       }
     }
   }

@@ -13,6 +13,7 @@ import Foundation
 public struct LoggerMiddleware: Middleware {
   private let showDuration: Bool
   private let showTimestamp: Bool
+  private let debugOnly: Bool
   private let lineLength: Int?
   private let logger: (String) -> Void
   private let predicate: ((State, Action) -> Bool)?
@@ -44,6 +45,7 @@ public struct LoggerMiddleware: Middleware {
     lineLength: Int? = nil,
     predicate: ((State, Action) -> Bool)? = nil,
     titleFormatter: ((Action, Date, UInt64) -> String)? = nil,
+    debugOnly: Bool = true,
     stateTransformer: ((State) -> Any)? = nil,
     actionTransformer: ((Action) -> Any)? = nil,
     logger: @escaping (String) -> Void = defaultLogger
@@ -51,6 +53,7 @@ public struct LoggerMiddleware: Middleware {
     self.showDuration = showDuration
     self.showTimestamp = showTimestamp
     self.predicate = predicate
+    self.debugOnly = debugOnly
     self.stateTransformer = stateTransformer
     self.actionTransformer = actionTransformer
     self.titleFormatter = titleFormatter
@@ -62,6 +65,12 @@ public struct LoggerMiddleware: Middleware {
                          getState: @escaping GetStateFunction,
                          dispatch: @escaping DispatchFunction,
                          next: @escaping NextFunction) {
+    if isRelease() && debugOnly {
+      // In release configuration skip
+      next(action)
+      return
+    }
+
     if let predicate = predicate,
       predicate(getState(), action) == false {
       next(action)
@@ -116,6 +125,14 @@ public struct LoggerMiddleware: Middleware {
   private func transformedState(state: State) -> Any {
     guard let stateTransformer = stateTransformer else { return state }
     return stateTransformer(state)
+  }
+
+  private func isRelease() -> Bool {
+    #if DEBUG
+      return false
+    #else
+      return true
+    #endif
   }
 }
 
