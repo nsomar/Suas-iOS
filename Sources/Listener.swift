@@ -33,7 +33,7 @@ public struct Subscription<StateType> {
     store.removeListener(withId: listener.id)
   }
 
-  public func notifyCurrentState() {
+  public func informWithCurrentState() {
     var stateToNotify: Any!
 
     if let key = listener.stateKey {

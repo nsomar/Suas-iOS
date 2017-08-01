@@ -489,13 +489,13 @@ class ListenerTests: XCTestCase {
       newState = state
     }
 
-    sub.notifyCurrentState()
+    sub.informWithCurrentState()
 
     XCTAssertTrue(changed)
     XCTAssertEqual(newState!.value, 0)
 
     store.reset(state: MyState1(value: 20))
-    sub.notifyCurrentState()
+    sub.informWithCurrentState()
 
     XCTAssertTrue(changed)
     XCTAssertEqual(newState!.value, 20)
@@ -512,7 +512,7 @@ class ListenerTests: XCTestCase {
       newState = state
     }
 
-    sub.notifyCurrentState()
+    sub.informWithCurrentState()
 
     XCTAssertFalse(changed)
     XCTAssertEqual(newState, "")
@@ -532,13 +532,13 @@ class ListenerTests: XCTestCase {
     }
 
     store.reset(state: MyState1(value: 20))
-    sub.notifyCurrentState()
+    sub.informWithCurrentState()
 
     XCTAssertTrue(changed)
     XCTAssertEqual(newState, 50)
 
     store.reset(state: MyState1(value: 20))
-    sub.notifyCurrentState()
+    sub.informWithCurrentState()
 
     XCTAssertTrue(changed)
     XCTAssertEqual(newState, 50)
