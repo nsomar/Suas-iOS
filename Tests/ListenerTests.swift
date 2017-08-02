@@ -16,7 +16,7 @@ class ListenerTests: XCTestCase {
     
     var changed = false
     
-    _ = store.addListener(type: MyState1.self) { val in
+    _ = store.addListener(forStateType: MyState1.self) { val in
       changed = true
     }
     
@@ -29,7 +29,7 @@ class ListenerTests: XCTestCase {
     
     var changed = false
     
-    let sub = store.addListener(type: MyState1.self) { val in
+    let sub = store.addListener(forStateType: MyState1.self) { val in
       changed = true
     }
 
@@ -44,7 +44,7 @@ class ListenerTests: XCTestCase {
 
     var changed = false
 
-    let sub = store.addListener(type: MyState1.self) { val in
+    let sub = store.addListener(forStateType: MyState1.self) { val in
       changed = true
     }
 
@@ -59,7 +59,7 @@ class ListenerTests: XCTestCase {
     
     var changed = false
     
-    _ = store.addListener(type: MyState2.self) { val in
+    _ = store.addListener(forStateType: MyState2.self) { val in
       changed = true
     }
     
@@ -73,7 +73,7 @@ class ListenerTests: XCTestCase {
     
     var changed = false
     
-    _ = store.addListener(stateKey: "x", type: MyState2.self) { val in
+    _ = store.addListener(forStateType: MyState2.self, stateKey: "x") { val in
       changed = true
     }
     
@@ -88,7 +88,7 @@ class ListenerTests: XCTestCase {
     var filterCalled = true
     
     _ = store.addListener(
-      type: MyState1.self,
+      forStateType: MyState1.self,
       if: { old, new in
         filterCalled = true
         return true
@@ -108,7 +108,7 @@ class ListenerTests: XCTestCase {
     var filterCalled = true
     
     _ = store.addListener(
-      type: MyState1.self,
+      forStateType: MyState1.self,
       if: { old, new in
         filterCalled = true
         return false
@@ -161,7 +161,7 @@ class ListenerTests: XCTestCase {
     var changed = false
     var val = 0
 
-    _ = store.addListener(stateKey: "MyState1", type: MyState1.self) { (x: MyState1) in
+    _ = store.addListener(forStateType: MyState1.self, stateKey: "MyState1") { (x: MyState1) in
       changed = true
       val = x.value
     }
@@ -177,8 +177,8 @@ class ListenerTests: XCTestCase {
     var changed = false
     var val = 0
 
-    _ = store.addListener(stateKey: "MyState1",
-                          type: MyState1.self,
+    _ = store.addListener(forStateType: MyState1.self,
+                          stateKey: "MyState1",
                           if: { _, _ in return true }) { (x: MyState1) in
                             changed = true
                             val = x.value
@@ -195,8 +195,8 @@ class ListenerTests: XCTestCase {
     var changed = false
     var val = 0
 
-    _ = store.addListener(stateKey: "MyState1",
-                          type: MyState1.self,
+    _ = store.addListener(forStateType: MyState1.self,
+                          stateKey: "MyState1",
                           if: { _, _ in return false }) { (x: MyState1) in
                             changed = true
                             val = x.value
@@ -213,8 +213,8 @@ class ListenerTests: XCTestCase {
     var changed = false
     var val = 0
 
-    _ = store.addListener(stateKey: "MyState1",
-                          type: MyState1.self,
+    _ = store.addListener(forStateType: MyState1.self,
+                          stateKey: "MyState1",
                           if: { _, _ in return true }) { (x: MyState1) in
                             changed = true
                             val = x.value
@@ -232,7 +232,7 @@ class ListenerTests: XCTestCase {
     var changed = false
     var val = 0
     
-    _ = store.addListener(stateKey: "MyState1", type: MyState1.self) { x in
+    _ = store.addListener(forStateType: MyState1.self, stateKey: "MyState1") { x in
       changed = true
       val = x.value
     }
@@ -248,7 +248,7 @@ class ListenerTests: XCTestCase {
     var changed = false
     var val = 0
     
-    _ = store.addListener(stateKey: "MyState1", type: MyState2.self) { x in
+    _ = store.addListener(forStateType: MyState2.self, stateKey: "MyState1") { x in
       changed = true
       val = x.blink
     }
@@ -264,7 +264,8 @@ class ListenerTests: XCTestCase {
     var changed = false
     var val = 0
     
-    _ = store.addListener(stateKey: "MyState1", type: MyState1.self,
+    _ = store.addListener(forStateType: MyState1.self,
+                          stateKey: "MyState1",
                           if: { _, _ in return true }) { x in
                             changed = true
                             val = x.value
@@ -281,7 +282,7 @@ class ListenerTests: XCTestCase {
     var changed = false
     var val = 0
     
-    _ = store.addListener(stateKey: "MyState1", type: MyState1.self,
+    _ = store.addListener(forStateType: MyState1.self, stateKey: "MyState1",
                           if: { _, _ in return false }) { x in
                             changed = true
                             val = x.value
@@ -298,7 +299,7 @@ class ListenerTests: XCTestCase {
     var changed = false
     var val = 0
     
-    _ = store.addListener(stateKey: "MyState2", type: MyState1.self,
+    _ = store.addListener(forStateType: MyState1.self, stateKey: "MyState2",
                           if: { _, _ in return false }) { x in
                             changed = true
                             val = x.value
@@ -354,11 +355,11 @@ class ListenerTests: XCTestCase {
     var listener1Notified = false
     var listener2Notified = false
 
-    _ = store.addListener(stateKey: "key1", type: Int.self) { (s: Int) in
+    _ = store.addListener(forStateType: Int.self, stateKey: "key1") { (s: Int) in
       listener1Notified = true
     }
 
-    _ = store.addListener(stateKey: "key2", type: Int.self) { (s: Int) in
+    _ = store.addListener(forStateType: Int.self, stateKey: "key2") { (s: Int) in
       listener2Notified = true
     }
 
@@ -383,11 +384,11 @@ class ListenerTests: XCTestCase {
     var listener1Notified = false
     var listener2Notified = false
 
-    _ = store.addListener(stateKey: "key1", type: Int.self) { (s: Int) in
+    _ = store.addListener(forStateType: Int.self, stateKey: "key1") { (s: Int) in
       listener1Notified = true
     }
 
-    _ = store.addListener(stateKey: "key2", type: Int.self) { (s: Int) in
+    _ = store.addListener(forStateType: Int.self, stateKey: "key2") { (s: Int) in
       listener2Notified = true
     }
 
@@ -413,11 +414,11 @@ class ListenerTests: XCTestCase {
     var listener2Notified = false
     var listener3Notified = false
 
-    _ = store.addListener(stateKey: "key1", type: Int.self) { (s: Int) in
+    _ = store.addListener(forStateType: Int.self, stateKey: "key1") { (s: Int) in
       listener1Notified = true
     }
 
-    _ = store.addListener(stateKey: "key2", type: Int.self) { (s: Int) in
+    _ = store.addListener(forStateType: Int.self, stateKey: "key2") { (s: Int) in
       listener2Notified = true
     }
 
@@ -499,7 +500,7 @@ class ListenerTests: XCTestCase {
     var changed = false
     var newState: MyState1?
 
-    let sub = store.addListener(type: MyState1.self) { state in
+    let sub = store.addListener(forStateType: MyState1.self) { state in
       changed = true
       newState = state
     }
@@ -522,7 +523,7 @@ class ListenerTests: XCTestCase {
     var changed = false
     var newState = ""
 
-    let sub = store.addListener(type: String.self) { state in
+    let sub = store.addListener(forStateType: String.self) { state in
       changed = true
       newState = state
     }
@@ -569,7 +570,7 @@ class ListenerTests: XCTestCase {
 
   func callAndForget(store: Store) {
     let obj = NSObject()
-    let sub = store.addListener(stateKey: "MyState1", type: Int.self) { _ in }
+    let sub = store.addListener(forStateType: Int.self, stateKey: "MyState1") { _ in }
     sub.linkLifeCycleTo(object: obj)
     XCTAssertEqual(Suas.allListeners(inStore: store).count, 1)
   }
@@ -584,7 +585,7 @@ class ListenerTests: XCTestCase {
 
   func callAndForgetAndRemove(store: Store) {
     let obj = NSObject()
-    let sub = store.addListener(stateKey: "MyState1", type: Int.self) { _ in }
+    let sub = store.addListener(forStateType: Int.self, stateKey: "MyState1") { _ in }
     sub.linkLifeCycleTo(object: obj)
     XCTAssertEqual(Suas.allListeners(inStore: store).count, 1)
     sub.removeListener()
@@ -602,10 +603,10 @@ class ListenerTests: XCTestCase {
   func callAndForgetMulti(store: Store) {
     let obj = NSObject()
 
-    let sub1 = store.addListener(stateKey: "MyState1", type: Int.self) { _ in }
+    let sub1 = store.addListener(forStateType: Int.self, stateKey: "MyState1") { _ in }
     sub1.linkLifeCycleTo(object: obj)
 
-    let sub2 = store.addListener(stateKey: "MyState1", type: Int.self) { _ in }
+    let sub2 = store.addListener(forStateType: Int.self, stateKey: "MyState1") { _ in }
     sub2.linkLifeCycleTo(object: obj)
 
     XCTAssertEqual(Suas.allListeners(inStore: store).count, 2)

@@ -89,10 +89,11 @@ extension Store {
   ///   - id: the listener id to be used when removing the listener
   ///   - type: the type of the state callback
   ///   - callback: callback to be notified when state changed
-  public func addListener<StateType>(stateKey: StateKey? = nil,
-                                     type: StateType.Type,
+  public func addListener<StateType>(forStateType type: StateType.Type,
+                                     stateKey: StateKey? = nil,
                                      if filterBlock: FilterFunction<StateType>? = nil,
                                      callback: @escaping (StateType) -> ()) -> Subscription<StateType> {
+
     return performAddListener(stateKey: stateKey ?? "\(type)",
                               type: type,
                               if: filterBlock,
