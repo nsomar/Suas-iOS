@@ -1,5 +1,5 @@
 //
-//  DefaultStore.swift
+//  StoreInternals.swift
 //  ReDucks
 //
 //  Created by Omar Abdelhafith on 18/07/2017.
@@ -13,7 +13,7 @@ public enum Suas {
   static func performCreateStore<R: Reducer>(reducer: R,
                                              state: State,
                                              middleware: Middleware?) -> Store {
-    
+
     let reduce: ReducerFunction<Any> = { state, action in
       guard let newState = state as? R.StateType else {
         Suas.log("When reducing state of type '\(type(of: state))' was not convertible to '\(R.StateType.self)'\nstate: \(state)")
@@ -22,7 +22,7 @@ public enum Suas {
       // Calls the any reducer. In that reducer we typecheck
       return reducer.reduce(state: newState, action: action)
     }
-    
+
     return Store(
       state: state,
       reducer: reduce,
@@ -34,7 +34,7 @@ public enum Suas {
 // MARK: Initialization and Reduce registration
 
 extension Store {
-  
+
   func getState() -> State {
     return self.state
   }
@@ -43,8 +43,11 @@ extension Store {
     ensureNotDispatching()
 
     let oldState = state
-    
+
+    isDispatching = true
     let keysChanged = performReduce(action: action)
+    isDispatching = false
+
     informListeners(keysChanged: keysChanged, oldState: oldState)
   }
 
@@ -54,8 +57,6 @@ extension Store {
       Suas.fatalError()
       return
     }
-
-    isDispatching = true
   }
 
   private func performReduce(action: Action) -> Set<StateKey> {
@@ -107,7 +108,7 @@ extension Store {
       }
     }
   }
-  
+
   private func getSubstate(withState state: State, forKey key: StateKey?) -> Any? {
     if let key = key {
       return state[key] ?? state
@@ -126,7 +127,7 @@ extension Store {
                                                    if filterBlock: FilterFunction<StateType>? = nil,
                                                    stateConverter: StateConverter<ListenerType>? = nil,
                                                    callback: @escaping (ListenerType) -> ()) -> Subscription<StateType> {
-    
+
     var currentNotificationFilter: FilterFunction<Any> = alwaysFilter
 
 
@@ -140,7 +141,7 @@ extension Store {
           Suas.log("Either new value or old value cannot be converted to type '\(State.self)'\nnew value: \(new)\nold value: \(old)")
           return false
         }
-        
+
         return filterBlock(castOld, castNew)
       }
     }
@@ -168,13 +169,13 @@ extension Store {
     let id = generateId()
     // Create listener and append it
     let listener = Listener(id: id, stateKey: stateKey,
-      notify: typeErasedCallback, filterBlock: currentNotificationFilter)
-    
+                            notify: typeErasedCallback, filterBlock: currentNotificationFilter)
+
     listeners = listeners + [listener]
 
     return Subscription<StateType>(store: self, listener: listener)
   }
-  
+
   func removeListener(withId id: CallbackId)  {
     listeners = listeners.filter { $0.id != id }
   }
@@ -186,7 +187,7 @@ extension Store {
 
 // Action listeners
 extension Store {
-  
+
   func removeActionListener(withId id: CallbackId)  {
     actionListeners.removeValue(forKey: id)
   }
@@ -196,8 +197,9 @@ extension Suas {
   static func allListeners(inStore store: Store) -> [Listener] {
     return store.listeners
   }
-  
+
   static func allActionListeners(inStore store: Store) -> [Any] {
     return Array(store.actionListeners.keys)
   }
 }
+

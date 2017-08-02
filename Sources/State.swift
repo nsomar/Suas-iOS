@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  State.swift
 //  ReDucks
 //
 //  Created by Omar Abdelhafith on 17/07/2017.

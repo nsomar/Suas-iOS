@@ -1,5 +1,5 @@
 //
-//  Middleware.swift
+//  AsyncMiddleware.swift
 //  SuasIOS
 //
 //  Created by Omar Abdelhafith on 22/07/2017.

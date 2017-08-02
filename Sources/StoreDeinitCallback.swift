@@ -1,5 +1,5 @@
 //
-//  DefaultStoreConnectExtension.swift
+//  StoreDeinitCallback.swift
 //  SuasIOS
 //
 //  Created by Omar Abdelhafith on 20/07/2017.
