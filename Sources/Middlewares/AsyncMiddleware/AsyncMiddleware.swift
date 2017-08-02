@@ -73,6 +73,8 @@ public struct BlockAsyncAction: AsyncAction {
 /// 3. the `executionBlock` calls dispatch as many times as wanted, dispatching new actions (can also disptach new `AsyncAction`)
 public struct AsyncMiddleware: Middleware {
 
+  public init() { }
+  
   public func onAction(action: Action,
                        getState: @escaping GetStateFunction,
                        dispatch: @escaping DispatchFunction,
