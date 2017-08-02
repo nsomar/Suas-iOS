@@ -55,7 +55,6 @@ public struct Subscription<StateType> {
 
   public func linkLifeCycleTo(object: NSObject) {
     Suas.onObjectDeinit(forObject: object,
-                        connectionType: .listener,
                         callbackId: listener.id) { self.removeListener() }
   }
 }
@@ -70,7 +69,6 @@ public struct ActionSubscription {
 
   public func linkLifeCycleTo(object: NSObject) {
     Suas.onObjectDeinit(forObject: object,
-                        connectionType: .actionListener,
                         callbackId: listenerId) { self.removeListener() }
   }
 }

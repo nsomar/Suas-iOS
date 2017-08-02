@@ -8,33 +8,34 @@
 
 import Foundation
 
-// MARK: Registartion
 
+var deinitCallbackKey = "DEINITCALLBACK_SUAS"
+
+// MARK: Registartion
 extension Suas {
-  
-  enum ConnectionType: String {
-    case listener = "connectListener"
-    case actionListener = "connectActionListener"
-  }
-  
+
   static func onObjectDeinit(forObject object: NSObject,
-                                  connectionType: ConnectionType,
-                                  callbackId: String,
-                                  callback: @escaping () -> ()) {
-    let key = "Suas-DeinitCallback\(callbackId)-REMOVABLE-OBJECT-ON-COMPONENT-\(connectionType.rawValue)"
-    let rem = DeinitCallback(callback: callback)
-    objc_setAssociatedObject(object, key, rem, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+                             callbackId: String,
+                             callback: @escaping () -> ()) {
+    let rem = deinitCallback(forObject: object)
+    rem.callbacks.append(callback)
+  }
+
+  static fileprivate func deinitCallback(forObject object: NSObject) -> DeinitCallback {
+    if let deinitCallback = objc_getAssociatedObject(object, &deinitCallbackKey) as? DeinitCallback {
+      return deinitCallback
+    } else {
+      let rem = DeinitCallback()
+      objc_setAssociatedObject(object, &deinitCallbackKey, rem, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+      return rem
+    }
   }
 }
 
-fileprivate class DeinitCallback: NSObject {
-  private let callback: () -> ()
-  
-  init(callback: @escaping () -> ()) {
-    self.callback = callback
-  }
-  
+@objc fileprivate class DeinitCallback: NSObject {
+  var callbacks: [() -> ()] = []
+
   deinit {
-    callback()
+    callbacks.forEach({ $0() })
   }
 }

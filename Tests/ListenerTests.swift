@@ -574,6 +574,23 @@ class ListenerTests: XCTestCase {
     XCTAssertEqual(Suas.allListeners(inStore: store).count, 1)
   }
 
+  func testAddingListenersLinkedToObjectsAndRemovingItWontCrash() {
+    let store = Suas.createStore(reducer: Reducer1() + Reducer2())
+
+    callAndForgetAndRemove(store: store)
+    store.dispatch(action: IncrementAction())
+    XCTAssertEqual(Suas.allListeners(inStore: store).count, 0)
+  }
+
+  func callAndForgetAndRemove(store: Store) {
+    let obj = NSObject()
+    let sub = store.addListener(stateKey: "MyState1", type: Int.self) { _ in }
+    sub.linkLifeCycleTo(object: obj)
+    XCTAssertEqual(Suas.allListeners(inStore: store).count, 1)
+    sub.removeListener()
+    XCTAssertEqual(Suas.allListeners(inStore: store).count, 0)
+  }
+
   func testAddingMultipleListenersLinkedToObjects() {
     let store = Suas.createStore(reducer: Reducer1() + Reducer2())
 
