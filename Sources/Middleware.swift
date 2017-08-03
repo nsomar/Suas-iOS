@@ -130,3 +130,54 @@ final class CombinedMiddleWare: Middleware {
     }
   }
 }
+
+/// Combines two middlewares. The combined middleware creates a chain of mi ddleware. When calling next on the first middleware it progresses to the next one. The final middlware's next function calls the reducer dispatch will causes a state change
+///
+/// -----
+/// **Example**
+///
+/// Combining two logging middlewares
+///
+/// ```
+/// let middleware1 = BlockMiddleware { action, api, next in
+///   print("Middleware1: The old state is \(api.state)")
+///   print("Middleware1: The action is \(action)")
+///   next(action)
+///   print("Middleware1: The new state is \(api.state)")
+/// }
+///
+/// let middleware2 = BlockMiddleware { action, api, next in
+///   print("Middleware2: The old state is \(api.state)")
+///   print("Middleware2: The action is \(action)")
+///   next(action)
+///   print("Middleware2: The new state is \(api.state)")
+/// }
+/// ```
+/// We can then combine these 2 middlewares with:
+///
+/// ```
+/// let store = Suas.createStore(
+///   reducer: someReducer,
+///   middleware: middleware1 + middleware2
+/// )
+/// ```
+public func +(lhs: Middleware, rhs: Middleware) -> Middleware {
+  if
+    let lhs = lhs as? CombinedMiddleWare,
+    let rhs = rhs as? CombinedMiddleWare {
+    rhs.middlewares.forEach({ lhs.append(middleware: $0) })
+  } else if let lhs = lhs as? CombinedMiddleWare {
+    lhs.append(middleware: rhs)
+    return lhs
+  } else if let rhs = rhs as? CombinedMiddleWare {
+    let combiner = CombinedMiddleWare()
+    combiner.append(middleware: lhs)
+    rhs.middlewares.forEach({ combiner.append(middleware: $0) })
+    return combiner
+  }
+
+  let combiner = CombinedMiddleWare()
+  combiner.append(middleware: lhs)
+  combiner.append(middleware: rhs)
+  return combiner
+}

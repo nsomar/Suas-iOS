@@ -34,6 +34,11 @@ class StoreTests: XCTestCase {
     XCTAssertEqual(v2, 2)
   }
 
+  func testItCannotSetAWrongReducer() {
+    let store = Suas.createStore(reducer: reducer1, state: 1)
+    store.dispatch(action: IncrementAction())
+  }
+
   func testItCanSetTheStateForAKeyImplicitely() {
     let store = Suas.createStore(reducer: Reducer1() + Reducer2())
 

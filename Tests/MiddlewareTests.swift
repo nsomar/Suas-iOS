@@ -12,7 +12,7 @@ import XCTest
 class MiddlewareTests: XCTestCase {
 
   func testItCanAddABlockMiddleware() {
-    let store = Suas.createStore(reducer: Reducer1(), middlewares: [middleware1])
+    let store = Suas.createStore(reducer: Reducer1(), middleware: middleware1)
     store.dispatch(action: IncrementAction())
 
     let v = store.state.value(forKeyOfType: MyState1.self)?.value
@@ -33,7 +33,7 @@ class MiddlewareTests: XCTestCase {
       next(action)
     }
 
-    let store = Suas.createStore(reducer: Reducer1(), middlewares: [middleware1, middleware2])
+    let store = Suas.createStore(reducer: Reducer1(), middleware: middleware1 + middleware2)
     store.dispatch(action: IncrementAction())
 
     XCTAssertEqual(m1Called, true)
@@ -60,7 +60,8 @@ class MiddlewareTests: XCTestCase {
       next(action)
     }
 
-    let store = Suas.createStore(reducer: Reducer1(), middlewares: [middleware1, middleware2, middleware3])
+    let c = middleware1 + middleware2
+    let store = Suas.createStore(reducer: Reducer1(), middleware: c + middleware3)
     store.dispatch(action: IncrementAction())
 
     XCTAssertEqual(m1Called, true)
@@ -88,7 +89,8 @@ class MiddlewareTests: XCTestCase {
       next(action)
     }
 
-    let store = Suas.createStore(reducer: Reducer1(), middlewares: [middleware3, middleware1, middleware2])
+    let c = middleware1 + middleware2
+    let store = Suas.createStore(reducer: Reducer1(), middleware: middleware3 + c)
     store.dispatch(action: IncrementAction())
 
     XCTAssertEqual(m1Called, true)
@@ -122,7 +124,10 @@ class MiddlewareTests: XCTestCase {
       next(action)
     }
 
-    let store = Suas.createStore(reducer: Reducer1(), middlewares: [middleware1, middleware2, middleware3, middleware4])
+    let c1 = middleware1 + middleware2
+    let c2 = middleware3 + middleware4
+
+    let store = Suas.createStore(reducer: Reducer1(), middleware: c1 + c2)
     store.dispatch(action: IncrementAction())
 
     XCTAssertEqual(m1Called, true)
@@ -138,7 +143,7 @@ class MiddlewareTests: XCTestCase {
       next(action)
     }
 
-    let store = Suas.createStore(reducer: Reducer1(), middlewares: [middleware1, middleware2])
+    let store = Suas.createStore(reducer: Reducer1(), middleware: middleware1 + middleware2)
     store.dispatch(action: IncrementAction())
 
     XCTAssertEqual(val, 10)
