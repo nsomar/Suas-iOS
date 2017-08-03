@@ -20,28 +20,28 @@ public class Store {
   
   /// Get the store state
   public var state: State
-
+  
   var reducer: ReducerFunction<Any>
   var listeners: [Listener]
   var actionListeners: [CallbackId: ActionListenerFunction]
   var dispatchingFunction: DispatchFunction?
   var isDispatching = false
-
+  
   init(state: State,
        reducer: @escaping ReducerFunction<Any>,
        middleware: Middleware?) {
-
+    
     self.state = state
     self.reducer = reducer
     self.listeners = []
     self.actionListeners = [:]
     self.dispatchingFunction = nil
-
+    
     if let middleware = middleware {
-
+      
       self.dispatchingFunction = { [weak self] action in
         guard let sself = self else { return }
-
+        
         middleware.onAction(
           action: action,
           getState: { sself.getState() }, // Capturing self
@@ -66,10 +66,10 @@ extension Store {
     let toDispatch = {
       // Inform the action listeners
       self.actionListeners.forEach({ $0.value(action) })
-
+      
       self.dispatchingFunction?(action)
     }
-
+    
     if Thread.isMainThread {
       toDispatch()
     } else {
@@ -82,7 +82,7 @@ extension Store {
 
 /// Add Listener Store
 extension Store {
-
+  
   /// Add a new listner to the store
   ///
   /// - Parameters:
@@ -93,23 +93,21 @@ extension Store {
                                      stateKey: StateKey? = nil,
                                      if filterBlock: FilterFunction<StateType>? = nil,
                                      callback: @escaping (StateType) -> ()) -> Subscription<StateType> {
-
+    
     return performAddListener(stateKey: stateKey ?? "\(type)",
       type: type,
       if: filterBlock,
       callback: callback)
   }
-
-  public func addListener<StateType: StateConvertible>(if filterBlock: FilterFunction<State>? = nil,
-                                                       convertToStateType: StateType.Type,
-                                                       callback: @escaping (StateType) -> ()) -> Subscription<State> {
-    return performAddListener(stateKey: nil,
-                              type: State.self,
-                              if: filterBlock,
-                              convertToStateType: StateType.self,
+  
+  public func addListener<StateType>(if filterBlock: FilterFunction<State>? = nil,
+                                     stateSelector: @escaping StateSelector<StateType>,
+                                     callback: @escaping (StateType) -> ()) -> Subscription<StateType> {
+    return performAddListener(if: filterBlock,
+                              stateSelector: stateSelector,
                               callback: callback)
   }
-
+  
   public func addListener(if filterBlock: FilterFunction<State>? = nil,
                           callback: @escaping (State) -> ()) -> Subscription<State> {
     return performAddListener(stateKey: nil,
@@ -117,7 +115,7 @@ extension Store {
                               if: filterBlock,
                               callback: callback)
   }
-
+  
   /// Add a new action listner to the store
   ///
   /// - Parameters:
@@ -134,14 +132,14 @@ extension Store {
 
 /// Resetting State
 extension Store {
-
+  
   /// Reset the store internal state for a particular key. They key will be the dynamic type of state
   ///
   /// - Parameter state: the new state
   public func reset(state: Any) {
     reset(state: state, forKey: "\(type(of: state))")
   }
-
+  
   
   /// Reset the store internal state for a specific key
   ///
@@ -151,8 +149,8 @@ extension Store {
   public func reset(state: Any, forKey key: StateKey) {
     self.state[key] = state
   }
-
-
+  
+  
   /// Resets the full internal state with a new state
   ///
   /// - Parameter state: the state to reset to

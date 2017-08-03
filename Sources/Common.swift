@@ -15,6 +15,8 @@ public typealias ListenerFunction<Type> = (Type) -> Void
 public typealias ActionListenerFunction = (Action) -> Void
 public typealias FilterFunction<StateType> = (StateType, StateType) -> Bool
 
+public typealias StateSelector<SelectedType> =  (State) -> (SelectedType?)
+
 public typealias KeyedState = [StateKey: Any]
 
 public typealias ReducerFunction<Type> = (Type, Action) -> Type?

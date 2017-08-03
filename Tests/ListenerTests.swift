@@ -9,12 +9,6 @@
 import XCTest
 @testable import Suas
 
-extension Int: StateConvertible {
-  public init?(state: State) {
-    self = 10
-  }
-}
-
 class ListenerTests: XCTestCase {
   
   func testItCanListenToAChange() {
@@ -445,7 +439,7 @@ class ListenerTests: XCTestCase {
     var newState = 0
 
     _ = store.addListener(
-      convertToStateType: Int.self,
+      stateSelector: { _ in return 10},
       callback: { state in
         changed = true
         newState = state
@@ -466,7 +460,7 @@ class ListenerTests: XCTestCase {
 
     _ = store.addListener(
       if: { old, new in return false },
-      convertToStateType: Int.self,
+      stateSelector: { _ in return 10 },
       callback: { state in
         changed = true
         newState = state
@@ -487,7 +481,7 @@ class ListenerTests: XCTestCase {
 
     _ = store.addListener(
       if: { old, new in return true },
-      convertToStateType: Int.self,
+      stateSelector: { _ in return 10 },
       callback: { state in
         changed = true
         newState = state
@@ -546,33 +540,7 @@ class ListenerTests: XCTestCase {
     var newState = 0
 
     let sub = store.addListener(
-      convertToStateType: Int.self
-    ) { state in
-      changed = true
-      newState = state
-    }
-
-    store.reset(state: MyState1(value: 20))
-    sub.informWithCurrentState()
-
-    XCTAssertTrue(changed)
-    XCTAssertEqual(newState, 10)
-
-    store.reset(state: MyState1(value: 20))
-    sub.informWithCurrentState()
-
-    XCTAssertTrue(changed)
-    XCTAssertEqual(newState, 10)
-  }
-
-  func testWhenItTriggerNotificationItPassesThroughStateConverter() {
-    let store = Suas.createStore(reducer: reducer1)
-
-    var changed = false
-    var newState: MyState1Convertible?
-
-    let sub = store.addListener(
-      convertToStateType: MyState1Convertible.self
+      stateSelector: { _ in return 10 }
     ) { state in
       changed = true
       newState = state

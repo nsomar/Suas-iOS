@@ -122,11 +122,9 @@ extension Store {
 
 extension Store {
 
-  func performAddListener<StateType, ListenerType: StateConvertible>(stateKey: StateKey?,
-                                                                     type: StateType.Type,
-                                                                     if filterBlock: FilterFunction<StateType>? = nil,
-                                                                     convertToStateType: ListenerType.Type,
-                                                                     callback: @escaping (ListenerType) -> ()) -> Subscription<StateType> {
+  func performAddListener<StateType>(if filterBlock: FilterFunction<State>? = nil,
+                                     stateSelector: @escaping StateSelector<StateType>,
+                                     callback: @escaping (StateType) -> ()) -> Subscription<StateType> {
 
 
 
@@ -136,15 +134,15 @@ extension Store {
     let typeErasedCallback = { (state: Any) in
 
       // If there is a stateConverter we convert and inform
-      guard let newState = convertToStateType.init(state: state as! State) else {
-        Suas.log("State cannot be converted to type '\(ListenerType.self)'\nState: \(state)")
+      guard let newState = stateSelector(state as! State) else {
+        Suas.log("State cannot be converted to type '\(StateType.self)'\nState: \(state)")
         return
       }
 
       callback(newState)
     }
 
-    return addNotificaitonListener(ofType: StateType.self, stateKey: stateKey,
+    return addNotificaitonListener(ofType: StateType.self, stateKey: nil,
                                    notificationFilter: currentNotificationFilter, callback: typeErasedCallback)
   }
 
@@ -187,7 +185,7 @@ extension Store {
         return filterBlock(castOld, castNew)
       }
     }
-
+    
     return alwaysFilter
   }
 
@@ -200,7 +198,7 @@ extension Store {
                             stateKey: stateKey,
                             notify: callback,
                             filterBlock: notificationFilter)
-
+    
     listeners = listeners + [listener]
     
     return Subscription<StateType>(store: self, listener: listener)
