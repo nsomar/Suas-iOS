@@ -55,12 +55,12 @@ extension Suas {
   /// )
   /// ```
   public static func createStore<R: Reducer>(reducer: R,
-                                             state: State,
-                                             middleware: Middleware? = nil) -> Store {
+                                             state: KeyedState,
+                                             middlewares: [Middleware] = []) -> Store {
     return performCreateStore(
       reducer: reducer,
-      state: state,
-      middleware: middleware)
+      state: State(dictionary: state),
+      middlewares: middlewares)
   }
 
 
@@ -109,11 +109,11 @@ extension Suas {
   /// ```
   public static func createStore<R: Reducer, StateType>(reducer: R,
                                                         state: StateType,
-                                                        middleware: Middleware? = nil) -> Store {
+                                                        middlewares: [Middleware] = []) -> Store {
     return performCreateStore(
       reducer: reducer,
       state: ["\(type(of: state))": state],
-      middleware: middleware)
+      middlewares: middlewares)
   }
 
 
@@ -162,10 +162,10 @@ extension Suas {
   /// )
   /// ```
   public static func createStore<R: Reducer>(reducer: R,
-                                             middleware: Middleware? = nil) -> Store {
-    return createStore(reducer: reducer,
-                       state: State(dictionary: reducer.stateDict),
-                       middleware: middleware)
+                                             middlewares: [Middleware] = []) -> Store {
+    return performCreateStore(reducer: reducer,
+                              state: State(dictionary: reducer.stateDict),
+                              middlewares: middlewares)
   }
 
 }

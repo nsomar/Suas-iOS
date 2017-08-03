@@ -12,7 +12,7 @@ import Foundation
 public enum Suas {
   static func performCreateStore<R: Reducer>(reducer: R,
                                              state: State,
-                                             middleware: Middleware?) -> Store {
+                                             middlewares: [Middleware]) -> Store {
 
     let reduce: ReducerFunction<Any> = { state, action in
       guard let newState = state as? R.StateType else {
@@ -23,10 +23,18 @@ public enum Suas {
       return reducer.reduce(state: newState, action: action)
     }
 
+    var middlware: Middleware?
+    
+    if !middlewares.isEmpty {
+      let combinedMiddlewares = CombinedMiddleWare()
+      middlewares.forEach { combinedMiddlewares.append(middleware: $0) }
+      middlware = combinedMiddlewares
+    }
+
     return Store(
       state: state,
       reducer: reduce,
-      middleware: middleware)
+      middleware: middlware)
   }
 }
 
