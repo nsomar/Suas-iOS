@@ -9,6 +9,12 @@
 import XCTest
 @testable import Suas
 
+extension Int: StateConvertible {
+  public init?(state: State) {
+    self = 10
+  }
+}
+
 class ListenerTests: XCTestCase {
   
   func testItCanListenToAChange() {
@@ -438,9 +444,8 @@ class ListenerTests: XCTestCase {
     var changed = false
     var newState = 0
 
-
     _ = store.addListener(
-      stateConverter: { _ in return 10 },
+      convertToStateType: Int.self,
       callback: { state in
         changed = true
         newState = state
@@ -461,7 +466,7 @@ class ListenerTests: XCTestCase {
 
     _ = store.addListener(
       if: { old, new in return false },
-      stateConverter: { _ in return 10 },
+      convertToStateType: Int.self,
       callback: { state in
         changed = true
         newState = state
@@ -482,7 +487,7 @@ class ListenerTests: XCTestCase {
 
     _ = store.addListener(
       if: { old, new in return true },
-      stateConverter: { _ in return 10 },
+      convertToStateType: Int.self,
       callback: { state in
         changed = true
         newState = state
@@ -541,7 +546,7 @@ class ListenerTests: XCTestCase {
     var newState = 0
 
     let sub = store.addListener(
-      stateConverter: { state in return 50 }
+      convertToStateType: Int.self
     ) { state in
       changed = true
       newState = state
@@ -551,13 +556,39 @@ class ListenerTests: XCTestCase {
     sub.informWithCurrentState()
 
     XCTAssertTrue(changed)
-    XCTAssertEqual(newState, 50)
+    XCTAssertEqual(newState, 10)
 
     store.reset(state: MyState1(value: 20))
     sub.informWithCurrentState()
 
     XCTAssertTrue(changed)
-    XCTAssertEqual(newState, 50)
+    XCTAssertEqual(newState, 10)
+  }
+
+  func testWhenItTriggerNotificationItPassesThroughStateConverter() {
+    let store = Suas.createStore(reducer: reducer1)
+
+    var changed = false
+    var newState: MyState1Convertible?
+
+    let sub = store.addListener(
+      convertToStateType: MyState1Convertible.self
+    ) { state in
+      changed = true
+      newState = state
+    }
+
+    store.reset(state: MyState1(value: 20))
+    sub.informWithCurrentState()
+
+    XCTAssertTrue(changed)
+    XCTAssertEqual(newState, 10)
+
+    store.reset(state: MyState1(value: 20))
+    sub.informWithCurrentState()
+
+    XCTAssertTrue(changed)
+    XCTAssertEqual(newState, 10)
   }
 
   func testAddingListenersLinkedToObjects() {

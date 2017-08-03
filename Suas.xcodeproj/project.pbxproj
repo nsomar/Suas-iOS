@@ -20,7 +20,6 @@
 		D70551541F212A7900022BF1 /* TestTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CF19341F1FC2D0003EC879 /* TestTypes.swift */; };
 		D70551551F212A7900022BF1 /* ReducerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CBAA7C1F1EC45400DA67E9 /* ReducerTests.swift */; };
 		D70551561F212A7900022BF1 /* StateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CF19361F1FC97E003EC879 /* StateTests.swift */; };
-		D70551571F212A7900022BF1 /* StateConverterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CF19381F1FD150003EC879 /* StateConverterTests.swift */; };
 		D70551591F212A7900022BF1 /* ListenerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CF193C1F1FDAF7003EC879 /* ListenerTests.swift */; };
 		D705515A1F212A7900022BF1 /* StoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CF193E1F2033DF003EC879 /* StoreTests.swift */; };
 		D705515B1F212A7900022BF1 /* MiddlewareTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CF19421F205B80003EC879 /* MiddlewareTests.swift */; };
@@ -50,7 +49,6 @@
 		D7CBAA8D1F1ECAA300DA67E9 /* Listener.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CBAA8C1F1ECAA300DA67E9 /* Listener.swift */; };
 		D7CF19351F1FC2D1003EC879 /* TestTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CF19341F1FC2D0003EC879 /* TestTypes.swift */; };
 		D7CF19371F1FC97E003EC879 /* StateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CF19361F1FC97E003EC879 /* StateTests.swift */; };
-		D7CF19391F1FD150003EC879 /* StateConverterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CF19381F1FD150003EC879 /* StateConverterTests.swift */; };
 		D7CF193D1F1FDAF7003EC879 /* ListenerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CF193C1F1FDAF7003EC879 /* ListenerTests.swift */; };
 		D7CF193F1F2033DF003EC879 /* StoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CF193E1F2033DF003EC879 /* StoreTests.swift */; };
 		D7CF19411F204EC2003EC879 /* StoreDeinitCallback.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CF19401F204EC2003EC879 /* StoreDeinitCallback.swift */; };
@@ -133,7 +131,6 @@
 		D7CBAA8C1F1ECAA300DA67E9 /* Listener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Listener.swift; sourceTree = "<group>"; };
 		D7CF19341F1FC2D0003EC879 /* TestTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestTypes.swift; sourceTree = "<group>"; };
 		D7CF19361F1FC97E003EC879 /* StateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateTests.swift; sourceTree = "<group>"; };
-		D7CF19381F1FD150003EC879 /* StateConverterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateConverterTests.swift; sourceTree = "<group>"; };
 		D7CF193C1F1FDAF7003EC879 /* ListenerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListenerTests.swift; sourceTree = "<group>"; };
 		D7CF193E1F2033DF003EC879 /* StoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreTests.swift; sourceTree = "<group>"; };
 		D7CF19401F204EC2003EC879 /* StoreDeinitCallback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreDeinitCallback.swift; sourceTree = "<group>"; };
@@ -222,7 +219,6 @@
 				D7CF19341F1FC2D0003EC879 /* TestTypes.swift */,
 				D7CBAA7C1F1EC45400DA67E9 /* ReducerTests.swift */,
 				D7CF19361F1FC97E003EC879 /* StateTests.swift */,
-				D7CF19381F1FD150003EC879 /* StateConverterTests.swift */,
 				D7CF193C1F1FDAF7003EC879 /* ListenerTests.swift */,
 				D7CF193E1F2033DF003EC879 /* StoreTests.swift */,
 				D7CF19421F205B80003EC879 /* MiddlewareTests.swift */,
@@ -544,7 +540,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D70551571F212A7900022BF1 /* StateConverterTests.swift in Sources */,
 				D705515B1F212A7900022BF1 /* MiddlewareTests.swift in Sources */,
 				D76F34E41F242C4700CE0C66 /* AsyncMiddlewareTests.swift in Sources */,
 				D70551551F212A7900022BF1 /* ReducerTests.swift in Sources */,
@@ -579,7 +574,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D7CF19391F1FD150003EC879 /* StateConverterTests.swift in Sources */,
 				D7CF19431F205B80003EC879 /* MiddlewareTests.swift in Sources */,
 				D76F34E31F242C4600CE0C66 /* AsyncMiddlewareTests.swift in Sources */,
 				D7CBAA7D1F1EC45400DA67E9 /* ReducerTests.swift in Sources */,

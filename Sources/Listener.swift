@@ -25,6 +25,10 @@ struct Listener {
   public let filterBlock: FilterFunction<Any>
 }
 
+public protocol StateConvertible {
+  init?(state: State)
+}
+
 public struct Subscription<StateType> {
   let store: Store
   let listener: Listener

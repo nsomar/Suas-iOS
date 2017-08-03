@@ -122,20 +122,62 @@ extension Store {
 
 extension Store {
 
+  func performAddListener<StateType, ListenerType: StateConvertible>(stateKey: StateKey?,
+                                                                     type: StateType.Type,
+                                                                     if filterBlock: FilterFunction<StateType>? = nil,
+                                                                     convertToStateType: ListenerType.Type,
+                                                                     callback: @escaping (ListenerType) -> ()) -> Subscription<StateType> {
+
+
+
+    let currentNotificationFilter = eraseNotificationFilterType(forFilter: filterBlock)
+
+    // Create a type erased infom callback
+    let typeErasedCallback = { (state: Any) in
+
+      // If there is a stateConverter we convert and inform
+      guard let newState = convertToStateType.init(state: state as! State) else {
+        Suas.log("State cannot be converted to type '\(ListenerType.self)'\nState: \(state)")
+        return
+      }
+
+      callback(newState)
+    }
+
+    return addNotificaitonListener(ofType: StateType.self, stateKey: stateKey,
+                                   notificationFilter: currentNotificationFilter, callback: typeErasedCallback)
+  }
+
   func performAddListener<StateType, ListenerType>(stateKey: StateKey?,
                                                    type: StateType.Type,
                                                    if filterBlock: FilterFunction<StateType>? = nil,
-                                                   stateConverter: StateConverter<ListenerType>? = nil,
                                                    callback: @escaping (ListenerType) -> ()) -> Subscription<StateType> {
 
-    var currentNotificationFilter: FilterFunction<Any> = alwaysFilter
+    let currentNotificationFilter = eraseNotificationFilterType(forFilter: filterBlock)
+
+    // Create a type erased infom callback
+    let typeErasedCallback = { (state: Any) in
+
+      // If there is a stateConverter we convert and inform
+      guard let newState = state as? ListenerType else {
+        Suas.log("State cannot be converted to type '\(ListenerType.self)'\nState: \(state)")
+        return
+      }
+
+      callback(newState)
+    }
+
+    return addNotificaitonListener(ofType: StateType.self, stateKey: stateKey,
+                                   notificationFilter: currentNotificationFilter, callback: typeErasedCallback)
+  }
 
 
+  private func eraseNotificationFilterType<StateType>(forFilter filterBlock: FilterFunction<StateType>?) -> FilterFunction<Any> {
     // If there is a filter we call it before
     if let filterBlock = filterBlock {
 
       // If we have a notification filter, wrap it in a type erasure closure
-      currentNotificationFilter = { (old: Any, new: Any) -> Bool in
+      return { (old: Any, new: Any) -> Bool in
         // Dynamic typechecking :(
         guard let castNew = new as? StateType, let castOld = old as? StateType else {
           Suas.log("Either new value or old value cannot be converted to type '\(State.self)'\nnew value: \(new)\nold value: \(old)")
@@ -146,33 +188,21 @@ extension Store {
       }
     }
 
+    return alwaysFilter
+  }
 
-    // Create a type erased infom callback
-    let typeErasedCallback = { (state: Any) in
-
-      var stateToNotify: ListenerType?
-
-      if let stateConverter = stateConverter {
-        stateToNotify = stateConverter(state as! State)
-      } else {
-        stateToNotify = state as? ListenerType
-      }
-      // If there is a stateConverter we convert and inform
-      guard let newState = stateToNotify else {
-        Suas.log("State cannot be converted to type '\(ListenerType.self)'\nState: \(state)")
-        return
-      }
-
-      callback(newState)
-    }
-
-    let id = generateId()
+  private func addNotificaitonListener<StateType>(ofType type: StateType.Type,
+                                                  stateKey: StateKey?,
+                                                  notificationFilter: @escaping FilterFunction<Any>,
+                                                  callback: @escaping ListenerFunction<Any>) -> Subscription<StateType> {
     // Create listener and append it
-    let listener = Listener(id: id, stateKey: stateKey,
-                            notify: typeErasedCallback, filterBlock: currentNotificationFilter)
+    let listener = Listener(id: generateId(),
+                            stateKey: stateKey,
+                            notify: callback,
+                            filterBlock: notificationFilter)
 
     listeners = listeners + [listener]
-
+    
     return Subscription<StateType>(store: self, listener: listener)
   }
 

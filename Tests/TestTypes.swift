@@ -25,6 +25,18 @@ struct MyState4 {
   var yetMoreVal = 0
 }
 
+struct MyState1Convertible: StateConvertible {
+  let value: Int
+  init?(state: State) {
+    guard let x = state.value(forKey: "myKey", ofType: Int.self) else {
+      return nil
+    }
+
+    self.value = x
+  }
+}
+
+
 struct IncrementAction: Action {}
 
 let reducer1 = BlockReducer(initialState: MyState1(value: 0)) { state, action in

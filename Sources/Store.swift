@@ -95,18 +95,18 @@ extension Store {
                                      callback: @escaping (StateType) -> ()) -> Subscription<StateType> {
 
     return performAddListener(stateKey: stateKey ?? "\(type)",
-                              type: type,
-                              if: filterBlock,
-                              callback: callback)
+      type: type,
+      if: filterBlock,
+      callback: callback)
   }
 
-  public func addListener<StateType>(if filterBlock: FilterFunction<State>? = nil,
-                                     stateConverter: @escaping StateConverter<StateType>,
-                                     callback: @escaping (StateType) -> ()) -> Subscription<State> {
+  public func addListener<StateType: StateConvertible>(if filterBlock: FilterFunction<State>? = nil,
+                                                       convertToStateType: StateType.Type,
+                                                       callback: @escaping (StateType) -> ()) -> Subscription<State> {
     return performAddListener(stateKey: nil,
                               type: State.self,
                               if: filterBlock,
-                              stateConverter: stateConverter,
+                              convertToStateType: StateType.self,
                               callback: callback)
   }
 
@@ -142,7 +142,7 @@ extension Store {
     reset(state: state, forKey: "\(type(of: state))")
   }
 
-
+  
   /// Reset the store internal state for a specific key
   ///
   /// - Parameters:
