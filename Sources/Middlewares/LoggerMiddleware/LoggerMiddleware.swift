@@ -44,8 +44,8 @@ public struct LoggerMiddleware: Middleware {
     showDuration: Bool = false,
     lineLength: Int? = nil,
     predicate: ((State, Action) -> Bool)? = nil,
-    titleFormatter: ((Action, Date, UInt64) -> String)? = nil,
     debugOnly: Bool = true,
+    titleFormatter: ((Action, Date, UInt64) -> String)? = nil,
     stateTransformer: ((State) -> Any)? = nil,
     actionTransformer: ((Action) -> Any)? = nil,
     logger: @escaping (String) -> Void = defaultLogger
