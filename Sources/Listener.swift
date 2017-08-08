@@ -34,6 +34,7 @@ public struct Subscription<StateType> {
 
 
   /// Notify the listener associated with this `Subscription` about the current state. Calls the listener block without dispatching an action.
+  ///
   /// You can use this method to call the listener notification block with the current state, useful when you want to initialize some UI elements for example.
   ///
   /// # Example
