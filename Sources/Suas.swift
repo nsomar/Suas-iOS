@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension Suas {
+public enum Suas {
 
 
   /// Create a store
@@ -19,8 +19,7 @@ extension Suas {
   ///   - middleware: the store middleware
   /// - Returns: a new store
   ///
-  /// -----
-  /// **Example**
+  /// # Example
   ///
   /// Using a single reducer
   ///
@@ -72,8 +71,7 @@ extension Suas {
   ///   - middleware: the store middleware
   /// - Returns: a new store
   ///
-  /// -----
-  /// **Example**
+  /// # Example
   ///
   /// Using a single reducer
   ///
@@ -124,10 +122,9 @@ extension Suas {
   /// - Parameters:
   ///   - reducer: the reducer to use with the store. The reducer will be called when calling dispatch on this store
   ///   - middleware: the store middleware
-  /// - Returns: a new store
+  /// - Returns: a new store.
   ///
-  /// -----
-  /// **Example**
+  /// # Example
   ///
   /// Using a single reducer
   ///

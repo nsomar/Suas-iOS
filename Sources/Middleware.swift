@@ -9,26 +9,35 @@
 import Foundation
 import Swift
 
-/// Middleware protocol that represnts a store middleware
+/// Middleware protocol that represents a suas store middleware
+/// A middleware helps extending the dispatch logic of Suas.
 ///
 /// A middleware can be used to implement:
-/// - Logging that is called before and after the dispatcher is called
-/// - Perform network calls and dispatching an action representing the result when the network returns
+/// - Logging that logs the state before and after the reducer changes it
+/// - Perform async network calls and dispatches actions representing the result when the network returns.
+/// - Other advanced usages...
 ///
-/// -----
-/// **Example**
+/// # Example
 ///
-/// Logging middleware
+/// Implementing a logging middleware.
 ///
 /// ```
 /// class LoggerMiddleware: Middleware {
 ///   var api: MiddlewareAPI?
 ///   var next: DispatchFunction?
 ///
-///   func onAction(action: Action) {
-///     print("The old state is \(api?.state)")
+///   func onAction(action: Action, getState: @escaping GetStateFunction, dispatch: @escaping DispatchFunction, next: @escaping NextFunction) {
+///     // Read the state before any reducer changes it
+///     print("The old state is \(getState())")
+///
+///     // Print the action
 ///     print("The action is \(action)")
+///
+///     // Continue the dispatching process..until the reducer reduces the action
+///     // Not calling `next` will prevent the action from reaching the reducer
 ///     next?(action)
+///
+///     // Read the state after any reducer changes it
 ///     print("The new state is \(api?.state)")
 ///   }
 /// }
@@ -37,35 +46,47 @@ import Swift
 public protocol Middleware {
   /// Function called when an action is dispatched
   ///
+  /// - Parameters:
   /// - Parameter action: the dispatched action
-  ///
-  /// It is a requirement for the middleware to call `next(action)` inside this function. Failling to call next will cause the action to not be dispatched to the reducer
+  ///   - getState: a function that can be used to read the current Store state
+  ///   - dispatch: a function that can be used to dispatch new actions to the Store
+  ///   - next: function that represents the continuation of the dispatching process. The middleware can do the following with it:
+  ///     - If it calls `next` the execution will proceed and the action will eventually reach the reducer
+  ///     - If it does not call, then the action is said to be handled by the current middleware.
+  ///     - Middleware cancall `next` with a new action, this action is used instead of the original one.
   func onAction(action: Action,
                 getState: @escaping GetStateFunction,
                 dispatch: @escaping DispatchFunction,
                 next: @escaping NextFunction)
 }
 
-/// Create a middleware inline with a block
+/// Create a middleware inline with a block.
 ///
-/// -----
-/// **Example**
+/// # Example
 ///
 /// ```
-/// let middleware = BlockMiddleware { action, api, next in
-///   print("The old state is \(api.state)")
+/// let middleware = BlockMiddleware { action, getState, dispatch, next in
+///   // Read the state before any reducer changes it
+///   print("The old state is \(getState())")
+///
+///   // Print the action
 ///   print("The action is \(action)")
-///   next(action)
-///   print("The new state is \(api.state)")
+///
+///   // Continue the dispatching process..until the reducer reduces the action
+///   // Not calling `next` will prevent the action from reaching the reducer
+///   next?(action)
+///
+///   // Read the state after any reducer changes it
+///   print("The new state is \(api?.state)")
 /// }
 /// ```
 public final class BlockMiddleware: Middleware {
   
   private let middlewareFunction: MiddlewareFunction
   
-  /// Create a middleware with a callback block
+  /// Create a middleware with an onAction callback block
   ///
-  /// - Parameter actionFunction: block to be called with the action, the middleware api (containing the disptach function and the state) and the next action callback
+  /// - Parameter actionFunction: block to be called with the action, a function to get the sate, a function to dispatch, and the next action callback.
   public init(actionFunction: @escaping MiddlewareFunction) {
     self.middlewareFunction = actionFunction
   }
@@ -131,7 +152,8 @@ final class CombinedMiddleWare: Middleware {
   }
 }
 
-/// Combines two middlewares. The combined middleware creates a chain of mi ddleware. When calling next on the first middleware it progresses to the next one. The final middlware's next function calls the reducer dispatch will causes a state change
+/// Combines two middlewares. The combined middleware creates a chain of middleware.
+/// When calling next on the first middleware it progresses to the next one. The final middlware's next function calls the reducer dispatch will causes a state change.
 ///
 /// -----
 /// **Example**
@@ -139,21 +161,16 @@ final class CombinedMiddleWare: Middleware {
 /// Combining two logging middlewares
 ///
 /// ```
-/// let middleware1 = BlockMiddleware { action, api, next in
-///   print("Middleware1: The old state is \(api.state)")
-///   print("Middleware1: The action is \(action)")
-///   next(action)
-///   print("Middleware1: The new state is \(api.state)")
+/// let middleware1 = BlockMiddleware { action, getState, dispatch, next in
+///   // do some middleware stuff
 /// }
 ///
-/// let middleware2 = BlockMiddleware { action, api, next in
-///   print("Middleware2: The old state is \(api.state)")
-///   print("Middleware2: The action is \(action)")
-///   next(action)
-///   print("Middleware2: The new state is \(api.state)")
+/// let middleware2 = BlockMiddleware { action, getState, dispatch, next in
+///   // do some middleware stuff
 /// }
+///
 /// ```
-/// We can then combine these 2 middlewares with:
+/// We can then combine these 2 middlewares with `+` operator as:
 ///
 /// ```
 /// let store = Suas.createStore(
