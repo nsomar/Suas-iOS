@@ -8,13 +8,21 @@
 
 import Foundation
 
-public typealias StateKey = String
-public typealias CallbackId = String
 
+/// Store state is stored as a Dictionary of [StateKey: Any]
+public typealias StateKey = String
+
+
+/// Callback function called when the listener state is changed
 public typealias ListenerFunction<Type> = (Type) -> Void
+
+/// Callback function called when the action listener state is changed
 public typealias ActionListenerFunction = (Action) -> Void
+
+/// Filter function that decides if the listener should be notified or not
 public typealias FilterFunction<StateType> = (StateType, StateType) -> Bool
 
+/// Function that selects part of the full state
 public typealias StateSelector<SelectedType> =  (State) -> (SelectedType?)
 
 public typealias KeyedState = [StateKey: Any]
@@ -26,6 +34,7 @@ public typealias NextFunction = DispatchFunction
 public typealias MiddlewareFunction = (Action, GetStateFunction, DispatchFunction, NextFunction) -> Void
 public typealias GetStateFunction = () -> State
 
+typealias CallbackId = String
 
 extension Suas {
   // For testing

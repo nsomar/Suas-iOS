@@ -39,7 +39,7 @@ class AsyncMiddlewareTests: XCTestCase {
     class TestAsyncAction: AsyncAction {
       static var called = false
       
-      public func onAction(getState: @escaping GetStateFunction, dispatch: @escaping DispatchFunction) {
+      public func execute(getState: @escaping GetStateFunction, dispatch: @escaping DispatchFunction) {
         TestAsyncAction.called = true
         dispatch(SomeAction())
       }

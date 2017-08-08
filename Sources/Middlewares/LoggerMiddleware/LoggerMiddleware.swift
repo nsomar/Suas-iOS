@@ -10,6 +10,24 @@ import Foundation
 
 
 /// LoggerMiddleware that logs the action and state when each action is received
+/// When an action is dispatched, the LoggerMiddleware will print information related to it in the console.
+///
+/// # Example
+/// Adding LoggerMiddleware
+/// ```
+/// let store = Suas.createStore(
+///   reducer: ...,
+///   middleware: LoggerMiddleware()
+/// )
+/// ```
+/// When actions are dispatched, you get something similar to this printed to the console.
+/// ```
+/// ┌───→ Action: IncrementAction @19:15:39.419
+/// ├─ Prev state ► State(innerState: ["Counter": CounterExample.Counter(value: 0)])
+/// ├─ Action     ► IncrementAction(incrementValue: 1)
+/// ├─ Next state ► State(innerState: ["Counter": CounterExample.Counter(value: 1)])
+/// └──────────────────────────────────────────
+/// ```
 public struct LoggerMiddleware: Middleware {
   private let showDuration: Bool
   private let showTimestamp: Bool
@@ -35,6 +53,7 @@ public struct LoggerMiddleware: Middleware {
   ///   - showDuration: show or hide the duration of reducing the action (optional, defaults to false)
   ///   - lineLength: specifies the maximum length of the printed lines (optional no max length)
   ///   - predicate: callback that decides if the logger should print or not (optional, defaults always print)
+  ///   - debugOnly: print the debug message in Debug only or Debug and Release configurations (optional, defaults print in debug only configuration)
   ///   - titleFormatter: callback that defines the format of the log title (optional)
   ///   - stateTransformer: callback that allow converting the state to a differnt type before printing it (optional)
   ///   - actionTransformer: callback that allow converting the action to a differnt type before printing it (optional)

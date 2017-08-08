@@ -9,7 +9,7 @@
 import Foundation
 
 
-public enum Suas {
+extension Suas {
   static func performCreateStore<R: Reducer>(reducer: R,
                                              state: State,
                                              middleware: Middleware?) -> Store {

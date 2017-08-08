@@ -12,6 +12,16 @@ import Foundation
 /// Callback called when URLSession operation completes
 public typealias URLSessionActionCompletionBlock = (Data?, URLResponse?, Error?, DispatchFunction) -> Void
 
+
+/// URL Session `AsyncAction` implementation to fetch data from the network asynchronously. Requires `AsyncMiddleware` to be added to the store.
+///
+/// # Example
+/// ```
+/// let action = URLSessionAsyncAction(url: ...) { data, response, error, dispatch in
+///   // Parse data and prepare models
+///   dispatch(DataFetchedAction(parsed))
+/// }
+/// ```
 public struct URLSessionAsyncAction: AsyncAction {
 
   private let urlSession: URLSession
@@ -22,7 +32,7 @@ public struct URLSessionAsyncAction: AsyncAction {
   ///
   /// - Parameters:
   ///   - url: the url to fetch
-  ///   - urlSession: the url session to use (optional)
+  ///   - urlSession: (optional) the url session to use. When not set a default one will be used.
   ///   - completionBlock: callback to call when the url operation is ended. In this block `dispatch` is used to dispatch new actions
   /// - Returns: an async action to dispatch
   public init(url: URL,
@@ -35,7 +45,7 @@ public struct URLSessionAsyncAction: AsyncAction {
   ///
   /// - Parameters:
   ///   - urlRequest: the url request to fetch
-  ///   - urlSession: the url session to use (optional)
+  ///   - urlSession: (optional) the url session to use. When not set a default one will be used.
   ///   - completionBlock: callback to call when the url operation is ended. In this block `dispatch` is used to dispatch new actions
   /// - Returns: an async action to dispatch
   public init(urlRequest: URLRequest,
@@ -46,7 +56,7 @@ public struct URLSessionAsyncAction: AsyncAction {
     self.completionBlock = completionBlock
   }
 
-  public func onAction(getState: @escaping GetStateFunction, dispatch: @escaping DispatchFunction) {
+  public func execute(getState: @escaping GetStateFunction, dispatch: @escaping DispatchFunction) {
     urlSession.dataTask(with: urlRequest) { data, response, error in
       self.completionBlock(data, response, error, dispatch)
       }.resume()
@@ -58,6 +68,15 @@ public struct URLSessionAsyncAction: AsyncAction {
 public typealias DiskReadActionCompletionBlock = (Data?, DispatchFunction) -> Void
 
 
+/// Disk Read `AsyncAction` implementation to read data from the disk asynchronously. Requires `AsyncMiddleware` to be added to the store.
+///
+/// # Example
+/// ```
+/// let action = DiskReadAsyncAction(path: ...) { data, dispatch in
+///   // Dispatch a new action
+///   dispatch(DataFetchedAction(data))
+/// }
+/// ```
 public struct DiskReadAsyncAction: AsyncAction {
   static let defaultDispatchQueue = DispatchQueue(label: "DISK_READ_ASYNC_ACTION")
 
@@ -70,22 +89,21 @@ public struct DiskReadAsyncAction: AsyncAction {
   ///
   /// - Parameters:
   ///   - path: path to read from disk
-  ///   - fileManager: the file manager to use (optional, defaults to FileManager.default)
-  ///   - dispatchQueue: the dispatch queue to use when accessing disk (optional, defaults to `DispatchQueue(label: "IOMIDDLEWARE_IO_QUEUE"))
+  ///   - fileManager: (optional) the file manager to use. When not passed it defaults to `FileManager.default`
+  ///   - dispatchQueue: (optional) the dispatch queue to use when accessing disk. When not passed it defaults to `DispatchQueue(label: "IOMIDDLEWARE_IO_QUEUE")
   ///   - completionBlock: callback to call when data is read from disk. In this block `dispatch` is used to dispatch new actions
   /// - Returns: an async action to dispatch
   public init(path: String,
               fileManager: FileManager = .default,
               dispatchQueue: DispatchQueue = defaultDispatchQueue,
               completionBlock: @escaping DiskReadActionCompletionBlock) {
-
     self.path = path
     self.fileManager = fileManager
     self.dispatchQueue = dispatchQueue
     self.completionBlock = completionBlock
   }
 
-  public func onAction(getState: @escaping GetStateFunction, dispatch: @escaping DispatchFunction) {
+  public func execute(getState: @escaping GetStateFunction, dispatch: @escaping DispatchFunction) {
     dispatchQueue.async {
       if
         let data = self.fileManager.contents(atPath: self.path) {
@@ -101,6 +119,15 @@ public struct DiskReadAsyncAction: AsyncAction {
 public typealias DiskWriteActionCompletionBlock = (Bool, DispatchFunction) -> Void
 
 
+/// Disk Write `AsyncAction` implementation to write data to the disk asynchronously. Requires `AsyncMiddleware` to be added to the store.
+///
+/// # Example
+/// ```
+/// let action = DiskWriteAsyncAction(path: ..., data: ...) { succeeded, dispatch in
+///   // After data is written, dispatch an action
+///   dispatch(DataWrittenToDisk(succeeded))
+/// }
+/// ```
 public struct DiskWriteAsyncAction: AsyncAction {
   static let defaultDispatchQueue = DispatchQueue(label: "DISK_WRITE_ASYNC_ACTION")
 
@@ -115,8 +142,8 @@ public struct DiskWriteAsyncAction: AsyncAction {
   /// - Parameters:
   ///   - path: path to write to disk
   ///   - data: data to write to disk
-  ///   - fileManager: the file manager to use (optional, defaults to FileManager.default)
-  ///   - dispatchQueue: the dispatch queue to use when accessing disk (optional, defaults to `DispatchQueue(label: "IOMIDDLEWARE_IO_QUEUE"))
+  ///   - fileManager: (optional) the file manager to use. When not passed it defaults to `FileManager.default`
+  ///   - dispatchQueue: (optional) the dispatch queue to use when accessing disk. When not passed it defaults to `DispatchQueue(label: "IOMIDDLEWARE_IO_QUEUE")
   ///   - completionBlock: callback to call when data is read from disk. In this block `dispatch` is used to dispatch new actions
   /// - Returns: an async action to dispatch
   public init(path: String,
@@ -132,7 +159,7 @@ public struct DiskWriteAsyncAction: AsyncAction {
     self.completionBlock = completionBlock
   }
 
-  public func onAction(getState: @escaping GetStateFunction, dispatch: @escaping DispatchFunction) {
+  public func execute(getState: @escaping GetStateFunction, dispatch: @escaping DispatchFunction) {
     dispatchQueue.async {
       let result = self.fileManager.createFile(atPath: self.path, contents: self.data, attributes: nil)
       self.completionBlock(result, dispatch)
