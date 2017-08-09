@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Reducer Protocol Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset="utf-8">
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+
+    <a name="//apple_ref/swift/Protocol/Reducer" class="dashAnchor"></a>
+
+    <a title="Reducer Protocol Reference"></a>
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="../index.html">
+          Suas Docs
+        </a>
+         (91% documented)
+      </p>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="https://github.com/Zendesk/Suas-iOS/tree/master">
+            <img class="header-icon" src="../img/gh.png"/>
+            View on GitHub
+          </a>
+        </p>
+    
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="../index.html">Suas Reference</a>
+      <img class="carat" src="../img/carat.png" />
+      Reducer Protocol Reference
+    </p>
+
+    <div class="content-wrapper">
+      <nav class="navigation">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/BlockMiddleware.html">BlockMiddleware</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/BlockReducer.html">BlockReducer</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/CombinedReducer.html">CombinedReducer</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/Store.html">Store</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Global Variables.html">Global Variables</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Global Variables.html#/s:v4Suas12alwaysFilterFTP_P__Sb">alwaysFilter</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Global Variables.html#/s:v4Suas13defaultLoggerFSST_">defaultLogger</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Global Variables.html#/s:v4Suas18stateChangedFilterFTP_P__Sb">stateChangedFilter</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Enums.html">Enums</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/Suas.html">Suas</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Functions.html">Functions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Functions.html#/s:F4Suasoi1pFTPS_10Middleware_PS0___PS0__">+(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Functions/+(_:_:).html">+(_:_:)</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols.html#/s:P4Suas6Action">Action</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/AsyncAction.html">AsyncAction</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/Middleware.html">Middleware</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/Reducer.html">Reducer</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/SuasDynamicEquatable.html">SuasDynamicEquatable</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Structs.html">Structs</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/ActionSubscription.html">ActionSubscription</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/AsyncMiddleware.html">AsyncMiddleware</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/BlockAsyncAction.html">BlockAsyncAction</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/DiskReadAsyncAction.html">DiskReadAsyncAction</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/DiskWriteAsyncAction.html">DiskWriteAsyncAction</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/LoggerMiddleware.html">LoggerMiddleware</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/State.html">State</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/Subscription.html">Subscription</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/URLSessionAsyncAction.html">URLSessionAsyncAction</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Typealiases.html">Typealiases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:4Suas22ActionListenerFunction">ActionListenerFunction</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:4Suas29DiskReadActionCompletionBlock">DiskReadActionCompletionBlock</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:4Suas30DiskWriteActionCompletionBlock">DiskWriteActionCompletionBlock</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:4Suas14FilterFunction">FilterFunction</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:4Suas16ListenerFunction">ListenerFunction</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:4Suas8StateKey">StateKey</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:4Suas13StateSelector">StateSelector</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:4Suas31URLSessionActionCompletionBlock">URLSessionActionCompletionBlock</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+
+        <section class="section">
+          <div class="section-content">
+            <h1>Reducer</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">Reducer</span></code></pre>
+
+                </div>
+              </div>
+            <p>Protocol that represents a reducer</p>
+
+<p><a href='#example' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='example'>Example</h1>
+<pre class="highlight plaintext"><code>struct MyReducer: Reducer {
+  var initialState: Int = 1</p>
+
+<p>func reduce(state: Int, action: Action) -&gt; Int? {</p>
+<pre class="highlight plaintext"><code>// Cast the action to a specific action
+if let action = action as? SomeAction {
+  // state changed, listeners will be notified
+  return state + 1
+}
+
+// returning nil means the state did not change and listeners wont be notified
+return nil
+</code></pre>
+
+<p>}
+}
+</code></pre></p>
+
+<p>Note: Returning <code>nil</code> from <code>reduce</code> signifies that the state did not change which will not inform the listeners.</p>
+
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-content">
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vP4Suas7Reducer12initialStatewx9StateType"></a>
+                    <a name="//apple_ref/swift/Property/initialState" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vP4Suas7Reducer12initialStatewx9StateType">initialState</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Inital state value for this particular reducer
+This initial state will be used to populate the Store state (which represents the app state)</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">initialState</span><span class="p">:</span> <span class="kt">StateType</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/Zendesk/Suas-iOS/Sources/Reducer.swift#L41">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vP4Suas7Reducer8stateKeySS"></a>
+                    <a name="//apple_ref/swift/Property/stateKey" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vP4Suas7Reducer8stateKeySS">stateKey</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>(Optional) The state key for this reducer. If not implemented (or set) the type of <code><a href="../Protocols/Reducer.html#/s:vP4Suas7Reducer12initialStatewx9StateType">initialState</a></code> will be used as a key.
+It is recommended to not set the <code>stateKey</code> and use the type name of the <code><a href="../Protocols/Reducer.html#/s:vP4Suas7Reducer12initialStatewx9StateType">initialState</a></code> instead.</p>
+
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">stateKey</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:4Suas8StateKey">StateKey</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/Zendesk/Suas-iOS/Sources/Reducer.swift#L45">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP4Suas7Reducer6reduceFT5statewx9StateType6actionPS_6Action__GSqwxS1__"></a>
+                    <a name="//apple_ref/swift/Method/reduce(state:action:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP4Suas7Reducer6reduceFT5statewx9StateType6actionPS_6Action__GSqwxS1__">reduce(state:action:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Generates a new state from the old state and an action</p>
+
+<p><li>Parameters:</p>
+
+<p><ul>
+<li>state: the current state for this reducer type</li>
+<li>action: the action dispatched to the store</li>
+</ul></li>
+<div class="aside aside-returns">
+    <p class="aside-title">Returns</p>
+    the new state</p>
+
+<p></div></p>
+
+<p>Note: Returning <code>nil</code> from <code>reduce</code> signifies that the state did not change which will not inform the listeners</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">reduce</span><span class="p">(</span><span class="nv">state</span><span class="p">:</span> <span class="kt">StateType</span><span class="p">,</span> <span class="nv">action</span><span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:P4Suas6Action">Action</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">StateType</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>state</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the current state for this reducer type</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>action</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the action dispatched to the store</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>the new state</p>
+
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/Zendesk/Suas-iOS/Sources/Reducer.swift#L55">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+      </article>
+    </div>
+    <section class="footer">
+      <p>&copy; 2017 <a class="link" href="http://zendesk.com" target="_blank" rel="external">Omar Abdelhafith</a>. All rights reserved. (Last updated: 2017-08-09)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+    </section>
+  </body>
+</div>
+</html>

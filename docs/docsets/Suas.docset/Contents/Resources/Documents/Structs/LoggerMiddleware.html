@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>LoggerMiddleware Struct Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset="utf-8">
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+
+    <a name="//apple_ref/swift/Struct/LoggerMiddleware" class="dashAnchor"></a>
+
+    <a title="LoggerMiddleware Struct Reference"></a>
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="../index.html">
+          Suas Docs
+        </a>
+         (91% documented)
+      </p>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="https://github.com/Zendesk/Suas-iOS/tree/master">
+            <img class="header-icon" src="../img/gh.png"/>
+            View on GitHub
+          </a>
+        </p>
+    
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="../index.html">Suas Reference</a>
+      <img class="carat" src="../img/carat.png" />
+      LoggerMiddleware Struct Reference
+    </p>
+
+    <div class="content-wrapper">
+      <nav class="navigation">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/BlockMiddleware.html">BlockMiddleware</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/BlockReducer.html">BlockReducer</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/CombinedReducer.html">CombinedReducer</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/Store.html">Store</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Global Variables.html">Global Variables</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Global Variables.html#/s:v4Suas12alwaysFilterFTP_P__Sb">alwaysFilter</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Global Variables.html#/s:v4Suas13defaultLoggerFSST_">defaultLogger</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Global Variables.html#/s:v4Suas18stateChangedFilterFTP_P__Sb">stateChangedFilter</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Enums.html">Enums</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/Suas.html">Suas</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Functions.html">Functions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Functions.html#/s:F4Suasoi1pFTPS_10Middleware_PS0___PS0__">+(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Functions/+(_:_:).html">+(_:_:)</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols.html#/s:P4Suas6Action">Action</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/AsyncAction.html">AsyncAction</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/Middleware.html">Middleware</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/Reducer.html">Reducer</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/SuasDynamicEquatable.html">SuasDynamicEquatable</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Structs.html">Structs</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/ActionSubscription.html">ActionSubscription</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/AsyncMiddleware.html">AsyncMiddleware</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/BlockAsyncAction.html">BlockAsyncAction</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/DiskReadAsyncAction.html">DiskReadAsyncAction</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/DiskWriteAsyncAction.html">DiskWriteAsyncAction</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/LoggerMiddleware.html">LoggerMiddleware</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/State.html">State</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/Subscription.html">Subscription</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/URLSessionAsyncAction.html">URLSessionAsyncAction</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Typealiases.html">Typealiases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:4Suas22ActionListenerFunction">ActionListenerFunction</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:4Suas29DiskReadActionCompletionBlock">DiskReadActionCompletionBlock</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:4Suas30DiskWriteActionCompletionBlock">DiskWriteActionCompletionBlock</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:4Suas14FilterFunction">FilterFunction</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:4Suas16ListenerFunction">ListenerFunction</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:4Suas8StateKey">StateKey</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:4Suas13StateSelector">StateSelector</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:4Suas31URLSessionActionCompletionBlock">URLSessionActionCompletionBlock</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+
+        <section class="section">
+          <div class="section-content">
+            <h1>LoggerMiddleware</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">LoggerMiddleware</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Middleware.html">Middleware</a></span></code></pre>
+
+                </div>
+              </div>
+            <p>LoggerMiddleware that logs the action and state when each action is received
+When an action is dispatched, the LoggerMiddleware will print information related to it in the console.</p>
+
+<p><a href='#example' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='example'>Example</h1></p>
+
+<p>Adding LoggerMiddleware
+<code>
+let store = Suas.createStore(
+  reducer: ...,
+  middleware: LoggerMiddleware()
+)
+</code>
+When actions are dispatched, you get something similar to this printed to the console.
+<code>
+┌───→ Action: IncrementAction @19:15:39.419
+├─ Prev state ► State(innerState: [&quot;Counter&quot;: CounterExample.Counter(value: 0)])
+├─ Action     ► IncrementAction(incrementValue: 1)
+├─ Next state ► State(innerState: [&quot;Counter&quot;: CounterExample.Counter(value: 1)])
+└──────────────────────────────────────────
+</code></p>
+
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-content">
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FV4Suas16LoggerMiddlewarecFT13showTimestampSb12showDurationSb10lineLengthGSqSi_9predicateGSqFTVS_5StatePS_6Action__Sb_9debugOnlySb14titleFormatterGSqFTPS2__V10Foundation4DateVs6UInt64_SS_16stateTransformerGSqFS1_P__17actionTransformerGSqFPS2__P__6loggerFSST__S0_"></a>
+                    <a name="//apple_ref/swift/Method/init(showTimestamp:showDuration:lineLength:predicate:debugOnly:titleFormatter:stateTransformer:actionTransformer:logger:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FV4Suas16LoggerMiddlewarecFT13showTimestampSb12showDurationSb10lineLengthGSqSi_9predicateGSqFTVS_5StatePS_6Action__Sb_9debugOnlySb14titleFormatterGSqFTPS2__V10Foundation4DateVs6UInt64_SS_16stateTransformerGSqFS1_P__17actionTransformerGSqFPS2__P__6loggerFSST__S0_">init(showTimestamp:showDuration:lineLength:predicate:debugOnly:titleFormatter:stateTransformer:actionTransformer:logger:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Create a LoggerMiddleware</p>
+
+<ul>
+<li>Parameters:
+
+<ul>
+<li>showTimestamp: show or hide the timestamp when receiving the action (optional, defaults to true)</li>
+<li>showDuration: show or hide the duration of reducing the action (optional, defaults to false)</li>
+<li>lineLength: specifies the maximum length of the printed lines (optional no max length)</li>
+<li>predicate: callback that decides if the logger should print or not (optional, defaults always print)</li>
+<li>debugOnly: print the debug message in Debug only or Debug and Release configurations (optional, defaults print in debug only configuration)</li>
+<li>titleFormatter: callback that defines the format of the log title (optional)</li>
+<li>stateTransformer: callback that allow converting the state to a differnt type before printing it (optional)</li>
+<li>actionTransformer: callback that allow converting the action to a differnt type before printing it (optional)</li>
+<li>logger: callback that receives the final string to print to console (optional, print to console)</li>
+</ul></li>
+</ul>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span>
+    <span class="nv">showTimestamp</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nv">showDuration</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="nv">lineLength</span><span class="p">:</span> <span class="kt">Int</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+    <span class="nv">predicate</span><span class="p">:</span> <span class="p">((</span><span class="kt"><a href="../Structs/State.html">State</a></span><span class="p">,</span> <span class="kt"><a href="../Protocols.html#/s:P4Suas6Action">Action</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span><span class="p">)?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+    <span class="nv">debugOnly</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nv">titleFormatter</span><span class="p">:</span> <span class="p">((</span><span class="kt"><a href="../Protocols.html#/s:P4Suas6Action">Action</a></span><span class="p">,</span> <span class="kt">Date</span><span class="p">,</span> <span class="kt">UInt64</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span><span class="p">)?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+    <span class="nv">stateTransformer</span><span class="p">:</span> <span class="p">((</span><span class="kt"><a href="../Structs/State.html">State</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Any</span><span class="p">)?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+    <span class="nv">actionTransformer</span><span class="p">:</span> <span class="p">((</span><span class="kt"><a href="../Protocols.html#/s:P4Suas6Action">Action</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Any</span><span class="p">)?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+    <span class="nv">logger</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span> <span class="o">=</span> <span class="n"><a href="../Global Variables.html#/s:v4Suas13defaultLoggerFSST_">defaultLogger</a></span>
+    <span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>showTimestamp</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>show or hide the timestamp when receiving the action (optional, defaults to true)</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>showDuration</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>show or hide the duration of reducing the action (optional, defaults to false)</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>lineLength</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>specifies the maximum length of the printed lines (optional no max length)</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>predicate</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>callback that decides if the logger should print or not (optional, defaults always print)</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>debugOnly</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>print the debug message in Debug only or Debug and Release configurations (optional, defaults print in debug only configuration)</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>titleFormatter</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>callback that defines the format of the log title (optional)</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>stateTransformer</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>callback that allow converting the state to a differnt type before printing it (optional)</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>actionTransformer</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>callback that allow converting the action to a differnt type before printing it (optional)</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>logger</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>callback that receives the final string to print to console (optional, print to console)</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/Zendesk/Suas-iOS/Sources/Middlewares/LoggerMiddleware/LoggerMiddleware.swift#L61-L81">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP4Suas10Middleware8onActionFT6actionPS_6Action_8getStateFT_VS_5State8dispatchFPS1__T_4nextFPS1__T__T_"></a>
+                    <a name="//apple_ref/swift/Method/onAction(action:getState:dispatch:next:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP4Suas10Middleware8onActionFT6actionPS_6Action_8getStateFT_VS_5State8dispatchFPS1__T_4nextFPS1__T__T_">onAction(action:getState:dispatch:next:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Create a LoggerMiddleware</p>
+
+<ul>
+<li>Parameters:
+
+<ul>
+<li>showTimestamp: show or hide the timestamp when receiving the action (optional, defaults to true)</li>
+<li>showDuration: show or hide the duration of reducing the action (optional, defaults to false)</li>
+<li>lineLength: specifies the maximum length of the printed lines (optional no max length)</li>
+<li>predicate: callback that decides if the logger should print or not (optional, defaults always print)</li>
+<li>debugOnly: print the debug message in Debug only or Debug and Release configurations (optional, defaults print in debug only configuration)</li>
+<li>titleFormatter: callback that defines the format of the log title (optional)</li>
+<li>stateTransformer: callback that allow converting the state to a differnt type before printing it (optional)</li>
+<li>actionTransformer: callback that allow converting the action to a differnt type before printing it (optional)</li>
+<li>logger: callback that receives the final string to print to console (optional, print to console)</li>
+</ul></li>
+</ul>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">onAction</span><span class="p">(</span><span class="nv">action</span><span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:P4Suas6Action">Action</a></span><span class="p">,</span>
+                         <span class="nv">getState</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt">GetStateFunction</span><span class="p">,</span>
+                         <span class="nv">dispatch</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt">DispatchFunction</span><span class="p">,</span>
+                         <span class="nv">next</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt">NextFunction</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>action</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the dispatched action</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/Zendesk/Suas-iOS/Sources/Middlewares/LoggerMiddleware/LoggerMiddleware.swift#L83-L115">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+      </article>
+    </div>
+    <section class="footer">
+      <p>&copy; 2017 <a class="link" href="http://zendesk.com" target="_blank" rel="external">Omar Abdelhafith</a>. All rights reserved. (Last updated: 2017-08-09)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+    </section>
+  </body>
+</div>
+</html>

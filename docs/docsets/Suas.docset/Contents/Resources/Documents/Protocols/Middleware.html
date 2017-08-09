@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Middleware Protocol Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset="utf-8">
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+
+    <a name="//apple_ref/swift/Protocol/Middleware" class="dashAnchor"></a>
+
+    <a title="Middleware Protocol Reference"></a>
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="../index.html">
+          Suas Docs
+        </a>
+         (91% documented)
+      </p>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="https://github.com/Zendesk/Suas-iOS/tree/master">
+            <img class="header-icon" src="../img/gh.png"/>
+            View on GitHub
+          </a>
+        </p>
+    
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="../index.html">Suas Reference</a>
+      <img class="carat" src="../img/carat.png" />
+      Middleware Protocol Reference
+    </p>
+
+    <div class="content-wrapper">
+      <nav class="navigation">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/BlockMiddleware.html">BlockMiddleware</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/BlockReducer.html">BlockReducer</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/CombinedReducer.html">CombinedReducer</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/Store.html">Store</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Global Variables.html">Global Variables</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Global Variables.html#/s:v4Suas12alwaysFilterFTP_P__Sb">alwaysFilter</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Global Variables.html#/s:v4Suas13defaultLoggerFSST_">defaultLogger</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Global Variables.html#/s:v4Suas18stateChangedFilterFTP_P__Sb">stateChangedFilter</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Enums.html">Enums</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/Suas.html">Suas</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Functions.html">Functions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Functions.html#/s:F4Suasoi1pFTPS_10Middleware_PS0___PS0__">+(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Functions/+(_:_:).html">+(_:_:)</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols.html#/s:P4Suas6Action">Action</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/AsyncAction.html">AsyncAction</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/Middleware.html">Middleware</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/Reducer.html">Reducer</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/SuasDynamicEquatable.html">SuasDynamicEquatable</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Structs.html">Structs</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/ActionSubscription.html">ActionSubscription</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/AsyncMiddleware.html">AsyncMiddleware</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/BlockAsyncAction.html">BlockAsyncAction</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/DiskReadAsyncAction.html">DiskReadAsyncAction</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/DiskWriteAsyncAction.html">DiskWriteAsyncAction</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/LoggerMiddleware.html">LoggerMiddleware</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/State.html">State</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/Subscription.html">Subscription</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/URLSessionAsyncAction.html">URLSessionAsyncAction</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Typealiases.html">Typealiases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:4Suas22ActionListenerFunction">ActionListenerFunction</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:4Suas29DiskReadActionCompletionBlock">DiskReadActionCompletionBlock</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:4Suas30DiskWriteActionCompletionBlock">DiskWriteActionCompletionBlock</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:4Suas14FilterFunction">FilterFunction</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:4Suas16ListenerFunction">ListenerFunction</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:4Suas8StateKey">StateKey</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:4Suas13StateSelector">StateSelector</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:4Suas31URLSessionActionCompletionBlock">URLSessionActionCompletionBlock</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+
+        <section class="section">
+          <div class="section-content">
+            <h1>Middleware</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">Middleware</span></code></pre>
+
+                </div>
+              </div>
+            <p>Middleware protocol that represents a suas store middleware
+A middleware helps extending the dispatch logic of Suas.</p>
+
+<p>A middleware can be used to implement:
+- Logging that logs the state before and after the reducer changes it
+- Perform async network calls and dispatches actions representing the result when the network returns.
+- Other advanced usages&hellip;</p>
+
+<p><a href='#example' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='example'>Example</h1></p>
+
+<p>Implementing a logging middleware.</p>
+
+<pre class="highlight plaintext"><code>class LoggerMiddleware: Middleware {
+  var api: MiddlewareAPI?
+  var next: DispatchFunction?
+
+  func onAction(action: Action, getState: @escaping GetStateFunction, dispatch: @escaping DispatchFunction, next: @escaping NextFunction) {
+    // Read the state before any reducer changes it
+    print("The old state is \(getState())")
+
+    // Print the action
+    print("The action is \(action)")
+
+    // Continue the dispatching process..until the reducer reduces the action
+    // Not calling `next` will prevent the action from reaching the reducer
+    next?(action)
+
+    // Read the state after any reducer changes it
+    print("The new state is \(api?.state)")
+  }
+}
+</code></pre>
+
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-content">
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP4Suas10Middleware8onActionFT6actionPS_6Action_8getStateFT_VS_5State8dispatchFPS1__T_4nextFPS1__T__T_"></a>
+                    <a name="//apple_ref/swift/Method/onAction(action:getState:dispatch:next:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP4Suas10Middleware8onActionFT6actionPS_6Action_8getStateFT_VS_5State8dispatchFPS1__T_4nextFPS1__T__T_">onAction(action:getState:dispatch:next:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Function called when an action is dispatched</p>
+
+<p><li>Parameters:</li>
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter action: the dispatched action</p>
+
+<ul>
+<li>getState: a function that can be used to read the current Store state</li>
+<li>dispatch: a function that can be used to dispatch new actions to the Store</li>
+<li>next: function that represents the continuation of the dispatching process. The middleware can do the following with it:</li>
+<li>If it calls <code>next</code> the execution will proceed and the action will eventually reach the reducer</li>
+<li>If it does not call, then the action is said to be handled by the current middleware.</li>
+<li>Middleware cancall <code>next</code> with a new action, this action is used instead of the original one.</li>
+</ul>
+
+<p></div></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">onAction</span><span class="p">(</span><span class="nv">action</span><span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:P4Suas6Action">Action</a></span><span class="p">,</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>action</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the dispatched action</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/Zendesk/Suas-iOS/Sources/Middleware.swift#L57">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+      </article>
+    </div>
+    <section class="footer">
+      <p>&copy; 2017 <a class="link" href="http://zendesk.com" target="_blank" rel="external">Omar Abdelhafith</a>. All rights reserved. (Last updated: 2017-08-09)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+    </section>
+  </body>
+</div>
+</html>

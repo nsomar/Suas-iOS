@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>BlockReducer Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset="utf-8">
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+
+    <a name="//apple_ref/swift/Class/BlockReducer" class="dashAnchor"></a>
+
+    <a title="BlockReducer Class Reference"></a>
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="../index.html">
+          Suas Docs
+        </a>
+         (91% documented)
+      </p>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="https://github.com/Zendesk/Suas-iOS/tree/master">
+            <img class="header-icon" src="../img/gh.png"/>
+            View on GitHub
+          </a>
+        </p>
+    
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="../index.html">Suas Reference</a>
+      <img class="carat" src="../img/carat.png" />
+      BlockReducer Class Reference
+    </p>
+
+    <div class="content-wrapper">
+      <nav class="navigation">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/BlockMiddleware.html">BlockMiddleware</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/BlockReducer.html">BlockReducer</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/CombinedReducer.html">CombinedReducer</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/Store.html">Store</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Global Variables.html">Global Variables</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Global Variables.html#/s:v4Suas12alwaysFilterFTP_P__Sb">alwaysFilter</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Global Variables.html#/s:v4Suas13defaultLoggerFSST_">defaultLogger</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Global Variables.html#/s:v4Suas18stateChangedFilterFTP_P__Sb">stateChangedFilter</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Enums.html">Enums</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/Suas.html">Suas</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Functions.html">Functions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Functions.html#/s:F4Suasoi1pFTPS_10Middleware_PS0___PS0__">+(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Functions/+(_:_:).html">+(_:_:)</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols.html#/s:P4Suas6Action">Action</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/AsyncAction.html">AsyncAction</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/Middleware.html">Middleware</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/Reducer.html">Reducer</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/SuasDynamicEquatable.html">SuasDynamicEquatable</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Structs.html">Structs</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/ActionSubscription.html">ActionSubscription</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/AsyncMiddleware.html">AsyncMiddleware</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/BlockAsyncAction.html">BlockAsyncAction</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/DiskReadAsyncAction.html">DiskReadAsyncAction</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/DiskWriteAsyncAction.html">DiskWriteAsyncAction</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/LoggerMiddleware.html">LoggerMiddleware</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/State.html">State</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/Subscription.html">Subscription</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/URLSessionAsyncAction.html">URLSessionAsyncAction</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Typealiases.html">Typealiases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:4Suas22ActionListenerFunction">ActionListenerFunction</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:4Suas29DiskReadActionCompletionBlock">DiskReadActionCompletionBlock</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:4Suas30DiskWriteActionCompletionBlock">DiskWriteActionCompletionBlock</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:4Suas14FilterFunction">FilterFunction</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:4Suas16ListenerFunction">ListenerFunction</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:4Suas8StateKey">StateKey</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:4Suas13StateSelector">StateSelector</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:4Suas31URLSessionActionCompletionBlock">URLSessionActionCompletionBlock</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+
+        <section class="section">
+          <div class="section-content">
+            <h1>BlockReducer</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">BlockReducer</span><span class="o">&lt;</span><span class="kt">StateType</span><span class="o">&gt;</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Reducer.html">Reducer</a></span></code></pre>
+
+                </div>
+              </div>
+            <p>Create a reducer inline with a block</p>
+
+<p><a href='#example' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='example'>Example</h1></p>
+
+<p>Create a reducer without defining a class/struct that implements <code><a href="../Protocols/Reducer.html">Reducer</a></code>
+&ldquo;`
+let myReducer = BlockReducer(state: 1) { state, action in
+  guard let newState = state as? Int else { return state }</p>
+
+<p>// cast the action to a specific type
+  if action is SomeAction {
+    return newState + 1
+  }</p>
+
+<p>return newState
+}
+&rdquo;`</p>
+
+<p>Note: Returning <code>nil</code> from <code>BlockReducer</code> signifies that the state did not change which will not inform the listeners</p>
+
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-content">
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC4Suas12BlockReducer12initialStatex"></a>
+                    <a name="//apple_ref/swift/Property/initialState" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC4Suas12BlockReducer12initialStatex">initialState</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Inital state value for this particular reducer
+This initial state will be used to populate the Store state (which represents the app state)</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">initialState</span><span class="p">:</span> <span class="kt">StateType</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/Zendesk/Suas-iOS/Sources/Reducer.swift#L106">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC4Suas12BlockReducer8stateKeySS"></a>
+                    <a name="//apple_ref/swift/Property/stateKey" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC4Suas12BlockReducer8stateKeySS">stateKey</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>(Optional) The state key for this reducer. If not implemented (or set) the type of <code><a href="../Classes/BlockReducer.html#/s:vC4Suas12BlockReducer12initialStatex">initialState</a></code> will be used as a key.
+It is recommended to not set the <code>stateKey</code> and use the type name of the <code><a href="../Classes/BlockReducer.html#/s:vC4Suas12BlockReducer12initialStatex">initialState</a></code> instead.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">stateKey</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/Zendesk/Suas-iOS/Sources/Reducer.swift#L110">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC4Suas12BlockReducercFT12initialStatex6reduceFTxPS_6Action__GSqx__GS0_x_"></a>
+                    <a name="//apple_ref/swift/Method/init(initialState:reduce:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC4Suas12BlockReducercFT12initialStatex6reduceFTxPS_6Action__GSqx__GS0_x_">init(initialState:reduce:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Create a reducer with a state and a reduce function</p>
+
+<ul>
+<li>Parameters:
+
+<ul>
+<li>state: the initial state of the reducer. This initial state will be used to populate the Store state (which represents the app state)</li>
+<li>reduce: the reduce function. A block that receives the current state and dispatched action and return a new state (or nil if the action did not change the state)</li>
+</ul></li>
+</ul>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="n">convenience</span> <span class="nf">init</span><span class="p">(</span><span class="nv">initialState</span><span class="p">:</span> <span class="kt">StateType</span><span class="p">,</span> <span class="nv">reduce</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt">ReducerFunction</span><span class="o">&lt;</span><span class="kt">StateType</span><span class="o">&gt;</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>state</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the initial state of the reducer. This initial state will be used to populate the Store state (which represents the app state)</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>reduce</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the reduce function. A block that receives the current state and dispatched action and return a new state (or nil if the action did not change the state)</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/Zendesk/Suas-iOS/Sources/Reducer.swift#L119-L121">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC4Suas12BlockReducercFT12initialStatex8stateKeySS6reduceFTxPS_6Action__GSqx__GS0_x_"></a>
+                    <a name="//apple_ref/swift/Method/init(initialState:stateKey:reduce:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC4Suas12BlockReducercFT12initialStatex8stateKeySS6reduceFTxPS_6Action__GSqx__GS0_x_">init(initialState:stateKey:reduce:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Create a reducer with a state, a state key, and a reduce function</p>
+
+<ul>
+<li>Parameters:
+
+<ul>
+<li>state: the initial state of the reducer. This initial state will be used to populate the Store state (which represents the app state)</li>
+<li>key: The state key for this reducer. If not implemented (or set) the type of <code><a href="../Classes/BlockReducer.html#/s:vC4Suas12BlockReducer12initialStatex">initialState</a></code> will be used as a key.</li>
+<li>reduce: the reduce function. A block that receives the current state and dispatched action and return a new state (or nil if the action did not change the state)</li>
+</ul></li>
+</ul>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">initialState</span><span class="p">:</span> <span class="kt">StateType</span><span class="p">,</span> <span class="nv">stateKey</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:4Suas8StateKey">StateKey</a></span><span class="p">,</span> <span class="nv">reduce</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt">ReducerFunction</span><span class="o">&lt;</span><span class="kt">StateType</span><span class="o">&gt;</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>state</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the initial state of the reducer. This initial state will be used to populate the Store state (which represents the app state)</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>key</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The state key for this reducer. If not implemented (or set) the type of <code>initialState</code> will be used as a key.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>reduce</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the reduce function. A block that receives the current state and dispatched action and return a new state (or nil if the action did not change the state)</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/Zendesk/Suas-iOS/Sources/Reducer.swift#L129-L133">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP4Suas7Reducer6reduceFT5statewx9StateType6actionPS_6Action__GSqwxS1__"></a>
+                    <a name="//apple_ref/swift/Method/reduce(state:action:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP4Suas7Reducer6reduceFT5statewx9StateType6actionPS_6Action__GSqwxS1__">reduce(state:action:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Create a reducer with a state, a state key, and a reduce function</p>
+
+<ul>
+<li>Parameters:
+
+<ul>
+<li>state: the initial state of the reducer. This initial state will be used to populate the Store state (which represents the app state)</li>
+<li>key: The state key for this reducer. If not implemented (or set) the type of <code><a href="../Classes/BlockReducer.html#/s:vC4Suas12BlockReducer12initialStatex">initialState</a></code> will be used as a key.</li>
+<li>reduce: the reduce function. A block that receives the current state and dispatched action and return a new state (or nil if the action did not change the state)</li>
+</ul></li>
+</ul>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">reduce</span><span class="p">(</span><span class="nv">state</span><span class="p">:</span> <span class="kt">StateType</span><span class="p">,</span> <span class="nv">action</span><span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:P4Suas6Action">Action</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">StateType</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>state</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the current state for this reducer type</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>action</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the action dispatched to the store</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>the new state</p>
+
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/Zendesk/Suas-iOS/Sources/Reducer.swift#L135-L137">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+      </article>
+    </div>
+    <section class="footer">
+      <p>&copy; 2017 <a class="link" href="http://zendesk.com" target="_blank" rel="external">Omar Abdelhafith</a>. All rights reserved. (Last updated: 2017-08-09)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+    </section>
+  </body>
+</div>
+</html>

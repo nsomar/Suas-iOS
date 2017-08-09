@@ -1,0 +1,61 @@
+{
+  "warnings": [
+    {
+      "file": "/Users/oabdelhafith/Documents/iOS/Swift/Suas-iOS/Sources/Middlewares/AsyncMiddleware/AsyncMiddleware.swift",
+      "line": 123,
+      "symbol": "BlockAsyncAction.init(executionBlock:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/oabdelhafith/Documents/iOS/Swift/Suas-iOS/Sources/Middlewares/AsyncMiddleware/AsyncMiddleware.swift",
+      "line": 144,
+      "symbol": "AsyncMiddleware.init()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/oabdelhafith/Documents/iOS/Swift/Suas-iOS/Sources/Middlewares/LoggerMiddleware/LoggerMiddleware.swift",
+      "line": 216,
+      "symbol": "defaultLogger",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/oabdelhafith/Documents/iOS/Swift/Suas-iOS/Sources/Reducer.swift",
+      "line": 70,
+      "symbol": "Reducer.stateKey",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/oabdelhafith/Documents/iOS/Swift/Suas-iOS/Sources/Reducer.swift",
+      "line": 343,
+      "symbol": "+(_:_:).R1",
+      "symbol_kind": "source.lang.swift.decl.generic_type_param",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/oabdelhafith/Documents/iOS/Swift/Suas-iOS/Sources/State.swift",
+      "line": 44,
+      "symbol": "SuasDynamicEquatable.isEqual(to:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/oabdelhafith/Documents/iOS/Swift/Suas-iOS/Sources/State.swift",
+      "line": 48,
+      "symbol": "SuasDynamicEquatable.isEqual(to:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/oabdelhafith/Documents/iOS/Swift/Suas-iOS/Sources/Suas.swift",
+      "line": 11,
+      "symbol": "Suas",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    }
+  ],
+  "source_directory": "/Users/oabdelhafith/Documents/iOS/Swift/Suas-iOS"
+}

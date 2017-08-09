@@ -1,4 +1,4 @@
-![Screenshot](/Misc/Logo.png?raw=true)
+![Screenshot](https://raw.githubusercontent.com/zendesk/Suas-iOS/master/Misc/Logo.png)
 
 [![Build Status](https://travis-ci.com/zendesk/Suas-iOS.svg?token=iTfSE3QQamPUFfPk3VRD&branch=master)](https://travis-ci.com/zendesk/Suas-iOS)
 ![Platform](https://img.shields.io/badge/platform-ios%20%7C%20mac-green.svg)
