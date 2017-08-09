@@ -2,21 +2,21 @@
   "warnings": [
     {
       "file": "/Users/oabdelhafith/Documents/iOS/Swift/Suas-iOS/Sources/Middlewares/AsyncMiddleware/AsyncMiddleware.swift",
-      "line": 124,
+      "line": 125,
       "symbol": "BlockAsyncAction.init(executionBlock:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/oabdelhafith/Documents/iOS/Swift/Suas-iOS/Sources/Middlewares/AsyncMiddleware/AsyncMiddleware.swift",
-      "line": 145,
+      "line": 146,
       "symbol": "AsyncMiddleware.init()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/oabdelhafith/Documents/iOS/Swift/Suas-iOS/Sources/Middlewares/LoggerMiddleware/LoggerMiddleware.swift",
-      "line": 218,
+      "line": 219,
       "symbol": "defaultLogger",
       "symbol_kind": "source.lang.swift.decl.var.global",
       "warning": "undocumented"
@@ -30,21 +30,21 @@
     },
     {
       "file": "/Users/oabdelhafith/Documents/iOS/Swift/Suas-iOS/Sources/Reducer.swift",
-      "line": 344,
+      "line": 349,
       "symbol": "+(_:_:).R1",
       "symbol_kind": "source.lang.swift.decl.generic_type_param",
       "warning": "undocumented"
     },
     {
       "file": "/Users/oabdelhafith/Documents/iOS/Swift/Suas-iOS/Sources/State.swift",
-      "line": 47,
+      "line": 51,
       "symbol": "SuasDynamicEquatable.isEqual(to:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/oabdelhafith/Documents/iOS/Swift/Suas-iOS/Sources/State.swift",
-      "line": 51,
+      "line": 55,
       "symbol": "SuasDynamicEquatable.isEqual(to:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"

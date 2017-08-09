@@ -13,7 +13,7 @@ import Foundation
 ///
 /// # Example
 ///
-/// # Implement SuasDynamicEquatable manually
+/// ## Implement SuasDynamicEquatable manually
 ///
 /// ```
 /// struct MyState: SuasDynamicEquatable {

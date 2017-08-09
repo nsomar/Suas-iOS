@@ -19,6 +19,7 @@ import Foundation
 /// If the `AsyncMiddleware` receives an `AsyncAction` it does the following:
 /// 1. Call action.execute passing in the dispatch and get state functions
 /// 2. Stops the action from propagating to other middlewares and reducers
+///
 /// # Example
 ///
 /// ## Performing an async loading from disk

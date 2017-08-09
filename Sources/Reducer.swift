@@ -83,6 +83,7 @@ extension Reducer {
 /// Create a reducer inline with a block
 ///
 /// # Example
+///
 /// Create a reducer without defining a class/struct that implements `Reducer`
 ///
 /// ```
@@ -141,11 +142,10 @@ public final class BlockReducer<StateType>: Reducer {
 /// Reducer that represents a combination of two reducers
 /// This reducers is not to be implemented by hand. You combine reducer by adding them with the `+` operator.
 ///
-/// # Example
-///
 /// ```
 /// let combinedReducers = Reducer1() + Reducer2() + Reducer3()
 /// ```
+///
 /// # Example
 ///
 /// ## Combine reducers

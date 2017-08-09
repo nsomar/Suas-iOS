@@ -13,6 +13,7 @@ import Foundation
 /// When an action is dispatched, the LoggerMiddleware will print information related to it in the console.
 ///
 /// # Example
+///
 /// Adding LoggerMiddleware
 ///
 /// ```

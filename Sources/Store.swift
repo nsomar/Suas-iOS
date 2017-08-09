@@ -225,6 +225,7 @@ extension Store {
   ///     When not set, the listener is notified whenever the state changed.
   ///   - callback: Notification block called with the new state when the store's state changed.
   /// - Returns: The Listener's subscription that can be used to remove the notification and for other listener related stuff.
+  ///
   /// # Example
   ///
   /// ## Adding a listener

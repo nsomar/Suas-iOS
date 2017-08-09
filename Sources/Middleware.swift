@@ -155,8 +155,7 @@ final class CombinedMiddleWare: Middleware {
 /// Combines two middlewares. The combined middleware creates a chain of middleware.
 /// When calling next on the first middleware it progresses to the next one. The final middlware's next function calls the reducer dispatch will causes a state change.
 ///
-/// -----
-/// **Example**
+/// # Example
 ///
 /// Combining two logging middlewares
 ///
