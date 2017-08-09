@@ -14,6 +14,7 @@ import Foundation
 /// # Example
 ///
 /// # Implement SuasDynamicEquatable manually
+///
 /// ```
 /// struct MyState: SuasDynamicEquatable {
 ///   let value: Int
@@ -30,6 +31,7 @@ import Foundation
 /// ## Implementing SuasDynamicEquatable as an extension
 ///
 /// If your type implement equatable
+///
 /// ```
 /// struct MyState: Equatable {
 ///   let value: Int
@@ -37,6 +39,7 @@ import Foundation
 /// }
 /// ```
 /// You dont need to implement `SuasDynamicEquatable` just add it as an extension to `MyState`. No extra code needed.
+///
 /// ```
 /// extension MyState: SuasDynamicEquatable { }
 /// ```
@@ -55,6 +58,7 @@ public extension SuasDynamicEquatable where Self: Equatable {
 /// Structure that represents the store state. The store state is kept as a `Dictionary` with `String` Keys and `Any` Values (`[String: Any]`)
 ///
 /// For example, the state with two struct looks like:
+///
 /// ```
 /// [
 ///   "TodoItems": TodoItems(....),

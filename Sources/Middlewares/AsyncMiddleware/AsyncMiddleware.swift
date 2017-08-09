@@ -90,6 +90,7 @@ public protocol AsyncAction: Action {
 /// # Example
 ///
 /// Performing an async network request
+///
 /// ```
 /// let action = BlockAsyncAction { getState, dispatch in
 ///

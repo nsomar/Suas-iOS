@@ -471,59 +471,60 @@ When not set, the listener is notified whenever the state changed.</li>
 
 <p>Add a simple listener for the full state with a state selector that selects part of it.</p>
 
-<p>Create a state selector that selects and creates a <code>TodoItemsState</code> from the full <code>Store</code> state.
-&ldquo;`
-let stateSelector: StateSelector<TodoItemsState> = { state in
+<p>Create a state selector that selects and creates a <code>TodoItemsState</code> from the full <code>Store</code> state.</p>
+
+<pre class="highlight plaintext"><code>let stateSelector: StateSelector&lt;TodoItemsState&gt; = { state in
   // Read values from the store
   let value1 = state.value(forKeyOfType: SomeType.self)
-  let value2 = state.value(forKey: <q>someKey</q>)</p>
+  let value2 = state.value(forKey: "someKey")
 
-<p>// Create and return a TodoItemsState
-  return TodoItemsState(&hellip;..)
+  // Create and return a TodoItemsState
+  return TodoItemsState(.....)
 }
-&rdquo;`</p>
+</code></pre>
 
-<p>Add a listener with the state selector and
-<code>
-let subscription = store.addListener(stateSelector: stateSelector) { newState in
+<p>Add a listener with the state selector and</p>
+
+<pre class="highlight plaintext"><code>let subscription = store.addListener(stateSelector: stateSelector) { newState in
   // newState here is a TodoItemsState
 }
-</code></p>
+</code></pre>
 
 <p><a href='#adding-a-listener-with-a-state-selector-and-a-filter-block' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='adding-a-listener-with-a-state-selector-and-a-filter-block'>Adding a listener with a state selector and a filter block</h2></p>
 
 <p>Add a simple listener for the full state with a state selector that selects part of it and a filter block that decide when to notify.</p>
 
-<p>Create a state selector that selects and creates a <code>TodoItemsState</code> from the full <code>Store</code> state.
-&ldquo;`
-let stateSelector: StateSelector<TodoItemsState> = { state in
+<p>Create a state selector that selects and creates a <code>TodoItemsState</code> from the full <code>Store</code> state.</p>
+
+<pre class="highlight plaintext"><code>let stateSelector: StateSelector&lt;TodoItemsState&gt; = { state in
   // Read values from the store
   let value1 = state.value(forKeyOfType: SomeType.self)
-  let value2 = state.value(forKey: <q>someKey</q>)</p>
+  let value2 = state.value(forKey: "someKey")
 
-<p>// Create and return a TodoItemsState
-  return TodoItemsState(&hellip;..)
+  // Create and return a TodoItemsState
+  return TodoItemsState(.....)
 }
-&rdquo;`</p>
+</code></pre>
 
-<p>Add a filter block that decides when to notify
-&ldquo;`
-let filterBlock: FilterFunction<State> = { oldState, newState in
+<p>Add a filter block that decides when to notify</p>
+
+<pre class="highlight plaintext"><code>let filterBlock: FilterFunction&lt;State&gt; = { oldState, newState in
   // Read a string from the oldState and newState
   // oldState and newState are the full Store state
-  let value1 = oldState.value(forKey: <q>someKey</q>, ofType: String.self)
-  let value2 = newState.value(forKey: <q>someKey</q>, ofType: String.self)</p>
+  let value1 = oldState.value(forKey: "someKey", ofType: String.self)
+  let value2 = newState.value(forKey: "someKey", ofType: String.self)
 
-<p>// Compare
+  // Compare
   return value1 != value2
 }
-<code>
-Add a listener with the state selector and
-</code>
-let subscription = store.addListener(stateSelector: stateSelector) { newState in
+</code></pre>
+
+<p>Add a listener with the state selector and</p>
+
+<pre class="highlight plaintext"><code>let subscription = store.addListener(stateSelector: stateSelector) { newState in
   // newState here is a TodoItemsState
 }
-&rdquo;`</p>
+</code></pre>
 
                       </div>
                       <div class="declaration">
@@ -588,7 +589,7 @@ let subscription = store.addListener(stateSelector: stateSelector) { newState in
 
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/Zendesk/Suas-iOS/Sources/Store.swift#L206-L212">Show on GitHub</a>
+                        <a href="https://github.com/Zendesk/Suas-iOS/Sources/Store.swift#L211-L217">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -707,7 +708,7 @@ The Listener will be notified only if the filterBlock returns true.</p>
 
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/Zendesk/Suas-iOS/Sources/Store.swift#L259-L265">Show on GitHub</a>
+                        <a href="https://github.com/Zendesk/Suas-iOS/Sources/Store.swift#L264-L270">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -742,19 +743,19 @@ Inside the action notification you cast to the specific ation and read the paylo
 
 <p><a href='#example' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='example'>Example</h1></p>
 
-<p>Add an action listener, this action listener will be notified when an action is dispatched.
-&ldquo;`
-let subscription = addActionListener { action in</p>
+<p>Add an action listener, this action listener will be notified when an action is dispatched.</p>
 
-<p>// Cast to some of your actions
+<pre class="highlight plaintext"><code>let subscription = addActionListener { action in
+
+  // Cast to some of your actions
   if let action = action as? MyButtonClickedAction {
-  }</p>
+  }
 
-<p>// Cast to some other action
+  // Cast to some other action
   if let action = action as? SomeOtherAction {
   }
 }
-&rdquo;`</p>
+</code></pre>
 
                       </div>
                       <div class="declaration">
@@ -791,7 +792,7 @@ let subscription = addActionListener { action in</p>
 
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/Zendesk/Suas-iOS/Sources/Store.swift#L289-L293">Show on GitHub</a>
+                        <a href="https://github.com/Zendesk/Suas-iOS/Sources/Store.swift#L295-L299">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -851,7 +852,7 @@ let subscription = addActionListener { action in</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/Zendesk/Suas-iOS/Sources/Store.swift#L304-L306">Show on GitHub</a>
+                        <a href="https://github.com/Zendesk/Suas-iOS/Sources/Store.swift#L310-L312">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -923,7 +924,7 @@ let subscription = addActionListener { action in</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/Zendesk/Suas-iOS/Sources/Store.swift#L314-L316">Show on GitHub</a>
+                        <a href="https://github.com/Zendesk/Suas-iOS/Sources/Store.swift#L320-L322">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -979,7 +980,7 @@ let subscription = addActionListener { action in</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/Zendesk/Suas-iOS/Sources/Store.swift#L322-L324">Show on GitHub</a>
+                        <a href="https://github.com/Zendesk/Suas-iOS/Sources/Store.swift#L328-L330">Show on GitHub</a>
                       </div>
                     </section>
                   </div>

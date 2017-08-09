@@ -38,6 +38,7 @@ public struct Subscription<StateType> {
   /// You can use this method to call the listener notification block with the current state, useful when you want to initialize some UI elements for example.
   ///
   /// # Example
+  ///
   /// ```
   /// let subscription = store.addListener(...)
   /// subscription.informWithCurrentState()
@@ -65,6 +66,7 @@ public struct Subscription<StateType> {
   /// Remove the listner associated with this subscription. After calling `removeListener` the listener won't be notified anymore.
   ///
   /// # Example
+  ///
   /// ```
   /// let subscription = store.addListener(...)
   /// subscription.removeListener()
@@ -78,6 +80,7 @@ public struct Subscription<StateType> {
   /// When the UIView is removed (deallocated) the listener will be removed and will stop it from being notified.
   ///
   /// # Example
+  ///
   /// ```
   /// let view = SomeUIVIew()
   ///
@@ -102,6 +105,7 @@ public struct ActionSubscription {
   /// Remove the listner associated with this subscription. After calling `removeListener` the listener won't be notified anymore.
   ///
   /// # Example
+  ///
   /// ```
   /// let subscription = store.addActionListener(...)
   /// subscription.removeListener()
@@ -115,6 +119,7 @@ public struct ActionSubscription {
   /// When the UIView is removed (deallocated) the listener will be removed and will stop it from being notified.
   ///
   /// # Example
+  ///
   /// ```
   /// let view = SomeUIVIew()
   ///
@@ -148,6 +153,7 @@ public let alwaysFilter: FilterFunction<Any> = { (oldSubState: Any, newSubState:
 /// ## Implementing SuasDynamicEquatable manually
 ///
 /// Implementing SuasDynamicEquatable without Equatable
+///
 /// ```
 /// // Implement SuasDynamicEquatable manually
 /// struct MyState: SuasDynamicEquatable {
@@ -170,6 +176,7 @@ public let alwaysFilter: FilterFunction<Any> = { (oldSubState: Any, newSubState:
 /// ## Implementing SuasDynamicEquatable as an extension
 ///
 /// If your type implement equatable
+///
 /// ```
 /// struct MyState: Equatable {
 ///   let value: Int
@@ -177,11 +184,13 @@ public let alwaysFilter: FilterFunction<Any> = { (oldSubState: Any, newSubState:
 /// }
 /// ```
 /// You dont need to implement `SuasDynamicEquatable` just add it as an extension to `MyState`. No extra code needed.
+///
 /// ```
 /// extension MyState: SuasDynamicEquatable { }
 /// ```
 ///
 /// `stateChangedFilter` now works with `MyState`
+///
 /// ```
 /// let subscription = store.addListener(forStateType: MyState.self, if: stateChangedFilter) { newState in
 ///   // use new state

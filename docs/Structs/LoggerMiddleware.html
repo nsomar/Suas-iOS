@@ -190,21 +190,22 @@ When an action is dispatched, the LoggerMiddleware will print information relate
 
 <p><a href='#example' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='example'>Example</h1></p>
 
-<p>Adding LoggerMiddleware
-<code>
-let store = Suas.createStore(
+<p>Adding LoggerMiddleware</p>
+
+<pre class="highlight plaintext"><code>let store = Suas.createStore(
   reducer: ...,
   middleware: LoggerMiddleware()
 )
-</code>
-When actions are dispatched, you get something similar to this printed to the console.
-<code>
-┌───→ Action: IncrementAction @19:15:39.419
-├─ Prev state ► State(innerState: [&quot;Counter&quot;: CounterExample.Counter(value: 0)])
+</code></pre>
+
+<p>When actions are dispatched, you get something similar to this printed to the console.</p>
+
+<pre class="highlight plaintext"><code>┌───→ Action: IncrementAction @19:15:39.419
+├─ Prev state ► State(innerState: ["Counter": CounterExample.Counter(value: 0)])
 ├─ Action     ► IncrementAction(incrementValue: 1)
-├─ Next state ► State(innerState: [&quot;Counter&quot;: CounterExample.Counter(value: 1)])
+├─ Next state ► State(innerState: ["Counter": CounterExample.Counter(value: 1)])
 └──────────────────────────────────────────
-</code></p>
+</code></pre>
 
           </div>
         </section>
@@ -388,7 +389,7 @@ When actions are dispatched, you get something similar to this printed to the co
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/Zendesk/Suas-iOS/Sources/Middlewares/LoggerMiddleware/LoggerMiddleware.swift#L61-L81">Show on GitHub</a>
+                        <a href="https://github.com/Zendesk/Suas-iOS/Sources/Middlewares/LoggerMiddleware/LoggerMiddleware.swift#L63-L83">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -457,7 +458,7 @@ When actions are dispatched, you get something similar to this printed to the co
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/Zendesk/Suas-iOS/Sources/Middlewares/LoggerMiddleware/LoggerMiddleware.swift#L83-L115">Show on GitHub</a>
+                        <a href="https://github.com/Zendesk/Suas-iOS/Sources/Middlewares/LoggerMiddleware/LoggerMiddleware.swift#L85-L117">Show on GitHub</a>
                       </div>
                     </section>
                   </div>

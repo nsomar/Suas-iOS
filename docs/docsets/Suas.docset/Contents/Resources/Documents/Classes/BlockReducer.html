@@ -189,19 +189,19 @@
 
 <p><a href='#example' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='example'>Example</h1></p>
 
-<p>Create a reducer without defining a class/struct that implements <code><a href="../Protocols/Reducer.html">Reducer</a></code>
-&ldquo;`
-let myReducer = BlockReducer(state: 1) { state, action in
-  guard let newState = state as? Int else { return state }</p>
+<p>Create a reducer without defining a class/struct that implements <code><a href="../Protocols/Reducer.html">Reducer</a></code></p>
 
-<p>// cast the action to a specific type
+<pre class="highlight plaintext"><code>let myReducer = BlockReducer(state: 1) { state, action in
+  guard let newState = state as? Int else { return state }
+
+  // cast the action to a specific type
   if action is SomeAction {
     return newState + 1
-  }</p>
+  }
 
-<p>return newState
+  return newState
 }
-&rdquo;`</p>
+</code></pre>
 
 <p>Note: Returning <code>nil</code> from <code>BlockReducer</code> signifies that the state did not change which will not inform the listeners</p>
 

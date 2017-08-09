@@ -13,7 +13,6 @@ import Foundation
 ///
 /// # Example
 ///
-///
 /// ```
 /// struct MyReducer: Reducer {
 ///   var initialState: Int = 1
@@ -85,6 +84,7 @@ extension Reducer {
 ///
 /// # Example
 /// Create a reducer without defining a class/struct that implements `Reducer`
+///
 /// ```
 /// let myReducer = BlockReducer(state: 1) { state, action in
 ///   guard let newState = state as? Int else { return state }
@@ -142,6 +142,7 @@ public final class BlockReducer<StateType>: Reducer {
 /// This reducers is not to be implemented by hand. You combine reducer by adding them with the `+` operator.
 ///
 /// # Example
+///
 /// ```
 /// let combinedReducers = Reducer1() + Reducer2() + Reducer3()
 /// ```

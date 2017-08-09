@@ -152,6 +152,7 @@ extension Store {
   /// Add a simple listener for the full state with a state selector that selects part of it.
   ///
   /// Create a state selector that selects and creates a `TodoItemsState` from the full `Store` state.
+  ///
   /// ```
   /// let stateSelector: StateSelector<TodoItemsState> = { state in
   ///   // Read values from the store
@@ -164,6 +165,7 @@ extension Store {
   /// ```
   ///
   /// Add a listener with the state selector and
+  ///
   /// ```
   /// let subscription = store.addListener(stateSelector: stateSelector) { newState in
   ///   // newState here is a TodoItemsState
@@ -174,6 +176,7 @@ extension Store {
   /// Add a simple listener for the full state with a state selector that selects part of it and a filter block that decide when to notify.
   ///
   /// Create a state selector that selects and creates a `TodoItemsState` from the full `Store` state.
+  ///
   /// ```
   /// let stateSelector: StateSelector<TodoItemsState> = { state in
   ///   // Read values from the store
@@ -186,6 +189,7 @@ extension Store {
   /// ```
   ///
   /// Add a filter block that decides when to notify
+  ///
   /// ```
   /// let filterBlock: FilterFunction<State> = { oldState, newState in
   ///   // Read a string from the oldState and newState
@@ -198,6 +202,7 @@ extension Store {
   /// }
   /// ```
   /// Add a listener with the state selector and
+  ///
   /// ```
   /// let subscription = store.addListener(stateSelector: stateSelector) { newState in
   ///   // newState here is a TodoItemsState
@@ -274,6 +279,7 @@ extension Store {
   /// # Example
   ///
   /// Add an action listener, this action listener will be notified when an action is dispatched.
+  ///
   /// ```
   /// let subscription = addActionListener { action in
   ///

@@ -205,17 +205,18 @@ return other.value == self.value
 </code></pre>
 <a href='#implementing-suasdynamicequatable-as-an-extension' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='implementing-suasdynamicequatable-as-an-extension'>Implementing SuasDynamicEquatable as an extension</h2></p>
 
-<p>If your type implement equatable
-<code>
-struct MyState: Equatable {
+<p>If your type implement equatable</p>
+
+<pre class="highlight plaintext"><code>struct MyState: Equatable {
   let value: Int
   static func ==(lhs: MyState, rhs: MyState) -&gt; Bool { ... }
 }
-</code>
-You dont need to implement <code>SuasDynamicEquatable</code> just add it as an extension to <code>MyState</code>. No extra code needed.
-<code>
-extension MyState: SuasDynamicEquatable { }
-</code></p>
+</code></pre>
+
+<p>You dont need to implement <code>SuasDynamicEquatable</code> just add it as an extension to <code>MyState</code>. No extra code needed.</p>
+
+<pre class="highlight plaintext"><code>extension MyState: SuasDynamicEquatable { }
+</code></pre>
 
           </div>
         </section>

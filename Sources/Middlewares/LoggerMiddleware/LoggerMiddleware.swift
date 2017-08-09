@@ -14,6 +14,7 @@ import Foundation
 ///
 /// # Example
 /// Adding LoggerMiddleware
+///
 /// ```
 /// let store = Suas.createStore(
 ///   reducer: ...,
@@ -21,6 +22,7 @@ import Foundation
 /// )
 /// ```
 /// When actions are dispatched, you get something similar to this printed to the console.
+///
 /// ```
 /// ┌───→ Action: IncrementAction @19:15:39.419
 /// ├─ Prev state ► State(innerState: ["Counter": CounterExample.Counter(value: 0)])

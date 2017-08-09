@@ -193,36 +193,34 @@ Check <code><a href="../Protocols/AsyncAction.html">AsyncAction</a></code> for m
 
 <p><a href='#example' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='example'>Example</h1></p>
 
-<p>Performing an async network request
-&ldquo;`
-let action = BlockAsyncAction { getState, dispatch in</p>
+<p>Performing an async network request</p>
 
-<p>// Read the current state from the Store
-  getState()</p>
+<pre class="highlight plaintext"><code>let action = BlockAsyncAction { getState, dispatch in
 
-<p>// First dispatch some action syncrhonously
-  dispatch(SomeAction(&hellip;))</p>
+  // Read the current state from the Store
+  getState()
 
-<p>let session = URLSession(configuration: .default)
+  // First dispatch some action syncrhonously
+  dispatch(SomeAction(...))
+
+  let session = URLSession(configuration: .default)
   // perform a dataTask
-  session.dataTask(with: urlRequest) { data, response, error in</p>
+  session.dataTask(with: urlRequest) { data, response, error in
 
-<pre class="highlight plaintext"><code>if let data = data {
-  // Do something with the data
-   dispatch(RequestSucceeded(data: data))
+    if let data = data {
+      // Do something with the data
+       dispatch(RequestSucceeded(data: data))
 
-} else if let error = error {
+    } else if let error = error {
 
-   // Error happenend
-   dispatch(RequestFaile(data: data))
+       // Error happenend
+       dispatch(RequestFaile(data: data))
+    }
+  }
 }
+
+store.dispatch(action: MyURLAsyncAction())
 </code></pre>
-
-<p>}
-}</p>
-
-<p>store.dispatch(action: MyURLAsyncAction())
-&rdquo;`</p>
 
           </div>
         </section>
@@ -256,7 +254,7 @@ let action = BlockAsyncAction { getState, dispatch in</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/Zendesk/Suas-iOS/Sources/Middlewares/AsyncMiddleware/AsyncMiddleware.swift#L123-L125">Show on GitHub</a>
+                        <a href="https://github.com/Zendesk/Suas-iOS/Sources/Middlewares/AsyncMiddleware/AsyncMiddleware.swift#L124-L126">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -282,36 +280,34 @@ Check <code><a href="../Protocols/AsyncAction.html">AsyncAction</a></code> for m
 
 <p><a href='#example' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='example'>Example</h1></p>
 
-<p>Performing an async network request
-&ldquo;`
-let action = BlockAsyncAction { getState, dispatch in</p>
+<p>Performing an async network request</p>
 
-<p>// Read the current state from the Store
-  getState()</p>
+<pre class="highlight plaintext"><code>let action = BlockAsyncAction { getState, dispatch in
 
-<p>// First dispatch some action syncrhonously
-  dispatch(SomeAction(&hellip;))</p>
+  // Read the current state from the Store
+  getState()
 
-<p>let session = URLSession(configuration: .default)
+  // First dispatch some action syncrhonously
+  dispatch(SomeAction(...))
+
+  let session = URLSession(configuration: .default)
   // perform a dataTask
-  session.dataTask(with: urlRequest) { data, response, error in</p>
+  session.dataTask(with: urlRequest) { data, response, error in
 
-<pre class="highlight plaintext"><code>if let data = data {
-  // Do something with the data
-   dispatch(RequestSucceeded(data: data))
+    if let data = data {
+      // Do something with the data
+       dispatch(RequestSucceeded(data: data))
 
-} else if let error = error {
+    } else if let error = error {
 
-   // Error happenend
-   dispatch(RequestFaile(data: data))
+       // Error happenend
+       dispatch(RequestFaile(data: data))
+    }
+  }
 }
+
+store.dispatch(action: MyURLAsyncAction())
 </code></pre>
-
-<p>}
-}</p>
-
-<p>store.dispatch(action: MyURLAsyncAction())
-&rdquo;`</p>
 
                       </div>
                       <div class="declaration">
@@ -323,7 +319,7 @@ let action = BlockAsyncAction { getState, dispatch in</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/Zendesk/Suas-iOS/Sources/Middlewares/AsyncMiddleware/AsyncMiddleware.swift#L127-L129">Show on GitHub</a>
+                        <a href="https://github.com/Zendesk/Suas-iOS/Sources/Middlewares/AsyncMiddleware/AsyncMiddleware.swift#L128-L130">Show on GitHub</a>
                       </div>
                     </section>
                   </div>

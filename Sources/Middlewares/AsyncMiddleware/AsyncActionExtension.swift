@@ -16,6 +16,7 @@ public typealias URLSessionActionCompletionBlock = (Data?, URLResponse?, Error?,
 /// URL Session `AsyncAction` implementation to fetch data from the network asynchronously. Requires `AsyncMiddleware` to be added to the store.
 ///
 /// # Example
+///
 /// ```
 /// let action = URLSessionAsyncAction(url: ...) { data, response, error, dispatch in
 ///   // Parse data and prepare models
@@ -71,6 +72,7 @@ public typealias DiskReadActionCompletionBlock = (Data?, DispatchFunction) -> Vo
 /// Disk Read `AsyncAction` implementation to read data from the disk asynchronously. Requires `AsyncMiddleware` to be added to the store.
 ///
 /// # Example
+///
 /// ```
 /// let action = DiskReadAsyncAction(path: ...) { data, dispatch in
 ///   // Dispatch a new action
@@ -122,6 +124,7 @@ public typealias DiskWriteActionCompletionBlock = (Bool, DispatchFunction) -> Vo
 /// Disk Write `AsyncAction` implementation to write data to the disk asynchronously. Requires `AsyncMiddleware` to be added to the store.
 ///
 /// # Example
+///
 /// ```
 /// let action = DiskWriteAsyncAction(path: ..., data: ...) { succeeded, dispatch in
 ///   // After data is written, dispatch an action

@@ -2,49 +2,49 @@
   "warnings": [
     {
       "file": "/Users/oabdelhafith/Documents/iOS/Swift/Suas-iOS/Sources/Middlewares/AsyncMiddleware/AsyncMiddleware.swift",
-      "line": 123,
+      "line": 124,
       "symbol": "BlockAsyncAction.init(executionBlock:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/oabdelhafith/Documents/iOS/Swift/Suas-iOS/Sources/Middlewares/AsyncMiddleware/AsyncMiddleware.swift",
-      "line": 144,
+      "line": 145,
       "symbol": "AsyncMiddleware.init()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/oabdelhafith/Documents/iOS/Swift/Suas-iOS/Sources/Middlewares/LoggerMiddleware/LoggerMiddleware.swift",
-      "line": 216,
+      "line": 218,
       "symbol": "defaultLogger",
       "symbol_kind": "source.lang.swift.decl.var.global",
       "warning": "undocumented"
     },
     {
       "file": "/Users/oabdelhafith/Documents/iOS/Swift/Suas-iOS/Sources/Reducer.swift",
-      "line": 70,
+      "line": 69,
       "symbol": "Reducer.stateKey",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/oabdelhafith/Documents/iOS/Swift/Suas-iOS/Sources/Reducer.swift",
-      "line": 343,
+      "line": 344,
       "symbol": "+(_:_:).R1",
       "symbol_kind": "source.lang.swift.decl.generic_type_param",
       "warning": "undocumented"
     },
     {
       "file": "/Users/oabdelhafith/Documents/iOS/Swift/Suas-iOS/Sources/State.swift",
-      "line": 44,
+      "line": 47,
       "symbol": "SuasDynamicEquatable.isEqual(to:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/oabdelhafith/Documents/iOS/Swift/Suas-iOS/Sources/State.swift",
-      "line": 48,
+      "line": 51,
       "symbol": "SuasDynamicEquatable.isEqual(to:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"

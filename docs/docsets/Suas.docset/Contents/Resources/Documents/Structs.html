@@ -205,21 +205,22 @@ When an action is dispatched, the LoggerMiddleware will print information relate
 
 <p><a href='#example' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='example'>Example</h1></p>
 
-<p>Adding LoggerMiddleware
-<code>
-let store = Suas.createStore(
+<p>Adding LoggerMiddleware</p>
+
+<pre class="highlight plaintext"><code>let store = Suas.createStore(
   reducer: ...,
   middleware: LoggerMiddleware()
 )
-</code>
-When actions are dispatched, you get something similar to this printed to the console.
-<code>
-┌───→ Action: IncrementAction @19:15:39.419
-├─ Prev state ► State(innerState: [&quot;Counter&quot;: CounterExample.Counter(value: 0)])
+</code></pre>
+
+<p>When actions are dispatched, you get something similar to this printed to the console.</p>
+
+<pre class="highlight plaintext"><code>┌───→ Action: IncrementAction @19:15:39.419
+├─ Prev state ► State(innerState: ["Counter": CounterExample.Counter(value: 0)])
 ├─ Action     ► IncrementAction(incrementValue: 1)
-├─ Next state ► State(innerState: [&quot;Counter&quot;: CounterExample.Counter(value: 1)])
+├─ Next state ► State(innerState: ["Counter": CounterExample.Counter(value: 1)])
 └──────────────────────────────────────────
-</code></p>
+</code></pre>
 
                         <a href="Structs/LoggerMiddleware.html" class="slightly-smaller">See more</a>
                       </div>
@@ -232,7 +233,7 @@ When actions are dispatched, you get something similar to this printed to the co
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/Zendesk/Suas-iOS/Sources/Middlewares/LoggerMiddleware/LoggerMiddleware.swift#L31-L156">Show on GitHub</a>
+                        <a href="https://github.com/Zendesk/Suas-iOS/Sources/Middlewares/LoggerMiddleware/LoggerMiddleware.swift#L33-L158">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -262,36 +263,34 @@ Check <code><a href="Protocols/AsyncAction.html">AsyncAction</a></code> for more
 
 <p><a href='#example' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='example'>Example</h1></p>
 
-<p>Performing an async network request
-&ldquo;`
-let action = BlockAsyncAction { getState, dispatch in</p>
+<p>Performing an async network request</p>
 
-<p>// Read the current state from the Store
-  getState()</p>
+<pre class="highlight plaintext"><code>let action = BlockAsyncAction { getState, dispatch in
 
-<p>// First dispatch some action syncrhonously
-  dispatch(SomeAction(&hellip;))</p>
+  // Read the current state from the Store
+  getState()
 
-<p>let session = URLSession(configuration: .default)
+  // First dispatch some action syncrhonously
+  dispatch(SomeAction(...))
+
+  let session = URLSession(configuration: .default)
   // perform a dataTask
-  session.dataTask(with: urlRequest) { data, response, error in</p>
+  session.dataTask(with: urlRequest) { data, response, error in
 
-<pre class="highlight plaintext"><code>if let data = data {
-  // Do something with the data
-   dispatch(RequestSucceeded(data: data))
+    if let data = data {
+      // Do something with the data
+       dispatch(RequestSucceeded(data: data))
 
-} else if let error = error {
+    } else if let error = error {
 
-   // Error happenend
-   dispatch(RequestFaile(data: data))
+       // Error happenend
+       dispatch(RequestFaile(data: data))
+    }
+  }
 }
+
+store.dispatch(action: MyURLAsyncAction())
 </code></pre>
-
-<p>}
-}</p>
-
-<p>store.dispatch(action: MyURLAsyncAction())
-&rdquo;`</p>
 
                         <a href="Structs/BlockAsyncAction.html" class="slightly-smaller">See more</a>
                       </div>
@@ -304,7 +303,7 @@ let action = BlockAsyncAction { getState, dispatch in</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/Zendesk/Suas-iOS/Sources/Middlewares/AsyncMiddleware/AsyncMiddleware.swift#L120-L130">Show on GitHub</a>
+                        <a href="https://github.com/Zendesk/Suas-iOS/Sources/Middlewares/AsyncMiddleware/AsyncMiddleware.swift#L121-L131">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -344,7 +343,7 @@ When <code>AsyncMiddleware</code> intercepts an <code><a href="Protocols/AsyncAc
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/Zendesk/Suas-iOS/Sources/Middlewares/AsyncMiddleware/AsyncMiddleware.swift#L142-L157">Show on GitHub</a>
+                        <a href="https://github.com/Zendesk/Suas-iOS/Sources/Middlewares/AsyncMiddleware/AsyncMiddleware.swift#L143-L158">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -368,13 +367,13 @@ When <code>AsyncMiddleware</code> intercepts an <code><a href="Protocols/AsyncAc
                       <div class="abstract">
                         <p>Structure that represents the store state. The store state is kept as a <code>Dictionary</code> with <code>String</code> Keys and <code>Any</code> Values (<code>[String: Any]</code>)</p>
 
-<p>For example, the state with two struct looks like:
-<code>
-[
-  &quot;TodoItems&quot;: TodoItems(....),
-  &quot;AppSettings&quot;: AppSettings(....)
+<p>For example, the state with two struct looks like:</p>
+
+<pre class="highlight plaintext"><code>[
+  "TodoItems": TodoItems(....),
+  "AppSettings": AppSettings(....)
 ]
-</code></p>
+</code></pre>
 
                         <a href="Structs/State.html" class="slightly-smaller">See more</a>
                       </div>
@@ -387,7 +386,7 @@ When <code>AsyncMiddleware</code> intercepts an <code><a href="Protocols/AsyncAc
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/Zendesk/Suas-iOS/Sources/State.swift#L64-L120">Show on GitHub</a>
+                        <a href="https://github.com/Zendesk/Suas-iOS/Sources/State.swift#L68-L124">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -429,7 +428,7 @@ When <code>AsyncMiddleware</code> intercepts an <code><a href="Protocols/AsyncAc
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/Zendesk/Suas-iOS/Sources/Middlewares/AsyncMiddleware/AsyncActionExtension.swift#L25-L64">Show on GitHub</a>
+                        <a href="https://github.com/Zendesk/Suas-iOS/Sources/Middlewares/AsyncMiddleware/AsyncActionExtension.swift#L26-L65">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -467,7 +466,7 @@ When <code>AsyncMiddleware</code> intercepts an <code><a href="Protocols/AsyncAc
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/Zendesk/Suas-iOS/Sources/Middlewares/AsyncMiddleware/AsyncActionExtension.swift#L80-L115">Show on GitHub</a>
+                        <a href="https://github.com/Zendesk/Suas-iOS/Sources/Middlewares/AsyncMiddleware/AsyncActionExtension.swift#L82-L117">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -505,7 +504,7 @@ When <code>AsyncMiddleware</code> intercepts an <code><a href="Protocols/AsyncAc
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/Zendesk/Suas-iOS/Sources/Middlewares/AsyncMiddleware/AsyncActionExtension.swift#L131-L168">Show on GitHub</a>
+                        <a href="https://github.com/Zendesk/Suas-iOS/Sources/Middlewares/AsyncMiddleware/AsyncActionExtension.swift#L134-L171">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -541,7 +540,7 @@ When adding a listener you get a subscription back. You can use this subscriptio
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/Zendesk/Suas-iOS/Sources/Listener.swift#L31-L94">Show on GitHub</a>
+                        <a href="https://github.com/Zendesk/Suas-iOS/Sources/Listener.swift#L31-L97">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -573,7 +572,7 @@ When adding a listener you get a subscription back. You can use this subscriptio
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/Zendesk/Suas-iOS/Sources/Listener.swift#L98-L131">Show on GitHub</a>
+                        <a href="https://github.com/Zendesk/Suas-iOS/Sources/Listener.swift#L101-L136">Show on GitHub</a>
                       </div>
                     </section>
                   </div>

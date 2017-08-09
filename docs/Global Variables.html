@@ -239,7 +239,7 @@ When using this filter callback the Listener will always be notified.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/Zendesk/Suas-iOS/Sources/Listener.swift#L135">Show on GitHub</a>
+                        <a href="https://github.com/Zendesk/Suas-iOS/Sources/Listener.swift#L140">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -266,48 +266,47 @@ Note: if you implement <code>Equatable</code> you can implement <code><a href="P
 <p><a href='#example' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='example'>Example</h1>
 <a href='#implementing-suasdynamicequatable-manually' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='implementing-suasdynamicequatable-manually'>Implementing SuasDynamicEquatable manually</h2></p>
 
-<p>Implementing SuasDynamicEquatable without Equatable
-&ldquo;`
-// Implement SuasDynamicEquatable manually
+<p>Implementing SuasDynamicEquatable without Equatable</p>
+
+<pre class="highlight plaintext"><code>// Implement SuasDynamicEquatable manually
 struct MyState: SuasDynamicEquatable {
-  let value: Int</p>
-
-<p>func isEqual(to other: Any) -&gt; Bool {
-    // Cast to same type
-    guard let other = other as? MyState else { return false }</p>
-
-<pre class="highlight plaintext"><code>// Compare values
-return other.value == self.value
-</code></pre>
-
-<p>}
-}</p>
-
-<p>let subscription = store.addListener(forStateType: MyState.self, if: stateChangedFilter) { newState in
-  // use new state
-}
-&rdquo;`</p>
-
-<p><a href='#implementing-suasdynamicequatable-as-an-extension' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='implementing-suasdynamicequatable-as-an-extension'>Implementing SuasDynamicEquatable as an extension</h2></p>
-
-<p>If your type implement equatable
-<code>
-struct MyState: Equatable {
   let value: Int
-  static func ==(lhs: MyState, rhs: MyState) -&gt; Bool { ... }
-}
-</code>
-You dont need to implement <code><a href="Protocols/SuasDynamicEquatable.html">SuasDynamicEquatable</a></code> just add it as an extension to <code>MyState</code>. No extra code needed.
-<code>
-extension MyState: SuasDynamicEquatable { }
-</code></p>
 
-<p><code>stateChangedFilter</code> now works with <code>MyState</code>
-<code>
+  func isEqual(to other: Any) -&gt; Bool {
+    // Cast to same type
+    guard let other = other as? MyState else { return false }
+
+    // Compare values
+    return other.value == self.value
+  }
+}
+
 let subscription = store.addListener(forStateType: MyState.self, if: stateChangedFilter) { newState in
   // use new state
 }
-</code></p>
+</code></pre>
+
+<p><a href='#implementing-suasdynamicequatable-as-an-extension' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='implementing-suasdynamicequatable-as-an-extension'>Implementing SuasDynamicEquatable as an extension</h2></p>
+
+<p>If your type implement equatable</p>
+
+<pre class="highlight plaintext"><code>struct MyState: Equatable {
+  let value: Int
+  static func ==(lhs: MyState, rhs: MyState) -&gt; Bool { ... }
+}
+</code></pre>
+
+<p>You dont need to implement <code><a href="Protocols/SuasDynamicEquatable.html">SuasDynamicEquatable</a></code> just add it as an extension to <code>MyState</code>. No extra code needed.</p>
+
+<pre class="highlight plaintext"><code>extension MyState: SuasDynamicEquatable { }
+</code></pre>
+
+<p><code>stateChangedFilter</code> now works with <code>MyState</code></p>
+
+<pre class="highlight plaintext"><code>let subscription = store.addListener(forStateType: MyState.self, if: stateChangedFilter) { newState in
+  // use new state
+}
+</code></pre>
 
                       </div>
                       <div class="declaration">
@@ -319,7 +318,7 @@ let subscription = store.addListener(forStateType: MyState.self, if: stateChange
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/Zendesk/Suas-iOS/Sources/Listener.swift#L190">Show on GitHub</a>
+                        <a href="https://github.com/Zendesk/Suas-iOS/Sources/Listener.swift#L199">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
