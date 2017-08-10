@@ -30,21 +30,21 @@
     },
     {
       "file": "/Users/oabdelhafith/Documents/iOS/Swift/Suas-iOS/Sources/Reducer.swift",
-      "line": 349,
+      "line": 344,
       "symbol": "+(_:_:).R1",
       "symbol_kind": "source.lang.swift.decl.generic_type_param",
       "warning": "undocumented"
     },
     {
       "file": "/Users/oabdelhafith/Documents/iOS/Swift/Suas-iOS/Sources/State.swift",
-      "line": 51,
+      "line": 47,
       "symbol": "SuasDynamicEquatable.isEqual(to:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/oabdelhafith/Documents/iOS/Swift/Suas-iOS/Sources/State.swift",
-      "line": 55,
+      "line": 51,
       "symbol": "SuasDynamicEquatable.isEqual(to:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
