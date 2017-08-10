@@ -88,7 +88,7 @@ extension Store {
   ///
   /// - Parameters:
   ///   - type: The type of the state to listen to. If the state type is not found, the listener will not be notified.
-  ///   - stateKey: (Optional) the state key to listen too. When not passed (or passing nil) the type name from `forStateType` will be used.
+  ///   - stateKey: (Optional) the state key to listen to. When not passed (or passing nil) the type name from `forStateType` will be used.
   ///     Only pass when the state key for the state was changed in the reducer (99% of the times you dont need to set this parameter)
   ///   - filterBlock: (Optional) block that receives the old state and the new state and it decides wether the notification for the listener should be sent or not.
   ///     When not set, the listener is notified whenever the state changed.

@@ -104,15 +104,6 @@
 		D75D6E541F2203F400BA72C8 /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaAsyncSocket.framework; path = Carthage/Build/iOS/CocoaAsyncSocket.framework; sourceTree = "<group>"; };
 		D76F34791F23672D00CE0C66 /* LoggerMiddleware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggerMiddleware.swift; sourceTree = "<group>"; };
 		D76F347D1F23677A00CE0C66 /* LoggerMiddlewareTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggerMiddlewareTests.swift; sourceTree = "<group>"; };
-		D76F34871F239A6E00CE0C66 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D76F34891F239A6E00CE0C66 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		D76F348C1F239A6E00CE0C66 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		D76F348E1F239A6E00CE0C66 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		D76F34911F239A6E00CE0C66 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		D76F34931F239A6E00CE0C66 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D76F34971F239B0600CE0C66 /* Reducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reducer.swift; sourceTree = "<group>"; };
-		D76F34981F239B0600CE0C66 /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
-		D76F349A1F239B0600CE0C66 /* Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Actions.swift; sourceTree = "<group>"; };
 		D76F34CB1F23EF0B00CE0C66 /* AsyncMiddleware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncMiddleware.swift; sourceTree = "<group>"; };
 		D76F34DD1F24289D00CE0C66 /* AsyncActionExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AsyncActionExtension.swift; path = Sources/Middlewares/AsyncMiddleware/AsyncActionExtension.swift; sourceTree = SOURCE_ROOT; };
 		D76F34E11F242C1800CE0C66 /* AsyncMiddlewareTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncMiddlewareTests.swift; sourceTree = "<group>"; };
@@ -173,14 +164,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		D705512A1F21264F00022BF1 /* SampleApps */ = {
-			isa = PBXGroup;
-			children = (
-				D76F34861F239A6E00CE0C66 /* TodoWithMonitorSampleApp */,
-			);
-			path = SampleApps;
-			sourceTree = "<group>";
-		};
 		D70551331F2128E800022BF1 /* Mac */ = {
 			isa = PBXGroup;
 			children = (
@@ -267,22 +250,6 @@
 			path = Logger;
 			sourceTree = "<group>";
 		};
-		D76F34861F239A6E00CE0C66 /* TodoWithMonitorSampleApp */ = {
-			isa = PBXGroup;
-			children = (
-				D76F349A1F239B0600CE0C66 /* Actions.swift */,
-				D76F34981F239B0600CE0C66 /* State.swift */,
-				D76F34971F239B0600CE0C66 /* Reducer.swift */,
-				D76F34871F239A6E00CE0C66 /* AppDelegate.swift */,
-				D76F34891F239A6E00CE0C66 /* ViewController.swift */,
-				D76F348B1F239A6E00CE0C66 /* Main.storyboard */,
-				D76F348E1F239A6E00CE0C66 /* Assets.xcassets */,
-				D76F34901F239A6E00CE0C66 /* LaunchScreen.storyboard */,
-				D76F34931F239A6E00CE0C66 /* Info.plist */,
-			);
-			path = TodoWithMonitorSampleApp;
-			sourceTree = "<group>";
-		};
 		D76F34DC1F24288500CE0C66 /* AsyncMiddleware */ = {
 			isa = PBXGroup;
 			children = (
@@ -313,7 +280,6 @@
 			isa = PBXGroup;
 			children = (
 				D70551491F212A1F00022BF1 /* Sources */,
-				D705512A1F21264F00022BF1 /* SampleApps */,
 				D70551531F212A6500022BF1 /* Tests */,
 				D7CBAA491F1EC38700DA67E9 /* Products */,
 				D75D6E531F2203F400BA72C8 /* Frameworks */,
@@ -599,25 +565,6 @@
 			targetProxy = D7CBAA801F1EC45400DA67E9 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		D76F348B1F239A6E00CE0C66 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D76F348C1F239A6E00CE0C66 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		D76F34901F239A6E00CE0C66 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D76F34911F239A6E00CE0C66 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		D70551441F2128E800022BF1 /* Debug */ = {
