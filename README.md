@@ -30,6 +30,8 @@ Join our [gitter chat channel](https://gitter.im/SuasArch/Lobby) for any questio
 - [Installation](#installation)
 - [Developer experience and tooling](#developer-experience-and-tooling)
 - [Example apps built with Suas](#example-apps-built-with-suas)
+- [Where to go next](#where-to-go-next)
+- [Contributing](#contributing)
 - [Contact us](#contact-us)
 - [Suas future](#suas-future)
 
@@ -224,6 +226,22 @@ Under the hood `Suas Monitor` uses the fantastic [Redux DevTools](https://github
 # Example apps built with Suas
 
 Check Suas website for an updated [list of examples built with Suas](https://suas.readme.io/docs/list-of-examples).
+
+# Where to go next
+
+To get more information about Suas:
+- Head to [Suas website](https://suas.readme.io/docs) for more in-depth knowledge about how to use suas.
+- Check the [Suas API refrerence](https://zendesk.github.io/Suas-iOS/).
+- Read through how to use Suas by checking [some examples built with Suas](https://suas.readme.io/docs/list-of-examples).
+- Join the conversation on [Suas gitter channel](https://gitter.im/SuasArch/Lobby) or get in touch with the [people behind Suas](#contact-us).
+
+# Contributing
+
+We love any sort of contribution. From changing the internals of how Suas works, changing Suas methods and public API, changing readmes and [documentation topics](https://suas.readme.io). 
+
+Feel free to suggest changes on the GitHub repos or directly [in Saus gitter channel](https://gitter.im/SuasArch/Lobby).
+
+For reference check our [contributing](https://suas.readme.io/docs/contributing) guidelines.
 
 # Contact us
 
