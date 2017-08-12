@@ -5,21 +5,23 @@
 ![Swift Version](https://img.shields.io/badge/Swift-3.0-orange.svg)
 ![Swift Version](https://img.shields.io/badge/Swift-3.2-orange.svg)
 ![Swift Version](https://img.shields.io/badge/Swift-4.0-orange.svg)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://raw.githubusercontent.com/zendesk/Suas-iOS/master/LICENSE?token=AIff-oX-dNf-KBOKyXYPRP9yto5D246gks5ZlwP7wA%3D%3D)
+[![Join the chat at https://gitter.im/SuasArch/Lobby](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/SuasArch/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 Suas is a [Unidirectional Data Flow architecture](doc:why-unidirectional-architectures) implementation for iOS/MacOS/TvOS/WatchOs and Android heavily inspired by [Redux](http://redux.js.org). It provides an easy to use library that helps to create applications that are consistent, deterministic and scalable.
 
 Suas has frameworks for iOS, Android, and MacOS. And it aims to have good developer tooling such as customizable logging and state transition monitoring.
 
-Suas is a pragmatic framework, it is designed to work nicely with Cocoa/CocoaTouch and Android/Java/Kotlin. 
+Suas is a pragmatic framework, it is designed to work nicely with Cocoa/CocoaTouch and Android/Java/Kotlin.
 
 # Why Suas
 Suas aims to be used to build highly-dynamic, consistent mobile apps:
 
 - Small code base with very low operational footprint (268 methods).
 - Static typing and type information is conserved in the Store, Reducers, and Listeners.
-- Cross platform; Suas-iOS works on the iOS, MacOS, TvOS and watchOS. And Suas-Android works on all API levels and provides a Kotlin friendly interface. 
+- Cross platform; Suas-iOS works on the iOS, MacOS, TvOS and watchOS. And Suas-Android works on all API levels and provides a Kotlin friendly interface.
 - Fast out of the box and can be customized by developers to be even faster [StateConverter]()
-- Focuses on developer experience with tools like [LoggerMiddleware]() and [MonitorMiddleware]() 
+- Focuses on developer experience with tools like [LoggerMiddleware]() and [MonitorMiddleware]()
 
 
 # Installation
@@ -50,4 +52,3 @@ pod 'Suas'
 ```
 
 Then run `pod install`
-
