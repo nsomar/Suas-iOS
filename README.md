@@ -18,7 +18,7 @@
 
 Suas is a [unidirectional data flow architecture](https://suas.readme.io/docs/why-unidirectional-architectures) implementation for iOS/macOS/tvOS/watchOS and Android heavily inspired by [Redux](http://redux.js.org). It provides an easy-to-use library that helps to create applications that are consistent, deterministic, and scalable.
 
-Suas has frameworks for iOS, Android, and macOS and aims to provide a [good developer experience](#developer-experience-and-tooling) and tooling such as [customizable logging](#customizable-logging) and [state changes monitoring](#state-changes-monitoring).
+Suas focuses on providing [good developer experience](#developer-experience-and-tooling) and tooling such as [customizable logging](#customizable-logging) and [state changes monitoring](#state-changes-monitoring).
 
 Join our [gitter chat channel](https://gitter.im/SuasArch/Lobby) for any questions. Or check [Suas documentatation website](https://suas.readme.io).
 
@@ -103,7 +103,7 @@ struct Counter {
 }
 ```
 
-We then define the actions that will affect the state. For the counter, we need increment and decrement actions.
+We then define the actions that affect the state. For the counter, we need increment and decrement actions.
 
 ```swift
 struct IncrementAction: Action {
@@ -141,10 +141,10 @@ let counterReducer = BlockReducer(state: Counter(value: 0)) { state, action in
 
 The reducer defines two things:
 
-1. The initial state for the store. i.e the initial `Counter` value.
+1. The initial state for the store. i.e. the initial `Counter` value.
 2. The reduce function, which receives both the dispatched `Action` and the current `State`. This function decides what `State` to return based on the `Action`. If the reducer did not change the state, it should return `nil`
 
-The `Store` is the main component that we will deal with in the application. The store contains:
+The `Store` is the main component we interact with in the application. The store contains:
 
 1. The application's state.
 2. The reducer, or reducers.
@@ -191,13 +191,13 @@ class CounterViewController: UIViewController {
 }
 ```
 
-Let's breakdown the code above:
+Let's break down the code above:
 1. We add a listener to the store by calling `store.addListener(forStateType: Counter.self)` specifying the state type. 
 Notice that we **Must** use `[weak self]` reference in the callback block to prevent strong memory cycles.
 2. By calling `subscription.linkLifeCycleTo(object: self)` we link the listener lifecycle to the view controller. When the controller is deallocated the listener is removed.
 3. Tapping on the increase or decrease button dispatches actions with `store.dispatch(action:)` that change the state.
 
-That's it, check our [documentation website](https://suas.readme.io/docs) for a full reference on Suas components. Or check the [list of example built using Suas](https://suas.readme.io/docs/list-of-examples).
+That's it, check our [documentation website](https://suas.readme.io/docs) for a full reference on Suas components and check the [list of example built using Suas](https://suas.readme.io/docs/list-of-examples).
 
 # Developer experience and tooling
 
@@ -231,7 +231,7 @@ Check Suas website for an updated [list of examples built with Suas](https://sua
 # Where to go next
 
 To get more information about Suas:
-- Head to [Suas website](https://suas.readme.io/docs) for more in-depth knowledge about how to use suas.
+- Head to [Suas website](https://suas.readme.io/docs) for more in-depth knowledge about how to use Suas.
 - Check the [Suas API refrerence](https://zendesk.github.io/Suas-iOS/).
 - Read through how to use Suas by checking [some examples built with Suas](https://suas.readme.io/docs/list-of-examples).
 - Join the conversation on [Suas gitter channel](https://gitter.im/SuasArch/Lobby) or get in touch with the [people behind Suas](#contact-us).
