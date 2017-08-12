@@ -29,7 +29,7 @@ Join our [gitter chat channel](https://gitter.im/SuasArch/Lobby) for any questio
 - [Getting Started](#getting-started)
 - [Installation](#installation)
 - [Developer experience and tooling](#developer-experience-and-tooling)
-- [Example apps built with Suas](#example-apps-built-with-suas)
+- [Example applications built with Suas](#example-applications-built-with-suas)
 - [Where to go next](#where-to-go-next)
 - [Contributing](#contributing)
 - [Contact us](#contact-us)
@@ -54,7 +54,7 @@ The following animation describes the Suas runtime flow.
 </p>
 
 # Why use Suas 
-Suas helps you to build highly-dynamic, consistent mobile apps:
+Suas helps you to build highly-dynamic, consistent mobile applications:
 
 - Cross platform; Suas-iOS works on iOS, macOS, tvOS and watchOS. [Suas-Android](https://github.com/zendesk/Suas-Android) works on all API levels and provides a Kotlin-friendly interface. 
 - Focuses on [developer experience](#developer-experience-and-tooling) with plugins/tools like [LoggerMiddleware](https://suas.readme.io/docs/logging-in-suas) and [Suas Monitor](https://suas.readme.io/docs/monitor-middleware-monitor-js).
@@ -95,7 +95,7 @@ Then run `pod install`
 
 Let's get started by building a counter application. 
 
-When building apps in Suas, we start by defining the state for our counter. In this example, the counter state is a struct that contains the counter value.
+When building applications in Suas, we start by defining the state for our counter. In this example, the counter state is a struct that contains the counter value.
 
 ```swift
 struct Counter {
@@ -146,7 +146,7 @@ The reducer defines two things:
 
 The `Store` is the main component that we will deal with in the application. The store contains:
 
-1. The app's state.
+1. The application's state.
 2. The reducer, or reducers.
 3. (Advanced) The [middlewares](https://suas.readme.io/docs/middleware)
 
@@ -215,7 +215,7 @@ Read more about [how to use the LoggerMiddleware](https://suas.readme.io/docs/lo
 ## State transition monitoring
 
 The `MonitorMiddleware` helps to track state transition and action dispatch history.
-When using `MonitorMiddleware` the `Action` dispatched and `State` changes are sent to our [Suas Monitor desktop app](https://github.com/zendesk/Suas-Monitor).
+When using `MonitorMiddleware` the `Action` dispatched and `State` changes are sent to our [Suas Monitor desktop application](https://github.com/zendesk/Suas-Monitor).
 
 <p align="center">
 <img src="http://i.imgur.com/QsbDsN7.gif" title="source: imgur.com" />
@@ -224,7 +224,7 @@ When using `MonitorMiddleware` the `Action` dispatched and `State` changes are s
 Read how to install and start using the `MonitorMiddleware` by heading to [getting started with monitor middleware article](https://suas.readme.io/docs/monitor-middleware-monitor-js).
 Under the hood `Suas Monitor` uses the fantastic [Redux DevTools](https://github.com/gaearon/redux-devtools) to provide state and action information.
 
-# Example apps built with Suas
+# Example applications built with Suas
 
 Check Suas website for an updated [list of examples built with Suas](https://suas.readme.io/docs/list-of-examples).
 
