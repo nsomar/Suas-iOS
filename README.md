@@ -192,7 +192,8 @@ class CounterViewController: UIViewController {
 ```
 
 Let's breakdown the code above:
-1. We add a listener to the store by calling `store.addListener(forStateType: Counter.self)` specifying the state type. Notice that we **Must** use weak self reference in the callback block to prevent strong memory cycles.
+1. We add a listener to the store by calling `store.addListener(forStateType: Counter.self)` specifying the state type. 
+Notice that we **Must** use `[weak self]` reference in the callback block to prevent strong memory cycles.
 2. By calling `subscription.linkLifeCycleTo(object: self)` we link the listener lifecycle to the view controller. When the controller is deallocated the listener is removed.
 3. Tapping on the increase or decrease button dispatches actions with `store.dispatch(action:)` that change the state.
 
@@ -220,7 +221,7 @@ When using `MonitorMiddleware` the `Action` dispatched and `State` changes are s
 <img src="http://i.imgur.com/QsbDsN7.gif" title="source: imgur.com" />
 </p>
 
-Read how to start using the `MonitorMiddleware` by reading our [getting started with monitor middleware article](https://suas.readme.io/docs/monitor-middleware-monitor-js).
+Read how to install and start using the `MonitorMiddleware` by heading to [getting started with monitor middleware article](https://suas.readme.io/docs/monitor-middleware-monitor-js).
 Under the hood `Suas Monitor` uses the fantastic [Redux DevTools](https://github.com/gaearon/redux-devtools) to provide state and action information.
 
 # Example apps built with Suas
