@@ -16,9 +16,9 @@
 <br />
 </p>
 
-Suas is a [unidirectional data flow architecture](https://suas.readme.io/docs/why-unidirectional-architectures) implementation for iOS/MacOS/TvOS/WatchOs and Android heavily inspired by [Redux](http://redux.js.org). It provides an easy-to-use library that helps to create applications that are consistent, deterministic, and scalable.
+Suas is a [unidirectional data flow architecture](https://suas.readme.io/docs/why-unidirectional-architectures) implementation for iOS/macOS/tvOS/watchOS and Android heavily inspired by [Redux](http://redux.js.org). It provides an easy-to-use library that helps to create applications that are consistent, deterministic, and scalable.
 
-Suas has frameworks for iOS, Android, and MacOS and aims to provide a [good developer experience](#developer-experience-and-tooling) and tooling such as [customizable logging](#customizable-logging) and [state changes monitoring](#state-changes-monitoring).
+Suas has frameworks for iOS, Android, and macOS and aims to provide a [good developer experience](#developer-experience-and-tooling) and tooling such as [customizable logging](#customizable-logging) and [state changes monitoring](#state-changes-monitoring).
 
 Join our [gitter chat channel](https://gitter.im/SuasArch/Lobby) for any questions. Or check [Suas documentatation website](https://suas.readme.io).
 
@@ -56,7 +56,7 @@ The following animation describes the Suas runtime flow.
 # Why use Suas 
 Suas helps you to build highly-dynamic, consistent mobile apps:
 
-- Cross platform; Suas-iOS works on iOS, MacOS, TvOS and watchOS. [Suas-Android](https://github.com/zendesk/Suas-Android) works on all API levels and provides a Kotlin-friendly interface. 
+- Cross platform; Suas-iOS works on iOS, macOS, tvOS and watchOS. [Suas-Android](https://github.com/zendesk/Suas-Android) works on all API levels and provides a Kotlin-friendly interface. 
 - Focuses on [developer experience](#developer-experience-and-tooling) with plugins/tools like [LoggerMiddleware](https://suas.readme.io/docs/logging-in-suas) and [Suas Monitor](https://suas.readme.io/docs/monitor-middleware-monitor-js).
 - Small code base with low operational footprint. Really check the source code 🙂.
 - Static typing and type information are conserved in the Store, Reducers, and Listeners.
