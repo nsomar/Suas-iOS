@@ -23,14 +23,14 @@
     },
     {
       "file": "/Users/oabdelhafith/Documents/iOS/Swift/Suas-iOS/Sources/Reducer.swift",
-      "line": 69,
+      "line": 70,
       "symbol": "Reducer.stateKey",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/oabdelhafith/Documents/iOS/Swift/Suas-iOS/Sources/Reducer.swift",
-      "line": 344,
+      "line": 346,
       "symbol": "+(_:_:).R1",
       "symbol_kind": "source.lang.swift.decl.generic_type_param",
       "warning": "undocumented"

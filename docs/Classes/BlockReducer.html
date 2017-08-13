@@ -238,7 +238,7 @@ This initial state will be used to populate the Store state (which represents th
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/Zendesk/Suas-iOS/Sources/Reducer.swift#L107">Show on GitHub</a>
+                        <a href="https://github.com/Zendesk/Suas-iOS/Sources/Reducer.swift#L108">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -256,8 +256,9 @@ This initial state will be used to populate the Store state (which represents th
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>(Optional) The state key for this reducer. If not implemented (or set) the type of <code><a href="../Classes/BlockReducer.html#/s:4Suas12BlockReducerC12initialStatexv">initialState</a></code> will be used as a key.
-It is recommended to not set the <code>stateKey</code> and use the type name of the <code><a href="../Classes/BlockReducer.html#/s:4Suas12BlockReducerC12initialStatexv">initialState</a></code> instead.</p>
+                        <p>(Optional) The state key for this reducer. If not implemented (or set) the type of <code><a href="../Classes/BlockReducer.html#/s:4Suas12BlockReducerC12initialStatexv">initialState</a></code> will be used as a key.</p>
+
+<p>It is <strong>recommended</strong> to not set the <code>stateKey</code> as it will use the type name of the <code><a href="../Classes/BlockReducer.html#/s:4Suas12BlockReducerC12initialStatexv">initialState</a></code> instead.</p>
 
                       </div>
                       <div class="declaration">
@@ -269,7 +270,7 @@ It is recommended to not set the <code>stateKey</code> and use the type name of 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/Zendesk/Suas-iOS/Sources/Reducer.swift#L111">Show on GitHub</a>
+                        <a href="https://github.com/Zendesk/Suas-iOS/Sources/Reducer.swift#L113">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -308,7 +309,7 @@ It is recommended to not set the <code>stateKey</code> and use the type name of 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/Zendesk/Suas-iOS/Sources/Reducer.swift#L120-L122">Show on GitHub</a>
+                        <a href="https://github.com/Zendesk/Suas-iOS/Sources/Reducer.swift#L122-L124">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -332,8 +333,8 @@ It is recommended to not set the <code>stateKey</code> and use the type name of 
 <li>Parameters:
 
 <ul>
-<li>state: the initial state of the reducer. This initial state will be used to populate the Store state (which represents the app state)</li>
-<li>key: The state key for this reducer. If not implemented (or set) the type of <code><a href="../Classes/BlockReducer.html#/s:4Suas12BlockReducerC12initialStatexv">initialState</a></code> will be used as a key.</li>
+<li>initialState: the initial state of the reducer. This initial state will be used to populate the Store state (which represents the app state)</li>
+<li>stateKey: The state key for this reducer. If not implemented (or set) the type of <code><a href="../Classes/BlockReducer.html#/s:4Suas12BlockReducerC12initialStatexv">initialState</a></code> will be used as a key.</li>
 <li>reduce: the reduce function. A block that receives the current state and dispatched action and return a new state (or nil if the action did not change the state)</li>
 </ul></li>
 </ul>
@@ -348,7 +349,7 @@ It is recommended to not set the <code>stateKey</code> and use the type name of 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/Zendesk/Suas-iOS/Sources/Reducer.swift#L130-L134">Show on GitHub</a>
+                        <a href="https://github.com/Zendesk/Suas-iOS/Sources/Reducer.swift#L132-L136">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -372,8 +373,8 @@ It is recommended to not set the <code>stateKey</code> and use the type name of 
 <li>Parameters:
 
 <ul>
-<li>state: the initial state of the reducer. This initial state will be used to populate the Store state (which represents the app state)</li>
-<li>key: The state key for this reducer. If not implemented (or set) the type of <code><a href="../Classes/BlockReducer.html#/s:4Suas12BlockReducerC12initialStatexv">initialState</a></code> will be used as a key.</li>
+<li>initialState: the initial state of the reducer. This initial state will be used to populate the Store state (which represents the app state)</li>
+<li>stateKey: The state key for this reducer. If not implemented (or set) the type of <code><a href="../Classes/BlockReducer.html#/s:4Suas12BlockReducerC12initialStatexv">initialState</a></code> will be used as a key.</li>
 <li>reduce: the reduce function. A block that receives the current state and dispatched action and return a new state (or nil if the action did not change the state)</li>
 </ul></li>
 </ul>
@@ -388,7 +389,7 @@ It is recommended to not set the <code>stateKey</code> and use the type name of 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/Zendesk/Suas-iOS/Sources/Reducer.swift#L136-L138">Show on GitHub</a>
+                        <a href="https://github.com/Zendesk/Suas-iOS/Sources/Reducer.swift#L138-L140">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -401,7 +402,7 @@ It is recommended to not set the <code>stateKey</code> and use the type name of 
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2017 <a class="link" href="http://zendesk.com" target="_blank" rel="external">Omar Abdelhafith</a>. All rights reserved. (Last updated: 2017-08-10)</p>
+      <p>&copy; 2017 <a class="link" href="http://zendesk.com" target="_blank" rel="external">Omar Abdelhafith</a>. All rights reserved. (Last updated: 2017-08-13)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
