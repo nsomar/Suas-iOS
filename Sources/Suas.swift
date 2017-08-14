@@ -14,14 +14,14 @@ public enum Suas {
   /// Create a store
   ///
   /// - Parameters:
-  ///   - reducer: the reducer to use with the store. The reducer will be called when calling dispatch on this store
+  ///   - reducer: the reducer (or reducers) to use with the store. The reducer will be called when calling dispatch on this store
   ///   - state: the initial state to use for this store
-  ///   - middleware: the store middleware
+  ///   - middleware: the store middleware or middlewares.
   /// - Returns: a new store
   ///
   /// # Example
   ///
-  /// Using a single reducer
+  /// ## Using a single reducer
   ///
   /// ```
   /// let store = Suas.createStore(
@@ -29,7 +29,7 @@ public enum Suas {
   /// )
   /// ```
   ///
-  /// Using a single reducer and some initial state
+  /// ## Using a single reducer and some initial state
   ///
   /// ```
   /// let store = Suas.createStore(
@@ -46,11 +46,29 @@ public enum Suas {
   /// ```
   ///
   ///
-  /// Using a combination of reducers
+  /// ## Using a combination of reducers
   ///
   /// ```
   /// let store = Suas.createStore(
   ///   reducer: MyReducer() + MyOtherReducer()
+  /// )
+  /// ```
+  ///
+  /// ## Using a single middleware
+  ///
+  /// ```
+  /// let store = Suas.createStore(
+  ///   reducer: ...,
+  ///   middleware: LoggerMiddleware()
+  /// )
+  /// ```
+  ///
+  /// ## Using multiple middlewares
+  ///
+  /// ```
+  /// let store = Suas.createStore(
+  ///   reducer: ...,
+  ///   middleware: MyMiddleware() + LoggerMiddleware()
   /// )
   /// ```
   public static func createStore<R: Reducer>(reducer: R,
@@ -66,14 +84,14 @@ public enum Suas {
   /// Create a store
   ///
   /// - Parameters:
-  ///   - reducer: the reducer to use with the store. The reducer will be called when calling dispatch on this store
+  ///   - reducer: the reducer (or reducers) to use with the store. The reducer will be called when calling dispatch on this store.
   ///   - state: the initial state to use for this store. The state type must be equal to the reducer `StateType`
-  ///   - middleware: the store middleware
+  ///   - middleware: the store middleware or middlewares.
   /// - Returns: a new store
   ///
   /// # Example
   ///
-  /// Using a single reducer
+  /// ## Using a single reducer
   ///
   /// ```
   /// let store = Suas.createStore(
@@ -81,7 +99,7 @@ public enum Suas {
   /// )
   /// ```
   ///
-  /// Using a single reducer and some initial state
+  /// ## Using a single reducer and some initial state
   ///
   /// ```
   /// let store = Suas.createStore(
@@ -98,11 +116,29 @@ public enum Suas {
   /// ```
   ///
   ///
-  /// Using a combination of reducers
+  /// ## Using a combination of reducers
   ///
   /// ```
   /// let store = Suas.createStore(
   ///   reducer: MyReducer() + MyOtherReducer()
+  /// )
+  /// ```
+  ///
+  /// ## Using a single middleware
+  ///
+  /// ```
+  /// let store = Suas.createStore(
+  ///   reducer: ...,
+  ///   middleware: LoggerMiddleware()
+  /// )
+  /// ```
+  ///
+  /// ## Using multiple middlewares
+  ///
+  /// ```
+  /// let store = Suas.createStore(
+  ///   reducer: ...,
+  ///   middleware: MyMiddleware() + LoggerMiddleware()
   /// )
   /// ```
   public static func createStore<R: Reducer, StateType>(reducer: R,
@@ -120,13 +156,13 @@ public enum Suas {
   /// The state will be generated from calling `reducer.initialState`
   ///
   /// - Parameters:
-  ///   - reducer: the reducer to use with the store. The reducer will be called when calling dispatch on this store
-  ///   - middleware: the store middleware
+  ///   - reducer: the reducer (or reducers) to use with the store. The reducer will be called when calling dispatch on this store.
+  ///   - middleware: the store middleware or middlewares.
   /// - Returns: a new store.
   ///
   /// # Example
   ///
-  /// Using a single reducer
+  /// ## Using a single reducer
   ///
   /// ```
   /// let store = Suas.createStore(
@@ -134,28 +170,29 @@ public enum Suas {
   /// )
   /// ```
   ///
-  /// Using a single reducer and some initial state
-  ///
-  /// ```
-  /// let store = Suas.createStore(
-  ///   reducer: MyReducer(),
-  ///   state: ["MyReducerState": MyReducerState(val: 20)]
-  /// )
-  /// ```
-  ///
-  /// ```
-  /// let store = Suas.createStore(
-  ///   reducer: MyReducer(),
-  ///   state: MyReducerState(val: 20)
-  /// )
-  /// ```
-  ///
-  ///
-  /// Using a combination of reducers
+  /// ## Using a combination of reducers
   ///
   /// ```
   /// let store = Suas.createStore(
   ///   reducer: MyReducer() + MyOtherReducer()
+  /// )
+  /// ```
+  ///
+  /// ## Using a single middleware
+  ///
+  /// ```
+  /// let store = Suas.createStore(
+  ///   reducer: ...,
+  ///   middleware: LoggerMiddleware()
+  /// )
+  /// ```
+  ///
+  /// ## Using multiple middlewares
+  ///
+  /// ```
+  /// let store = Suas.createStore(
+  ///   reducer: ...,
+  ///   middleware: MyMiddleware() + LoggerMiddleware()
   /// )
   /// ```
   public static func createStore<R: Reducer>(reducer: R,

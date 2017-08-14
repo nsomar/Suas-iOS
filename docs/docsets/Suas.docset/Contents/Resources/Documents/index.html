@@ -61,13 +61,13 @@
             <a class="nav-group-name-link" href="Global Variables.html">Global Variables</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Global Variables.html#/s:4Suas12EqualsFilterSbyp_yptcv">EqualsFilter</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Global Variables.html#/s:4Suas12alwaysFilterSbyp_yptcv">alwaysFilter</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Global Variables.html#/s:4Suas13defaultLoggerySScv">defaultLogger</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Global Variables.html#/s:4Suas18stateChangedFilterSbyp_yptcv">stateChangedFilter</a>
               </li>
             </ul>
           </li>
@@ -178,41 +178,87 @@
         <section class="section">
           <div class="section-content">
             
-            <p><img src="https://raw.githubusercontent.com/zendesk/Suas-iOS/master/Misc/Logo.png" alt="Screenshot"></p>
+            <p align="center">
+<a href="http://imgur.com/a0IkBEX"><img src="http://i.imgur.com/a0IkBEX.png" title="source: imgur.com" /></a>
+<p>
 
-<p><a href="https://travis-ci.com/zendesk/Suas-iOS"><img src="https://travis-ci.com/zendesk/Suas-iOS.svg?token=iTfSE3QQamPUFfPk3VRD&branch=master" alt="Build Status"></a>
-<img src="https://img.shields.io/badge/platform-ios%20%7C%20mac-green.svg" alt="Platform">
-<img src="https://img.shields.io/badge/Swift-3.0-orange.svg" alt="Swift Version">
-<img src="https://img.shields.io/badge/Swift-3.2-orange.svg" alt="Swift Version">
-<img src="https://img.shields.io/badge/Swift-4.0-orange.svg" alt="Swift Version"></p>
+<p align="center">
+<a href="https://travis-ci.com/zendesk/Suas-iOS"><img src="https://travis-ci.com/zendesk/Suas-iOS.svg?token=iTfSE3QQamPUFfPk3VRD&amp;branch=master" alt="Build Status" /></a>
+<img src="https://img.shields.io/badge/platform-ios%20%7C%20osx%20%7C%20tvos%20%7C%20watchos-lightgrey.svg?style=flat" alt="Platform support" />
+<a href="https://cocoapods.org/pods/Suas"><img src="https://img.shields.io/cocoapods/v/Suas.svg?style=flat" alt="CocoaPods Compatible" /></a>
+<a href="https://github.com/Carthage/Carthage"><img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat" alt="Carthage Compatible" /></a>
+</p>
 
-<p>Suas is a <a href="doc:why-unidirectional-architectures">Unidirectional Data Flow architecture</a> implementation for iOS/MacOS/TvOS/WatchOs and Android heavily inspired by <a href="http://redux.js.org">Redux</a>. It provides an easy to use library that helps to create applications that are consistent, deterministic and scalable.</p>
+<p align="center">
+<img src="https://img.shields.io/badge/Swift-3.0-orange.svg" alt="Swift Version" />
+<img src="https://img.shields.io/badge/Swift-3.2-orange.svg" alt="Swift Version" />
+<img src="https://img.shields.io/badge/Swift-4.0-orange.svg" alt="Swift Version" />
+<a href="https://raw.githubusercontent.com/zendesk/Suas-iOS/master/LICENSE?token=AIff-oX-dNf-KBOKyXYPRP9yto5D246gks5ZlwP7wA%3D%3D"><img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" alt="License" /></a>
+<a href="https://gitter.im/SuasArch/Lobby?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge&amp;utm_content=badge"><img src="https://badges.gitter.im/Join%20Chat.svg" alt="Join the chat at https://gitter.im/SuasArch/Lobby" /></a>
+<br />
+<br />
+</p>
 
-<p>Suas has frameworks for iOS, Android, and MacOS. And it aims to have good developer tooling such as customizable logging and state transition monitoring.</p>
+<p>Suas is a <a href="https://suas.readme.io/docs/why-unidirectional-architectures">unidirectional data flow architecture</a> implementation for iOS/macOS/tvOS/watchOS and Android heavily inspired by <a href="http://redux.js.org">Redux</a>. It provides an easy-to-use library that helps to create applications that are consistent, deterministic, and scalable.</p>
 
-<p>Suas is a pragmatic framework, it is designed to work nicely with Cocoa/CocoaTouch and Android/Java/Kotlin. </p>
-<a href='#why-suas' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='why-suas'>Why Suas</h1>
+<p>Suas focuses on providing <a href="#developer-experience-and-tooling">good developer experience</a> and tooling such as <a href="#customizable-logging">customizable logging</a> and <a href="#state-changes-monitoring">state changes monitoring</a>.</p>
 
-<p>Suas aims to be used to build highly-dynamic, consistent mobile apps:</p>
+<p>Join our <a href="https://gitter.im/SuasArch/Lobby">gitter chat channel</a> for any questions. Or check <a href="https://suas.readme.io">Suas documentatation website</a>.</p>
+<a href='#what-39-s-on-this-page' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='what-39-s-on-this-page'>What&rsquo;s on this page</h1>
 
 <ul>
-<li>Small code base with very low operational footprint (268 methods).</li>
-<li>Static typing and type information is conserved in the Store, Reducers, and Listeners.</li>
-<li>Cross platform; Suas-iOS works on the iOS, MacOS, TvOS and watchOS. And Suas-Android works on all API levels and provides a Kotlin friendly interface.</li>
-<li>Fast out of the box and can be customized by developers to be even faster <a href="">StateConverter</a></li>
-<li>Focuses on developer experience with tools like <a href="">LoggerMiddleware</a> and <a href="">MonitorMiddleware</a></li>
+<li><a href="#suas-application-flow-and-components">Suas application flow and components</a></li>
+<li><a href="#why-use-suas">Why use Suas</a></li>
+<li><a href="#getting-started">Getting Started</a></li>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#developer-experience-and-tooling">Developer experience and tooling</a></li>
+<li><a href="#example-applications-built-with-suas">Example applications built with Suas</a></li>
+<li><a href="#where-to-go-next">Where to go next</a></li>
+<li><a href="#contributing">Contributing</a></li>
+<li><a href="#contact-us">Contact us</a></li>
+<li><a href="#suas-future">Suas future</a></li>
+</ul>
+
+<p>For more in depth documentation on how to use Suas <a href="https://suas.readme.io">check Suas website</a>, <a href="https://zendesk.github.io/Suas-iOS/">Suas API Interface</a> or go straight to a <a href="https://suas.readme.io/docs/list-of-examples">list of applications built with Suas</a>.</p>
+<a href='#suas-application-flow-and-components' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='suas-application-flow-and-components'>Suas application flow and components</h1>
+
+<p>Suas architecture is composed of five core elements:</p>
+
+<ul>
+<li><a href="https://suas.readme.io/docs/store">Store</a>: main component that contains a <a href="https://suas.readme.io/docs/reducer">Reducer</a> (or <a href="https://suas.readme.io/docs/applications-with-multiple-decoupled-states">set of reducers</a>), and the main application <a href="https://suas.readme.io/docs/state">State</a>. <a href="https://suas.readme.io/docs/listener">Listeners</a> subscribe to it for state changes. <a href="https://suas.readme.io/docs/action">Actions</a> that cause state changes are dispatched to it.</li>
+<li><a href="https://suas.readme.io/docs/state">State</a>: defines the state of a component/screen or group of components/screens.</li>
+<li><a href="https://suas.readme.io/docs/action">Action</a>: each action specifies a change we want to effect on the state.</li>
+<li><a href="https://suas.readme.io/docs/reducer">Reducer</a>: contains the logic to alter the state based on a specific action received.</li>
+<li><a href="https://suas.readme.io/docs/listener">Listener</a>: callback that gets notified when the state changes.</li>
+</ul>
+
+<p>The following animation describes the Suas runtime flow.</p>
+
+<p align="center">
+<img src="http://i.imgur.com/E7Cx2tf.gif" title="source: imgur.com" />
+</p>
+<a href='#why-use-suas' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='why-use-suas'>Why use Suas</h1>
+
+<p>Suas helps you to build highly-dynamic, consistent mobile applications:</p>
+
+<ul>
+<li>Cross platform; Suas-iOS works on iOS, macOS, tvOS and watchOS. <a href="https://github.com/zendesk/Suas-Android">Suas-Android</a> works on all API levels and provides a Kotlin-friendly interface.</li>
+<li>Focuses on <a href="#developer-experience-and-tooling">developer experience</a> with plugins/tools like <a href="https://suas.readme.io/docs/logging-in-suas">LoggerMiddleware</a> and <a href="https://suas.readme.io/docs/monitor-middleware-monitor-js">Suas Monitor</a>.</li>
+<li>Small code base with low operational footprint. Check the source code 🙂.</li>
+<li>Static typing and type information are conserved in the Store, Reducers, and Listeners.</li>
+<li>Fast out of the box, and can be customized by developers to be even faster <a href="https://suas.readme.io/docs/filtering-listeners">with filtering listeners</a>.</li>
 </ul>
 <a href='#installation' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='installation'>Installation</h1>
 
 <p>Suas on the iOS can be installed with <a href="https://github.com/Carthage/Carthage">Carthage</a> or <a href="https://cocoapods.org">CocoaPods</a></p>
-<a href='#installing-with-carthage' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='installing-with-carthage'>Installing with Carthage</h3>
+<a href='#installing-with-carthage' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='installing-with-carthage'>Installing with Carthage</h2>
 
 <p>Open your <code>Cartfile</code> and append the following:</p>
-<pre class="highlight plaintext"><code>github "zendesk/suas-ios" "master"
+<pre class="highlight plaintext"><code>github "zendesk/suas-ios"
 </code></pre>
 
 <p>And then build it with <code>carthage update --platform ...</code></p>
-<a href='#installing-with-cocoapod' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='installing-with-cocoapod'>Installing with CocoaPod</h3>
+<a href='#installing-with-cocoapod' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='installing-with-cocoapod'>Installing with CocoaPod</h2>
 
 <p>Add <code>pod &#39;Suas&#39;</code> to your <code>Podfile</code>.</p>
 <pre class="highlight plaintext"><code>use_frameworks!
@@ -224,6 +270,168 @@ pod 'Suas'
 </code></pre>
 
 <p>Then run <code>pod install</code></p>
+<a href='#getting-started' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='getting-started'>Getting started</h1>
+
+<p>Let&rsquo;s get started by building a counter application. </p>
+
+<p>When building applications in Suas, we start by defining the state for our counter. In this example, the counter state is a struct that contains the counter value.</p>
+<pre class="highlight swift"><code><span class="kd">struct</span> <span class="kt">Counter</span> <span class="p">{</span>
+  <span class="k">var</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">Int</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>We then define the actions that affect the state. For the counter, we need increment and decrement actions.</p>
+<pre class="highlight swift"><code><span class="kd">struct</span> <span class="kt">IncrementAction</span><span class="p">:</span> <span class="kt">Action</span> <span class="p">{</span>
+  <span class="k">let</span> <span class="nv">incrementValue</span><span class="p">:</span> <span class="kt">Int</span>
+<span class="p">}</span>
+
+<span class="kd">struct</span> <span class="kt">DecrementAction</span><span class="p">:</span> <span class="kt">Action</span> <span class="p">{</span>
+  <span class="k">let</span> <span class="nv">decrementValue</span><span class="p">:</span> <span class="kt">Int</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>Now that we have both the <code>State</code> and the <code>Actions</code>, we need to specify how actions are going to affect the state. This logic is implemented in the reducer. The counter state reducer looks like the following:</p>
+<pre class="highlight swift"><code><span class="kd">struct</span> <span class="kt">CounterReducer</span><span class="p">:</span> <span class="kt">Reducer</span> <span class="p">{</span>
+
+  <span class="k">var</span> <span class="nv">initialState</span> <span class="o">=</span> <span class="kt">Counter</span><span class="p">(</span><span class="nv">value</span><span class="p">:</span> <span class="mi">0</span><span class="p">)</span>
+
+  <span class="kd">func</span> <span class="nf">reduce</span><span class="p">(</span><span class="nv">state</span><span class="p">:</span> <span class="kt">CounterReducer</span><span class="o">.</span><span class="kt">StateType</span><span class="p">,</span> <span class="nv">action</span><span class="p">:</span> <span class="kt">Action</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">CounterReducer</span><span class="o">.</span><span class="kt">StateType</span><span class="p">?</span> <span class="p">{</span>
+    <span class="c1">// Handle each action</span>
+    <span class="k">if</span> <span class="k">let</span> <span class="nv">action</span> <span class="o">=</span> <span class="n">action</span> <span class="k">as?</span> <span class="kt">IncrementAction</span> <span class="p">{</span>
+      <span class="k">var</span> <span class="nv">newState</span> <span class="o">=</span> <span class="n">state</span>
+      <span class="n">newState</span><span class="o">.</span><span class="n">value</span> <span class="o">+=</span> <span class="n">action</span><span class="o">.</span><span class="n">incrementValue</span>
+      <span class="k">return</span> <span class="n">newState</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="k">let</span> <span class="nv">action</span> <span class="o">=</span> <span class="n">action</span> <span class="k">as?</span> <span class="kt">DecrementAction</span> <span class="p">{</span>
+      <span class="k">var</span> <span class="nv">newState</span> <span class="o">=</span> <span class="n">state</span>
+      <span class="n">newState</span><span class="o">.</span><span class="n">value</span> <span class="o">-=</span> <span class="n">action</span><span class="o">.</span><span class="n">decrementValue</span>
+      <span class="k">return</span> <span class="n">newState</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Important: If action does not affec the state, return ni</span>
+    <span class="k">return</span> <span class="kc">nil</span>
+  <span class="p">}</span>
+
+<span class="p">}</span>
+</code></pre>
+
+<p>The reducer defines two things:</p>
+
+<ol>
+<li>The initial state for the store. i.e. the initial <code>Counter</code> value.</li>
+<li>The reduce function, which receives both the dispatched <code>Action</code> and the current <code>State</code>. This function decides what <code>State</code> to return based on the <code>Action</code>. If the reducer did not change the state, it should return <code>nil</code></li>
+</ol>
+
+<p>The <code>Store</code> is the main component we interact with in the application. The store contains:</p>
+
+<ol>
+<li>The application&rsquo;s state.</li>
+<li>The reducer, or reducers.</li>
+<li>(Advanced) The <a href="https://suas.readme.io/docs/middleware">middlewares</a></li>
+</ol>
+
+<p>We create a store with the following snippet:</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">store</span> <span class="o">=</span> <span class="kt">Suas</span><span class="o">.</span><span class="nf">createStore</span><span class="p">(</span><span class="nv">reducer</span><span class="p">:</span> <span class="n">counterReducer</span><span class="p">)</span>
+</code></pre>
+
+<p>Now we can dispatch actions to it and add listeners to it. Let&rsquo;s look at our UI.</p>
+<pre class="highlight swift"><code><span class="kd">class</span> <span class="kt">CounterViewController</span><span class="p">:</span> <span class="kt">UIViewController</span> <span class="p">{</span>
+  <span class="kd">@IBOutlet</span> <span class="k">weak</span> <span class="k">var</span> <span class="nv">counterValue</span><span class="p">:</span> <span class="kt">UILabel</span><span class="o">!</span>
+
+  <span class="k">override</span> <span class="kd">func</span> <span class="nf">viewDidLoad</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">super</span><span class="o">.</span><span class="nf">viewDidLoad</span><span class="p">()</span>
+    <span class="c1">// Finally: Use the store</span>
+
+    <span class="k">self</span><span class="o">.</span><span class="n">counterValue</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s">"</span><span class="se">\(</span><span class="n">store</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="nf">value</span><span class="p">(</span><span class="nv">forKeyOfType</span><span class="p">:</span> <span class="kt">Counter</span><span class="o">.</span><span class="k">self</span><span class="p">)</span><span class="o">!.</span><span class="n">value</span><span class="se">)</span><span class="s">"</span>
+
+    <span class="c1">// Add a listener to the store</span>
+    <span class="c1">// Notice the [weak self] so we dont leak listeners</span>
+    <span class="k">let</span> <span class="nv">subscription</span> <span class="o">=</span> <span class="n">store</span><span class="o">.</span><span class="nf">addListener</span><span class="p">(</span><span class="nv">forStateType</span><span class="p">:</span> <span class="kt">Counter</span><span class="o">.</span><span class="k">self</span><span class="p">)</span>  <span class="p">{</span> <span class="p">[</span><span class="k">weak</span> <span class="k">self</span><span class="p">]</span> <span class="n">state</span> <span class="k">in</span>
+      <span class="k">self</span><span class="p">?</span><span class="o">.</span><span class="n">counterValue</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s">"</span><span class="se">\(</span><span class="n">state</span><span class="o">.</span><span class="n">value</span><span class="se">)</span><span class="s">"</span>
+    <span class="p">}</span>
+
+    <span class="c1">// When this object is deallocated, the listener will be removed</span>
+    <span class="c1">// Alternatively, you have to delete it by hand `subscription.removeListener()`</span>
+    <span class="n">subscription</span><span class="o">.</span><span class="nf">linkLifeCycleTo</span><span class="p">(</span><span class="nv">object</span><span class="p">:</span> <span class="k">self</span><span class="p">)</span>
+  <span class="p">}</span>
+
+  <span class="kd">@IBAction</span> <span class="kd">func</span> <span class="nf">incrementTapped</span><span class="p">(</span><span class="n">_</span> <span class="nv">sender</span><span class="p">:</span> <span class="kt">Any</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Dispatch actions to the store</span>
+    <span class="n">store</span><span class="o">.</span><span class="nf">dispatch</span><span class="p">(</span><span class="nv">action</span><span class="p">:</span> <span class="kt">IncrementAction</span><span class="p">(</span><span class="nv">incrementValue</span><span class="p">:</span> <span class="mi">1</span><span class="p">))</span>
+  <span class="p">}</span>
+
+  <span class="kd">@IBAction</span> <span class="kd">func</span> <span class="nf">decrementTapped</span><span class="p">(</span><span class="n">_</span> <span class="nv">sender</span><span class="p">:</span> <span class="kt">Any</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Dispatch actions to the store</span>
+    <span class="n">store</span><span class="o">.</span><span class="nf">dispatch</span><span class="p">(</span><span class="nv">action</span><span class="p">:</span> <span class="kt">DecrementAction</span><span class="p">(</span><span class="nv">decrementValue</span><span class="p">:</span> <span class="mi">1</span><span class="p">))</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>Let&rsquo;s break down the code above:
+1. We add a listener to the store by calling <code>store.addListener(forStateType: Counter.self)</code> specifying the state type. 
+Notice that we <strong>Must</strong> use <code>[weak self]</code> reference in the callback block to prevent strong memory cycles.
+2. By calling <code>subscription.linkLifeCycleTo(object: self)</code> we link the listener lifecycle to the view controller. When the controller is deallocated the listener is removed.
+3. Tapping on the increase or decrease button dispatches actions with <code>store.dispatch(action:)</code> that change the state.</p>
+
+<p>That&rsquo;s it, check our <a href="https://suas.readme.io/docs">documentation website</a> for a full reference on Suas components and check the <a href="https://suas.readme.io/docs/list-of-examples">list of example built using Suas</a>.</p>
+<a href='#developer-experience-and-tooling' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='developer-experience-and-tooling'>Developer experience and tooling</h1>
+
+<p>Suas focuses on developer experience and tooling. It provides two plugins in the form of <a href="https://suas.readme.io/docs/middleware">Middlewares</a> out of the box.</p>
+<a href='#customizable-logging' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='customizable-logging'>Customizable logging</h2>
+
+<p>While the <code>LoggerMiddleware</code> logs all the action received with the state changes.</p>
+
+<p align="center">
+<img src="http://i.imgur.com/yFRGNXe.gif" title="source: imgur.com" />
+</p>
+
+<p>Read more about <a href="https://suas.readme.io/docs/logging-in-suas">how to use the LoggerMiddleware</a>.</p>
+<a href='#state-transition-monitoring' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='state-transition-monitoring'>State transition monitoring</h2>
+
+<p>The <code>MonitorMiddleware</code> helps to track state transition and action dispatch history.
+When using <code>MonitorMiddleware</code> the <code>Action</code> dispatched and <code>State</code> changes are sent to our <a href="https://github.com/zendesk/Suas-Monitor">Suas Monitor desktop application</a>.</p>
+
+<p align="center">
+<img src="http://i.imgur.com/QsbDsN7.gif" title="source: imgur.com" />
+</p>
+
+<p>Read how to install and start using the <code>MonitorMiddleware</code> by heading to <a href="https://suas.readme.io/docs/monitor-middleware-monitor-js">getting started with monitor middleware article</a>.
+Under the hood <code>Suas Monitor</code> uses the fantastic <a href="https://github.com/gaearon/redux-devtools">Redux DevTools</a> to provide state and action information.</p>
+<a href='#example-applications-built-with-suas' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='example-applications-built-with-suas'>Example applications built with Suas</h1>
+
+<p>Check Suas website for an updated <a href="https://suas.readme.io/docs/list-of-examples">list of examples built with Suas</a>.</p>
+<a href='#where-to-go-next' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='where-to-go-next'>Where to go next</h1>
+
+<p>To get more information about Suas:
+- Head to <a href="https://suas.readme.io/docs">Suas website</a> for more in-depth knowledge about how to use Suas.
+- Check the <a href="https://zendesk.github.io/Suas-iOS/">Suas API refrerence</a>.
+- Read through how to use Suas by checking <a href="https://suas.readme.io/docs/list-of-examples">some examples built with Suas</a>.
+- Join the conversation on <a href="https://gitter.im/SuasArch/Lobby">Suas gitter channel</a> or get in touch with the <a href="#contact-us">people behind Suas</a>.</p>
+<a href='#contributing' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='contributing'>Contributing</h1>
+
+<p>We love any sort of contribution. From changing the internals of how Suas works, changing Suas methods and public API, changing readmes and <a href="https://suas.readme.io">documentation topics</a>. </p>
+
+<p>Feel free to suggest changes on the GitHub repos or directly <a href="https://gitter.im/SuasArch/Lobby">in Saus gitter channel</a>.</p>
+
+<p>For reference check our <a href="https://suas.readme.io/docs/contributing">contributing</a> guidelines.</p>
+<a href='#contact-us' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='contact-us'>Contact us</h1>
+
+<p>Join our <a href="https://gitter.im/SuasArch/Lobby">gitter channel</a> to talk to other Suas developers.</p>
+
+<p>For any question, suggestion, or just to say hi, you can find the core team on twitter:</p>
+
+<ul>
+<li><a href="https://twitter.com/ifnottrue">Omar Abdelhafith</a></li>
+<li><a href="https://twitter.com/sebchlan">Sebastian Chlan</a></li>
+<li><a href="https://twitter.com/DivoDivenson">Steven Diviney</a></li>
+<li><a href="https://twitter.com/GiacomoRebonato">Giacomo Rebonato</a></li>
+<li><a href="https://twitter.com/">Elvis Porebski</a></li>
+<li><a href="https://twitter.com/@vitornovictor">Vitor Nunes</a></li>
+</ul>
+<a href='#suas-future' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='suas-future'>Suas future</h1>
+
+<p>To help craft Suas future releases, join us on <a href="https://gitter.im/SuasArch/Lobby">gitter channel</a>.</p>
 
           </div>
         </section>
@@ -232,7 +440,7 @@ pod 'Suas'
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2017 <a class="link" href="http://zendesk.com" target="_blank" rel="external">Omar Abdelhafith</a>. All rights reserved. (Last updated: 2017-08-10)</p>
+      <p>&copy; 2017 <a class="link" href="http://zendesk.com" target="_blank" rel="external">Omar Abdelhafith</a>. All rights reserved. (Last updated: 2017-08-14)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>

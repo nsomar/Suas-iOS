@@ -40,7 +40,8 @@ public protocol Reducer {
   var initialState: StateType { get }
   
   /// (Optional) The state key for this reducer. If not implemented (or set) the type of `initialState` will be used as a key.
-  /// It is recommended to not set the `stateKey` and use the type name of the `initialState` instead.
+  ///
+  /// It is **recommended** to not set the `stateKey` as it will use the type name of the `initialState` instead.
   var stateKey: StateKey { get }
   
   /// Generates a new state from the old state and an action
@@ -107,7 +108,8 @@ public final class BlockReducer<StateType>: Reducer {
   public let initialState: StateType
   
   /// (Optional) The state key for this reducer. If not implemented (or set) the type of `initialState` will be used as a key.
-  /// It is recommended to not set the `stateKey` and use the type name of the `initialState` instead.
+  ///
+  /// It is **recommended** to not set the `stateKey` as it will use the type name of the `initialState` instead.
   public let stateKey: String
   
   private let reduceFunction: ReducerFunction<StateType>
@@ -124,8 +126,8 @@ public final class BlockReducer<StateType>: Reducer {
   /// Create a reducer with a state, a state key, and a reduce function
   ///
   /// - Parameters:
-  ///   - state: the initial state of the reducer. This initial state will be used to populate the Store state (which represents the app state)
-  ///   - key: The state key for this reducer. If not implemented (or set) the type of `initialState` will be used as a key.
+  ///   - initialState: the initial state of the reducer. This initial state will be used to populate the Store state (which represents the app state)
+  ///   - stateKey: The state key for this reducer. If not implemented (or set) the type of `initialState` will be used as a key.
   ///   - reduce: the reduce function. A block that receives the current state and dispatched action and return a new state (or nil if the action did not change the state)
   public init(initialState: StateType, stateKey: StateKey, reduce: @escaping ReducerFunction<StateType>) {
     self.initialState = initialState

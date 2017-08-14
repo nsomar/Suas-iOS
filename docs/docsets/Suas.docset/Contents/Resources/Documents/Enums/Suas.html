@@ -62,13 +62,13 @@
             <a class="nav-group-name-link" href="../Global Variables.html">Global Variables</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Global Variables.html#/s:4Suas12EqualsFilterSbyp_yptcv">EqualsFilter</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Global Variables.html#/s:4Suas12alwaysFilterSbyp_yptcv">alwaysFilter</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Global Variables.html#/s:4Suas13defaultLoggerySScv">defaultLogger</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Global Variables.html#/s:4Suas18stateChangedFilterSbyp_yptcv">stateChangedFilter</a>
               </li>
             </ul>
           </li>
@@ -206,44 +206,49 @@
 <p><li>Parameters:</p>
 
 <p><ul>
-<li>reducer: the reducer to use with the store. The reducer will be called when calling dispatch on this store</li>
+<li>reducer: the reducer (or reducers) to use with the store. The reducer will be called when calling dispatch on this store</li>
 <li>state: the initial state to use for this store</li>
-<li>middleware: the store middleware</li>
+<li>middleware: the store middleware or middlewares.</li>
 </ul></li>
 <div class="aside aside-returns">
     <p class="aside-title">Returns</p>
     a new store</p>
 
 <p></div>
-<a href='#example' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='example'>Example</h1></p>
-
-<p>Using a single reducer</p>
-
+<a href='#example' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='example'>Example</h1>
+<a href='#using-a-single-reducer' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='using-a-single-reducer'>Using a single reducer</h2>
 <pre class="highlight plaintext"><code>let store = Suas.createStore(
   reducer: MyReducer()
 )
 </code></pre>
-
-<p>Using a single reducer and some initial state</p>
-
+<a href='#using-a-single-reducer-and-some-initial-state' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='using-a-single-reducer-and-some-initial-state'>Using a single reducer and some initial state</h2>
 <pre class="highlight plaintext"><code>let store = Suas.createStore(
   reducer: MyReducer(),
-  state: ["MyReducerState": MyReducerState(val: 20)]
+  state: [<q>MyReducerState</q>: MyReducerState(val: 20)]
 )
 </code></pre>
-
 <pre class="highlight plaintext"><code>let store = Suas.createStore(
   reducer: MyReducer(),
   state: MyReducerState(val: 20)
 )
 </code></pre>
-
-<p>Using a combination of reducers</p>
-
+<a href='#using-a-combination-of-reducers' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='using-a-combination-of-reducers'>Using a combination of reducers</h2>
 <pre class="highlight plaintext"><code>let store = Suas.createStore(
   reducer: MyReducer() + MyOtherReducer()
 )
 </code></pre>
+<a href='#using-a-single-middleware' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='using-a-single-middleware'>Using a single middleware</h2>
+<pre class="highlight plaintext"><code>let store = Suas.createStore(
+  reducer: ...,
+  middleware: LoggerMiddleware()
+)
+</code></pre>
+<a href='#using-multiple-middlewares' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='using-multiple-middlewares'>Using multiple middlewares</h2>
+<pre class="highlight plaintext"><code>let store = Suas.createStore(
+  reducer: ...,
+  middleware: MyMiddleware() + LoggerMiddleware()
+)
+</code></pre></p>
 
                       </div>
                       <div class="declaration">
@@ -257,7 +262,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/Zendesk/Suas-iOS/Sources/Suas.swift#L56-L63">Show on GitHub</a>
+                        <a href="https://github.com/Zendesk/Suas-iOS/Sources/Suas.swift#L74-L81">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -280,44 +285,49 @@
 <p><li>Parameters:</p>
 
 <p><ul>
-<li>reducer: the reducer to use with the store. The reducer will be called when calling dispatch on this store</li>
+<li>reducer: the reducer (or reducers) to use with the store. The reducer will be called when calling dispatch on this store.</li>
 <li>state: the initial state to use for this store. The state type must be equal to the reducer <code>StateType</code></li>
-<li>middleware: the store middleware</li>
+<li>middleware: the store middleware or middlewares.</li>
 </ul></li>
 <div class="aside aside-returns">
     <p class="aside-title">Returns</p>
     a new store</p>
 
 <p></div>
-<a href='#example' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='example'>Example</h1></p>
-
-<p>Using a single reducer</p>
-
+<a href='#example' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='example'>Example</h1>
+<a href='#using-a-single-reducer' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='using-a-single-reducer'>Using a single reducer</h2>
 <pre class="highlight plaintext"><code>let store = Suas.createStore(
   reducer: MyReducer()
 )
 </code></pre>
-
-<p>Using a single reducer and some initial state</p>
-
+<a href='#using-a-single-reducer-and-some-initial-state' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='using-a-single-reducer-and-some-initial-state'>Using a single reducer and some initial state</h2>
 <pre class="highlight plaintext"><code>let store = Suas.createStore(
   reducer: MyReducer(),
-  state: ["MyReducerState": MyReducerState(val: 20)]
+  state: [<q>MyReducerState</q>: MyReducerState(val: 20)]
 )
 </code></pre>
-
 <pre class="highlight plaintext"><code>let store = Suas.createStore(
   reducer: MyReducer(),
   state: MyReducerState(val: 20)
 )
 </code></pre>
-
-<p>Using a combination of reducers</p>
-
+<a href='#using-a-combination-of-reducers' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='using-a-combination-of-reducers'>Using a combination of reducers</h2>
 <pre class="highlight plaintext"><code>let store = Suas.createStore(
   reducer: MyReducer() + MyOtherReducer()
 )
 </code></pre>
+<a href='#using-a-single-middleware' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='using-a-single-middleware'>Using a single middleware</h2>
+<pre class="highlight plaintext"><code>let store = Suas.createStore(
+  reducer: ...,
+  middleware: LoggerMiddleware()
+)
+</code></pre>
+<a href='#using-multiple-middlewares' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='using-multiple-middlewares'>Using multiple middlewares</h2>
+<pre class="highlight plaintext"><code>let store = Suas.createStore(
+  reducer: ...,
+  middleware: MyMiddleware() + LoggerMiddleware()
+)
+</code></pre></p>
 
                       </div>
                       <div class="declaration">
@@ -331,7 +341,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/Zendesk/Suas-iOS/Sources/Suas.swift#L108-L115">Show on GitHub</a>
+                        <a href="https://github.com/Zendesk/Suas-iOS/Sources/Suas.swift#L144-L151">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -356,43 +366,37 @@
 <p><li>Parameters:</p>
 
 <p><ul>
-<li>reducer: the reducer to use with the store. The reducer will be called when calling dispatch on this store</li>
-<li>middleware: the store middleware</li>
+<li>reducer: the reducer (or reducers) to use with the store. The reducer will be called when calling dispatch on this store.</li>
+<li>middleware: the store middleware or middlewares.</li>
 </ul></li>
 <div class="aside aside-returns">
     <p class="aside-title">Returns</p>
     a new store.</p>
 
 <p></div>
-<a href='#example' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='example'>Example</h1></p>
-
-<p>Using a single reducer</p>
-
+<a href='#example' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='example'>Example</h1>
+<a href='#using-a-single-reducer' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='using-a-single-reducer'>Using a single reducer</h2>
 <pre class="highlight plaintext"><code>let store = Suas.createStore(
   reducer: MyReducer()
 )
 </code></pre>
-
-<p>Using a single reducer and some initial state</p>
-
-<pre class="highlight plaintext"><code>let store = Suas.createStore(
-  reducer: MyReducer(),
-  state: ["MyReducerState": MyReducerState(val: 20)]
-)
-</code></pre>
-
-<pre class="highlight plaintext"><code>let store = Suas.createStore(
-  reducer: MyReducer(),
-  state: MyReducerState(val: 20)
-)
-</code></pre>
-
-<p>Using a combination of reducers</p>
-
+<a href='#using-a-combination-of-reducers' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='using-a-combination-of-reducers'>Using a combination of reducers</h2>
 <pre class="highlight plaintext"><code>let store = Suas.createStore(
   reducer: MyReducer() + MyOtherReducer()
 )
 </code></pre>
+<a href='#using-a-single-middleware' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='using-a-single-middleware'>Using a single middleware</h2>
+<pre class="highlight plaintext"><code>let store = Suas.createStore(
+  reducer: ...,
+  middleware: LoggerMiddleware()
+)
+</code></pre>
+<a href='#using-multiple-middlewares' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='using-multiple-middlewares'>Using multiple middlewares</h2>
+<pre class="highlight plaintext"><code>let store = Suas.createStore(
+  reducer: ...,
+  middleware: MyMiddleware() + LoggerMiddleware()
+)
+</code></pre></p>
 
                       </div>
                       <div class="declaration">
@@ -405,7 +409,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/Zendesk/Suas-iOS/Sources/Suas.swift#L161-L166">Show on GitHub</a>
+                        <a href="https://github.com/Zendesk/Suas-iOS/Sources/Suas.swift#L198-L203">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -418,7 +422,7 @@
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2017 <a class="link" href="http://zendesk.com" target="_blank" rel="external">Omar Abdelhafith</a>. All rights reserved. (Last updated: 2017-08-10)</p>
+      <p>&copy; 2017 <a class="link" href="http://zendesk.com" target="_blank" rel="external">Omar Abdelhafith</a>. All rights reserved. (Last updated: 2017-08-14)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
