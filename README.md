@@ -43,11 +43,11 @@ For more in depth documentation on how to use Suas [check Suas website](https://
 
 Suas architecture is composed of five core elements:
 
-  * [Store](https://suas.readme.io/docs/store): main component that contains a [Reducer](https://suas.readme.io/docs/reducer) (or [set of reducers](https://suas.readme.io/docs/applications-with-multiple-decoupled-states)), the main application [State](https://suas.readme.io/docs/state), and the [Listeners](https://suas.readme.io/docs/listener)  subscribed to it for state changes. [Actions](https://suas.readme.io/docs/action) that cause state changes are dispatched to it.
+  * [Store](https://suas.readme.io/docs/store): main component that contains a [Reducer](https://suas.readme.io/docs/reducer) (or [set of reducers](https://suas.readme.io/docs/applications-with-multiple-decoupled-states)), and the main application [State](https://suas.readme.io/docs/state). [Listeners](https://suas.readme.io/docs/listener) subscribe to it for state changes. [Actions](https://suas.readme.io/docs/action) that cause state changes are dispatched to it.
   * [State](https://suas.readme.io/docs/state): defines the state of a component/screen or group of components/screens.
   * [Action](https://suas.readme.io/docs/action): each action specifies a change we want to effect on the state. 
   * [Reducer](https://suas.readme.io/docs/reducer): contains the logic to alter the state based on a specific action received.
-  * [Listener](https://suas.readme.io/docs/listener): callbacks that gets notified when the state changes.
+  * [Listener](https://suas.readme.io/docs/listener): callback that gets notified when the state changes.
 
 The following animation describes the Suas runtime flow.
 
@@ -60,7 +60,7 @@ Suas helps you to build highly-dynamic, consistent mobile applications:
 
 - Cross platform; Suas-iOS works on iOS, macOS, tvOS and watchOS. [Suas-Android](https://github.com/zendesk/Suas-Android) works on all API levels and provides a Kotlin-friendly interface. 
 - Focuses on [developer experience](#developer-experience-and-tooling) with plugins/tools like [LoggerMiddleware](https://suas.readme.io/docs/logging-in-suas) and [Suas Monitor](https://suas.readme.io/docs/monitor-middleware-monitor-js).
-- Small code base with low operational footprint. Really check the source code 🙂.
+- Small code base with low operational footprint. Check the source code 🙂.
 - Static typing and type information are conserved in the Store, Reducers, and Listeners.
 - Fast out of the box, and can be customized by developers to be even faster [with filtering listeners](https://suas.readme.io/docs/filtering-listeners).
 

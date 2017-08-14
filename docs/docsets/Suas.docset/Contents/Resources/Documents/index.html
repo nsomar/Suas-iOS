@@ -225,11 +225,11 @@
 <p>Suas architecture is composed of five core elements:</p>
 
 <ul>
-<li><a href="https://suas.readme.io/docs/store">Store</a>: main component that contains a <a href="https://suas.readme.io/docs/reducer">Reducer</a> (or <a href="https://suas.readme.io/docs/applications-with-multiple-decoupled-states">set of reducers</a>), the main application <a href="https://suas.readme.io/docs/state">State</a>, and the <a href="https://suas.readme.io/docs/listener">Listeners</a>  subscribed to it for state changes. <a href="https://suas.readme.io/docs/action">Actions</a> that cause state changes are dispatched to it.</li>
+<li><a href="https://suas.readme.io/docs/store">Store</a>: main component that contains a <a href="https://suas.readme.io/docs/reducer">Reducer</a> (or <a href="https://suas.readme.io/docs/applications-with-multiple-decoupled-states">set of reducers</a>), and the main application <a href="https://suas.readme.io/docs/state">State</a>. <a href="https://suas.readme.io/docs/listener">Listeners</a> subscribe to it for state changes. <a href="https://suas.readme.io/docs/action">Actions</a> that cause state changes are dispatched to it.</li>
 <li><a href="https://suas.readme.io/docs/state">State</a>: defines the state of a component/screen or group of components/screens.</li>
 <li><a href="https://suas.readme.io/docs/action">Action</a>: each action specifies a change we want to effect on the state.</li>
 <li><a href="https://suas.readme.io/docs/reducer">Reducer</a>: contains the logic to alter the state based on a specific action received.</li>
-<li><a href="https://suas.readme.io/docs/listener">Listener</a>: callbacks that gets notified when the state changes.</li>
+<li><a href="https://suas.readme.io/docs/listener">Listener</a>: callback that gets notified when the state changes.</li>
 </ul>
 
 <p>The following animation describes the Suas runtime flow.</p>
@@ -244,7 +244,7 @@
 <ul>
 <li>Cross platform; Suas-iOS works on iOS, macOS, tvOS and watchOS. <a href="https://github.com/zendesk/Suas-Android">Suas-Android</a> works on all API levels and provides a Kotlin-friendly interface.</li>
 <li>Focuses on <a href="#developer-experience-and-tooling">developer experience</a> with plugins/tools like <a href="https://suas.readme.io/docs/logging-in-suas">LoggerMiddleware</a> and <a href="https://suas.readme.io/docs/monitor-middleware-monitor-js">Suas Monitor</a>.</li>
-<li>Small code base with low operational footprint. Really check the source code 🙂.</li>
+<li>Small code base with low operational footprint. Check the source code 🙂.</li>
 <li>Static typing and type information are conserved in the Store, Reducers, and Listeners.</li>
 <li>Fast out of the box, and can be customized by developers to be even faster <a href="https://suas.readme.io/docs/filtering-listeners">with filtering listeners</a>.</li>
 </ul>
