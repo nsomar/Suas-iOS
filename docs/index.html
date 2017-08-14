@@ -291,24 +291,28 @@ pod 'Suas'
 </code></pre>
 
 <p>Now that we have both the <code>State</code> and the <code>Actions</code>, we need to specify how actions are going to affect the state. This logic is implemented in the reducer. The counter state reducer looks like the following:</p>
-<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">counterReducer</span> <span class="o">=</span> <span class="kt">BlockReducer</span><span class="p">(</span><span class="nv">state</span><span class="p">:</span> <span class="kt">Counter</span><span class="p">(</span><span class="nv">value</span><span class="p">:</span> <span class="mi">0</span><span class="p">))</span> <span class="p">{</span> <span class="n">state</span><span class="p">,</span> <span class="n">action</span> <span class="k">in</span>
+<pre class="highlight swift"><code><span class="kd">struct</span> <span class="kt">CounterReducer</span><span class="p">:</span> <span class="kt">Reducer</span> <span class="p">{</span>
 
-  <span class="c1">// Handle increment action</span>
-  <span class="k">if</span> <span class="k">let</span> <span class="nv">action</span> <span class="o">=</span> <span class="n">action</span> <span class="k">as?</span> <span class="kt">IncrementAction</span> <span class="p">{</span>
-    <span class="k">var</span> <span class="nv">newState</span> <span class="o">=</span> <span class="n">state</span>
-    <span class="n">newState</span><span class="o">.</span><span class="n">value</span> <span class="o">+=</span> <span class="n">action</span><span class="o">.</span><span class="n">incrementValue</span>
-    <span class="k">return</span> <span class="n">newState</span>
+  <span class="k">var</span> <span class="nv">initialState</span> <span class="o">=</span> <span class="kt">Counter</span><span class="p">(</span><span class="nv">value</span><span class="p">:</span> <span class="mi">0</span><span class="p">)</span>
+
+  <span class="kd">func</span> <span class="nf">reduce</span><span class="p">(</span><span class="nv">state</span><span class="p">:</span> <span class="kt">CounterReducer</span><span class="o">.</span><span class="kt">StateType</span><span class="p">,</span> <span class="nv">action</span><span class="p">:</span> <span class="kt">Action</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">CounterReducer</span><span class="o">.</span><span class="kt">StateType</span><span class="p">?</span> <span class="p">{</span>
+    <span class="c1">// Handle each action</span>
+    <span class="k">if</span> <span class="k">let</span> <span class="nv">action</span> <span class="o">=</span> <span class="n">action</span> <span class="k">as?</span> <span class="kt">IncrementAction</span> <span class="p">{</span>
+      <span class="k">var</span> <span class="nv">newState</span> <span class="o">=</span> <span class="n">state</span>
+      <span class="n">newState</span><span class="o">.</span><span class="n">value</span> <span class="o">+=</span> <span class="n">action</span><span class="o">.</span><span class="n">incrementValue</span>
+      <span class="k">return</span> <span class="n">newState</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="k">let</span> <span class="nv">action</span> <span class="o">=</span> <span class="n">action</span> <span class="k">as?</span> <span class="kt">DecrementAction</span> <span class="p">{</span>
+      <span class="k">var</span> <span class="nv">newState</span> <span class="o">=</span> <span class="n">state</span>
+      <span class="n">newState</span><span class="o">.</span><span class="n">value</span> <span class="o">-=</span> <span class="n">action</span><span class="o">.</span><span class="n">decrementValue</span>
+      <span class="k">return</span> <span class="n">newState</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Important: If action does not affec the state, return ni</span>
+    <span class="k">return</span> <span class="kc">nil</span>
   <span class="p">}</span>
 
-  <span class="c1">// Handle decrement action</span>
-  <span class="k">if</span> <span class="k">let</span> <span class="nv">action</span> <span class="o">=</span> <span class="n">action</span> <span class="k">as?</span> <span class="kt">DecrementAction</span> <span class="p">{</span>
-    <span class="k">var</span> <span class="nv">newState</span> <span class="o">=</span> <span class="n">state</span>
-    <span class="n">newState</span><span class="o">.</span><span class="n">value</span> <span class="o">-=</span> <span class="n">action</span><span class="o">.</span><span class="n">decrementValue</span>
-    <span class="k">return</span> <span class="n">newState</span>
-  <span class="p">}</span>
-
-  <span class="c1">// Important: If action does not affec the state, return nil</span>
-  <span class="k">return</span> <span class="kc">nil</span>
 <span class="p">}</span>
 </code></pre>
 

@@ -120,24 +120,28 @@ struct DecrementAction: Action {
 Now that we have both the `State` and the `Actions`, we need to specify how actions are going to affect the state. This logic is implemented in the reducer. The counter state reducer looks like the following:
 
 ```swift
-let counterReducer = BlockReducer(state: Counter(value: 0)) { state, action in
+struct CounterReducer: Reducer {
 
-  // Handle increment action
-  if let action = action as? IncrementAction {
-    var newState = state
-    newState.value += action.incrementValue
-    return newState
-  }
-  
-  // Handle decrement action
-  if let action = action as? DecrementAction {
-    var newState = state
-    newState.value -= action.decrementValue
-    return newState
+  var initialState = Counter(value: 0)
+
+  func reduce(state: CounterReducer.StateType, action: Action) -> CounterReducer.StateType? {
+    // Handle each action
+    if let action = action as? IncrementAction {
+      var newState = state
+      newState.value += action.incrementValue
+      return newState
+    }
+
+    if let action = action as? DecrementAction {
+      var newState = state
+      newState.value -= action.decrementValue
+      return newState
+    }
+
+    // Important: If action does not affec the state, return ni
+    return nil
   }
 
-  // Important: If action does not affec the state, return nil
-  return nil
 }
 ```
 
