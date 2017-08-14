@@ -7,6 +7,8 @@
 <img src="https://img.shields.io/badge/platform-ios%20%7C%20osx%20%7C%20tvos%20%7C%20watchos-lightgrey.svg?style=flat" alt="Platform support" />
 <a href="https://cocoapods.org/pods/Suas"><img src="https://img.shields.io/cocoapods/v/Suas.svg?style=flat" alt="CocoaPods Compatible" /></a>
 <a href="https://github.com/Carthage/Carthage"><img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat" alt="Carthage Compatible" /></a>
+</p>
+<p align="center">
 <img src="https://img.shields.io/badge/Swift-3.0-orange.svg" alt="Swift Version" />
 <img src="https://img.shields.io/badge/Swift-3.2-orange.svg" alt="Swift Version" />
 <img src="https://img.shields.io/badge/Swift-4.0-orange.svg" alt="Swift Version" />

@@ -8,7 +8,7 @@
 
 import Foundation
 
-/// Protocol used by `stateChangedFilter` filter callback to compare two state values.
+/// Protocol used by `EqualsFilter` filter callback to compare two state values.
 /// If your state implements the `Equatable` protocol there is no code required to implement `SuasDynamicEquatable`
 ///
 /// # Example

@@ -168,7 +168,7 @@ public let alwaysFilter: FilterFunction<Any> = { (oldSubState: Any, newSubState:
 ///   }
 /// }
 ///
-/// let subscription = store.addListener(forStateType: MyState.self, if: stateChangedFilter) { newState in
+/// let subscription = store.addListener(forStateType: MyState.self, if: EqualsFilter) { newState in
 ///   // use new state
 /// }
 /// ```
@@ -189,14 +189,14 @@ public let alwaysFilter: FilterFunction<Any> = { (oldSubState: Any, newSubState:
 /// extension MyState: SuasDynamicEquatable { }
 /// ```
 ///
-/// `stateChangedFilter` now works with `MyState`
+/// `EqualsFilter` now works with `MyState`
 ///
 /// ```
-/// let subscription = store.addListener(forStateType: MyState.self, if: stateChangedFilter) { newState in
+/// let subscription = store.addListener(forStateType: MyState.self, if: EqualsFilter) { newState in
 ///   // use new state
 /// }
 /// ```
-public let stateChangedFilter: FilterFunction<Any> = { (oldSubState: Any, newSubState: Any) in
+public let EqualsFilter: FilterFunction<Any> = { (oldSubState: Any, newSubState: Any) in
 
   if
     let newSubStateEq = newSubState as? SuasDynamicEquatable,
