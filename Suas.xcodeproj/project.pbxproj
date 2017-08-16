@@ -31,8 +31,6 @@
 		D76F34801F236B8A00CE0C66 /* LoggerMiddlewareTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76F347D1F23677A00CE0C66 /* LoggerMiddlewareTests.swift */; };
 		D76F34D91F24281600CE0C66 /* AsyncMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76F34CB1F23EF0B00CE0C66 /* AsyncMiddleware.swift */; };
 		D76F34DA1F24281700CE0C66 /* AsyncMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76F34CB1F23EF0B00CE0C66 /* AsyncMiddleware.swift */; };
-		D76F34DE1F24289D00CE0C66 /* AsyncActionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76F34DD1F24289D00CE0C66 /* AsyncActionExtension.swift */; };
-		D76F34DF1F2428C400CE0C66 /* AsyncActionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76F34DD1F24289D00CE0C66 /* AsyncActionExtension.swift */; };
 		D76F34E31F242C4600CE0C66 /* AsyncMiddlewareTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76F34E11F242C1800CE0C66 /* AsyncMiddlewareTests.swift */; };
 		D76F34E41F242C4700CE0C66 /* AsyncMiddlewareTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76F34E11F242C1800CE0C66 /* AsyncMiddlewareTests.swift */; };
 		D7B1CFD71F2FE9430090D7CA /* Suas.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B1CFD61F2FE9430090D7CA /* Suas.swift */; };
@@ -105,7 +103,6 @@
 		D76F34791F23672D00CE0C66 /* LoggerMiddleware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggerMiddleware.swift; sourceTree = "<group>"; };
 		D76F347D1F23677A00CE0C66 /* LoggerMiddlewareTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggerMiddlewareTests.swift; sourceTree = "<group>"; };
 		D76F34CB1F23EF0B00CE0C66 /* AsyncMiddleware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncMiddleware.swift; sourceTree = "<group>"; };
-		D76F34DD1F24289D00CE0C66 /* AsyncActionExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AsyncActionExtension.swift; path = Sources/Middlewares/AsyncMiddleware/AsyncActionExtension.swift; sourceTree = SOURCE_ROOT; };
 		D76F34E11F242C1800CE0C66 /* AsyncMiddlewareTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncMiddlewareTests.swift; sourceTree = "<group>"; };
 		D7B1CFD61F2FE9430090D7CA /* Suas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Suas.swift; sourceTree = "<group>"; };
 		D7CBAA621F1EC3E100DA67E9 /* Suas.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Suas.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -254,7 +251,6 @@
 			isa = PBXGroup;
 			children = (
 				D76F34CB1F23EF0B00CE0C66 /* AsyncMiddleware.swift */,
-				D76F34DD1F24289D00CE0C66 /* AsyncActionExtension.swift */,
 			);
 			path = AsyncMiddleware;
 			sourceTree = "<group>";
@@ -490,7 +486,6 @@
 				D705514A1F212A2C00022BF1 /* Store.swift in Sources */,
 				D7B1CFD81F2FFAF00090D7CA /* Suas.swift in Sources */,
 				D76F347B1F23673200CE0C66 /* LoggerMiddleware.swift in Sources */,
-				D76F34DF1F2428C400CE0C66 /* AsyncActionExtension.swift in Sources */,
 				D76F34DA1F24281700CE0C66 /* AsyncMiddleware.swift in Sources */,
 				D70551521F212A2C00022BF1 /* Listener.swift in Sources */,
 				D70551511F212A2C00022BF1 /* Middleware.swift in Sources */,
@@ -529,7 +524,6 @@
 				D7CBAA851F1EC4D900DA67E9 /* State.swift in Sources */,
 				D7CBAA8A1F1EC4D900DA67E9 /* Reducer.swift in Sources */,
 				D7CBAA891F1EC4D900DA67E9 /* Common.swift in Sources */,
-				D76F34DE1F24289D00CE0C66 /* AsyncActionExtension.swift in Sources */,
 				D7CBAA881F1EC4D900DA67E9 /* Store.swift in Sources */,
 				D7CBAA8B1F1EC4D900DA67E9 /* Middleware.swift in Sources */,
 				D7CBAA8D1F1ECAA300DA67E9 /* Listener.swift in Sources */,

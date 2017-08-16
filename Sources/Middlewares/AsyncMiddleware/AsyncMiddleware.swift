@@ -120,9 +120,9 @@ public protocol AsyncAction: Action {
 /// store.dispatch(action: MyURLAsyncAction())
 /// ```
 public struct BlockAsyncAction: AsyncAction {
-  private var executionBlock: (GetStateFunction, DispatchFunction) -> ()
+  private var executionBlock: (@escaping GetStateFunction, @escaping DispatchFunction) -> ()
 
-  public init(executionBlock: @escaping (GetStateFunction, DispatchFunction) -> ()) {
+  public init(executionBlock: @escaping (@escaping GetStateFunction, @escaping DispatchFunction) -> ()) {
     self.executionBlock = executionBlock
   }
 
