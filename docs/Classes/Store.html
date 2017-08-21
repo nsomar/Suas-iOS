@@ -8,6 +8,9 @@
     <script src="../js/jquery.min.js" defer></script>
     <script src="../js/jazzy.js" defer></script>
     
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
   </head>
   <body>
 
@@ -20,7 +23,13 @@
         <a class="header-link" href="../index.html">
           Suas Docs
         </a>
-         (90% documented)
+         (91% documented)
+      </p>
+    
+      <p class="header-col--secondary">
+        <form role="search" action="../search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
       </p>
     
         <p class="header-col header-col--secondary">
@@ -169,11 +178,14 @@
               </div>
             <p>Store that contains the application state, the reducer logic, the middleware and the listeners</p>
 
-<p>The store contains four components:
-- <strong>state</strong>: represents the application state. This state is partitioned into state keys. Each key can represents a full application screen, flow, or view controller.
-- <strong>reducer</strong> represents the logic to update the state. A reducer mainly provides a function that updates the state for a paticular action.
-- <strong>middleware</strong>: an object (or list of objects) that intercept an action and can enrich or alter it before finally dispatching it to the reducer.
-- <strong>listener</strong>: a function that gets called when a state is changed.</p>
+<p>The store contains four components:</p>
+
+<ul>
+<li><strong>state</strong>: represents the application state. This state is partitioned into state keys. Each key can represents a full application screen, flow, or view controller.</li>
+<li><strong>reducer</strong> represents the logic to update the state. A reducer mainly provides a function that updates the state for a paticular action.</li>
+<li><strong>middleware</strong>: an object (or list of objects) that intercept an action and can enrich or alter it before finally dispatching it to the reducer.</li>
+<li><strong>listener</strong>: a function that gets called when a state is changed.</li>
+</ul>
 
           </div>
         </section>
@@ -231,12 +243,6 @@
                       <div class="abstract">
                         <p>Dispatches an action to the store</p>
 
-<div class="aside aside-parameter">
-    <p class="aside-title">Parameter</p>
-    Parameter action: the action to dispatch
-
-</div>
-
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
@@ -259,7 +265,6 @@
                               <td>
                                 <div>
                                   <p>the action to dispatch</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -290,49 +295,28 @@
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>Add a listener to the store. The listener will be notified when the state changes.</p>
-
-<p><li>Parameters:</p>
-
-<p><ul>
-<li>type: The type of the state to listen to. If the state type is not found, the listener will not be notified.</li>
-<li>stateKey: (Optional) the state key to listen to. When not passed (or passing nil) the type name from <code>forStateType</code> will be used.
-Only pass when the state key for the state was changed in the reducer (99% of the times you dont need to set this parameter)</li>
-<li>filterBlock: (Optional) block that receives the old state and the new state and it decides wether the notification for the listener should be sent or not.
-When not set, the listener is notified whenever the state changed.</li>
-<li>callback: Notification block called with the new state when the store&rsquo;s state changed.</li>
-</ul></li>
-<div class="aside aside-returns">
-    <p class="aside-title">Returns</p>
-    The Listener&rsquo;s subscription that can be used to remove the notification and for other listener related stuff.</p>
-
-<p></div>
-<a href='#example' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='example'>Example</h1>
-<a href='#adding-a-listener' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='adding-a-listener'>Adding a listener</h2></p>
+<h1 id='example' class='heading'>Example</h1>
+<h2 id='adding-a-listener' class='heading'>Adding a listener</h2>
 
 <p>Add a simple listener for a <code>MyState</code> state type</p>
-
 <pre class="highlight plaintext"><code>let subscription = store.addListener(forStateType: MyState.self) { newState in
   // Do something with the state
 }
 </code></pre>
-
-<p><a href='#adding-a-listener-with-a-filterblock' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='adding-a-listener-with-a-filterblock'>Adding a listener with a filterBlock</h2></p>
+<h2 id='adding-a-listener-with-a-filterblock' class='heading'>Adding a listener with a filterBlock</h2>
 
 <p>Adding a listener for a state of <code>TodoItemsState</code> type with a filter block.
 In the filterBlock we check that the new state has more items than the old state.
 The Listener will be notified only if the filterBlock returns true.</p>
-
 <pre class="highlight plaintext"><code>let subscription = store.addListener(
   forStateType: TodoItemsState.self,
   if: { old, new in return old.todos.count &gt; new.todos.count }) { newState in
     // Do something with the state
 }
 </code></pre>
-
-<p><a href='#adding-a-listener-with-a-state-key' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='adding-a-listener-with-a-state-key'>Adding a listener with a state key</h2></p>
+<h2 id='adding-a-listener-with-a-state-key' class='heading'>Adding a listener with a state key</h2>
 
 <p>Adding a listener for a state of <code>TodoItemsState</code> type, the reducer registered the state key to <q>todos</q></p>
-
 <pre class="highlight plaintext"><code>let subscription = store.addListener(forStateType: TodoItemsState.self, stateKey: "todos") { newState in
   // Do something with the state
 }
@@ -363,7 +347,6 @@ The Listener will be notified only if the filterBlock returns true.</p>
                               <td>
                                 <div>
                                   <p>The type of the state to listen to. If the state type is not found, the listener will not be notified.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -375,8 +358,8 @@ The Listener will be notified only if the filterBlock returns true.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>(Optional) the state key to listen to. When not passed (or passing nil) the type name from <code>forStateType</code> will be used. Only pass when the state key for the state was changed in the reducer (99% of the times you dont need to set this parameter)</p>
-
+                                  <p>(Optional) the state key to listen to. When not passed (or passing nil) the type name from <code>forStateType</code> will be used.
+Only pass when the state key for the state was changed in the reducer (99% of the times you dont need to set this parameter)</p>
                                 </div>
                               </td>
                             </tr>
@@ -388,8 +371,8 @@ The Listener will be notified only if the filterBlock returns true.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>(Optional) block that receives the old state and the new state and it decides wether the notification for the listener should be sent or not. When not set, the listener is notified whenever the state changed.</p>
-
+                                  <p>(Optional) block that receives the old state and the new state and it decides wether the notification for the listener should be sent or not.
+When not set, the listener is notified whenever the state changed.</p>
                                 </div>
                               </td>
                             </tr>
@@ -401,8 +384,7 @@ The Listener will be notified only if the filterBlock returns true.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>Notification block called with the new state when the store’s state changed.</p>
-
+                                  <p>Notification block called with the new state when the store&rsquo;s state changed.</p>
                                 </div>
                               </td>
                             </tr>
@@ -411,8 +393,7 @@ The Listener will be notified only if the filterBlock returns true.</p>
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>The Listener’s subscription that can be used to remove the notification and for other listener related stuff.</p>
-
+                        <p>The Listener&rsquo;s subscription that can be used to remove the notification and for other listener related stuff.</p>
                       </div>
                       <div class="slightly-smaller">
                         <a href="https://github.com/Zendesk/Suas-iOS/Sources/Store.swift#L128-L137">Show on GitHub</a>
@@ -434,27 +415,12 @@ The Listener will be notified only if the filterBlock returns true.</p>
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>Add a listener to the store with a stateSelector</p>
-
-<p><li>Parameters:</p>
-
-<p><ul>
-<li>filterBlock: (Optional) block that receives the old state and the new state and it decides wether the notification for the listener should be sent or not.
-When not set, the listener is notified whenever the state changed.</li>
-<li>stateSelector: state selector block that selects a part of the full state</li>
-<li>callback: Notification block called with the new state when the store&rsquo;s state changed.</li>
-</ul></li>
-<div class="aside aside-returns">
-    <p class="aside-title">Returns</p>
-    The Listener&rsquo;s subscription that can be used to remove the notification and for other listener related stuff.</p>
-
-<p></div>
-<a href='#example' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='example'>Example</h1>
-<a href='#adding-a-listener-with-a-state-selector' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='adding-a-listener-with-a-state-selector'>Adding a listener with a state selector</h2></p>
+<h1 id='example' class='heading'>Example</h1>
+<h2 id='adding-a-listener-with-a-state-selector' class='heading'>Adding a listener with a state selector</h2>
 
 <p>Add a simple listener for the full state with a state selector that selects part of it.</p>
 
 <p>Create a state selector that selects and creates a <code>TodoItemsState</code> from the full <code>Store</code> state.</p>
-
 <pre class="highlight plaintext"><code>let stateSelector: StateSelector&lt;TodoItemsState&gt; = { state in
   // Read values from the store
   let value1 = state.value(forKeyOfType: SomeType.self)
@@ -466,18 +432,15 @@ When not set, the listener is notified whenever the state changed.</li>
 </code></pre>
 
 <p>Add a listener with the state selector and</p>
-
 <pre class="highlight plaintext"><code>let subscription = store.addListener(stateSelector: stateSelector) { newState in
   // newState here is a TodoItemsState
 }
 </code></pre>
-
-<p><a href='#adding-a-listener-with-a-state-selector-and-a-filter-block' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='adding-a-listener-with-a-state-selector-and-a-filter-block'>Adding a listener with a state selector and a filter block</h2></p>
+<h2 id='adding-a-listener-with-a-state-selector-and-a-filter-block' class='heading'>Adding a listener with a state selector and a filter block</h2>
 
 <p>Add a simple listener for the full state with a state selector that selects part of it and a filter block that decide when to notify.</p>
 
 <p>Create a state selector that selects and creates a <code>TodoItemsState</code> from the full <code>Store</code> state.</p>
-
 <pre class="highlight plaintext"><code>let stateSelector: StateSelector&lt;TodoItemsState&gt; = { state in
   // Read values from the store
   let value1 = state.value(forKeyOfType: SomeType.self)
@@ -489,7 +452,6 @@ When not set, the listener is notified whenever the state changed.</li>
 </code></pre>
 
 <p>Add a filter block that decides when to notify</p>
-
 <pre class="highlight plaintext"><code>let filterBlock: FilterFunction&lt;State&gt; = { oldState, newState in
   // Read a string from the oldState and newState
   // oldState and newState are the full Store state
@@ -502,7 +464,6 @@ When not set, the listener is notified whenever the state changed.</li>
 </code></pre>
 
 <p>Add a listener with the state selector and</p>
-
 <pre class="highlight plaintext"><code>let subscription = store.addListener(stateSelector: stateSelector) { newState in
   // newState here is a TodoItemsState
 }
@@ -531,8 +492,8 @@ When not set, the listener is notified whenever the state changed.</li>
                               </td>
                               <td>
                                 <div>
-                                  <p>(Optional) block that receives the old state and the new state and it decides wether the notification for the listener should be sent or not. When not set, the listener is notified whenever the state changed.</p>
-
+                                  <p>(Optional) block that receives the old state and the new state and it decides wether the notification for the listener should be sent or not.
+When not set, the listener is notified whenever the state changed.</p>
                                 </div>
                               </td>
                             </tr>
@@ -545,7 +506,6 @@ When not set, the listener is notified whenever the state changed.</li>
                               <td>
                                 <div>
                                   <p>state selector block that selects a part of the full state</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -557,8 +517,7 @@ When not set, the listener is notified whenever the state changed.</li>
                               </td>
                               <td>
                                 <div>
-                                  <p>Notification block called with the new state when the store’s state changed.</p>
-
+                                  <p>Notification block called with the new state when the store&rsquo;s state changed.</p>
                                 </div>
                               </td>
                             </tr>
@@ -567,8 +526,7 @@ When not set, the listener is notified whenever the state changed.</li>
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>The Listener’s subscription that can be used to remove the notification and for other listener related stuff.</p>
-
+                        <p>The Listener&rsquo;s subscription that can be used to remove the notification and for other listener related stuff.</p>
                       </div>
                       <div class="slightly-smaller">
                         <a href="https://github.com/Zendesk/Suas-iOS/Sources/Store.swift#L211-L217">Show on GitHub</a>
@@ -591,24 +549,10 @@ When not set, the listener is notified whenever the state changed.</li>
                       <div class="abstract">
                         <p>Add a listener to the store. The listener will be notified when the state changes.
 The listener will be notified with the full state when </p>
-
-<p><li>Parameters:</p>
-
-<p><ul>
-<li>filterBlock: (Optional) block that receives the old state and the new state and it decides wether the notification for the listener should be sent or not.
-When not set, the listener is notified whenever the state changed.</li>
-<li>callback: Notification block called with the new state when the store&rsquo;s state changed.</li>
-</ul></li>
-<div class="aside aside-returns">
-    <p class="aside-title">Returns</p>
-    The Listener&rsquo;s subscription that can be used to remove the notification and for other listener related stuff.</p>
-
-<p></div>
-<a href='#example' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='example'>Example</h1>
-<a href='#adding-a-listener' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='adding-a-listener'>Adding a listener</h2></p>
+<h1 id='example' class='heading'>Example</h1>
+<h2 id='adding-a-listener' class='heading'>Adding a listener</h2>
 
 <p>Add a simple listener for the full state.</p>
-
 <pre class="highlight plaintext"><code>let subscription = addListener { newState in
   // Do something with the state
 
@@ -622,13 +566,11 @@ When not set, the listener is notified whenever the state changed.</li>
   let value3 = newState.value(forKey: "TheKey", ofType: MyState.self)
 }
 </code></pre>
-
-<p><a href='#adding-a-listener-with-a-filterblock' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='adding-a-listener-with-a-filterblock'>Adding a listener with a filterBlock</h2></p>
+<h2 id='adding-a-listener-with-a-filterblock' class='heading'>Adding a listener with a filterBlock</h2>
 
 <p>Adding a listener for the full state with a filter block.
 In the filterBlock we check that the new state has more than 10 items.
 The Listener will be notified only if the filterBlock returns true.</p>
-
 <pre class="highlight plaintext"><code>let subscription = store.addListener(if: { oldState, newState in
 
   // Read values from the oldState and the newState
@@ -663,8 +605,8 @@ The Listener will be notified only if the filterBlock returns true.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>(Optional) block that receives the old state and the new state and it decides wether the notification for the listener should be sent or not. When not set, the listener is notified whenever the state changed.</p>
-
+                                  <p>(Optional) block that receives the old state and the new state and it decides wether the notification for the listener should be sent or not.
+When not set, the listener is notified whenever the state changed.</p>
                                 </div>
                               </td>
                             </tr>
@@ -676,8 +618,7 @@ The Listener will be notified only if the filterBlock returns true.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>Notification block called with the new state when the store’s state changed.</p>
-
+                                  <p>Notification block called with the new state when the store&rsquo;s state changed.</p>
                                 </div>
                               </td>
                             </tr>
@@ -686,8 +627,7 @@ The Listener will be notified only if the filterBlock returns true.</p>
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>The Listener’s subscription that can be used to remove the notification and for other listener related stuff.</p>
-
+                        <p>The Listener&rsquo;s subscription that can be used to remove the notification and for other listener related stuff.</p>
                       </div>
                       <div class="slightly-smaller">
                         <a href="https://github.com/Zendesk/Suas-iOS/Sources/Store.swift#L265-L271">Show on GitHub</a>
@@ -710,23 +650,9 @@ The Listener will be notified only if the filterBlock returns true.</p>
                       <div class="abstract">
                         <p>Add a new action listner to the store. Action listeners will be notified whenever a new action is dispatched.
 Inside the action notification you cast to the specific ation and read the payload of the action.</p>
-
-<div class="aside aside-parameter">
-    <p class="aside-title">Parameter</p>
-    Parameter actionListener: Notification block called when an action happens.
-
-</div>
-
-<div class="aside aside-returns">
-    <p class="aside-title">Returns</p>
-    The Listener&rsquo;s subscription that can be used to remove the notification and for other listener related stuff.
-
-</div>
-
-<p><a href='#example' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='example'>Example</h1></p>
+<h1 id='example' class='heading'>Example</h1>
 
 <p>Add an action listener, this action listener will be notified when an action is dispatched.</p>
-
 <pre class="highlight plaintext"><code>let subscription = addActionListener { action in
 
   // Cast to some of your actions
@@ -761,7 +687,6 @@ Inside the action notification you cast to the specific ation and read the paylo
                               <td>
                                 <div>
                                   <p>Notification block called when an action happens.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -770,8 +695,7 @@ Inside the action notification you cast to the specific ation and read the paylo
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>The Listener’s subscription that can be used to remove the notification and for other listener related stuff.</p>
-
+                        <p>The Listener&rsquo;s subscription that can be used to remove the notification and for other listener related stuff.</p>
                       </div>
                       <div class="slightly-smaller">
                         <a href="https://github.com/Zendesk/Suas-iOS/Sources/Store.swift#L296-L300">Show on GitHub</a>
@@ -798,12 +722,6 @@ Inside the action notification you cast to the specific ation and read the paylo
                       <div class="abstract">
                         <p>Reset the store internal state for a particular key. They key will be the dynamic type of state.</p>
 
-<div class="aside aside-parameter">
-    <p class="aside-title">Parameter</p>
-    Parameter state: the new state
-
-</div>
-
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
@@ -826,7 +744,6 @@ Inside the action notification you cast to the specific ation and read the paylo
                               <td>
                                 <div>
                                   <p>the new state</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -854,15 +771,6 @@ Inside the action notification you cast to the specific ation and read the paylo
                       <div class="abstract">
                         <p>Reset the store internal state for a specific key</p>
 
-<ul>
-<li>Parameters:
-
-<ul>
-<li>state: the new state</li>
-<li>key: the state key to set</li>
-</ul></li>
-</ul>
-
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
@@ -885,7 +793,6 @@ Inside the action notification you cast to the specific ation and read the paylo
                               <td>
                                 <div>
                                   <p>the new state</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -898,7 +805,6 @@ Inside the action notification you cast to the specific ation and read the paylo
                               <td>
                                 <div>
                                   <p>the state key to set</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -926,12 +832,6 @@ Inside the action notification you cast to the specific ation and read the paylo
                       <div class="abstract">
                         <p>Resets the full internal state with a new state</p>
 
-<div class="aside aside-parameter">
-    <p class="aside-title">Parameter</p>
-    Parameter state: the state to reset to
-
-</div>
-
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
@@ -954,7 +854,6 @@ Inside the action notification you cast to the specific ation and read the paylo
                               <td>
                                 <div>
                                   <p>the state to reset to</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -975,8 +874,8 @@ Inside the action notification you cast to the specific ation and read the paylo
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2017 <a class="link" href="http://zendesk.com" target="_blank" rel="external">Omar Abdelhafith</a>. All rights reserved. (Last updated: 2017-08-16)</p>
-      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+      <p>&copy; 2017 <a class="link" href="http://zendesk.com" target="_blank" rel="external">Zendesk</a>. All rights reserved. (Last updated: 2017-08-21)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
 </div>

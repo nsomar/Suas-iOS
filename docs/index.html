@@ -8,6 +8,9 @@
     <script src="js/jquery.min.js" defer></script>
     <script src="js/jazzy.js" defer></script>
     
+    <script src="js/lunr.min.js" defer></script>
+    <script src="js/typeahead.jquery.js" defer></script>
+    <script src="js/jazzy.search.js" defer></script>
   </head>
   <body>
 
@@ -19,7 +22,13 @@
         <a class="header-link" href="index.html">
           Suas Docs
         </a>
-         (90% documented)
+         (91% documented)
+      </p>
+    
+      <p class="header-col--secondary">
+        <form role="search" action="search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
       </p>
     
         <p class="header-col header-col--secondary">
@@ -186,7 +195,7 @@
 <p>Suas focuses on providing <a href="#developer-experience-and-tooling">good developer experience</a> and tooling such as <a href="#customizable-logging">customizable logging</a> and <a href="#state-changes-monitoring">state changes monitoring</a>.</p>
 
 <p>Join our <a href="https://gitter.im/SuasArch/Lobby">gitter chat channel</a> for any questions. Or check <a href="https://suas.readme.io">Suas documentatation website</a>.</p>
-<a href='#what-39-s-on-this-page' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='what-39-s-on-this-page'>What&rsquo;s on this page</h1>
+<h1 id='what-39-s-on-this-page' class='heading'>What&rsquo;s on this page</h1>
 
 <ul>
 <li><a href="#suas-application-flow-and-components">Suas application flow and components</a></li>
@@ -202,7 +211,7 @@
 </ul>
 
 <p>For more in depth documentation on how to use Suas <a href="https://suas.readme.io">check Suas website</a>, <a href="https://zendesk.github.io/Suas-iOS/">Suas API Interface</a> or go straight to a <a href="https://suas.readme.io/docs/list-of-examples">list of applications built with Suas</a>.</p>
-<a href='#suas-application-flow-and-components' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='suas-application-flow-and-components'>Suas application flow and components</h1>
+<h1 id='suas-application-flow-and-components' class='heading'>Suas application flow and components</h1>
 
 <p>Suas architecture is composed of five core elements:</p>
 
@@ -219,7 +228,7 @@
 <p align="center">
 <img src="http://i.imgur.com/E7Cx2tf.gif" title="source: imgur.com" />
 </p>
-<a href='#why-use-suas' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='why-use-suas'>Why use Suas</h1>
+<h1 id='why-use-suas' class='heading'>Why use Suas</h1>
 
 <p>Suas helps you to build highly-dynamic, consistent mobile applications:</p>
 
@@ -230,17 +239,17 @@
 <li>Static typing and type information are conserved in the Store, Reducers, and Listeners.</li>
 <li>Fast out of the box, and can be customized by developers to be even faster <a href="https://suas.readme.io/docs/filtering-listeners">with filtering listeners</a>.</li>
 </ul>
-<a href='#installation' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='installation'>Installation</h1>
+<h1 id='installation' class='heading'>Installation</h1>
 
 <p>Suas on the iOS can be installed with <a href="https://github.com/Carthage/Carthage">Carthage</a> or <a href="https://cocoapods.org">CocoaPods</a></p>
-<a href='#installing-with-carthage' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='installing-with-carthage'>Installing with Carthage</h2>
+<h2 id='installing-with-carthage' class='heading'>Installing with Carthage</h2>
 
 <p>Open your <code>Cartfile</code> and append the following:</p>
 <pre class="highlight plaintext"><code>github "zendesk/suas-ios"
 </code></pre>
 
 <p>And then build it with <code>carthage update --platform ...</code></p>
-<a href='#installing-with-cocoapod' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='installing-with-cocoapod'>Installing with CocoaPod</h2>
+<h2 id='installing-with-cocoapod' class='heading'>Installing with CocoaPod</h2>
 
 <p>Add <code>pod &#39;Suas&#39;</code> to your <code>Podfile</code>.</p>
 <pre class="highlight plaintext"><code>use_frameworks!
@@ -252,7 +261,7 @@ pod 'Suas'
 </code></pre>
 
 <p>Then run <code>pod install</code></p>
-<a href='#getting-started' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='getting-started'>Getting started</h1>
+<h1 id='getting-started' class='heading'>Getting started</h1>
 
 <p>Let&rsquo;s get started by building a counter application. </p>
 
@@ -350,17 +359,20 @@ pod 'Suas'
 <span class="p">}</span>
 </code></pre>
 
-<p>Let&rsquo;s break down the code above:
-1. We add a listener to the store by calling <code>store.addListener(forStateType: Counter.self)</code> specifying the state type. 
-Notice that we <strong>Must</strong> use <code>[weak self]</code> reference in the callback block to prevent strong memory cycles.
-2. By calling <code>subscription.linkLifeCycleTo(object: self)</code> we link the listener lifecycle to the view controller. When the controller is deallocated the listener is removed.
-3. Tapping on the increase or decrease button dispatches actions with <code>store.dispatch(action:)</code> that change the state.</p>
+<p>Let&rsquo;s break down the code above:</p>
+
+<ol>
+<li>We add a listener to the store by calling <code>store.addListener(forStateType: Counter.self)</code> specifying the state type. 
+Notice that we <strong>Must</strong> use <code>[weak self]</code> reference in the callback block to prevent strong memory cycles.</li>
+<li>By calling <code>subscription.linkLifeCycleTo(object: self)</code> we link the listener lifecycle to the view controller. When the controller is deallocated the listener is removed.</li>
+<li>Tapping on the increase or decrease button dispatches actions with <code>store.dispatch(action:)</code> that change the state.</li>
+</ol>
 
 <p>That&rsquo;s it, check our <a href="https://suas.readme.io/docs">documentation website</a> for a full reference on Suas components and check the <a href="https://suas.readme.io/docs/list-of-examples">list of example built using Suas</a>.</p>
-<a href='#developer-experience-and-tooling' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='developer-experience-and-tooling'>Developer experience and tooling</h1>
+<h1 id='developer-experience-and-tooling' class='heading'>Developer experience and tooling</h1>
 
 <p>Suas focuses on developer experience and tooling. It provides two plugins in the form of <a href="https://suas.readme.io/docs/middleware">Middlewares</a> out of the box.</p>
-<a href='#customizable-logging' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='customizable-logging'>Customizable logging</h2>
+<h2 id='customizable-logging' class='heading'>Customizable logging</h2>
 
 <p>While the <code>LoggerMiddleware</code> logs all the action received with the state changes.</p>
 
@@ -369,7 +381,7 @@ Notice that we <strong>Must</strong> use <code>[weak self]</code> reference in t
 </p>
 
 <p>Read more about <a href="https://suas.readme.io/docs/logging-in-suas">how to use the LoggerMiddleware</a>.</p>
-<a href='#state-transition-monitoring' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='state-transition-monitoring'>State transition monitoring</h2>
+<h2 id='state-transition-monitoring' class='heading'>State transition monitoring</h2>
 
 <p>The <code>MonitorMiddleware</code> helps to track state transition and action dispatch history.
 When using <code>MonitorMiddleware</code> the <code>Action</code> dispatched and <code>State</code> changes are sent to our <a href="https://github.com/zendesk/Suas-Monitor">Suas Monitor desktop application</a>.</p>
@@ -380,24 +392,27 @@ When using <code>MonitorMiddleware</code> the <code>Action</code> dispatched and
 
 <p>Read how to install and start using the <code>MonitorMiddleware</code> by heading to <a href="https://suas.readme.io/docs/monitor-middleware-monitor-js">getting started with monitor middleware article</a>.
 Under the hood <code>Suas Monitor</code> uses the fantastic <a href="https://github.com/gaearon/redux-devtools">Redux DevTools</a> to provide state and action information.</p>
-<a href='#example-applications-built-with-suas' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='example-applications-built-with-suas'>Example applications built with Suas</h1>
+<h1 id='example-applications-built-with-suas' class='heading'>Example applications built with Suas</h1>
 
 <p>Check Suas website for an updated <a href="https://suas.readme.io/docs/list-of-examples">list of examples built with Suas</a>.</p>
-<a href='#where-to-go-next' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='where-to-go-next'>Where to go next</h1>
+<h1 id='where-to-go-next' class='heading'>Where to go next</h1>
 
-<p>To get more information about Suas:
-- Head to <a href="https://suas.readme.io/docs">Suas website</a> for more in-depth knowledge about how to use Suas.
-- Check the <a href="https://zendesk.github.io/Suas-iOS/">Suas API refrerence</a>.
-- Read through how to use Suas by checking <a href="https://suas.readme.io/docs/list-of-examples">some examples built with Suas</a>.
-- Join the conversation on <a href="https://gitter.im/SuasArch/Lobby">Suas gitter channel</a> or get in touch with the <a href="#contact-us">people behind Suas</a>.</p>
-<a href='#contributing' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='contributing'>Contributing</h1>
+<p>To get more information about Suas:</p>
+
+<ul>
+<li>Head to <a href="https://suas.readme.io/docs">Suas website</a> for more in-depth knowledge about how to use Suas.</li>
+<li>Check the <a href="https://zendesk.github.io/Suas-iOS/">Suas API refrerence</a>.</li>
+<li>Read through how to use Suas by checking <a href="https://suas.readme.io/docs/list-of-examples">some examples built with Suas</a>.</li>
+<li>Join the conversation on <a href="https://gitter.im/SuasArch/Lobby">Suas gitter channel</a> or get in touch with the <a href="#contact-us">people behind Suas</a>.</li>
+</ul>
+<h1 id='contributing' class='heading'>Contributing</h1>
 
 <p>We love any sort of contribution. From changing the internals of how Suas works, changing Suas methods and public API, changing readmes and <a href="https://suas.readme.io">documentation topics</a>. </p>
 
 <p>Feel free to suggest changes on the GitHub repos or directly <a href="https://gitter.im/SuasArch/Lobby">in Saus gitter channel</a>.</p>
 
 <p>For reference check our <a href="https://suas.readme.io/docs/contributing">contributing</a> guidelines.</p>
-<a href='#contact-us' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='contact-us'>Contact us</h1>
+<h1 id='contact-us' class='heading'>Contact us</h1>
 
 <p>Join our <a href="https://gitter.im/SuasArch/Lobby">gitter channel</a> to talk to other Suas developers.</p>
 
@@ -411,9 +426,16 @@ Under the hood <code>Suas Monitor</code> uses the fantastic <a href="https://git
 <li><a href="https://twitter.com/">Elvis Porebski</a></li>
 <li><a href="https://twitter.com/@vitornovictor">Vitor Nunes</a></li>
 </ul>
-<a href='#suas-future' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='suas-future'>Suas future</h1>
+<h1 id='suas-future' class='heading'>Suas future</h1>
 
 <p>To help craft Suas future releases, join us on <a href="https://gitter.im/SuasArch/Lobby">gitter channel</a>.</p>
+<h1 id='copyright-and-license' class='heading'>Copyright and license</h1>
+<pre class="highlight plaintext"><code>Copyright 2017 Zendesk, Inc.
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+http://www.apache.org/licenses/LICENSE-2.0
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+</code></pre>
 
           </div>
         </section>
@@ -422,8 +444,8 @@ Under the hood <code>Suas Monitor</code> uses the fantastic <a href="https://git
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2017 <a class="link" href="http://zendesk.com" target="_blank" rel="external">Omar Abdelhafith</a>. All rights reserved. (Last updated: 2017-08-16)</p>
-      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+      <p>&copy; 2017 <a class="link" href="http://zendesk.com" target="_blank" rel="external">Zendesk</a>. All rights reserved. (Last updated: 2017-08-21)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
 </div>

@@ -8,6 +8,9 @@
     <script src="../js/jquery.min.js" defer></script>
     <script src="../js/jazzy.js" defer></script>
     
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
   </head>
   <body>
 
@@ -20,7 +23,13 @@
         <a class="header-link" href="../index.html">
           Suas Docs
         </a>
-         (90% documented)
+         (91% documented)
+      </p>
+    
+      <p class="header-col--secondary">
+        <form role="search" action="../search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
       </p>
     
         <p class="header-col header-col--secondary">
@@ -168,11 +177,9 @@
                 </div>
               </div>
             <p>Create a reducer inline with a block</p>
-
-<p><a href='#example' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='example'>Example</h1></p>
+<h1 id='example' class='heading'>Example</h1>
 
 <p>Create a reducer without defining a class/struct that implements <code><a href="../Protocols/Reducer.html">Reducer</a></code></p>
-
 <pre class="highlight plaintext"><code>let myReducer = BlockReducer(state: 1) { state, action in
   guard let newState = state as? Int else { return state }
 
@@ -272,15 +279,6 @@ This initial state will be used to populate the Store state (which represents th
                       <div class="abstract">
                         <p>Create a reducer with a state and a reduce function</p>
 
-<ul>
-<li>Parameters:
-
-<ul>
-<li>state: the initial state of the reducer. This initial state will be used to populate the Store state (which represents the app state)</li>
-<li>reduce: the reduce function. A block that receives the current state and dispatched action and return a new state (or nil if the action did not change the state)</li>
-</ul></li>
-</ul>
-
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
@@ -303,7 +301,6 @@ This initial state will be used to populate the Store state (which represents th
                               <td>
                                 <div>
                                   <p>the initial state of the reducer. This initial state will be used to populate the Store state (which represents the app state)</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -316,7 +313,6 @@ This initial state will be used to populate the Store state (which represents th
                               <td>
                                 <div>
                                   <p>the reduce function. A block that receives the current state and dispatched action and return a new state (or nil if the action did not change the state)</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -344,16 +340,6 @@ This initial state will be used to populate the Store state (which represents th
                       <div class="abstract">
                         <p>Create a reducer with a state, a state key, and a reduce function</p>
 
-<ul>
-<li>Parameters:
-
-<ul>
-<li>initialState: the initial state of the reducer. This initial state will be used to populate the Store state (which represents the app state)</li>
-<li>stateKey: The state key for this reducer. If not implemented (or set) the type of <code><a href="../Classes/BlockReducer.html#/s:vC4Suas12BlockReducer12initialStatex">initialState</a></code> will be used as a key.</li>
-<li>reduce: the reduce function. A block that receives the current state and dispatched action and return a new state (or nil if the action did not change the state)</li>
-</ul></li>
-</ul>
-
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
@@ -376,7 +362,6 @@ This initial state will be used to populate the Store state (which represents th
                               <td>
                                 <div>
                                   <p>the initial state of the reducer. This initial state will be used to populate the Store state (which represents the app state)</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -389,7 +374,6 @@ This initial state will be used to populate the Store state (which represents th
                               <td>
                                 <div>
                                   <p>The state key for this reducer. If not implemented (or set) the type of <code>initialState</code> will be used as a key.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -402,7 +386,6 @@ This initial state will be used to populate the Store state (which represents th
                               <td>
                                 <div>
                                   <p>the reduce function. A block that receives the current state and dispatched action and return a new state (or nil if the action did not change the state)</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -428,18 +411,7 @@ This initial state will be used to populate the Store state (which represents th
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Create a reducer with a state, a state key, and a reduce function</p>
-
-<ul>
-<li>Parameters:
-
-<ul>
-<li>initialState: the initial state of the reducer. This initial state will be used to populate the Store state (which represents the app state)</li>
-<li>stateKey: The state key for this reducer. If not implemented (or set) the type of <code><a href="../Classes/BlockReducer.html#/s:vC4Suas12BlockReducer12initialStatex">initialState</a></code> will be used as a key.</li>
-<li>reduce: the reduce function. A block that receives the current state and dispatched action and return a new state (or nil if the action did not change the state)</li>
-</ul></li>
-</ul>
-
+                        
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
@@ -461,8 +433,7 @@ This initial state will be used to populate the Store state (which represents th
                               </td>
                               <td>
                                 <div>
-                                  <p>the current state for this reducer type</p>
-
+                                  
                                 </div>
                               </td>
                             </tr>
@@ -474,18 +445,12 @@ This initial state will be used to populate the Store state (which represents th
                               </td>
                               <td>
                                 <div>
-                                  <p>the action dispatched to the store</p>
-
+                                  
                                 </div>
                               </td>
                             </tr>
                           </tbody>
                         </table>
-                      </div>
-                      <div>
-                        <h4>Return Value</h4>
-                        <p>the new state</p>
-
                       </div>
                       <div class="slightly-smaller">
                         <a href="https://github.com/Zendesk/Suas-iOS/Sources/Reducer.swift#L138-L140">Show on GitHub</a>
@@ -501,8 +466,8 @@ This initial state will be used to populate the Store state (which represents th
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2017 <a class="link" href="http://zendesk.com" target="_blank" rel="external">Omar Abdelhafith</a>. All rights reserved. (Last updated: 2017-08-16)</p>
-      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+      <p>&copy; 2017 <a class="link" href="http://zendesk.com" target="_blank" rel="external">Zendesk</a>. All rights reserved. (Last updated: 2017-08-21)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
 </div>

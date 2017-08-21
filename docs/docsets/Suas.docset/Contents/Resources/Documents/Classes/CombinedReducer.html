@@ -8,6 +8,9 @@
     <script src="../js/jquery.min.js" defer></script>
     <script src="../js/jazzy.js" defer></script>
     
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
   </head>
   <body>
 
@@ -20,7 +23,13 @@
         <a class="header-link" href="../index.html">
           Suas Docs
         </a>
-         (90% documented)
+         (91% documented)
+      </p>
+    
+      <p class="header-col--secondary">
+        <form role="search" action="../search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
       </p>
     
         <p class="header-col header-col--secondary">
@@ -169,16 +178,13 @@
               </div>
             <p>Reducer that represents a combination of two reducers
 This reducers is not to be implemented by hand. You combine reducer by adding them with the <code>+</code> operator.</p>
-
 <pre class="highlight plaintext"><code>let combinedReducers = Reducer1() + Reducer2() + Reducer3()
 </code></pre>
-
-<p><a href='#example' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='example'>Example</h1>
-<a href='#combine-reducers' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='combine-reducers'>Combine reducers</h2></p>
+<h1 id='example' class='heading'>Example</h1>
+<h2 id='combine-reducers' class='heading'>Combine reducers</h2>
 
 <p>If your application has two screens, you can model that with two states, for example <code>TodoList</code> and <code>Settings</code> states.
 We can then create two reducers for each of these states.</p>
-
 <pre class="highlight plaintext"><code>let todoReducer = BlockReducer(state: TodoList.self) { state, action in
   guard let newState = state as? Int else { return state }
 
@@ -201,20 +207,17 @@ let settingsReducer = BlockReducer(state: Settings.self) { state, action in
 </code></pre>
 
 <p>We can then combine these 2 reducers with:</p>
-
 <pre class="highlight plaintext"><code>let store = Suas.createStore(
   reducer: todoReducer + settingsReducer
 )
 </code></pre>
 
 <p><code>todoReducer</code> will handle the <q>TodoList</q> key of state and <code>settingsReducer</code> will handle the <q>Settings</q> portoon of the full Store state</p>
-
-<p><a href='#combine-reducers-with-custom-state-key' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='combine-reducers-with-custom-state-key'>Combine reducers with custom state key</h2></p>
+<h2 id='combine-reducers-with-custom-state-key' class='heading'>Combine reducers with custom state key</h2>
 
 <p>If a store has a state with two keys <q>key1</q> and <q>key2</q>. We can register a reducer for each one of these keys.</p>
 
 <p>We create two reducers with <code>stateKey</code>s of <q>key1</q> and <q>key2</q></p>
-
 <pre class="highlight plaintext"><code>let myReducer1 = BlockReducer(state: 1, key: "key1") { state, action in
   guard let newState = state as? Int else { return state }
 
@@ -237,7 +240,6 @@ let myReducer2 = BlockReducer(state: 1, key: "key2") { state, action in
 </code></pre>
 
 <p>We can then combine these 2 reducers with:</p>
-
 <pre class="highlight plaintext"><code>let store = Suas.createStore(
   reducer: myReducer1 + myReducer2
 )
@@ -265,84 +267,7 @@ let myReducer2 = BlockReducer(state: 1, key: "key2") { state, action in
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Reducer that represents a combination of two reducers
-This reducers is not to be implemented by hand. You combine reducer by adding them with the <code>+</code> operator.</p>
-
-<pre class="highlight plaintext"><code>let combinedReducers = Reducer1() + Reducer2() + Reducer3()
-</code></pre>
-
-<p><a href='#example' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='example'>Example</h1>
-<a href='#combine-reducers' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='combine-reducers'>Combine reducers</h2></p>
-
-<p>If your application has two screens, you can model that with two states, for example <code>TodoList</code> and <code>Settings</code> states.
-We can then create two reducers for each of these states.</p>
-
-<pre class="highlight plaintext"><code>let todoReducer = BlockReducer(state: TodoList.self) { state, action in
-  guard let newState = state as? Int else { return state }
-
-  if action is SomeAction {
-    return newState + 1
-  }
-
-  return newState
-}
-
-let settingsReducer = BlockReducer(state: Settings.self) { state, action in
-  guard let newState = state as? Int else { return state }
-
-  if action is SomeAction {
-    return newState + 1
-  }
-
-  return newState
-}
-</code></pre>
-
-<p>We can then combine these 2 reducers with:</p>
-
-<pre class="highlight plaintext"><code>let store = Suas.createStore(
-  reducer: todoReducer + settingsReducer
-)
-</code></pre>
-
-<p><code>todoReducer</code> will handle the <q>TodoList</q> key of state and <code>settingsReducer</code> will handle the <q>Settings</q> portoon of the full Store state</p>
-
-<p><a href='#combine-reducers-with-custom-state-key' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='combine-reducers-with-custom-state-key'>Combine reducers with custom state key</h2></p>
-
-<p>If a store has a state with two keys <q>key1</q> and <q>key2</q>. We can register a reducer for each one of these keys.</p>
-
-<p>We create two reducers with <code>stateKey</code>s of <q>key1</q> and <q>key2</q></p>
-
-<pre class="highlight plaintext"><code>let myReducer1 = BlockReducer(state: 1, key: "key1") { state, action in
-  guard let newState = state as? Int else { return state }
-
-  if action is SomeAction {
-    return newState + 1
-  }
-
-  return newState
-}
-
-let myReducer2 = BlockReducer(state: 1, key: "key2") { state, action in
-  guard let newState = state as? Int else { return state }
-
-  if action is SomeAction {
-    return newState + 1
-  }
-
-  return newState
-}
-</code></pre>
-
-<p>We can then combine these 2 reducers with:</p>
-
-<pre class="highlight plaintext"><code>let store = Suas.createStore(
-  reducer: myReducer1 + myReducer2
-)
-</code></pre>
-
-<p><code>myReducer1</code> will handle the <q>key1</q> key of state and <code>myReducer2</code> will handle the <q>key2</q> key of state</p>
-
+                        
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
@@ -371,84 +296,7 @@ let myReducer2 = BlockReducer(state: 1, key: "key2") { state, action in
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Reducer that represents a combination of two reducers
-This reducers is not to be implemented by hand. You combine reducer by adding them with the <code>+</code> operator.</p>
-
-<pre class="highlight plaintext"><code>let combinedReducers = Reducer1() + Reducer2() + Reducer3()
-</code></pre>
-
-<p><a href='#example' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='example'>Example</h1>
-<a href='#combine-reducers' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='combine-reducers'>Combine reducers</h2></p>
-
-<p>If your application has two screens, you can model that with two states, for example <code>TodoList</code> and <code>Settings</code> states.
-We can then create two reducers for each of these states.</p>
-
-<pre class="highlight plaintext"><code>let todoReducer = BlockReducer(state: TodoList.self) { state, action in
-  guard let newState = state as? Int else { return state }
-
-  if action is SomeAction {
-    return newState + 1
-  }
-
-  return newState
-}
-
-let settingsReducer = BlockReducer(state: Settings.self) { state, action in
-  guard let newState = state as? Int else { return state }
-
-  if action is SomeAction {
-    return newState + 1
-  }
-
-  return newState
-}
-</code></pre>
-
-<p>We can then combine these 2 reducers with:</p>
-
-<pre class="highlight plaintext"><code>let store = Suas.createStore(
-  reducer: todoReducer + settingsReducer
-)
-</code></pre>
-
-<p><code>todoReducer</code> will handle the <q>TodoList</q> key of state and <code>settingsReducer</code> will handle the <q>Settings</q> portoon of the full Store state</p>
-
-<p><a href='#combine-reducers-with-custom-state-key' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='combine-reducers-with-custom-state-key'>Combine reducers with custom state key</h2></p>
-
-<p>If a store has a state with two keys <q>key1</q> and <q>key2</q>. We can register a reducer for each one of these keys.</p>
-
-<p>We create two reducers with <code>stateKey</code>s of <q>key1</q> and <q>key2</q></p>
-
-<pre class="highlight plaintext"><code>let myReducer1 = BlockReducer(state: 1, key: "key1") { state, action in
-  guard let newState = state as? Int else { return state }
-
-  if action is SomeAction {
-    return newState + 1
-  }
-
-  return newState
-}
-
-let myReducer2 = BlockReducer(state: 1, key: "key2") { state, action in
-  guard let newState = state as? Int else { return state }
-
-  if action is SomeAction {
-    return newState + 1
-  }
-
-  return newState
-}
-</code></pre>
-
-<p>We can then combine these 2 reducers with:</p>
-
-<pre class="highlight plaintext"><code>let store = Suas.createStore(
-  reducer: myReducer1 + myReducer2
-)
-</code></pre>
-
-<p><code>myReducer1</code> will handle the <q>key1</q> key of state and <code>myReducer2</code> will handle the <q>key2</q> key of state</p>
-
+                        
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
@@ -470,8 +318,7 @@ let myReducer2 = BlockReducer(state: 1, key: "key2") { state, action in
                               </td>
                               <td>
                                 <div>
-                                  <p>the current state for this reducer type</p>
-
+                                  
                                 </div>
                               </td>
                             </tr>
@@ -483,18 +330,12 @@ let myReducer2 = BlockReducer(state: 1, key: "key2") { state, action in
                               </td>
                               <td>
                                 <div>
-                                  <p>the action dispatched to the store</p>
-
+                                  
                                 </div>
                               </td>
                             </tr>
                           </tbody>
                         </table>
-                      </div>
-                      <div>
-                        <h4>Return Value</h4>
-                        <p>the new state</p>
-
                       </div>
                       <div class="slightly-smaller">
                         <a href="https://github.com/Zendesk/Suas-iOS/Sources/Reducer.swift#L247-L268">Show on GitHub</a>
@@ -510,8 +351,8 @@ let myReducer2 = BlockReducer(state: 1, key: "key2") { state, action in
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2017 <a class="link" href="http://zendesk.com" target="_blank" rel="external">Omar Abdelhafith</a>. All rights reserved. (Last updated: 2017-08-16)</p>
-      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+      <p>&copy; 2017 <a class="link" href="http://zendesk.com" target="_blank" rel="external">Zendesk</a>. All rights reserved. (Last updated: 2017-08-21)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
 </div>

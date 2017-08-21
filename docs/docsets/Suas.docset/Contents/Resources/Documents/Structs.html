@@ -8,6 +8,9 @@
     <script src="js/jquery.min.js" defer></script>
     <script src="js/jazzy.js" defer></script>
     
+    <script src="js/lunr.min.js" defer></script>
+    <script src="js/typeahead.jquery.js" defer></script>
+    <script src="js/jazzy.search.js" defer></script>
   </head>
   <body>
 
@@ -19,7 +22,13 @@
         <a class="header-link" href="index.html">
           Suas Docs
         </a>
-         (90% documented)
+         (91% documented)
+      </p>
+    
+      <p class="header-col--secondary">
+        <form role="search" action="search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
       </p>
     
         <p class="header-col header-col--secondary">
@@ -184,11 +193,9 @@
                       <div class="abstract">
                         <p>LoggerMiddleware that logs the action and state when each action is received
 When an action is dispatched, the LoggerMiddleware will print information related to it in the console.</p>
-
-<p><a href='#example' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='example'>Example</h1></p>
+<h1 id='example' class='heading'>Example</h1>
 
 <p>Adding LoggerMiddleware</p>
-
 <pre class="highlight plaintext"><code>let store = Suas.createStore(
   reducer: ...,
   middleware: LoggerMiddleware()
@@ -196,7 +203,6 @@ When an action is dispatched, the LoggerMiddleware will print information relate
 </code></pre>
 
 <p>When actions are dispatched, you get something similar to this printed to the console.</p>
-
 <pre class="highlight plaintext"><code>┌───→ Action: IncrementAction @19:15:39.419
 ├─ Prev state ► State(innerState: ["Counter": CounterExample.Counter(value: 0)])
 ├─ Action     ► IncrementAction(incrementValue: 1)
@@ -240,13 +246,14 @@ When an action is dispatched, the LoggerMiddleware will print information relate
                         <p>Create an <code><a href="Protocols/AsyncAction.html">AsyncAction</a></code> inline by passing a block to the init
 Check <code><a href="Protocols/AsyncAction.html">AsyncAction</a></code> for more info</p>
 
-<p>SeeAlso:
-- <code><a href="Protocols/AsyncAction.html">AsyncAction</a></code></p>
+<p>SeeAlso:</p>
 
-<p><a href='#example' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='example'>Example</h1></p>
+<ul>
+<li><code><a href="Protocols/AsyncAction.html">AsyncAction</a></code></li>
+</ul>
+<h1 id='example' class='heading'>Example</h1>
 
 <p>Performing an async network request</p>
-
 <pre class="highlight plaintext"><code>let action = BlockAsyncAction { getState, dispatch in
 
   // Read the current state from the Store
@@ -306,13 +313,19 @@ store.dispatch(action: MyURLAsyncAction())
                         <p>Async Middleware handles actions of type <code><a href="Protocols/AsyncAction.html">AsyncAction</a></code></p>
 
 <p><code><a href="Protocols/AsyncAction.html">AsyncAction</a></code> are not dispatched to the reducer
-When <code>AsyncMiddleware</code> intercepts an <code><a href="Protocols/AsyncAction.html">AsyncAction</a></code> it does the following:
-1. Call <code>action.execute</code> on that action
-2. the action <code>execute</code> is executed which receives the <code>getState</code> and <code>dispatch</code> function as its parameters
-3. the <code>execute</code> calls dispatch as many times as wanted, dispatching new actions (can also disptach new <code><a href="Protocols/AsyncAction.html">AsyncAction</a></code>)</p>
+When <code>AsyncMiddleware</code> intercepts an <code><a href="Protocols/AsyncAction.html">AsyncAction</a></code> it does the following:</p>
 
-<p>SeeAlso:
-- <code><a href="Protocols/AsyncAction.html">AsyncAction</a></code></p>
+<ol>
+<li>Call <code>action.execute</code> on that action</li>
+<li>the action <code>execute</code> is executed which receives the <code>getState</code> and <code>dispatch</code> function as its parameters</li>
+<li>the <code>execute</code> calls dispatch as many times as wanted, dispatching new actions (can also disptach new <code><a href="Protocols/AsyncAction.html">AsyncAction</a></code>)</li>
+</ol>
+
+<p>SeeAlso:</p>
+
+<ul>
+<li><code><a href="Protocols/AsyncAction.html">AsyncAction</a></code></li>
+</ul>
 
                         <a href="Structs/AsyncMiddleware.html" class="slightly-smaller">See more</a>
                       </div>
@@ -350,7 +363,6 @@ When <code>AsyncMiddleware</code> intercepts an <code><a href="Protocols/AsyncAc
                         <p>Structure that represents the store state. The store state is kept as a <code>Dictionary</code> with <code>String</code> Keys and <code>Any</code> Values (<code>[String: Any]</code>)</p>
 
 <p>For example, the state with two struct looks like:</p>
-
 <pre class="highlight plaintext"><code>[
   "TodoItems": TodoItems(....),
   "AppSettings": AppSettings(....)
@@ -449,8 +461,8 @@ When adding a listener you get a subscription back. You can use this subscriptio
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2017 <a class="link" href="http://zendesk.com" target="_blank" rel="external">Omar Abdelhafith</a>. All rights reserved. (Last updated: 2017-08-16)</p>
-      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+      <p>&copy; 2017 <a class="link" href="http://zendesk.com" target="_blank" rel="external">Zendesk</a>. All rights reserved. (Last updated: 2017-08-21)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
 </div>
