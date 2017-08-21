@@ -8,6 +8,9 @@
     <script src="../js/jquery.min.js" defer></script>
     <script src="../js/jazzy.js" defer></script>
     
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
   </head>
   <body>
 
@@ -20,7 +23,13 @@
         <a class="header-link" href="../index.html">
           Suas Docs
         </a>
-         (90% documented)
+         (91% documented)
+      </p>
+    
+      <p class="header-col--secondary">
+        <form role="search" action="../search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
       </p>
     
         <p class="header-col header-col--secondary">
@@ -170,7 +179,6 @@
             <p>Structure that represents the store state. The store state is kept as a <code>Dictionary</code> with <code>String</code> Keys and <code>Any</code> Values (<code>[String: Any]</code>)</p>
 
 <p>For example, the state with two struct looks like:</p>
-
 <pre class="highlight plaintext"><code>[
   "TodoItems": TodoItems(....),
   "AppSettings": AppSettings(....)
@@ -187,62 +195,6 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:iV4Suas5State9subscriptFSSGSqP__"></a>
-                    <a name="//apple_ref/swift/Method/subscript(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:iV4Suas5State9subscriptFSSGSqP__">subscript(_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Get a value for a key</p>
-
-<div class="aside aside-parameter">
-    <p class="aside-title">Parameter</p>
-    Parameter key: the key to get the value for.
-
-</div>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">subscript</span><span class="p">(</span><span class="nv">key</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Any</span><span class="p">?</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>key</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>the key to get the value for.</p>
-
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/Zendesk/Suas-iOS/Sources/State.swift#L84">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
                     <a name="/s:FV4Suas5StatecFT10dictionaryGVs10DictionarySSP___S0_"></a>
                     <a name="//apple_ref/swift/Method/init(dictionary:)" class="dashAnchor"></a>
                     <a class="token" href="#/s:FV4Suas5StatecFT10dictionaryGVs10DictionarySSP___S0_">init(dictionary:)</a>
@@ -254,12 +206,6 @@
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>Initialize a state with a dictionary</p>
-
-<div class="aside aside-parameter">
-    <p class="aside-title">Parameter</p>
-    Parameter dictionary: the dictionary to initialize the state with
-
-</div>
 
                       </div>
                       <div class="declaration">
@@ -283,7 +229,6 @@
                               <td>
                                 <div>
                                   <p>the dictionary to initialize the state with</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -292,6 +237,55 @@
                       </div>
                       <div class="slightly-smaller">
                         <a href="https://github.com/Zendesk/Suas-iOS/Sources/State.swift#L75-L78">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:iV4Suas5State9subscriptFSSGSqP__"></a>
+                    <a name="//apple_ref/swift/Method/subscript(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:iV4Suas5State9subscriptFSSGSqP__">subscript(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get a value for a key</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">subscript</span><span class="p">(</span><span class="nv">key</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Any</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>key</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the key to get the value for.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/Zendesk/Suas-iOS/Sources/State.swift#L84">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -310,18 +304,6 @@
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>Get a value for a key</p>
-
-<div class="aside aside-parameter">
-    <p class="aside-title">Parameter</p>
-    Parameter key: the key to get the value for
-
-</div>
-
-<div class="aside aside-returns">
-    <p class="aside-title">Returns</p>
-    the state value for the key if found
-
-</div>
 
                       </div>
                       <div class="declaration">
@@ -345,7 +327,6 @@
                               <td>
                                 <div>
                                   <p>the key to get the value for</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -355,7 +336,6 @@
                       <div>
                         <h4>Return Value</h4>
                         <p>the state value for the key if found</p>
-
                       </div>
                       <div class="slightly-smaller">
                         <a href="https://github.com/Zendesk/Suas-iOS/Sources/State.swift#L97-L99">Show on GitHub</a>
@@ -377,18 +357,6 @@
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>Get a value for a key of specific type</p>
-
-<div class="aside aside-parameter">
-    <p class="aside-title">Parameter</p>
-    Parameter type: the type to use for casting and fetching the state key
-
-</div>
-
-<div class="aside aside-returns">
-    <p class="aside-title">Returns</p>
-    if the key is found and if its of the passed type then return it. Otherwise return nil.
-
-</div>
 
                       </div>
                       <div class="declaration">
@@ -412,7 +380,6 @@
                               <td>
                                 <div>
                                   <p>the type to use for casting and fetching the state key</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -422,7 +389,6 @@
                       <div>
                         <h4>Return Value</h4>
                         <p>if the key is found and if its of the passed type then return it. Otherwise return nil.</p>
-
                       </div>
                       <div class="slightly-smaller">
                         <a href="https://github.com/Zendesk/Suas-iOS/Sources/State.swift#L105-L108">Show on GitHub</a>
@@ -444,18 +410,6 @@
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>Get a value for a key of specific type</p>
-
-<p><li>Parameters:</p>
-
-<p><ul>
-<li>key: the key to get the value for</li>
-<li>type: the type to cast the state to</li>
-</ul></li>
-<div class="aside aside-returns">
-    <p class="aside-title">Returns</p>
-    if the key is found and if its of the passed type then return it. Otherwise return nil.</p>
-
-<p></div></p>
 
                       </div>
                       <div class="declaration">
@@ -479,7 +433,6 @@
                               <td>
                                 <div>
                                   <p>the key to get the value for</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -492,7 +445,6 @@
                               <td>
                                 <div>
                                   <p>the type to cast the state to</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -502,7 +454,6 @@
                       <div>
                         <h4>Return Value</h4>
                         <p>if the key is found and if its of the passed type then return it. Otherwise return nil.</p>
-
                       </div>
                       <div class="slightly-smaller">
                         <a href="https://github.com/Zendesk/Suas-iOS/Sources/State.swift#L116-L118">Show on GitHub</a>
@@ -559,12 +510,6 @@
                       <div class="abstract">
                         <p>Initialize a State with a dictionary literal</p>
 
-<div class="aside aside-parameter">
-    <p class="aside-title">Parameter</p>
-    Parameter elements: the dictionary literal to initialzie the StoreSate
-
-</div>
-
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
@@ -587,7 +532,6 @@
                               <td>
                                 <div>
                                   <p>the dictionary literal to initialzie the StoreSate</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -608,8 +552,8 @@
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2017 <a class="link" href="http://zendesk.com" target="_blank" rel="external">Omar Abdelhafith</a>. All rights reserved. (Last updated: 2017-08-16)</p>
-      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+      <p>&copy; 2017 <a class="link" href="http://zendesk.com" target="_blank" rel="external">Zendesk</a>. All rights reserved. (Last updated: 2017-08-21)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
 </div>

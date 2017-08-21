@@ -8,6 +8,9 @@
     <script src="../js/jquery.min.js" defer></script>
     <script src="../js/jazzy.js" defer></script>
     
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
   </head>
   <body>
 
@@ -20,7 +23,13 @@
         <a class="header-link" href="../index.html">
           Suas Docs
         </a>
-         (90% documented)
+         (91% documented)
+      </p>
+    
+      <p class="header-col--secondary">
+        <form role="search" action="../search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
       </p>
     
         <p class="header-col header-col--secondary">
@@ -169,11 +178,9 @@
               </div>
             <p>LoggerMiddleware that logs the action and state when each action is received
 When an action is dispatched, the LoggerMiddleware will print information related to it in the console.</p>
-
-<p><a href='#example' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='example'>Example</h1></p>
+<h1 id='example' class='heading'>Example</h1>
 
 <p>Adding LoggerMiddleware</p>
-
 <pre class="highlight plaintext"><code>let store = Suas.createStore(
   reducer: ...,
   middleware: LoggerMiddleware()
@@ -181,7 +188,6 @@ When an action is dispatched, the LoggerMiddleware will print information relate
 </code></pre>
 
 <p>When actions are dispatched, you get something similar to this printed to the console.</p>
-
 <pre class="highlight plaintext"><code>┌───→ Action: IncrementAction @19:15:39.419
 ├─ Prev state ► State(innerState: ["Counter": CounterExample.Counter(value: 0)])
 ├─ Action     ► IncrementAction(incrementValue: 1)
@@ -210,22 +216,6 @@ When an action is dispatched, the LoggerMiddleware will print information relate
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>Create a LoggerMiddleware</p>
-
-<ul>
-<li>Parameters:
-
-<ul>
-<li>showTimestamp: show or hide the timestamp when receiving the action (optional, defaults to true)</li>
-<li>showDuration: show or hide the duration of reducing the action (optional, defaults to false)</li>
-<li>lineLength: specifies the maximum length of the printed lines (optional no max length)</li>
-<li>predicate: callback that decides if the logger should print or not (optional, defaults always print)</li>
-<li>debugOnly: print the debug message in Debug only or Debug and Release configurations (optional, defaults print in debug only configuration)</li>
-<li>titleFormatter: callback that defines the format of the log title (optional)</li>
-<li>stateTransformer: callback that allow converting the state to a differnt type before printing it (optional)</li>
-<li>actionTransformer: callback that allow converting the action to a differnt type before printing it (optional)</li>
-<li>logger: callback that receives the final string to print to console (optional, print to console)</li>
-</ul></li>
-</ul>
 
                       </div>
                       <div class="declaration">
@@ -259,7 +249,6 @@ When an action is dispatched, the LoggerMiddleware will print information relate
                               <td>
                                 <div>
                                   <p>show or hide the timestamp when receiving the action (optional, defaults to true)</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -272,7 +261,6 @@ When an action is dispatched, the LoggerMiddleware will print information relate
                               <td>
                                 <div>
                                   <p>show or hide the duration of reducing the action (optional, defaults to false)</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -285,7 +273,6 @@ When an action is dispatched, the LoggerMiddleware will print information relate
                               <td>
                                 <div>
                                   <p>specifies the maximum length of the printed lines (optional no max length)</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -298,7 +285,6 @@ When an action is dispatched, the LoggerMiddleware will print information relate
                               <td>
                                 <div>
                                   <p>callback that decides if the logger should print or not (optional, defaults always print)</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -311,7 +297,6 @@ When an action is dispatched, the LoggerMiddleware will print information relate
                               <td>
                                 <div>
                                   <p>print the debug message in Debug only or Debug and Release configurations (optional, defaults print in debug only configuration)</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -324,7 +309,6 @@ When an action is dispatched, the LoggerMiddleware will print information relate
                               <td>
                                 <div>
                                   <p>callback that defines the format of the log title (optional)</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -337,7 +321,6 @@ When an action is dispatched, the LoggerMiddleware will print information relate
                               <td>
                                 <div>
                                   <p>callback that allow converting the state to a differnt type before printing it (optional)</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -350,7 +333,6 @@ When an action is dispatched, the LoggerMiddleware will print information relate
                               <td>
                                 <div>
                                   <p>callback that allow converting the action to a differnt type before printing it (optional)</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -363,7 +345,6 @@ When an action is dispatched, the LoggerMiddleware will print information relate
                               <td>
                                 <div>
                                   <p>callback that receives the final string to print to console (optional, print to console)</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -389,24 +370,7 @@ When an action is dispatched, the LoggerMiddleware will print information relate
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Create a LoggerMiddleware</p>
-
-<ul>
-<li>Parameters:
-
-<ul>
-<li>showTimestamp: show or hide the timestamp when receiving the action (optional, defaults to true)</li>
-<li>showDuration: show or hide the duration of reducing the action (optional, defaults to false)</li>
-<li>lineLength: specifies the maximum length of the printed lines (optional no max length)</li>
-<li>predicate: callback that decides if the logger should print or not (optional, defaults always print)</li>
-<li>debugOnly: print the debug message in Debug only or Debug and Release configurations (optional, defaults print in debug only configuration)</li>
-<li>titleFormatter: callback that defines the format of the log title (optional)</li>
-<li>stateTransformer: callback that allow converting the state to a differnt type before printing it (optional)</li>
-<li>actionTransformer: callback that allow converting the action to a differnt type before printing it (optional)</li>
-<li>logger: callback that receives the final string to print to console (optional, print to console)</li>
-</ul></li>
-</ul>
-
+                        
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
@@ -431,8 +395,7 @@ When an action is dispatched, the LoggerMiddleware will print information relate
                               </td>
                               <td>
                                 <div>
-                                  <p>the dispatched action</p>
-
+                                  
                                 </div>
                               </td>
                             </tr>
@@ -453,8 +416,8 @@ When an action is dispatched, the LoggerMiddleware will print information relate
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2017 <a class="link" href="http://zendesk.com" target="_blank" rel="external">Omar Abdelhafith</a>. All rights reserved. (Last updated: 2017-08-16)</p>
-      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+      <p>&copy; 2017 <a class="link" href="http://zendesk.com" target="_blank" rel="external">Zendesk</a>. All rights reserved. (Last updated: 2017-08-21)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
 </div>

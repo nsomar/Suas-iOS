@@ -8,6 +8,9 @@
     <script src="js/jquery.min.js" defer></script>
     <script src="js/jazzy.js" defer></script>
     
+    <script src="js/lunr.min.js" defer></script>
+    <script src="js/typeahead.jquery.js" defer></script>
+    <script src="js/jazzy.search.js" defer></script>
   </head>
   <body>
 
@@ -19,7 +22,13 @@
         <a class="header-link" href="index.html">
           Suas Docs
         </a>
-         (90% documented)
+         (91% documented)
+      </p>
+    
+      <p class="header-col--secondary">
+        <form role="search" action="search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
       </p>
     
         <p class="header-col header-col--secondary">
@@ -183,11 +192,9 @@
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>Create a reducer inline with a block</p>
-
-<p><a href='#example' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='example'>Example</h1></p>
+<h1 id='example' class='heading'>Example</h1>
 
 <p>Create a reducer without defining a class/struct that implements <code><a href="Protocols/Reducer.html">Reducer</a></code></p>
-
 <pre class="highlight plaintext"><code>let myReducer = BlockReducer(state: 1) { state, action in
   guard let newState = state as? Int else { return state }
 
@@ -233,16 +240,13 @@
                       <div class="abstract">
                         <p>Reducer that represents a combination of two reducers
 This reducers is not to be implemented by hand. You combine reducer by adding them with the <code>+</code> operator.</p>
-
 <pre class="highlight plaintext"><code>let combinedReducers = Reducer1() + Reducer2() + Reducer3()
 </code></pre>
-
-<p><a href='#example' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='example'>Example</h1>
-<a href='#combine-reducers' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='combine-reducers'>Combine reducers</h2></p>
+<h1 id='example' class='heading'>Example</h1>
+<h2 id='combine-reducers' class='heading'>Combine reducers</h2>
 
 <p>If your application has two screens, you can model that with two states, for example <code>TodoList</code> and <code>Settings</code> states.
 We can then create two reducers for each of these states.</p>
-
 <pre class="highlight plaintext"><code>let todoReducer = BlockReducer(state: TodoList.self) { state, action in
   guard let newState = state as? Int else { return state }
 
@@ -265,20 +269,17 @@ let settingsReducer = BlockReducer(state: Settings.self) { state, action in
 </code></pre>
 
 <p>We can then combine these 2 reducers with:</p>
-
 <pre class="highlight plaintext"><code>let store = Suas.createStore(
   reducer: todoReducer + settingsReducer
 )
 </code></pre>
 
 <p><code>todoReducer</code> will handle the <q>TodoList</q> key of state and <code>settingsReducer</code> will handle the <q>Settings</q> portoon of the full Store state</p>
-
-<p><a href='#combine-reducers-with-custom-state-key' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='combine-reducers-with-custom-state-key'>Combine reducers with custom state key</h2></p>
+<h2 id='combine-reducers-with-custom-state-key' class='heading'>Combine reducers with custom state key</h2>
 
 <p>If a store has a state with two keys <q>key1</q> and <q>key2</q>. We can register a reducer for each one of these keys.</p>
 
 <p>We create two reducers with <code>stateKey</code>s of <q>key1</q> and <q>key2</q></p>
-
 <pre class="highlight plaintext"><code>let myReducer1 = BlockReducer(state: 1, key: "key1") { state, action in
   guard let newState = state as? Int else { return state }
 
@@ -301,7 +302,6 @@ let myReducer2 = BlockReducer(state: 1, key: "key2") { state, action in
 </code></pre>
 
 <p>We can then combine these 2 reducers with:</p>
-
 <pre class="highlight plaintext"><code>let store = Suas.createStore(
   reducer: myReducer1 + myReducer2
 )
@@ -344,11 +344,14 @@ let myReducer2 = BlockReducer(state: 1, key: "key2") { state, action in
                       <div class="abstract">
                         <p>Store that contains the application state, the reducer logic, the middleware and the listeners</p>
 
-<p>The store contains four components:
-- <strong>state</strong>: represents the application state. This state is partitioned into state keys. Each key can represents a full application screen, flow, or view controller.
-- <strong>reducer</strong> represents the logic to update the state. A reducer mainly provides a function that updates the state for a paticular action.
-- <strong>middleware</strong>: an object (or list of objects) that intercept an action and can enrich or alter it before finally dispatching it to the reducer.
-- <strong>listener</strong>: a function that gets called when a state is changed.</p>
+<p>The store contains four components:</p>
+
+<ul>
+<li><strong>state</strong>: represents the application state. This state is partitioned into state keys. Each key can represents a full application screen, flow, or view controller.</li>
+<li><strong>reducer</strong> represents the logic to update the state. A reducer mainly provides a function that updates the state for a paticular action.</li>
+<li><strong>middleware</strong>: an object (or list of objects) that intercept an action and can enrich or alter it before finally dispatching it to the reducer.</li>
+<li><strong>listener</strong>: a function that gets called when a state is changed.</li>
+</ul>
 
                         <a href="Classes/Store.html" class="slightly-smaller">See more</a>
                       </div>
@@ -384,23 +387,22 @@ let myReducer2 = BlockReducer(state: 1, key: "key2") { state, action in
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>Create a middleware inline with a block.</p>
-
-<p><a href='#example' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='example'>Example</h1>
+<h1 id='example' class='heading'>Example</h1>
 <pre class="highlight plaintext"><code>let middleware = BlockMiddleware { action, getState, dispatch, next in
   // Read the state before any reducer changes it
-  print(<q>The old state is \(getState())</q>)</p>
+  print("The old state is \(getState())")
 
-<p>// Print the action
-  print(<q>The action is \(action)</q>)</p>
+  // Print the action
+  print("The action is \(action)")
 
-<p>// Continue the dispatching process..until the reducer reduces the action
-  // Not calling <code>next</code> will prevent the action from reaching the reducer
-  next?(action)</p>
+  // Continue the dispatching process..until the reducer reduces the action
+  // Not calling `next` will prevent the action from reaching the reducer
+  next?(action)
 
-<p>// Read the state after any reducer changes it
-  print(<q>The new state is \(api?.state)</q>)
+  // Read the state after any reducer changes it
+  print("The new state is \(api?.state)")
 }
-</code></pre></p>
+</code></pre>
 
                         <a href="Classes/BlockMiddleware.html" class="slightly-smaller">See more</a>
                       </div>
@@ -426,8 +428,8 @@ let myReducer2 = BlockReducer(state: 1, key: "key2") { state, action in
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2017 <a class="link" href="http://zendesk.com" target="_blank" rel="external">Omar Abdelhafith</a>. All rights reserved. (Last updated: 2017-08-16)</p>
-      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+      <p>&copy; 2017 <a class="link" href="http://zendesk.com" target="_blank" rel="external">Zendesk</a>. All rights reserved. (Last updated: 2017-08-21)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
 </div>

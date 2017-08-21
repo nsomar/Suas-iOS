@@ -8,6 +8,9 @@
     <script src="../js/jquery.min.js" defer></script>
     <script src="../js/jazzy.js" defer></script>
     
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
   </head>
   <body>
 
@@ -20,7 +23,13 @@
         <a class="header-link" href="../index.html">
           Suas Docs
         </a>
-         (90% documented)
+         (91% documented)
+      </p>
+    
+      <p class="header-col--secondary">
+        <form role="search" action="../search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
       </p>
     
         <p class="header-col header-col--secondary">
@@ -169,63 +178,66 @@
               </div>
             <p>Async action this type of action is intercepted by <code><a href="../Structs/AsyncMiddleware.html">AsyncMiddleware</a></code> and is not dispatched to the reducer.</p>
 
-<p>Recepie to use <code>AsyncAction</code>
-1. Create an <code>AsyncAction</code> action
-2. In the block passed at init. Perform any operation (dispatching it on your queue)
-3. When result is ready, call <code>dispatch</code> passing a new action</p>
+<p>Recepie to use <code>AsyncAction</code></p>
 
-<p>If the <code><a href="../Structs/AsyncMiddleware.html">AsyncMiddleware</a></code> receives an <code>AsyncAction</code> it does the following:
-1. Call action.execute passing in the dispatch and get state functions
-2. Stops the action from propagating to other middlewares and reducers</p>
+<ol>
+<li>Create an <code>AsyncAction</code> action</li>
+<li>In the block passed at init. Perform any operation (dispatching it on your queue)</li>
+<li>When result is ready, call <code>dispatch</code> passing a new action</li>
+</ol>
 
-<p><a href='#example' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='example'>Example</h1>
-<a href='#performing-an-async-loading-from-disk' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='performing-an-async-loading-from-disk'>Performing an async loading from disk</h2>
-<pre class="highlight plaintext"><code>struct MyDiskAsyncAction: AsyncAction {</p>
+<p>If the <code><a href="../Structs/AsyncMiddleware.html">AsyncMiddleware</a></code> receives an <code>AsyncAction</code> it does the following:</p>
 
-<p>func execute(getState: @escaping GetStateFunction, dispatch: @escaping DispatchFunction) {
+<ol>
+<li>Call action.execute passing in the dispatch and get state functions</li>
+<li>Stops the action from propagating to other middlewares and reducers</li>
+</ol>
+<h1 id='example' class='heading'>Example</h1>
+<h2 id='performing-an-async-loading-from-disk' class='heading'>Performing an async loading from disk</h2>
+<pre class="highlight plaintext"><code>struct MyDiskAsyncAction: AsyncAction {
+
+  func execute(getState: @escaping GetStateFunction, dispatch: @escaping DispatchFunction) {
     // Perform some work in a background thread
-    DispatchQueue(label: <q>MyQueue</q>).async {
+    DispatchQueue(label: "MyQueue").async {
       // Load from disk
       // Process loaded
-      // Do more work</p>
-<pre class="highlight plaintext"><code>  // Maybe consult the current state
-  let currentState = api.state
+      // Do more work
 
-  // At a latter time dont forget to dispatch
-  dispatch(DataLoadedAction(data: data))
+      // Maybe consult the current state
+      let currentState = api.state
+
+      // At a latter time dont forget to dispatch
+      dispatch(DataLoadedAction(data: data))
+    }
 }
+
+store.dispatch(action: MyDiskAsyncAction())
 </code></pre>
+<h2 id='performing-an-async-network-request' class='heading'>Performing an async network request</h2>
+<pre class="highlight plaintext"><code>struct MyURLAsyncAction: AsyncAction {
 
-<p>}</p>
-
-<p>store.dispatch(action: MyDiskAsyncAction())
-</code></pre>
-<a href='#performing-an-async-network-request' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='performing-an-async-network-request'>Performing an async network request</h2>
-<pre class="highlight plaintext"><code>struct MyURLAsyncAction: AsyncAction {</p>
-
-<p>func execute(getState: @escaping GetStateFunction, dispatch: @escaping DispatchFunction) {
+  func execute(getState: @escaping GetStateFunction, dispatch: @escaping DispatchFunction) {
     // First dispatch some action syncrhonously
-    dispatch(SomeAction(...))</p>
-<pre class="highlight plaintext"><code>let session = URLSession(configuration: .default)
-// perform a dataTask
-session.dataTask(with: urlRequest) { data, response, error in
+    dispatch(SomeAction(...))
 
-  if let data = data {
-    // Do something with the data
-     dispatch(RequestSucceeded(data: data))
+    let session = URLSession(configuration: .default)
+    // perform a dataTask
+    session.dataTask(with: urlRequest) { data, response, error in
 
-  } else if let error = error {
+      if let data = data {
+        // Do something with the data
+         dispatch(RequestSucceeded(data: data))
 
-     // Error happenend
-     dispatch(RequestFaile(data: data))
-  }
+      } else if let error = error {
+
+         // Error happenend
+         dispatch(RequestFaile(data: data))
+      }
+   }
+}
+
+store.dispatch(action: MyURLAsyncAction())
 </code></pre>
-
-<p>}
-}</p>
-
-<p>store.dispatch(action: MyURLAsyncAction())
-</code></pre></p>
 
           </div>
         </section>
@@ -248,9 +260,12 @@ session.dataTask(with: urlRequest) { data, response, error in
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>Execution block that is executed in the <code><a href="../Structs/AsyncMiddleware.html">AsyncMiddleware</a></code>
-If the <code><a href="../Structs/AsyncMiddleware.html">AsyncMiddleware</a></code> receives an <code>AsyncAction</code> it does the following:
-1. Call action.execute passing in the dispatch and get state functions
-2. Stops the action from propagating to other middlewares and reducers</p>
+If the <code><a href="../Structs/AsyncMiddleware.html">AsyncMiddleware</a></code> receives an <code>AsyncAction</code> it does the following:</p>
+
+<ol>
+<li>Call action.execute passing in the dispatch and get state functions</li>
+<li>Stops the action from propagating to other middlewares and reducers</li>
+</ol>
 
                       </div>
                       <div class="declaration">
@@ -275,8 +290,8 @@ If the <code><a href="../Structs/AsyncMiddleware.html">AsyncMiddleware</a></code
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2017 <a class="link" href="http://zendesk.com" target="_blank" rel="external">Omar Abdelhafith</a>. All rights reserved. (Last updated: 2017-08-16)</p>
-      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+      <p>&copy; 2017 <a class="link" href="http://zendesk.com" target="_blank" rel="external">Zendesk</a>. All rights reserved. (Last updated: 2017-08-21)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
 </div>

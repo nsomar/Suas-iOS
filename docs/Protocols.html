@@ -8,6 +8,9 @@
     <script src="js/jquery.min.js" defer></script>
     <script src="js/jazzy.js" defer></script>
     
+    <script src="js/lunr.min.js" defer></script>
+    <script src="js/typeahead.jquery.js" defer></script>
+    <script src="js/jazzy.search.js" defer></script>
   </head>
   <body>
 
@@ -19,7 +22,13 @@
         <a class="header-link" href="index.html">
           Suas Docs
         </a>
-         (90% documented)
+         (91% documented)
+      </p>
+    
+      <p class="header-col--secondary">
+        <form role="search" action="search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
       </p>
     
         <p class="header-col header-col--secondary">
@@ -184,63 +193,66 @@
                       <div class="abstract">
                         <p>Async action this type of action is intercepted by <code><a href="Structs/AsyncMiddleware.html">AsyncMiddleware</a></code> and is not dispatched to the reducer.</p>
 
-<p>Recepie to use <code>AsyncAction</code>
-1. Create an <code>AsyncAction</code> action
-2. In the block passed at init. Perform any operation (dispatching it on your queue)
-3. When result is ready, call <code>dispatch</code> passing a new action</p>
+<p>Recepie to use <code>AsyncAction</code></p>
 
-<p>If the <code><a href="Structs/AsyncMiddleware.html">AsyncMiddleware</a></code> receives an <code>AsyncAction</code> it does the following:
-1. Call action.execute passing in the dispatch and get state functions
-2. Stops the action from propagating to other middlewares and reducers</p>
+<ol>
+<li>Create an <code>AsyncAction</code> action</li>
+<li>In the block passed at init. Perform any operation (dispatching it on your queue)</li>
+<li>When result is ready, call <code>dispatch</code> passing a new action</li>
+</ol>
 
-<p><a href='#example' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='example'>Example</h1>
-<a href='#performing-an-async-loading-from-disk' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='performing-an-async-loading-from-disk'>Performing an async loading from disk</h2>
-<pre class="highlight plaintext"><code>struct MyDiskAsyncAction: AsyncAction {</p>
+<p>If the <code><a href="Structs/AsyncMiddleware.html">AsyncMiddleware</a></code> receives an <code>AsyncAction</code> it does the following:</p>
 
-<p>func execute(getState: @escaping GetStateFunction, dispatch: @escaping DispatchFunction) {
+<ol>
+<li>Call action.execute passing in the dispatch and get state functions</li>
+<li>Stops the action from propagating to other middlewares and reducers</li>
+</ol>
+<h1 id='example' class='heading'>Example</h1>
+<h2 id='performing-an-async-loading-from-disk' class='heading'>Performing an async loading from disk</h2>
+<pre class="highlight plaintext"><code>struct MyDiskAsyncAction: AsyncAction {
+
+  func execute(getState: @escaping GetStateFunction, dispatch: @escaping DispatchFunction) {
     // Perform some work in a background thread
-    DispatchQueue(label: <q>MyQueue</q>).async {
+    DispatchQueue(label: "MyQueue").async {
       // Load from disk
       // Process loaded
-      // Do more work</p>
-<pre class="highlight plaintext"><code>  // Maybe consult the current state
-  let currentState = api.state
+      // Do more work
 
-  // At a latter time dont forget to dispatch
-  dispatch(DataLoadedAction(data: data))
+      // Maybe consult the current state
+      let currentState = api.state
+
+      // At a latter time dont forget to dispatch
+      dispatch(DataLoadedAction(data: data))
+    }
 }
+
+store.dispatch(action: MyDiskAsyncAction())
 </code></pre>
+<h2 id='performing-an-async-network-request' class='heading'>Performing an async network request</h2>
+<pre class="highlight plaintext"><code>struct MyURLAsyncAction: AsyncAction {
 
-<p>}</p>
-
-<p>store.dispatch(action: MyDiskAsyncAction())
-</code></pre>
-<a href='#performing-an-async-network-request' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='performing-an-async-network-request'>Performing an async network request</h2>
-<pre class="highlight plaintext"><code>struct MyURLAsyncAction: AsyncAction {</p>
-
-<p>func execute(getState: @escaping GetStateFunction, dispatch: @escaping DispatchFunction) {
+  func execute(getState: @escaping GetStateFunction, dispatch: @escaping DispatchFunction) {
     // First dispatch some action syncrhonously
-    dispatch(SomeAction(...))</p>
-<pre class="highlight plaintext"><code>let session = URLSession(configuration: .default)
-// perform a dataTask
-session.dataTask(with: urlRequest) { data, response, error in
+    dispatch(SomeAction(...))
 
-  if let data = data {
-    // Do something with the data
-     dispatch(RequestSucceeded(data: data))
+    let session = URLSession(configuration: .default)
+    // perform a dataTask
+    session.dataTask(with: urlRequest) { data, response, error in
 
-  } else if let error = error {
+      if let data = data {
+        // Do something with the data
+         dispatch(RequestSucceeded(data: data))
 
-     // Error happenend
-     dispatch(RequestFaile(data: data))
-  }
+      } else if let error = error {
+
+         // Error happenend
+         dispatch(RequestFaile(data: data))
+      }
+   }
+}
+
+store.dispatch(action: MyURLAsyncAction())
 </code></pre>
-
-<p>}
-}</p>
-
-<p>store.dispatch(action: MyURLAsyncAction())
-</code></pre></p>
 
                         <a href="Protocols/AsyncAction.html" class="slightly-smaller">See more</a>
                       </div>
@@ -277,26 +289,23 @@ session.dataTask(with: urlRequest) { data, response, error in
                       <div class="abstract">
                         <p>Protocol used by <code><a href="Global Variables.html#/s:v4Suas12EqualsFilterFTP_P__Sb">EqualsFilter</a></code> filter callback to compare two state values.
 If your state implements the <code>Equatable</code> protocol there is no code required to implement <code>SuasDynamicEquatable</code></p>
-
-<p><a href='#example' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='example'>Example</h1>
-<a href='#implement-suasdynamicequatable-manually' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='implement-suasdynamicequatable-manually'>Implement SuasDynamicEquatable manually</h2>
+<h1 id='example' class='heading'>Example</h1>
+<h2 id='implement-suasdynamicequatable-manually' class='heading'>Implement SuasDynamicEquatable manually</h2>
 <pre class="highlight plaintext"><code>struct MyState: SuasDynamicEquatable {
-  let value: Int</p>
+  let value: Int
 
-<p>func isEqual(to other: Any) -&gt; Bool {
+  func isEqual(to other: Any) -&gt; Bool {
     // Cast to same type
-    guard let other = other as? MyState else { return false }</p>
-<pre class="highlight plaintext"><code>// Compare values
-return other.value == self.value
-</code></pre>
+    guard let other = other as? MyState else { return false }
 
-<p>}
+    // Compare values
+    return other.value == self.value
+  }
 }
 </code></pre>
-<a href='#implementing-suasdynamicequatable-as-an-extension' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='implementing-suasdynamicequatable-as-an-extension'>Implementing SuasDynamicEquatable as an extension</h2></p>
+<h2 id='implementing-suasdynamicequatable-as-an-extension' class='heading'>Implementing SuasDynamicEquatable as an extension</h2>
 
 <p>If your type implement equatable</p>
-
 <pre class="highlight plaintext"><code>struct MyState: Equatable {
   let value: Int
   static func ==(lhs: MyState, rhs: MyState) -&gt; Bool { ... }
@@ -304,7 +313,6 @@ return other.value == self.value
 </code></pre>
 
 <p>You dont need to implement <code>SuasDynamicEquatable</code> just add it as an extension to <code>MyState</code>. No extra code needed.</p>
-
 <pre class="highlight plaintext"><code>extension MyState: SuasDynamicEquatable { }
 </code></pre>
 
@@ -342,25 +350,23 @@ return other.value == self.value
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>Protocol that represents a reducer</p>
-
-<p><a href='#example' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='example'>Example</h1>
+<h1 id='example' class='heading'>Example</h1>
 <pre class="highlight plaintext"><code>struct MyReducer: Reducer {
-  var initialState: Int = 1</p>
+  var initialState: Int = 1
 
-<p>func reduce(state: Int, action: Action) -&gt; Int? {</p>
-<pre class="highlight plaintext"><code>// Cast the action to a specific action
-if let action = action as? SomeAction {
-  // state changed, listeners will be notified
-  return state + 1
+  func reduce(state: Int, action: Action) -&gt; Int? {
+
+    // Cast the action to a specific action
+    if let action = action as? SomeAction {
+      // state changed, listeners will be notified
+      return state + 1
+    }
+
+    // returning nil means the state did not change and listeners wont be notified
+    return nil
+  }
 }
-
-// returning nil means the state did not change and listeners wont be notified
-return nil
 </code></pre>
-
-<p>}
-}
-</code></pre></p>
 
 <p>Note: Returning <code>nil</code> from <code>reduce</code> signifies that the state did not change which will not inform the listeners.</p>
 
@@ -398,12 +404,11 @@ return nil
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>Action to dispatch to the store</p>
+<h1 id='example' class='heading'>Example</h1>
+<pre class="highlight plaintext"><code>struct ButtonTappedAction: Action { }
 
-<p><a href='#example' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='example'>Example</h1>
-<pre class="highlight plaintext"><code>struct ButtonTappedAction: Action { }</p>
-
-<p>store.dispatch(action: ButtonTappedAction())
-</code></pre></p>
+store.dispatch(action: ButtonTappedAction())
+</code></pre>
 
                       </div>
                       <div class="declaration">
@@ -440,15 +445,16 @@ return nil
                         <p>Middleware protocol that represents a suas store middleware
 A middleware helps extending the dispatch logic of Suas.</p>
 
-<p>A middleware can be used to implement:
-- Logging that logs the state before and after the reducer changes it
-- Perform async network calls and dispatches actions representing the result when the network returns.
-- Other advanced usages&hellip;</p>
+<p>A middleware can be used to implement:</p>
 
-<p><a href='#example' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='example'>Example</h1></p>
+<ul>
+<li>Logging that logs the state before and after the reducer changes it</li>
+<li>Perform async network calls and dispatches actions representing the result when the network returns.</li>
+<li>Other advanced usages&hellip;</li>
+</ul>
+<h1 id='example' class='heading'>Example</h1>
 
 <p>Implementing a logging middleware.</p>
-
 <pre class="highlight plaintext"><code>class LoggerMiddleware: Middleware {
   var api: MiddlewareAPI?
   var next: DispatchFunction?
@@ -494,8 +500,8 @@ A middleware helps extending the dispatch logic of Suas.</p>
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2017 <a class="link" href="http://zendesk.com" target="_blank" rel="external">Omar Abdelhafith</a>. All rights reserved. (Last updated: 2017-08-16)</p>
-      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+      <p>&copy; 2017 <a class="link" href="http://zendesk.com" target="_blank" rel="external">Zendesk</a>. All rights reserved. (Last updated: 2017-08-21)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
 </div>

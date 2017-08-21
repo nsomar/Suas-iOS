@@ -16,7 +16,7 @@ doc:
 	rm -rf docs
 
 	jazzy \
-  --author "Omar Abdelhafith" \
+  --author "Zendesk" \
   --author_url http://zendesk.com \
   --github_url https://github.com/Zendesk/Suas-iOS/tree/master \
   --output docs \

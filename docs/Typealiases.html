@@ -8,6 +8,9 @@
     <script src="js/jquery.min.js" defer></script>
     <script src="js/jazzy.js" defer></script>
     
+    <script src="js/lunr.min.js" defer></script>
+    <script src="js/typeahead.jquery.js" defer></script>
+    <script src="js/jazzy.search.js" defer></script>
   </head>
   <body>
 
@@ -19,7 +22,13 @@
         <a class="header-link" href="index.html">
           Suas Docs
         </a>
-         (90% documented)
+         (91% documented)
+      </p>
+    
+      <p class="header-col--secondary">
+        <form role="search" action="search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
       </p>
     
         <p class="header-col header-col--secondary">
@@ -172,9 +181,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:4Suas14FilterFunction"></a>
-                    <a name="//apple_ref/swift/Alias/FilterFunction" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4Suas14FilterFunction">FilterFunction</a>
+                    <a name="/s:4Suas8StateKey"></a>
+                    <a name="//apple_ref/swift/Alias/StateKey" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4Suas8StateKey">StateKey</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -182,19 +191,19 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Filter function that decides if the listener should be notified or not</p>
+                        <p>Store state is stored as a Dictionary of [StateKey: Any]</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">FilterFunction</span><span class="o">&lt;</span><span class="kt">StateType</span><span class="o">&gt;</span> <span class="o">=</span> <span class="p">(</span><span class="kt">StateType</span><span class="p">,</span> <span class="kt">StateType</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">StateKey</span> <span class="o">=</span> <span class="kt">String</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/Zendesk/Suas-iOS/Sources/Common.swift#L23">Show on GitHub</a>
+                        <a href="https://github.com/Zendesk/Suas-iOS/Sources/Common.swift#L13">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -232,36 +241,6 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:4Suas8StateKey"></a>
-                    <a name="//apple_ref/swift/Alias/StateKey" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4Suas8StateKey">StateKey</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Store state is stored as a Dictionary of [StateKey: Any]</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">StateKey</span> <span class="o">=</span> <span class="kt">String</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/Zendesk/Suas-iOS/Sources/Common.swift#L13">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
                     <a name="/s:4Suas22ActionListenerFunction"></a>
                     <a name="//apple_ref/swift/Alias/ActionListenerFunction" class="dashAnchor"></a>
                     <a class="token" href="#/s:4Suas22ActionListenerFunction">ActionListenerFunction</a>
@@ -285,6 +264,36 @@
                       </div>
                       <div class="slightly-smaller">
                         <a href="https://github.com/Zendesk/Suas-iOS/Sources/Common.swift#L20">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4Suas14FilterFunction"></a>
+                    <a name="//apple_ref/swift/Alias/FilterFunction" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4Suas14FilterFunction">FilterFunction</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Filter function that decides if the listener should be notified or not</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">FilterFunction</span><span class="o">&lt;</span><span class="kt">StateType</span><span class="o">&gt;</span> <span class="o">=</span> <span class="p">(</span><span class="kt">StateType</span><span class="p">,</span> <span class="kt">StateType</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/Zendesk/Suas-iOS/Sources/Common.swift#L23">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -327,8 +336,8 @@
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2017 <a class="link" href="http://zendesk.com" target="_blank" rel="external">Omar Abdelhafith</a>. All rights reserved. (Last updated: 2017-08-16)</p>
-      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+      <p>&copy; 2017 <a class="link" href="http://zendesk.com" target="_blank" rel="external">Zendesk</a>. All rights reserved. (Last updated: 2017-08-21)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
 </div>
