@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'Suas'
-  s.version = '0.1.1'
+  s.version = '1.0.0'
   s.license = 'MIT'
   s.summary = 'Suas is a Unidirectional data flow architecture implementation for iOS, macOS, tvOS and watchOS'
   s.homepage = 'http://suas.readme.io'
