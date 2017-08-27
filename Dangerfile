@@ -19,6 +19,3 @@ commit_lint.check warn: :all
 
 todoist.warn_for_todos
 the_coding_love.random
-
-slather.configure("Suas.xcodeproj", "SuasIOS")
-slather.show_coverage

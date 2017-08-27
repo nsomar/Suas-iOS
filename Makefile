@@ -23,6 +23,4 @@ doc:
   --xcodebuild-arguments -scheme,"SuasIOS" \
   --github-file-prefix https://github.com/Zendesk/Suas-iOS \
   --theme fullwidth
-
-after_success:
-  - bash <(curl -s https://codecov.io/bash) -t de4c0f22-50e8-4168-a938-7ad99c468dce
+	
