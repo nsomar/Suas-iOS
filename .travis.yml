@@ -9,3 +9,7 @@ install:
 
 script:
 - make test
+
+after_success:
+  - bundle exec danger
+  - bash <(curl -s https://codecov.io/bash) -t de4c0f22-50e8-4168-a938-7ad99c468dce
